@@ -1,0 +1,304 @@
+{
+    "teams": [
+        {
+            "team_id": 1,
+            "name": "Atlanta Hawks",
+            "abbreviation": "ATL",
+            "league_id": 1,
+            "description": "The Atlanta Hawks, established in 1946, have competed in the NBA for over 75 years. They have won one championship and are currently competing in the Eastern Conference's Southeast Division.",
+            "record": "25-20",
+            "conference": "Eastern",
+            "division": "Southeast"
+        },
+        {
+            "team_id": 2,
+            "name": "Boston Celtics",
+            "abbreviation": "BOS",
+            "league_id": 1,
+            "description": "The Boston Celtics, a founding NBA member in 1946, boast a rich history with 17 championships. This season, they aim for success in the Eastern Conference's Atlantic Division.",
+            "record": "30-15",
+            "conference": "Eastern",
+            "division": "Atlantic"
+        },
+        {
+            "team_id": 3,
+            "name": "Brooklyn Nets",
+            "abbreviation": "BKN",
+            "league_id": 1,
+            "description": "The Brooklyn Nets, founded in 1967, have quickly risen as a competitive force. They are currently part of the Eastern Conference's Atlantic Division.",
+            "record": "32-14",
+            "conference": "Eastern",
+            "division": "Atlantic"
+        },
+        {
+            "team_id": 4,
+            "name": "Charlotte Hornets",
+            "abbreviation": "CHA",
+            "league_id": 1,
+            "description": "The Charlotte Hornets, established in 1988, are a dynamic team in the NBA. They compete in the Eastern Conference's Southeast Division.",
+            "record": "23-22",
+            "conference": "Eastern",
+            "division": "Southeast"
+        },
+        {
+            "team_id": 5,
+            "name": "Chicago Bulls",
+            "abbreviation": "CHI",
+            "league_id": 1,
+            "description": "The Chicago Bulls, founded in 1966, are synonymous with greatness, winning six championships. They compete in the Eastern Conference's Central Division.",
+            "record": "21-25",
+            "conference": "Eastern",
+            "division": "Central"
+        },
+        {
+            "team_id": 6,
+            "name": "Cleveland Cavaliers",
+            "abbreviation": "CLE",
+            "league_id": 1,
+            "description": "The Cleveland Cavaliers, established in 1970, achieved NBA glory in 2016. They are part of the Eastern Conference's Central Division.",
+            "record": "19-26",
+            "conference": "Eastern",
+            "division": "Central"
+        },
+        {
+            "team_id": 7,
+            "name": "Dallas Mavericks",
+            "abbreviation": "DAL",
+            "league_id": 1,
+            "description": "The Dallas Mavericks, founded in 1980, have had a strong presence in the NBA. They compete in the Western Conference's Southwest Division.",
+            "record": "28-16",
+            "conference": "Western",
+            "division": "Southwest"
+        },
+        {
+            "team_id": 8,
+            "name": "Denver Nuggets",
+            "abbreviation": "DEN",
+            "league_id": 1,
+            "description": "The Denver Nuggets, established in 1967, have consistently displayed competitive prowess. They are part of the Western Conference's Northwest Division.",
+            "record": "25-18",
+            "conference": "Western",
+            "division": "Northwest"
+        },
+        {
+            "team_id": 9,
+            "name": "Detroit Pistons",
+            "abbreviation": "DET",
+            "league_id": 1,
+            "description": "The Detroit Pistons, founded in 1941, have a storied history with three championships. They compete in the Eastern Conference's Central Division.",
+            "record": "11-34",
+            "conference": "Eastern",
+            "division": "Central"
+        },
+        {
+            "team_id": 10,
+            "name": "Golden State Warriors",
+            "abbreviation": "GSW",
+            "league_id": 1,
+            "description": "The Golden State Warriors, founded in 1946, are a powerhouse with multiple championships. They compete in the Western Conference's Pacific Division.",
+            "record": "29-17",
+            "conference": "Western",
+            "division": "Pacific"
+        },
+        {
+            "team_id": 11,
+            "name": "Houston Rockets",
+            "abbreviation": "HOU",
+            "league_id": 1,
+            "description": "The Houston Rockets, established in 1967, have a legacy of competitiveness. They compete in the Western Conference's Southwest Division.",
+            "record": "16-30",
+            "conference": "Western",
+            "division": "Southwest"
+        },
+        {
+            "team_id": 12,
+            "name": "Indiana Pacers",
+            "abbreviation": "IND",
+            "league_id": 1,
+            "description": "The Indiana Pacers, founded in 1967, have a strong presence in the NBA. They compete in the Eastern Conference's Central Division.",
+            "record": "20-27",
+            "conference": "Eastern",
+            "division": "Central"
+        },
+        {
+            "team_id": 13,
+            "name": "LA Clippers",
+            "abbreviation": "LAC",
+            "league_id": 1,
+            "description": "The LA Clippers, established in 1970, are a competitive force in the NBA. They compete in the Western Conference's Pacific Division.",
+            "record": "30-15",
+            "conference": "Western",
+            "division": "Pacific"
+        },
+        {
+            "team_id": 14,
+            "name": "Los Angeles Lakers",
+            "abbreviation": "LAL",
+            "league_id": 1,
+            "description": "The Los Angeles Lakers, founded in 1947, boast a legendary history with multiple championships. They compete in the Western Conference's Pacific Division.",
+            "record": "28-17",
+            "conference": "Western",
+            "division": "Pacific"
+        },
+        {
+            "team_id": 15,
+            "name": "Memphis Grizzlies",
+            "abbreviation": "MEM",
+            "league_id": 1,
+            "description": "The Memphis Grizzlies, established in 1995, have become a formidable team in the NBA. They compete in the Western Conference's Southwest Division.",
+            "record": "28-16",
+            "conference": "Western",
+            "division": "Southwest"
+        },
+        {
+            "team_id": 16,
+            "name": "Miami Heat",
+            "abbreviation": "MIA",
+            "league_id": 1,
+            "description": "The Miami Heat, founded in 1988, have a legacy of success with multiple championships. They compete in the Eastern Conference's Southeast Division.",
+            "record": "27-18",
+            "conference": "Eastern",
+            "division": "Southeast"
+        },
+        {
+            "team_id": 17,
+            "name": "Milwaukee Bucks",
+            "abbreviation": "MIL",
+            "league_id": 1,
+            "description": "The Milwaukee Bucks, established in 1968, have showcased excellence in the NBA. They compete in the Eastern Conference's Central Division.",
+            "record": "26-19",
+            "conference": "Eastern",
+            "division": "Central"
+        },
+        {
+            "team_id": 18,
+            "name": "Minnesota Timberwolves",
+            "abbreviation": "MIN",
+            "league_id": 1,
+            "description": "The Minnesota Timberwolves, founded in 1989, continue to build a competitive legacy. They compete in the Western Conference's Northwest Division.",
+            "record": "20-24",
+            "conference": "Western",
+            "division": "Northwest"
+        },
+        {
+            "team_id": 19,
+            "name": "New Orleans Pelicans",
+            "abbreviation": "NOP",
+            "league_id": 1,
+            "description": "The New Orleans Pelicans, established in 2002, are a rising force in the NBA. They compete in the Western Conference's Southwest Division.",
+            "record": "16-29",
+            "conference": "Western",
+            "division": "Southwest"
+        },
+        {
+            "team_id": 20,
+            "name": "New York Knicks",
+            "abbreviation": "NYK",
+            "league_id": 1,
+            "description": "The New York Knicks, founded in 1946, have a storied history in the NBA. They compete in the Eastern Conference's Atlantic Division.",
+            "record": "25-20",
+            "conference": "Eastern",
+            "division": "Atlantic"
+        },
+        {
+            "team_id": 21,
+            "name": "Oklahoma City Thunder",
+            "abbreviation": "OKC",
+            "league_id": 1,
+            "description": "The Oklahoma City Thunder, established in 1967, have a strong presence in the NBA. They compete in the Western Conference's Northwest Division.",
+            "record": "15-30",
+            "conference": "Western",
+            "division": "Northwest"
+        },
+        {
+            "team_id": 22,
+            "name": "Orlando Magic",
+            "abbreviation": "ORL",
+            "league_id": 1,
+            "description": "The Orlando Magic, founded in 1989, bring excitement to the NBA. They compete in the Eastern Conference's Southeast Division.",
+            "record": "12-34",
+            "conference": "Eastern",
+            "division": "Southeast"
+        },
+        {
+            "team_id": 23,
+            "name": "Philadelphia 76ers",
+            "abbreviation": "PHI",
+            "league_id": 1,
+            "description": "The Philadelphia 76ers, established in 1946, have a rich history in the NBA. They compete in the Eastern Conference's Atlantic Division.",
+            "record": "31-13",
+            "conference": "Eastern",
+            "division": "Atlantic"
+        },
+        {
+            "team_id": 24,
+            "name": "Phoenix Suns",
+            "abbreviation": "PHX",
+            "league_id": 1,
+            "description": "The Phoenix Suns, founded in 1968, have shown resilience in the NBA. They compete in the Western Conference's Pacific Division.",
+            "record": "33-9",
+            "conference": "Western",
+            "division": "Pacific"
+        },
+        {
+            "team_id": 25,
+            "name": "Portland Trail Blazers",
+            "abbreviation": "POR",
+            "league_id": 1,
+            "description": "The Portland Trail Blazers, established in 1970, are known for their competitive spirit. They compete in the Western Conference's Northwest Division.",
+            "record": "17-28",
+            "conference": "Western",
+            "division": "Northwest"
+        },
+        {
+            "team_id": 26,
+            "name": "Sacramento Kings",
+            "abbreviation": "SAC",
+            "league_id": 1,
+            "description": "The Sacramento Kings, founded in 1923, have a long-standing legacy in the NBA. They compete in the Western Conference's Pacific Division.",
+            "record": "17-29",
+            "conference": "Western",
+            "division": "Pacific"
+        },
+        {
+            "team_id": 27,
+            "name": "San Antonio Spurs",
+            "abbreviation": "SAS",
+            "league_id": 1,
+            "description": "The San Antonio Spurs, established in 1967, are a model of consistency with multiple championships. They compete in the Western Conference's Southwest Division.",
+            "record": "19-27",
+            "conference": "Western",
+            "division": "Southwest"
+        },
+        {
+            "team_id": 28,
+            "name": "Toronto Raptors",
+            "abbreviation": "TOR",
+            "league_id": 1,
+            "description": "The Toronto Raptors, founded in 1995, have etched their mark in the NBA. They compete in the Eastern Conference's Atlantic Division.",
+            "record": "22-21",
+            "conference": "Eastern",
+            "division": "Atlantic"
+        },
+        {
+            "team_id": 29,
+            "name": "Utah Jazz",
+            "abbreviation": "UTA",
+            "league_id": 1,
+            "description": "The Utah Jazz, established in 1974, are known for their competitive spirit. They compete in the Western Conference's Northwest Division.",
+            "record": "30-12",
+            "conference": "Western",
+            "division": "Northwest"
+        },
+        {
+            "team_id": 30,
+            "name": "Washington Wizards",
+            "abbreviation": "WAS",
+            "league_id": 1,
+            "description": "The Washington Wizards, founded in 1961, have a rich history in the NBA. They compete in the Eastern Conference's Southeast Division.",
+            "record": "18-27",
+            "conference": "Eastern",
+            "division": "Southeast"
+        }
+    ]
+}
