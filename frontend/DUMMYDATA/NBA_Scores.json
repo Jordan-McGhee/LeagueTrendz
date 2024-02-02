@@ -1,0 +1,28 @@
+{
+    "games" : [
+        {
+            "home_team": "Cavaliers",
+            "home_team_id": 6,
+            "home_team_score": 106,
+            "away_team": "Grizzlies",
+            "away_team_id": 15,
+            "away_team_score": 99,
+            "location": "TD Garden",
+            "city": "Boston, MA",
+            "date": "2/01/2024",
+            "time_left": "0:19.3 - 4Q"
+        },
+        {
+            "home_team": "Cavaliers",
+            "home_team_id": 6,
+            "home_team_score": 106,
+            "away_team": "Grizzlies",
+            "away_team_id": 15,
+            "away_team_score": 99,
+            "location": "TD Garden",
+            "city": "Boston, MA",
+            "date": "2/01/2024",
+            "time_left": "game over"
+        }
+    ]
+}
