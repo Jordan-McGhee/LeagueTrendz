@@ -3,5 +3,7 @@ import express, { Router } from "express"
 
 const router = Router()
 
+// router.get("/", leagueContollers.getLeague)
+
 
 module.exports = router

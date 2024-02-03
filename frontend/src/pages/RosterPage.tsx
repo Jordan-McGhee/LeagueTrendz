@@ -1,12 +1,12 @@
 import React from "react";
 
-const HomePage = () => {
+const RosterPage = () => {
 
     return (
         <div>
-            HomePage
+            RosterPage
         </div>
     )
 }
 
-export default HomePage
+export default RosterPage

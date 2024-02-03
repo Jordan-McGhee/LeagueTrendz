@@ -5,13 +5,18 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 // route imports
-
+// import * as userRoutes from './routes/user-routes'
+// import * as leagueRoutes from './routes/league-routes'
 
 const app: Express = express();
 
 app.use(bodyParser.json())
 
 // route variables
+// app.use("/user", userRoutes)
+// app.use("/league", leagueRoutes)
+
+
 const PORT = process.env.PORT || 5000;
 
 app.get('/', (req: Request, res: Response) => {
