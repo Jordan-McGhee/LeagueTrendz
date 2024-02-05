@@ -5,11 +5,11 @@ const DesktopNav = () => {
 
 
     return (
-        <nav className="bg-white border-black border-2 left-0 h-full w-1/6">
-            <ul className="flex flex-col justify-between py-4 items-center h-2/3">
+        <nav className="bg-white border-black border-2 left-0 h-full w-1/5">
+            <ul className="flex flex-col justify-between py-8 items-center h-full bg-green-700">
 
                 {/* regular nav options */}
-                <div className="h-1/2 flex flex-col justify-between">
+                <div className="h-1/3 flex flex-col gap-y-8">
                     <li>
                         <NavLink to="/" className="flex">
                             {/* icon placeholder */}
@@ -53,7 +53,7 @@ const DesktopNav = () => {
                 </div>
 
                 {/* user nav options profile/favorites/notifications */}
-                <div className="h-1/3 flex flex-col justify-between">
+                <div className="h-1/5 gap-y-8 flex flex-col">
 
                     <li>
                         <NavLink to="/" className="flex">
