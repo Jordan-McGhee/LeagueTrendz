@@ -30,13 +30,13 @@ function App() {
 
   return (
     // APP CONTAINER
-    <div className="border border-black bg-gray-500 overflow-hidden">
+    <div className="bg-black overflow-hidden">
 
-      <div className='w-3/4 m-auto h-lvh flex'>
+      <div className='w-4/5 m-auto h-lvh flex'>
         <DesktopNav />
 
         {/* content div */}
-        <div className='w-full border-x-2 border-white h-full'>
+        <div className='w-full border-white h-full'>
           { routes }
         </div>
       </div>

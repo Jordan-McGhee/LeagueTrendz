@@ -1,49 +1,33 @@
 import React from "react";
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "../components/ui/card";
+import HomeSchedule from "../components/Desktop/HomePage/HomeSchedule";
+import HomeStandings from "../components/Desktop/HomePage/HomeStandings";
+import HomeHeadlines from "../components/Desktop/HomePage/HomeHeadlines";
+import HomeFavorites from "../components/Desktop/HomePage/HomeFavorites";
 
 const HomePage = () => {
 
     return (
 
         // full content div
-        <div className="flex h-full bg-blue-500 py-4 px-4">
+        <div className="flex p-4 gap-x-4 h-full bg-[#e2dfe2]">
             
             {/* left side */}
-            <div className="bg-gray-500 h-full w-3/4 flex flex-col">
+            <div className="h-full w-[70%] flex flex-col justify-between gap-y-4">
 
                 {/* games/sched div */}
-                <Card>
-                    <CardHeader>
-                        <CardTitle>
-                            Today's Games
-                        </CardTitle>
-
-                        <CardDescription>
-                            Feb. 5, 2024
-                        </CardDescription>
-
-                    </CardHeader>
-
-                    <CardContent>
-
-                    </CardContent>
-
-                    <CardFooter>
-                        See Full Schedule
-                    </CardFooter>
-                </Card>
+                <HomeSchedule />
 
                 {/* standings div */}
-                <div>
-
-                </div>
+                <HomeStandings />
 
             </div>
 
             {/* right side */}
-            <div className="bg-red-500 h-full w-1/4">
-                
+            <div className=" h-full w-[30%] flex flex-col justify-between gap-y-4">
+                <HomeHeadlines />
+
+                <HomeFavorites />
             </div>
 
         </div>
