@@ -10,7 +10,7 @@ const HomePage = () => {
     return (
 
         // full content div
-        <div className="flex p-4 gap-x-4 h-full bg-[#e2dfe2]">
+        <div className="flex p-4 gap-x-4 h-full">
             
             {/* left side */}
             <div className="h-full w-[70%] flex flex-col justify-between gap-y-4">
