@@ -36,7 +36,7 @@ function App() {
         <DesktopNav />
 
         {/* content div */}
-        <div className='w-full h-full bg-[#e2dfe2]'>
+        <div className='w-full h-full bg-[#e2dfe2] p-4'>
           { routes }
         </div>
       </div>

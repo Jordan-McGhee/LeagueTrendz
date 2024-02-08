@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../../ui/card"
-import AllGames from "../../Schedule/AllGames";
+import AllGames from "./Home-Schedule/AllGames";
 
 // DUMMY DATA IMPORT
 import games from "../../../DUMMYDATA/NBA_Scores.json"

@@ -1,0 +1,149 @@
+{
+    "games": [
+        {
+            "date": "Sunday, February 4, 2024",
+            "gamesOfDay": [
+                {
+                    "home_team": "Rockets",
+                    "away_team": "Knicks",
+                    "time": "18:00"
+                },
+                {
+                    "home_team": "Celtics",
+                    "away_team": "Bucks",
+                    "time": "20:00"
+                },
+                {
+                    "home_team": "Suns",
+                    "away_team": "Lakers",
+                    "time": "21:30"
+                }
+            ]
+        },
+        {
+            "date": "Monday, February 5, 2024",
+            "gamesOfDay": [
+                {
+                    "home_team": "Rockets",
+                    "away_team": "Knicks",
+                    "time": "18:00"
+                },
+                {
+                    "home_team": "Celtics",
+                    "away_team": "Bucks",
+                    "time": "20:00"
+                },
+                {
+                    "home_team": "Suns",
+                    "away_team": "Lakers",
+                    "time": "21:30"
+                }
+            ]
+        },
+        {
+            "date": "Tuesday, February 6, 2024",
+            "gamesOfDay": [
+                {
+                    "home_team": "Warriors",
+                    "away_team": "Heat",
+                    "time": "19:30"
+                },
+                {
+                    "home_team": "Clippers",
+                    "away_team": "76ers",
+                    "time": "21:00"
+                },
+                {
+                    "home_team": "Nets",
+                    "away_team": "Timberwolves",
+                    "time": "22:30"
+                }
+            ]
+        },
+        {
+            "date": "Wednesday, February 7, 2024",
+            "gamesOfDay": [
+                {
+                    "home_team": "Nuggets",
+                    "away_team": "Raptors",
+                    "time": "18:30"
+                },
+                {
+                    "home_team": "Trail Blazers",
+                    "away_team": "Mavericks",
+                    "time": "20:30"
+                },
+                {
+                    "home_team": "Kings",
+                    "away_team": "Pelicans",
+                    "time": "22:00"
+                }
+            ]
+        },
+        {
+            "date": "Thursday, February 8, 2024",
+            "gamesOfDay": [
+                {
+                    "home_team": "Lakers",
+                    "away_team": "Celtics",
+                    "time": "18:00"
+                },
+                {
+                    "home_team": "Raptors",
+                    "away_team": "Heat",
+                    "time": "20:00"
+                },
+                {
+                    "home_team": "Bulls",
+                    "away_team": "Hornets",
+                    "time": "21:30"
+                },
+                {
+                    "home_team": "Pistons",
+                    "away_team": "Thunder",
+                    "time": "22:00"
+                }
+            ]
+        },
+        {
+            "date": "Friday, February 9, 2024",
+            "gamesOfDay": [
+                {
+                    "home_team": "Warriors",
+                    "away_team": "Bucks",
+                    "time": "19:30"
+                },
+                {
+                    "home_team": "Clippers",
+                    "away_team": "76ers",
+                    "time": "21:00"
+                },
+                {
+                    "home_team": "Nets",
+                    "away_team": "Timberwolves",
+                    "time": "22:30"
+                }
+            ]
+        },
+        {
+            "date": "Saturday, February 10, 2024",
+            "gamesOfDay": [
+                {
+                    "home_team": "Nuggets",
+                    "away_team": "Rockets",
+                    "time": "18:30"
+                },
+                {
+                    "home_team": "Trail Blazers",
+                    "away_team": "Mavericks",
+                    "time": "20:30"
+                },
+                {
+                    "home_team": "Kings",
+                    "away_team": "Suns",
+                    "time": "22:00"
+                }
+            ]
+        }
+    ]
+}
