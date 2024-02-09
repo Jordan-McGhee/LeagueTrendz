@@ -7,8 +7,6 @@ import Division from "../components/Desktop/AllTeamsPage/Division";
 // DUMMY IMPORT
 const teams = require("../DUMMYDATA/NBA_Teams.json")
 
-console.log(teams)
-
 const AllTeamsPage = () => {
 
     type Team = {

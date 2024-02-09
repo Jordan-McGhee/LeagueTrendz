@@ -11,6 +11,7 @@ import PlayerPage from './pages/PlayerPage';
 import RosterPage from './pages/RosterPage';
 import SchedulePage from './pages/SchedulePage';
 import SingleTeamPage from './pages/SingleTeamPage';
+import ScoresPage from './pages/ScoresPage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route path = "/teams" element = { <AllTeamsPage />} />
       <Route path = "/player" element = { <PlayerPage />} />
       <Route path = "/roster" element = { <RosterPage />} />
+      <Route path = '/scores' element = { <ScoresPage /> }/>
       <Route path = "/schedule" element = { <SchedulePage />} />
       <Route path = "/singleTeam" element = { <SingleTeamPage />} />
 
@@ -36,7 +38,7 @@ function App() {
         <DesktopNav />
 
         {/* content div */}
-        <div className='w-full h-full bg-[#e2dfe2] p-4'>
+        <div className='w-full h-fit bg-[#e2dfe2] p-4'>
           { routes }
         </div>
       </div>

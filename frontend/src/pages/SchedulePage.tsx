@@ -1,6 +1,10 @@
 import React from "react";
 
+// ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
+
+// component imports
+import DatePagination from "../components/Desktop/SchedulePage/DatePagination";
 import GameDayTable from "../components/Desktop/SchedulePage/GameDayTable";
 
 // DUMMY IMPORT
@@ -27,12 +31,6 @@ const SchedulePage = () => {
     // getting overall object of schedule from json
     const schedule: Schedule = games
 
-    const gamesBrokenOutByDate = schedule.games.forEach((dateObject) => {
-
-    })
-
-    let dateArray = Array(10).fill(" ")
-
     return (
         <div>
             <Card className="">
@@ -42,11 +40,7 @@ const SchedulePage = () => {
                     </CardTitle>
 
                     {/* div for date change placeholder */}
-                    <div className="flex gap-x-2">
-                        {dateArray.map((date) => (
-                            <div className="h-10 w-20 bg-red-900 mt-2" />
-                        ))}
-                    </div>
+                    <DatePagination />
                 </CardHeader>
 
                 <CardContent>

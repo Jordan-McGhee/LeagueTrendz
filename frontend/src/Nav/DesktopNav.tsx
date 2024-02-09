@@ -27,7 +27,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/" className="flex">
+                        <NavLink to="/scores" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Scores</p>
@@ -35,7 +35,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/schedule" className="flex">
+                        <NavLink to="/schedule" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Schedule</p>
@@ -51,7 +51,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/teams" className="flex">
+                        <NavLink to="/teams" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Teams</p>
