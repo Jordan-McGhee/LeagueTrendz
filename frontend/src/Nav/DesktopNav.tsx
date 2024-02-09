@@ -43,7 +43,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/" className="flex">
+                        <NavLink to="/standings" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Standings</p>

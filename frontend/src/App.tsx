@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 
 // NAV IMPORT
 import DesktopNav from './Nav/DesktopNav';
@@ -12,6 +12,7 @@ import RosterPage from './pages/RosterPage';
 import SchedulePage from './pages/SchedulePage';
 import SingleTeamPage from './pages/SingleTeamPage';
 import ScoresPage from './pages/ScoresPage';
+import StandingsPage from './pages/StandingsPage';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path = '/scores' element = { <ScoresPage /> }/>
       <Route path = "/schedule" element = { <SchedulePage />} />
       <Route path = "/singleTeam" element = { <SingleTeamPage />} />
+      <Route path = '/standings' element = { <StandingsPage /> } />
 
     </Routes>
   )
