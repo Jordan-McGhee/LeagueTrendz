@@ -7,10 +7,10 @@ import DesktopNav from './Nav/DesktopNav';
 // PAGE IMPORTS
 import AllTeamsPage from './pages/AllTeamsPage';
 import HomePage from './pages/HomePage';
-import PlayerPage from './pages/PlayerPage';
+import PlayerPage from './pages/Data-Pages/Player/PlayerPage';
 import RosterPage from './pages/RosterPage';
 import SchedulePage from './pages/SchedulePage';
-import SingleTeamPage from './pages/SingleTeamPage';
+import SingleTeamPage from './pages/Data-Pages/Team/SingleTeamPage';
 import ScoresPage from './pages/ScoresPage';
 import StandingsPage from './pages/StandingsPage';
 
