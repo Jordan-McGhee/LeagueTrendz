@@ -18,7 +18,7 @@ const SingleTeamPage = () => {
     // const [ selectedMenuItem, setSelectedMenuItem ] = useState('home')
 
     return (
-        <div className="h-lvh">
+        <div className="h-fit">
             <Card>
                 <CardHeader>
 
