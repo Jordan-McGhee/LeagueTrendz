@@ -25,7 +25,7 @@ const SingleTeamPage = () => {
                     <div className="flex items-center gap-x-4 mb-4">
 
                         {/* logo placeholder */}
-                        <div className="bg-red-700 h-20 w-20" />
+                        <div className="bg-red-700 h-24 w-24 rounded-full" />
 
                         <div className="flex flex-col gap-y-2">
                             <CardTitle className="text-2xl font-light">ATLANTA <span className="font-bold">HAWKS</  span></CardTitle>

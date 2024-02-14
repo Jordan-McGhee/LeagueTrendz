@@ -10,7 +10,7 @@ const SingleGame = () => {
             {/* date & logo */}
             <div className="flex gap-x-2">
                 <p>2/9</p>
-                <div className="bg-red-500 w-4 h-4" />
+                <div className="bg-red-500 w-4 h-4 rounded-full" />
             </div>
 
             {/* vs/@ and team abbreviation */}

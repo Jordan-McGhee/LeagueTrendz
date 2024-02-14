@@ -1,4 +1,5 @@
 // ui imports
+import { Separator } from "../../ui/separator"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card"
 
 type Player = {
@@ -11,7 +12,7 @@ type Player = {
 const InjuredPlayer = (props: Player) => {
 
     return (
-        <div className="flex items-center gap-x-4 border-y py-2 text-sm">
+        <div className="flex items-center gap-x-4 py-4 text-sm">
             {/* image */}
             <div className="bg-red-600 h-14 w-14 rounded-full" />
 
@@ -47,12 +48,18 @@ const TeamInjuries = () => {
             </CardHeader>
 
             <CardContent>
-                { playerArray.map((player: Player, index: number) => (
-                    <InjuredPlayer key={index} {...player} />
-                ))}
+
+                <InjuredPlayer key={1} {...playerArray[0]} />
+                <Separator />
+
+                <InjuredPlayer key={2} {...playerArray[1]} />
+                <Separator />
+
+                <InjuredPlayer key={3} {...playerArray[2]} />
+
             </CardContent>
 
-            <CardFooter className="text-sm font-semibold">
+            <CardFooter className="text-sm font-semibold text-blue-700">
                 Team Injuries
             </CardFooter>
         </Card>
