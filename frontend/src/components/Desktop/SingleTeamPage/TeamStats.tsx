@@ -19,24 +19,24 @@ const TeamStats = () => {
                 <div className="flex justify-between">
 
                     {/* points per game */}
-                    <div className="text-center">
-                        <p className="font-black text-3xl">121.7</p>
-                        <p className="font-light text-sm">Points Per Game</p>
-                        <p className="text-red-700 font-bold">#2 in the NBA</p>
+                    <div className="text-center flex flex-col gap-y-2">
+                        <p className="text-sm">Points Per Game</p>
+                        <p className="text-red-700 font-black text-5xl">121.7</p>
+                        <p className="font-bold">#2 in the NBA</p>
                     </div>
 
                     {/* rebounds per game */}
-                    <div className="text-center">
-                        <p className="font-black text-3xl">44.9</p>
-                        <p className="font-light text-sm">Rebounds Per Game</p>
-                        <p className="text-red-700 font-bold">#17 in the NBA</p>
+                    <div className="text-center flex flex-col gap-y-2">
+                        <p className="text-sm">Rebounds Per Game</p>
+                        <p className="text-red-700 font-black text-5xl">44.9</p>
+                        <p className="font-bold">#17 in the NBA</p>
                     </div>
 
                     {/* assists per game */}
-                    <div className="text-center">
-                        <p className="font-black text-3xl">26.3</p>
-                        <p className="font-light text-sm">Assists Per Game</p>
-                        <p className="text-red-700 font-bold">#12 in the NBA</p>
+                    <div className="text-center flex flex-col gap-y-2">
+                        <p className="text-sm">Assists Per Game</p>
+                        <p className="text-red-700 font-black text-5xl">26.3</p>
+                        <p className="font-bold">#12 in the NBA</p>
                     </div>
 
                 </div>
@@ -44,7 +44,7 @@ const TeamStats = () => {
             </CardContent>
 
             <CardFooter className="text-sm font-semibold text-blue-700">
-                <Link to = "/standings">
+                <Link to="/standings">
                     See All Team Stats
                 </Link>
             </CardFooter>

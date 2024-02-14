@@ -116,7 +116,7 @@ const StandingsContent = () => {
                     />
 
                     <StandingsTable
-                        teams={southeastTeams}
+                        teams={southwestTeams}
                         selection="division"
                         division="Southwest"
                     />
