@@ -6,8 +6,9 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../c
 import { Button } from "../../../components/ui/button";
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "../../../components/ui/menubar"
 
-// component imports
+// views imports
 import TeamHome from "./Views/TeamHome";
+import Roster from "./Views/Roster";
 
 
 // menu item type
@@ -18,7 +19,7 @@ const SingleTeamPage = () => {
     // const [ selectedMenuItem, setSelectedMenuItem ] = useState('home')
 
     return (
-        <div className="h-fit">
+        <div className="h-fit min-h-svh">
             <Card>
                 <CardHeader>
 
@@ -69,7 +70,8 @@ const SingleTeamPage = () => {
                 </CardHeader>
 
                 <CardContent>
-                    <TeamHome />
+                    {/* <TeamHome /> */}
+                    <Roster />
                 </CardContent>
             </Card>
         </div>

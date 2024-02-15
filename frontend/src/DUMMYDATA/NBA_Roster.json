@@ -4,8 +4,7 @@
     "lineup": [
         {
             "player_id": 101,
-            "first_name": "Trae",
-            "last_name": "Young",
+            "name": "Trae Young",
             "team_id": 1,
             "height": "6'1",
             "weight": 180,
@@ -13,13 +12,13 @@
             "age": 25,
             "college": "Oklahoma",
             "status": "healthy",
-            "position": "Point Guard",
-            "number": 11
+            "position": "PG",
+            "number": 11,
+            "salary": 22000000
         },
         {
             "player_id": 102,
-            "first_name": "John",
-            "last_name": "Collins",
+            "name": "John Collins",
             "team_id": 1,
             "height": "6'9",
             "weight": 235,
@@ -27,13 +26,13 @@
             "age": 24,
             "college": "Wake Forest",
             "status": "healthy",
-            "position": "Power Forward",
-            "number": 20
+            "position": "PF",
+            "number": 20,
+            "salary": 22000000
         },
         {
             "player_id": 103,
-            "first_name": "Bogdan",
-            "last_name": "Bogdanovic",
+            "name": "Bogdan Bogdanovic",
             "team_id": 1,
             "height": "6'6",
             "weight": 225,
@@ -41,13 +40,13 @@
             "age": 29,
             "college": "Belgrade (Serbia)",
             "status": "healthy",
-            "position": "Shooting Guard",
-            "number": 13
+            "position": "SG",
+            "number": 13,
+            "salary": 22000000
         },
         {
             "player_id": 104,
-            "first_name": "Clint",
-            "last_name": "Capela",
+            "name": "Clint Capela",
             "team_id": 1,
             "height": "6'10",
             "weight": 240,
@@ -55,13 +54,13 @@
             "age": 27,
             "college": "Élan Chalon (Switzerland)",
             "status": "healthy",
-            "position": "Center",
-            "number": 15
+            "position": "C",
+            "number": 15,
+            "salary": 22000000
         },
         {
             "player_id": 105,
-            "first_name": "Kevin",
-            "last_name": "Huerter",
+            "name": "Kevin Huerter",
             "team_id": 1,
             "height": "6'7",
             "weight": 190,
@@ -69,13 +68,13 @@
             "age": 23,
             "college": "Maryland",
             "status": "healthy",
-            "position": "Shooting Guard",
-            "number": 3
+            "position": "SG",
+            "number": 3,
+            "salary": 22000000
         },
         {
             "player_id": 106,
-            "first_name": "Danilo",
-            "last_name": "Gallinari",
+            "name": "Danilo Gallinari",
             "team_id": 1,
             "height": "6'10",
             "weight": 233,
@@ -83,13 +82,13 @@
             "age": 33,
             "college": "Milano (Italy)",
             "status": "healthy",
-            "position": "Power Forward",
-            "number": 8
+            "position": "PF",
+            "number": 8,
+            "salary": 22000000
         },
         {
             "player_id": 107,
-            "first_name": "Onyeka",
-            "last_name": "Okongwu",
+            "name": "Onyeka Okongwu",
             "team_id": 1,
             "height": "6'8",
             "weight": 235,
@@ -97,13 +96,13 @@
             "age": 21,
             "college": "USC",
             "status": "healthy",
-            "position": "Center",
-            "number": 17
+            "position": "C",
+            "number": 17,
+            "salary": 22000000
         },
         {
             "player_id": 108,
-            "first_name": "Lou",
-            "last_name": "Williams",
+            "name": "Lou Williams",
             "team_id": 1,
             "height": "6'1",
             "weight": 175,
@@ -111,13 +110,13 @@
             "age": 35,
             "college": "South Gwinnett HS (GA)",
             "status": "healthy",
-            "position": "Point Guard",
-            "number": 6
+            "position": "PG",
+            "number": 6,
+            "salary": 22000000
         },
         {
             "player_id": 109,
-            "first_name": "De'Andre",
-            "last_name": "Hunter",
+            "name": "De'Andre Hunter",
             "team_id": 1,
             "height": "6'7",
             "weight": 225,
@@ -125,13 +124,13 @@
             "age": 24,
             "college": "Virginia",
             "status": "healthy",
-            "position": "Small Forward",
-            "number": 12
+            "position": "SF",
+            "number": 12,
+            "salary": 22000000
         },
         {
             "player_id": 110,
-            "first_name": "Cam",
-            "last_name": "Reddish",
+            "name": "Cam Reddish",
             "team_id": 1,
             "height": "6'8",
             "weight": 218,
@@ -139,8 +138,9 @@
             "age": 22,
             "college": "Duke",
             "status": "healthy",
-            "position": "Small Forward",
-            "number": 22
+            "position": "SF",
+            "number": 22,
+            "salary": 22000000
         }
     ]
 }
