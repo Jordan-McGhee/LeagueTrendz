@@ -9,6 +9,7 @@ import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, Me
 // views imports
 import TeamHome from "./Views/TeamHome";
 import Roster from "./Views/Roster";
+import Stats from "./Views/Stats"
 
 
 // menu item type
@@ -79,7 +80,7 @@ const SingleTeamPage = () => {
 
                 <CardContent>
                     { selectedMenuItem === "home" && <TeamHome />}
-                    {/* { selectedMenuItem === "stats" && <TeamHome />} */}
+                    { selectedMenuItem === "stats" && <Stats />}
                     {/* { selectedMenuItem === "schedule" && <TeamHome />} */}
                     { selectedMenuItem === "roster" &&<Roster />}
                     {/* { selectedMenuItem === "injuries" && <TeamHome />} */}
