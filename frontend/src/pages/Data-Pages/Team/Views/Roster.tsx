@@ -4,11 +4,11 @@ import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../../components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
 import { Button } from "../../../../components/ui/button"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpZAIcon, ArrowDownAZIcon, ArrowUp01Icon, ArrowDown10Icon } from "lucide-react"
 
-import { RosterTable } from "../../../../components/Desktop/Roster/RosterTable";
+import { DataTable } from "../../../../components/ui/DataTable";
 
 // dummy data import
 const data = require("../../../../DUMMYDATA/NBA_Roster.json")
@@ -42,7 +42,14 @@ const Roster = () => {
                         className="px-0"
                     >
                         NAME
-                        <ArrowUpDown className="ml-2 h-4 w-4" />
+                        {
+                            column.getIsSorted() === "asc"
+                                ?
+                                <ArrowDownAZIcon className="ml-2 h-4 w-4" />
+                                :
+                                <ArrowUpZAIcon className="ml-2 h-4 w-4" />
+
+                        }
                     </Button>
                 )
             },
@@ -61,7 +68,14 @@ const Roster = () => {
                         className="px-0"
                     >
                         AGE
-                        <ArrowUpDown className="ml-2 h-4 w-4" />
+                        {
+                            column.getIsSorted() === "asc"
+                                ?
+                                <ArrowUp01Icon className="ml-2 h-4 w-4" />
+                                :
+                                <ArrowDown10Icon className="ml-2 h-4 w-4" />
+
+                        }
                     </Button>
                 )
             },
@@ -86,7 +100,19 @@ const Roster = () => {
 
     return (
         <div>
-            <RosterTable columns={columns} data={roster} />
+            <Card>
+                <CardHeader>
+                    <CardTitle>
+                        Atlanta Hawks Roster 2023-24
+                    </CardTitle>
+                </CardHeader>
+
+                <CardContent>
+                    <DataTable columns={columns} data={roster} />
+
+                    <p className="text-sm font-bold mt-4">Coach <span className="font-light">Quin Snyder</span></p>
+                </CardContent>
+            </Card>
         </div>
     )
 }

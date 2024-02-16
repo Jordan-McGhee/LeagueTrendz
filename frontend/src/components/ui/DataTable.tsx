@@ -4,8 +4,7 @@ import React from "react"
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable, SortingState, getSortedRowModel } from "@tanstack/react-table"
 
 // ui imports
-import { Table, TableBody, TableRow, TableCell, TableHead, TableHeader } from "../../ui/table"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { Table, TableBody, TableRow, TableCell, TableHead, TableHeader } from "./table"
 
 
 interface DataTableProps<TData, TValue> {
@@ -13,7 +12,7 @@ interface DataTableProps<TData, TValue> {
     data: TData[]
 }
 
-export function RosterTable<TData, TValue>({
+export function DataTable<TData, TValue>({
     columns,
     data,
 }: DataTableProps<TData, TValue>) {
@@ -53,7 +52,7 @@ export function RosterTable<TData, TValue>({
                 </TableHeader>
 
                 <TableBody>
-                    {
+                    {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => (
                             <TableRow
                                 key={row.id}
@@ -66,7 +65,13 @@ export function RosterTable<TData, TValue>({
                                 ))}
                             </TableRow>
                         ))
-                    }
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={columns.length} className="h-24 text-center">
+                                No results.
+                            </TableCell>
+                        </TableRow>
+                    )}
                 </TableBody>
             </Table>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
@@ -12,11 +12,17 @@ import Roster from "./Views/Roster";
 
 
 // menu item type
-// type MenuItem = "home" | "stats" | "schedule" | "roster" | "injuries"
+
 
 const SingleTeamPage = () => {
 
-    // const [ selectedMenuItem, setSelectedMenuItem ] = useState('home')
+    type MenuItem = "home" | "stats" | "schedule" | "roster" | "injuries"
+
+    const [ selectedMenuItem, setSelectedMenuItem ] = useState('home')
+
+    const handleMenuClick = (option: MenuItem) => {
+        setSelectedMenuItem(option)
+    }
 
     return (
         <div className="h-fit min-h-svh">
@@ -29,7 +35,9 @@ const SingleTeamPage = () => {
                         <div className="bg-red-700 h-24 w-24 rounded-full" />
 
                         <div className="flex flex-col gap-y-2">
-                            <CardTitle className="text-2xl font-light">ATLANTA <span className="font-bold">HAWKS</  span></CardTitle>
+                            <div>
+                                <CardTitle className="text-2xl font-light">ATLANTA <span className="font-bold">HAWKS</span></CardTitle>
+                            </div>
 
                             {/* team info div */}
                             <div className="flex items-center gap-x-2 text-sm">
@@ -45,23 +53,23 @@ const SingleTeamPage = () => {
                     {/* menubar */}
                     <Menubar className="w-fit">
                         <MenubarMenu>
-                            <MenubarTrigger>Home</MenubarTrigger>
+                            <MenubarTrigger onClick = {() => handleMenuClick('home')}>Home</MenubarTrigger>
                         </MenubarMenu>
 
                         <MenubarMenu>
-                            <MenubarTrigger>Stats</MenubarTrigger>
+                            <MenubarTrigger onClick = {() => handleMenuClick('stats')}>Stats</MenubarTrigger>
                         </MenubarMenu>
 
                         <MenubarMenu>
-                            <MenubarTrigger>Schedule</MenubarTrigger>
+                            <MenubarTrigger onClick = {() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
                         </MenubarMenu>
 
                         <MenubarMenu>
-                            <MenubarTrigger>Roster</MenubarTrigger>
+                            <MenubarTrigger onClick = {() => handleMenuClick('roster')}>Roster</MenubarTrigger>
                         </MenubarMenu>
 
                         <MenubarMenu>
-                            <MenubarTrigger>Injuries</MenubarTrigger>
+                            <MenubarTrigger onClick = {() => handleMenuClick('injuries')}>Injuries</MenubarTrigger>
                         </MenubarMenu>
 
                     </Menubar>
@@ -70,8 +78,12 @@ const SingleTeamPage = () => {
                 </CardHeader>
 
                 <CardContent>
-                    {/* <TeamHome /> */}
-                    <Roster />
+                    { selectedMenuItem === "home" && <TeamHome />}
+                    {/* { selectedMenuItem === "stats" && <TeamHome />} */}
+                    {/* { selectedMenuItem === "schedule" && <TeamHome />} */}
+                    { selectedMenuItem === "roster" &&<Roster />}
+                    {/* { selectedMenuItem === "injuries" && <TeamHome />} */}
+                    
                 </CardContent>
             </Card>
         </div>
