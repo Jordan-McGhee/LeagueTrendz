@@ -4,7 +4,7 @@ import { useState } from "react";
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
 import { Button } from "../../../components/ui/button";
-import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "../../../components/ui/menubar"
+import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/menubar"
 
 // views imports
 import TeamHome from "./Views/TeamHome";
@@ -12,11 +12,9 @@ import Roster from "./Views/Roster";
 import Stats from "./Views/Stats"
 
 
-// menu item type
-
-
 const SingleTeamPage = () => {
 
+    // menu item type
     type MenuItem = "home" | "stats" | "schedule" | "roster" | "injuries"
 
     const [ selectedMenuItem, setSelectedMenuItem ] = useState('home')
