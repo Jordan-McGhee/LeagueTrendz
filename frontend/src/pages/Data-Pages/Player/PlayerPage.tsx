@@ -8,12 +8,35 @@ import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/men
 
 // component imports
 import PlayerHero from "../../../components/Desktop/PlayerPage/PlayerHero";
+import PlayerMenuBar from "../../../components/Desktop/PlayerPage/PlayerMenubar";
+import Overview from "./Views/Overview";
 
 const PlayerPage = () => {
 
+    type MenuItem = "overview" | "stats" | "bio" | "splits" | "log"
+
+    const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem>('overview')
+
+    const handleMenuClick = (menuOption: MenuItem) => {
+        setSelectedMenuItem(menuOption)
+    }
+
+
+
     return (
         <div className="h-fit min-h-screen">
-            <PlayerHero />
+            <Card className="p-4">
+                <PlayerHero />
+                <PlayerMenuBar onMenuChange={handleMenuClick} />
+
+                <CardContent className="p-0">
+                    { selectedMenuItem === "overview" && <Overview />}
+                    { selectedMenuItem === "stats" && <p>stats</p>}
+                    { selectedMenuItem === "bio" && <p>bio</p>}
+                    { selectedMenuItem === "splits" && <p>splits</p>}
+                    { selectedMenuItem === "log" && <p>log</p>}
+                </CardContent>
+            </Card>
         </div>
     )
 }

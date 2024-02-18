@@ -17,7 +17,7 @@ const SingleTeamPage = () => {
     // menu item type
     type MenuItem = "home" | "stats" | "schedule" | "roster" | "injuries"
 
-    const [ selectedMenuItem, setSelectedMenuItem ] = useState('home')
+    const [ selectedMenuItem, setSelectedMenuItem ] = useState<MenuItem>('home')
 
     const handleMenuClick = (option: MenuItem) => {
         setSelectedMenuItem(option)
