@@ -2,7 +2,8 @@ import React from "react";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../../../ui/table"
+
+import NextGameTable from "./NextGameTable";
 
 const NextGame = () => {
 
@@ -25,8 +26,9 @@ const NextGame = () => {
                     {/* stats vs that team div */}
 
                     {/* table for splits */}
+                    <NextGameTable />
                 </div>
-                
+
             </CardContent>
         </Card>
     )
