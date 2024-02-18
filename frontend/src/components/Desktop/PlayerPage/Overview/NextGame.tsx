@@ -2,6 +2,7 @@ import React from "react";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../../../ui/table"
 
 const NextGame = () => {
 
@@ -15,6 +16,18 @@ const NextGame = () => {
                     </div>
                 </CardTitle>
             </CardHeader>
+
+            <CardContent>
+
+                <div>
+                    {/* next team data/time div */}
+
+                    {/* stats vs that team div */}
+
+                    {/* table for splits */}
+                </div>
+                
+            </CardContent>
         </Card>
     )
 }
