@@ -23,6 +23,7 @@ const NextGame = () => {
                 <div>
                     {/* next team data/time div */}
 
+
                     {/* stats vs that team div */}
 
                     {/* table for splits */}
