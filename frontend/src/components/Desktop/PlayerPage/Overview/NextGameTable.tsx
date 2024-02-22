@@ -40,7 +40,7 @@ const NextGameTable = () => {
                         <TableCell>25.4</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell>L10</TableCell>
+                        <TableCell>vs TOR</TableCell>
                         <TableCell>10</TableCell>
                         <TableCell>37.7</TableCell>
                         <TableCell>44.0</TableCell>
@@ -55,7 +55,7 @@ const NextGameTable = () => {
                         <TableCell>25.4</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell>L10</TableCell>
+                        <TableCell>HOME</TableCell>
                         <TableCell>10</TableCell>
                         <TableCell>37.7</TableCell>
                         <TableCell>44.0</TableCell>
