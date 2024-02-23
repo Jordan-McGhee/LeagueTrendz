@@ -2,14 +2,15 @@ import React from "react";
 import { useState } from "react";
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
-import { Button } from "../../../components/ui/button";
-import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/menubar"
+import { Card, CardContent} from "../../../components/ui/card"
 
 // component imports
 import PlayerHero from "../../../components/Desktop/PlayerPage/PlayerHero";
 import PlayerMenuBar from "../../../components/Desktop/PlayerPage/PlayerMenubar";
+
+// view imports
 import Overview from "./Views/Overview";
+import PlayerStatsView from "./Views/PlayerStatsView";
 
 const PlayerPage = () => {
 
@@ -31,7 +32,7 @@ const PlayerPage = () => {
 
                 <CardContent className="p-0">
                     { selectedMenuItem === "overview" && <Overview />}
-                    { selectedMenuItem === "stats" && <p>stats</p>}
+                    { selectedMenuItem === "stats" && <PlayerStatsView />}
                     { selectedMenuItem === "bio" && <p>bio</p>}
                     { selectedMenuItem === "splits" && <p>splits</p>}
                     { selectedMenuItem === "log" && <p>log</p>}
