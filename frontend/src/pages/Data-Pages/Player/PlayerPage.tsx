@@ -11,6 +11,7 @@ import PlayerMenuBar from "../../../components/Desktop/PlayerPage/PlayerMenubar"
 // view imports
 import Overview from "./Views/Overview";
 import PlayerStatsView from "./Views/PlayerStatsView";
+import PlayerBio from "./Views/PlayerBio";
 
 const PlayerPage = () => {
 
@@ -33,7 +34,7 @@ const PlayerPage = () => {
                 <CardContent className="p-0">
                     { selectedMenuItem === "overview" && <Overview />}
                     { selectedMenuItem === "stats" && <PlayerStatsView />}
-                    { selectedMenuItem === "bio" && <p>bio</p>}
+                    { selectedMenuItem === "bio" && <PlayerBio />}
                     { selectedMenuItem === "splits" && <p>splits</p>}
                     { selectedMenuItem === "log" && <p>log</p>}
                 </CardContent>
