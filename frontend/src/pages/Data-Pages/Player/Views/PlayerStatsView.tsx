@@ -80,16 +80,7 @@ const PlayerStatsView = () => {
                             <p><span className="font-bold">TECH:</span> Technical Fouls</p>
                             <p><span className="font-bold">TO:</span> Turnovers Per Game</p>
                         </div>
-
-                        {/* RAT:Rating
-                        REB:Rebounds Per Game
-                        SC-EFF:Scoring Efficiency
-                        SH-EFF:Shooting Efficiency
-                        STL:Steals Per Game
-                        STL/TO:Steal To Turnover Ratio
-                        TD3:Triple Double
-                        TECH:Technical Fouls
-                        TO:Turnovers Per Game */}
+                        
                     </div>
                 </div>
             </CardFooter>
