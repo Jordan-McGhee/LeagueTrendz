@@ -12,6 +12,8 @@ import PlayerMenuBar from "../../../components/Desktop/PlayerPage/PlayerMenubar"
 import Overview from "./Views/Overview";
 import PlayerStatsView from "./Views/PlayerStatsView";
 import PlayerBio from "./Views/PlayerBio";
+import PlayerGameLog from "./Views/PlayerGameLog";
+import PlayerSplits from "./Views/PlayerSplits";
 
 const PlayerPage = () => {
 
@@ -35,8 +37,8 @@ const PlayerPage = () => {
                     { selectedMenuItem === "overview" && <Overview />}
                     { selectedMenuItem === "stats" && <PlayerStatsView />}
                     { selectedMenuItem === "bio" && <PlayerBio />}
-                    { selectedMenuItem === "splits" && <p>splits</p>}
-                    { selectedMenuItem === "log" && <p>log</p>}
+                    { selectedMenuItem === "splits" && <PlayerSplits />}
+                    { selectedMenuItem === "log" && <PlayerGameLog />}
                 </CardContent>
             </Card>
         </div>
