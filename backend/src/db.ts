@@ -1,6 +1,6 @@
 const Pool = require("pg").Pool
 
-const pool = new Pool({
+export const pool = new Pool({
     user: process.env.DATABASE_USER,
     host: process.env.DATABASE_HOST,
     database: process.env.DATABASE,
@@ -10,5 +10,10 @@ const pool = new Pool({
     min: 0
 })
 
-module.exports = pool
-
+export const tempPool = new Pool({
+    user: 'ctqmvlqf',
+    host: 'ruby.db.elephantsql.com',
+    database: 'ctqmvlqf',
+    port: 5432,
+    password: 'pdZjkxf-n-wtvBPlpCZR4B8DY79dH996'
+})

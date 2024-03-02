@@ -1,11 +1,15 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
-
+import { pool, tempPool } from "./db"
 import dotenv from 'dotenv'
 dotenv.config()
 
+import { Pool, QueryResult } from 'pg';
+
+
+
 // route imports
-// import * as userRoutes from './routes/user-routes'
+const userRoutes = require("./routes/user-routes")
 // import * as leagueRoutes from './routes/league-routes'
 
 const app: Express = express();
@@ -13,15 +17,43 @@ const app: Express = express();
 app.use(bodyParser.json())
 
 // route variables
-// app.use("/user", userRoutes)
+app.use("/user", userRoutes)
 // app.use("/league", leagueRoutes)
 
 
-const PORT = process.env.PORT || 5000;
+interface TableInfo {
+    table_name: string;
+}
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello PERN with TypeScript!');
+const checkDatabaseConnection = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const client = await tempPool.connect();
+
+        // Query tables in the 'public' schema.
+        const result: QueryResult<TableInfo> = await client.query(`
+        SELECT table_name
+        FROM information_schema.tables
+        WHERE table_schema = 'public'
+    `);
+
+        client.release(); // Release the client back to the pool.
+
+        const tables: string[] = result.rows.map((row: TableInfo) => row.table_name);
+        console.log('Connected to the database. Tables:', tables);
+
+        // Continue with the next middleware or route handler.
+        next();
+    } catch (error) {
+        console.error('Error connecting to the database', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+// Example usage in an Express route.
+app.get('/', checkDatabaseConnection, (req: Request, res: Response) => {
+    res.send('Hello, world!');
 });
+
 
 // ERROR ROUTE
 // middleware with 4 parameters is treated as a special middleware by express and will only be executed on requests that have an error associated with it
@@ -40,6 +72,6 @@ app.use((error: { message: string, code: number }, req: Request, res: Response, 
         .json({ message: error.message || "Something went wrong!" });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(5000, () => {
+    console.log(`Server is running on port 5000`);
 });
