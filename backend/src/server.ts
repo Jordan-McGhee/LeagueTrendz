@@ -1,6 +1,5 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
-import { tempPool } from "./db"
 import dotenv from 'dotenv'
 dotenv.config()
 
