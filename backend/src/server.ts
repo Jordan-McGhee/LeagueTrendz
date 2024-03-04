@@ -1,12 +1,21 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
-import { pool, tempPool } from "./db"
+import { tempPool } from "./db"
 import dotenv from 'dotenv'
 dotenv.config()
 
-import { Pool, QueryResult } from 'pg';
+import {Pool, QueryResult } from 'pg';
 
-
+// create and export db connection
+export const pool = new Pool({
+    user: process.env.DATABASE_USER,
+    host: process.env.DATABASE_HOST,
+    database: process.env.DATABASE,
+    port: 5432,
+    password: process.env.DATABASE_PASSWORD,
+    max: 150,
+    min: 0
+})
 
 // route imports
 const userRoutes = require("./routes/user-routes")
@@ -27,7 +36,7 @@ interface TableInfo {
 
 const checkDatabaseConnection = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const client = await tempPool.connect();
+        const client = await pool.connect();
 
         // Query tables in the 'public' schema.
         const result: QueryResult<TableInfo> = await client.query(`

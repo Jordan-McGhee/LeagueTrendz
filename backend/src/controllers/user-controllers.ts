@@ -1,6 +1,6 @@
 const HttpError = require("../models/http-error")
 const bcrypt = require('bcrypt');
-import { pool, tempPool } from "../db"
+import { pool } from "../server"
 import { Request, Response, NextFunction } from "express"
 
 // signUp a new user
@@ -24,7 +24,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     let nameResponse, emailResponse
 
     try {
-        nameResponse = await tempPool.query(nameCheckQuery, [ username ])
+        nameResponse = await pool.query(nameCheckQuery, [ username ])
     } catch (error) {
         console.log(error)
         return next(new HttpError(
@@ -33,7 +33,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     }
 
     try {
-        emailResponse = await tempPool.query(emailCheckQuery, [ email ])
+        emailResponse = await pool.query(emailCheckQuery, [ email ])
     } catch (error) {
         console.log(error)
         return next(new HttpError(
@@ -66,7 +66,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     // create user with hashed password
     try {
         console.log('Attempting to create user')
-        createUserResponse = await tempPool.query(createUserQuery, [ username, email, encryptedPassword, false ])
+        createUserResponse = await pool.query(createUserQuery, [ username, email, encryptedPassword, false ])
     } catch (error) {
         console.log(`Error creating new user: ${error}`)
         return next(new HttpError(
