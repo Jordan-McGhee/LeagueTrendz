@@ -21,4 +21,6 @@ router.patch("/changePassword",
         check("new_password").isLength({min: 6})
     ], userControllers.changePassword)
 
+router.patch("/:user_id/admin", userControllers.changeAdminStatus)
+
 module.exports = router

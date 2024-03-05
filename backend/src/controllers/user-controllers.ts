@@ -32,7 +32,7 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
         ))
     }
 
-    res.status(200).json({ message: 'Got all users.', users: (await userResponse).rows})
+    res.status(200).json({ message: 'Got all users.', users: (await userResponse).rows })
 }
 
 // signUp a new user
@@ -249,7 +249,7 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
     }
 
     //  and save it as user's password
-    const updatePasswordQuery: string = "UPDATE users SET password = $1, updated_at = NOW() WHERE user_id = $2 RETurNING *"
+    const updatePasswordQuery: string = "UPDATE users SET password = $1, updated_at = NOW() WHERE user_id = $2 RETURNING *"
     let updatePasswordResult: QueryResult
     try {
         updatePasswordResult = await pool.query(updatePasswordQuery, [encryptedPassword, userQueryResult.rows[0].user_id])
@@ -289,4 +289,45 @@ export const getUserIDByUsername = async (req: Request, res: Response, next: Nex
     }
 }
 
-// export default changeAdminStatus = async (req: Request, res: Response, next: NextFunction) => {}
+export const changeAdminStatus = async (req: Request, res: Response, next: NextFunction) => {
+
+    // pull data from params
+    const user_id: string = req.params.user_id
+
+    // query database for user
+    let userQuery: string = "SELECT * FROM users WHERE user_id = $1"
+    let userQueryResult: QueryResult
+
+    try {
+        userQueryResult = await pool.query(userQuery, [user_id])
+    } catch (error) {
+        console.log(`Error finding user`, 500)
+        return next(new HttpError(
+            `Error finding user`, 500
+        ))
+    }
+
+    if (userQueryResult.rows.length < 0) {
+        return next(new HttpError(
+            `No user with this id. Please try me again.`, 500
+        ))
+    }
+
+    // query database and update based on current status
+    let adminStatus: boolean
+    userQueryResult.rows[0].admin ? adminStatus = false : adminStatus = true
+
+    let adminQuery: string = "UPDATE users SET admin = $1, updated_at = NOW() WHERE user_id = $2 RETURNING *"
+    let adminQueryResult: QueryResult
+
+    try {
+        adminQueryResult = await pool.query(adminQuery, [ adminStatus, user_id ])
+    } catch (error) {
+        console.log(`Error updating user #${user_id}'s admin status to ${adminStatus}. ${error}`, 500)
+        return next(new HttpError(
+            `Error updating user #${user_id}'s admin status to ${adminStatus}. ${error}`, 500
+        ))
+    }
+
+    res.status(201).json({message: `Updated user #${user_id}'s admin status to ${adminStatus}`, user_id: user_id})
+}
