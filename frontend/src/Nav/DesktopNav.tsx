@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, Navigate, } from "react-router-dom";
 
+// ui imports
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog"
+import AuthPopup from "../components/Desktop/Auth/AuthPopup";
+
 const DesktopNav = () => {
 
 
@@ -61,22 +65,19 @@ const DesktopNav = () => {
                 </div>
 
                 {/* user nav options profile/favorites/notifications */}
-                <div className="h-1/5 gap-y-8 flex flex-col">
+                <div className="gap-y-8 flex flex-col">
 
                     <li>
-                        <NavLink to="/" className="flex">
-                            {/* icon placeholder */}
-                            <p className="mr-2">I</p>
-                            <p>Favorites</p>
-                        </NavLink>
-                    </li>
-
-                    <li>
-                        <NavLink to="/" className="flex">
-                            {/* icon placeholder */}
-                            <p className="mr-2">I</p>
-                            <p>Notifications</p>
-                        </NavLink>
+                        <Dialog>
+                            <DialogTrigger>
+                                <div className="flex">
+                                    {/* icon placeholder */}
+                                    <p className="mr-2">I</p>
+                                    <p>Sign Up/Login</p>
+                                </div>
+                            </DialogTrigger>
+                            <AuthPopup />
+                        </Dialog>
                     </li>
 
                     <li>

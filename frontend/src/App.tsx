@@ -19,14 +19,14 @@ function App() {
   let routes = (
     <Routes>
 
-      <Route path = "/" element = { <HomePage />} />
-      <Route path = "/teams" element = { <AllTeamsPage />} />
-      <Route path = "/player" element = { <PlayerPage />} />
-      <Route path = "/roster" element = { <RosterPage />} />
-      <Route path = '/scores' element = { <ScoresPage /> }/>
-      <Route path = "/schedule" element = { <SchedulePage />} />
-      <Route path = "/singleTeam" element = { <SingleTeamPage />} />
-      <Route path = '/standings' element = { <StandingsPage /> } />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/teams" element={<AllTeamsPage />} />
+      <Route path="/player" element={<PlayerPage />} />
+      <Route path="/roster" element={<RosterPage />} />
+      <Route path='/scores' element={<ScoresPage />} />
+      <Route path="/schedule" element={<SchedulePage />} />
+      <Route path="/singleTeam" element={<SingleTeamPage />} />
+      <Route path='/standings' element={<StandingsPage />} />
 
     </Routes>
   )
@@ -41,7 +41,7 @@ function App() {
 
         {/* content div */}
         <div className='w-full h-fit bg-[#e2dfe2] p-4'>
-          { routes }
+          {routes}
         </div>
       </div>
 
