@@ -1,14 +1,17 @@
 // auth popup
-interface SignUpForm {
+export interface SignUpForm {
     username: string,
     email: string,
     password: string
 }
 
-interface LoginForm {
+export interface LoginForm {
     username?: string,
     email?: string,
     password: string
 }
 
-export { SignUpForm, LoginForm }
+// auth form
+export interface AuthFormProps {
+    isLoggingIn: boolean
+}

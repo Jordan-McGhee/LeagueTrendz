@@ -5,7 +5,17 @@ import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 
-const AuthForm = () => {
+// type imports
+import { AuthFormProps } from "../../../types";
+
+const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
+
+    const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        console.log(event.currentTarget)
+    }
+
 
     const signUpForm = (
         <div className="flex flex-col gap-y-4">
@@ -27,7 +37,7 @@ const AuthForm = () => {
             <div className="flex flex-col gap-y-2">
                 <Label htmlFor="password" className="">Password</Label>
                 <Input id="password" placeholder="********" className="" />
-                <p className="text-xs italic font-light">Password must be at least 8 characters long, and include at least 1 number and 1 of the following symbols: !@#$%^(){}</p>
+                <p className="text-xs italic font-light">Password must be at least 8 characters long, and include at least 1 number and 1 of the following symbols: !@#$%^(){ }</p>
             </div>
 
             {/* confirm password */}
@@ -60,7 +70,7 @@ const AuthForm = () => {
             {/* password */}
             <div className="flex flex-col gap-y-2">
                 <Label htmlFor="password" className="">Password</Label>
-                <Input id="password" placeholder="********" className="" />
+                <Input id="password" type="password" placeholder="********" className="" />
                 <p className="text-xs italic font-light w-fit hover:underline hover:cursor-pointer">Forgot Password?</p>
             </div>
 
@@ -69,8 +79,8 @@ const AuthForm = () => {
     )
 
     return (
-        <form>
-            {signUpForm}
+        <form onSubmit={ formSubmitHandler }>
+            {isLoggingIn ? loginForm : signUpForm }
         </form>
     )
 }

@@ -14,13 +14,6 @@ const AuthPopup = () => {
     // states
     const [showLogin, setShowLogin] = useState(false)
 
-
-    const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-
-
-    }
-
     return (
         <DialogContent className="sm:max-w-[400px]">
             <DialogHeader>
@@ -33,13 +26,13 @@ const AuthPopup = () => {
                     }
                 </DialogDescription>
             </DialogHeader>
-            <AuthForm />
+            <AuthForm isLoggingIn = { showLogin } />
             <DialogFooter className="text-center">
                 <div onClick={() => setShowLogin(!showLogin)}>
                     {showLogin ? 
-                        <p>Need an account? <span className="hover:underline hover:cursor-pointer">Switch to sign up!</span></p>
+                        <p>Need an account? <span className="underline hover:cursor-pointer">Switch to sign up!</span></p>
                         :
-                        <p>Have an account? <span className="hover:underline hover:cursor-pointer">Switch to login!</span></p>
+                        <p>Have an account? <span className="underline hover:cursor-pointer">Switch to login!</span></p>
                     }
                 </div>
             </DialogFooter>
