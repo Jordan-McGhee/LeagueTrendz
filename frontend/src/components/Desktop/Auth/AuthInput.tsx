@@ -11,6 +11,7 @@ const AuthInput: React.FC<AuthInputProps> = ({ inputFor, isPassword, placeholder
 
     // states
     const [inputValue, setInputValue] = useState("")
+    const [inputTouched, setInputTouched] = useState(false)
     const [hasError, setHasError] = useState(false)
 
     // handler fucntions
@@ -18,11 +19,16 @@ const AuthInput: React.FC<AuthInputProps> = ({ inputFor, isPassword, placeholder
     // updates inputs value on change
     const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value)
+        setInputTouched(true)
     }
 
     // validation function
     // checks to ensure input value is valid before allowing form to be submitted
     const validateInput = (inputType: string, value: string) => {
+
+        if (!inputTouched) {
+            return
+        }
 
         // username validation, has to be longer than 6 characters
         if (inputType === "username") {
@@ -62,7 +68,7 @@ const AuthInput: React.FC<AuthInputProps> = ({ inputFor, isPassword, placeholder
 
     return (
         <div className="flex flex-col">
-            <Label htmlFor={inputFor === "confirm_password" ? "confirm password" : inputFor} className="capitalize">{inputFor}</Label>
+            <Label htmlFor={inputFor} className="capitalize">{inputFor === "confirm_password" ? "confirm password" : inputFor}</Label>
             <Input
                 id={inputFor}
                 placeholder={placeholder}

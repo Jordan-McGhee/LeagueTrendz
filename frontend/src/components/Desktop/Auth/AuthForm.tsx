@@ -1,4 +1,4 @@
-import react from "react"
+import react, { useState } from "react"
 
 // ui imports
 import { Button } from "../../ui/button";
@@ -13,15 +13,18 @@ import AuthInput from "./AuthInput";
 
 const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
 
+    const [ formHasErrors, setFormHasErrors ] = useState(false)
+
     const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        console.log(event.currentTarget)
+        console.log(event.target)
     }
 
 
     const signUpForm = (
         <div className="flex flex-col gap-y-2">
+
             {/* username */}
             <AuthInput
                 inputFor="username"
@@ -68,12 +71,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                 errorBottomText="Username must be at least 6 characters!"
             />
 
-            {/* email
-            <div className="flex flex-col gap-y-2">
-                <Label htmlFor="email" className="">Email</Label>
-                <Input id="email" placeholder="test@email.com" className="" />
-                <p className="text-xs italic font-light text-red-500 ">Please enter a valid email!</p>
-            </div> */}
+            {/* email */}
+            {/* <AuthInput
+                inputFor="email"
+                placeholder="ball@dontlie.com"
+                errorBottomText="Please enter a valid email!"
+            /> */}
 
             {/* password */}
             <div className="flex flex-col gap-y-2">
