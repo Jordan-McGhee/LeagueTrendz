@@ -18,9 +18,12 @@ export interface AuthFormProps {
 
 // auth input
 export interface AuthInputProps {
-    inputFor: string,
+    name: string,
     placeholder: string,
     bottomText?: string,
     errorBottomText?: string,
-    isPassword?: boolean
+    isPassword?: boolean,
+    value: string,
+    entered_password?: string,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }

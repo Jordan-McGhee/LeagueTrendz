@@ -7,31 +7,26 @@ import { Label } from "../../ui/label";
 // type imports
 import { AuthInputProps } from "../../../types";
 
-const AuthInput: React.FC<AuthInputProps> = ({ inputFor, isPassword, placeholder, bottomText, errorBottomText }) => {
+const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placeholder, entered_password, bottomText, errorBottomText, onChange }) => {
 
     // states
-    const [inputValue, setInputValue] = useState("")
-    const [inputTouched, setInputTouched] = useState(false)
+    // const [inputValue, setInputValue] = useState("")
     const [hasError, setHasError] = useState(false)
 
     // handler fucntions
 
-    // updates inputs value on change
-    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.target.value)
-        setInputTouched(true)
-    }
+    // // updates inputs value on change
+    // const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    //     setInputValue(event.target.value)
+    // }
 
     // validation function
     // checks to ensure input value is valid before allowing form to be submitted
     const validateInput = (inputType: string, value: string) => {
 
-        if (!inputTouched) {
-            return
-        }
-
         // username validation, has to be longer than 6 characters
         if (inputType === "username") {
+
             if (value.length < 6) {
                 setHasError(true)
 
@@ -64,17 +59,28 @@ const AuthInput: React.FC<AuthInputProps> = ({ inputFor, isPassword, placeholder
 
             setHasError(false);
         }
+
+        // confirm password validation
+        if (inputType === "confirm_password") {
+            
+            if (value !== entered_password) {
+                setHasError(true)
+                return
+            }
+
+            setHasError(false)
+        }
     }
 
     return (
         <div className="flex flex-col">
-            <Label htmlFor={inputFor} className="capitalize">{inputFor === "confirm_password" ? "confirm password" : inputFor}</Label>
+            <Label htmlFor={name} className="capitalize">{name === "confirm_password" ? "confirm password" : name}</Label>
             <Input
-                id={inputFor}
+                id={name}
                 placeholder={placeholder}
-                value={inputValue}
-                onChange={changeHandler}
-                onBlur={() => validateInput(inputFor, inputValue)}
+                // value={inputValue}
+                onChange={onChange}
+                onBlur={() => validateInput(name, value)}
                 className="my-2"
                 type={ isPassword ? "password" : undefined}
             />

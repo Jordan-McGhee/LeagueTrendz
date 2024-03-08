@@ -22,7 +22,7 @@ const AuthPopup = () => {
                     {showLogin ?
                         "Log back in to access your favorites and check your notifications!"
                         :
-                        "Create an account to favorite teams and players and create your own watch list!"
+                        "Create an account to favorite teams and players and create your own curated watch list!"
                     }
                 </DialogDescription>
             </DialogHeader>
