@@ -15,3 +15,12 @@ export interface LoginForm {
 export interface AuthFormProps {
     isLoggingIn: boolean
 }
+
+// auth input
+export interface AuthInputProps {
+    inputFor: string,
+    placeholder: string,
+    bottomText?: string,
+    errorBottomText?: string,
+    isPassword?: boolean
+}
