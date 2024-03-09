@@ -45,7 +45,7 @@ const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     // url to send request to - changes if logging in or signing up
     let url: string, formData: SignUpForm | LoginForm
 
-    // 
+    
     if (isLoggingIn) {
         url = `${process.env.REACT_APP_BACKEND_URL}`
         formData = {
