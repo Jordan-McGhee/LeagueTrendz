@@ -13,7 +13,12 @@ import AuthInput from "./AuthInput";
 
 const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
 
-    const [formErrors, setFormErrors] = useState([])
+    const [formErrors, setFormErrors] = useState({
+        username: 'empty',
+        email: 'empty',
+        password: 'empty',
+        confirm_password: 'empty'
+    })
     const [formValues, setFormValues] = useState({
         username: "",
         email: "",
@@ -33,10 +38,41 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
         }));
     };
 
+    // handler function to update errors in form through input component and disable submit button if necessary
+    const changeFormErrorsHandler = (input: string, remove: boolean, newError?: string) => {
+
+        if (remove) {
+            // If remove is true, set errors at that input equal to empty string
+            setFormErrors((prevErrors) => ({
+                ...prevErrors,
+                [input]: ''
+            }));
+        } else {
+            // else set errors at that input equal to new error
+            setFormErrors((prevErrors) => ({
+                ...prevErrors,
+                [input]: newError
+            }))
+        }
+    }
+
+    // iterates over all values in formErrors. If every error === an empty string, form is able to be submitted
+    const allValuesEmpty = Object.values(formErrors).every(error => error === '');
+
+    // this will reset form errors when login state changes
+    const resetFormErrors = () => {
+        setFormErrors({
+            username: 'empty',
+            email: 'empty',
+            password: 'empty',
+            confirm_password: 'empty'
+        })
+    }
+
     const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        if (formErrors.length > 0) {
+        if (formErrors) {
             return
         }
 
@@ -73,18 +109,22 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
             <AuthInput
                 name="username"
                 placeholder="BallDontLie"
-                errorBottomText="Username must be at least 6 characters!"
+                // errorBottomText="Username must be at least 6 characters!"
+                errorBottomText={formErrors["username"] ? formErrors["username"] : ''}
                 onChange={inputChangeHandler}
                 value={formValues.username}
+                changeFormErrors={changeFormErrorsHandler}
             />
 
             {/* email */}
             <AuthInput
                 name="email"
                 placeholder="ball@dontlie.com"
-                errorBottomText="Please enter a valid email!"
+                // errorBottomText="Please enter a valid email!"
+                errorBottomText={formErrors["email"] ? formErrors["email"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.email}
+                changeFormErrors={changeFormErrorsHandler}
             />
 
             {/* password */}
@@ -93,9 +133,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                 placeholder="********"
                 isPassword
                 bottomText="Password must be 8-20 characters long, include at least 1 number, and include at least 1 of the following symbols: !@#$%^(){}"
-                errorBottomText="Please enter a valid password!"
+                // errorBottomText="Please enter a valid password!"
+                errorBottomText={formErrors["password"] ? formErrors["password"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.password}
+                changeFormErrors={changeFormErrorsHandler}
             />
 
 
@@ -105,12 +147,14 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                 placeholder="********"
                 isPassword
                 entered_password={formValues.password}
-                errorBottomText="Passwords don't match!"
+                // errorBottomText="Passwords don't match!"
+                errorBottomText={formErrors["confirm_password"] ? formErrors["confirm_password"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.confirm_password}
+                changeFormErrors={changeFormErrorsHandler}
             />
 
-            <Button className="" type="submit" disabled={!formErrors}>Sign Up</Button>
+            <Button className="" type="submit" disabled={!allValuesEmpty}>Sign Up</Button>
         </div>
     )
 
@@ -121,9 +165,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
             <AuthInput
                 name="username"
                 placeholder="BallDontLie"
-                errorBottomText="Username must be at least 6 characters!"
+                // errorBottomText="Username must be at least 6 characters!"
+                errorBottomText={formErrors["username"] ? formErrors["username"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.username}
+                changeFormErrors={changeFormErrorsHandler}
             />
 
             {/* email */}
@@ -141,13 +187,16 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                     isPassword
                     onChange={inputChangeHandler}
                     value={formValues.password}
+                    bottomText="Password must be 8-20 characters long, include at least 1 number, and include at least 1 of the following symbols: !@#$%^(){}"
+                    errorBottomText={formErrors["password"] ? formErrors["password"] : undefined}
+                    changeFormErrors={changeFormErrorsHandler}
                 />
                 <p className="text-xs italic font-light w-fit hover:underline hover:cursor-pointer">Forgot Password?</p>
             </div>
 
 
 
-            <Button className="" type="submit" disabled={!formErrors}>Log In</Button>
+            <Button className="" type="submit" disabled={!allValuesEmpty}>Log In</Button>
         </div>
     )
 

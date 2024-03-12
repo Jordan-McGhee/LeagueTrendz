@@ -7,7 +7,7 @@ import { Label } from "../../ui/label";
 // type imports
 import { AuthInputProps } from "../../../types";
 
-const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placeholder, entered_password, bottomText, errorBottomText, onChange }) => {
+const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placeholder, entered_password, bottomText, errorBottomText, onChange, changeFormErrors }) => {
 
     // states
     // const [inputValue, setInputValue] = useState("")
@@ -29,11 +29,12 @@ const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placehol
 
             if (value.length < 6) {
                 setHasError(true)
-
+                changeFormErrors(inputType, false, 'Username must be at least 6 characters!')
                 return
             }
 
             setHasError(false)
+            changeFormErrors(inputType, true)
         }
 
         // email validation
@@ -42,10 +43,12 @@ const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placehol
 
             if (!emailRegex.test(value)) {
                 setHasError(true);
+                changeFormErrors(inputType, false, 'Please enter a valid email!')
                 return;
             }
 
             setHasError(false);
+            changeFormErrors(inputType, true)
         }
 
         // password validation
@@ -54,10 +57,12 @@ const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placehol
 
             if (!passwordRegex.test(value)) {
                 setHasError(true);
+                changeFormErrors(inputType, false, 'Password must be 8-20 characters long, include at least 1 number, and include at least 1 of the following symbols: !@#$%^(){}')
                 return;
             }
 
             setHasError(false);
+            changeFormErrors(inputType, true)
         }
 
         // confirm password validation
@@ -65,10 +70,12 @@ const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placehol
             
             if (value !== entered_password) {
                 setHasError(true)
+                changeFormErrors(inputType, false, "Passwords don't match!")
                 return
             }
 
             setHasError(false)
+            changeFormErrors(inputType, true)
         }
     }
 
@@ -88,7 +95,7 @@ const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placehol
             {hasError ?
                 <p className="text-xs italic font-light text-red-500">{errorBottomText}</p>
                 :
-                <p className="text-xs italic font-light text-red-500 invisible">{errorBottomText}</p>
+                <p className="text-xs italic font-light text-red-500 invisible">""</p>
             }
         </div>
     )
