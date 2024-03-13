@@ -1,4 +1,4 @@
-import react, { useState } from "react"
+import react, { useEffect, useState } from "react"
 
 // ui imports
 import { Button } from "../../ui/button";
@@ -14,10 +14,10 @@ import AuthInput from "./AuthInput";
 const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
 
     const [formErrors, setFormErrors] = useState({
-        username: 'empty',
-        email: 'empty',
-        password: 'empty',
-        confirm_password: 'empty'
+        username: '',
+        email: '',
+        password: '',
+        confirm_password: ''
     })
     const [formValues, setFormValues] = useState({
         username: "",
@@ -59,13 +59,22 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
     // iterates over all values in formErrors. If every error === an empty string, form is able to be submitted
     const allValuesEmpty = Object.values(formErrors).every(error => error === '');
 
-    // this will reset form errors when login state changes
+    // reset functions
     const resetFormErrors = () => {
         setFormErrors({
-            username: 'empty',
-            email: 'empty',
-            password: 'empty',
-            confirm_password: 'empty'
+            username: '',
+            email: '',
+            password: '',
+            confirm_password: ''
+        })
+    }
+
+    const resetFormValues = () => {
+        setFormValues({
+            username: "",
+            email: "",
+            password: "",
+            confirm_password: ""
         })
     }
 
@@ -99,6 +108,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
         }
 
         console.log(formData)
+
+        // reset form values
     }
 
 
@@ -109,8 +120,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
             <AuthInput
                 name="username"
                 placeholder="BallDontLie"
-                // errorBottomText="Username must be at least 6 characters!"
-                errorBottomText={formErrors["username"] ? formErrors["username"] : ''}
+                errorBottomText={formErrors["username"] ? formErrors["username"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.username}
                 changeFormErrors={changeFormErrorsHandler}
@@ -120,7 +130,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
             <AuthInput
                 name="email"
                 placeholder="ball@dontlie.com"
-                // errorBottomText="Please enter a valid email!"
                 errorBottomText={formErrors["email"] ? formErrors["email"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.email}
@@ -133,7 +142,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                 placeholder="********"
                 isPassword
                 bottomText="Password must be 8-20 characters long, include at least 1 number, and include at least 1 of the following symbols: !@#$%^(){}"
-                // errorBottomText="Please enter a valid password!"
                 errorBottomText={formErrors["password"] ? formErrors["password"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.password}
@@ -147,7 +155,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                 placeholder="********"
                 isPassword
                 entered_password={formValues.password}
-                // errorBottomText="Passwords don't match!"
                 errorBottomText={formErrors["confirm_password"] ? formErrors["confirm_password"] : undefined}
                 onChange={inputChangeHandler}
                 value={formValues.confirm_password}
@@ -165,8 +172,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
             <AuthInput
                 name="username"
                 placeholder="BallDontLie"
-                // errorBottomText="Username must be at least 6 characters!"
-                errorBottomText={formErrors["username"] ? formErrors["username"] : undefined}
+                errorBottomText={formErrors["username"] ? formErrors["username"] : ""}
                 onChange={inputChangeHandler}
                 value={formValues.username}
                 changeFormErrors={changeFormErrorsHandler}
