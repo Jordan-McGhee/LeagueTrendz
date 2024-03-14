@@ -116,7 +116,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
         ))
     }
 
-    res.status(201).json(createUserResponse.rows[0])
+    res.status(201).json({message: "Successfully created user!", user: createUserResponse.rows[0]})
 }
 
 // login user

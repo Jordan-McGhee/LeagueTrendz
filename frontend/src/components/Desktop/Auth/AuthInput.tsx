@@ -13,6 +13,7 @@ const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placehol
     //     if (value === "" || undefined) {
     //         setHasError(false)
     //     }
+
     // }, [value])
 
     // states
@@ -120,6 +121,7 @@ const AuthInput: React.FC<AuthInputProps> = ({ name, isPassword, value, placehol
             }
         </div>
     }
+
     return (
         <div className="flex flex-col">
             <Label htmlFor={name} className="capitalize">{name === "confirm_password" ? "confirm password" : name}</Label>

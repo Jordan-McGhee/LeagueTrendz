@@ -4,6 +4,7 @@ import react, { useEffect, useState } from "react"
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
+import LoadingButton from "../../ui/loadingButton"
 
 // type imports
 import { AuthFormProps, LoginForm, SignUpForm } from "../../../types";
@@ -11,7 +12,15 @@ import { AuthFormProps, LoginForm, SignUpForm } from "../../../types";
 // component imports
 import AuthInput from "./AuthInput";
 
+// hook imports
+import { useFetch } from "../../../Hooks/useFetch";
+import { useNavigate } from "react-router-dom";
+
 const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
+
+    const navigate = useNavigate()
+    const { isLoading, hasError, sendRequest, clearError } = useFetch()
+
 
     const [formErrors, setFormErrors] = useState({
         username: '',
@@ -57,7 +66,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
     }
 
     // iterates over all values in formErrors. If every error === an empty string, form is able to be submitted
-    const allValuesEmpty = Object.values(formErrors).every(error => error === '');
+
+    // every check for login/signup depending on stat
+    let notEmptyCheck = isLoggingIn ? formValues['username'] !== '' && formValues['password'] !== '' : Object.values(formValues).every(value => value !== '')
+
+    const allValuesEmpty = Object.values(formErrors).every(error => error === '') && notEmptyCheck
 
     // reset functions
     const resetFormErrors = () => {
@@ -81,7 +94,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
     const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        if (formErrors) {
+        if (!allValuesEmpty) {
             return
         }
 
@@ -92,13 +105,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
 
 
         if (isLoggingIn) {
-            url = `${process.env.REACT_APP_BACKEND_URL}`
+            url = `${process.env.REACT_APP_BACKEND_URL}/user/login`
             formData = {
                 username: formValues.username,
                 password: formValues.password
             }
         } else {
-            url = `${process.env.REACT_APP_BACKEND_URL}`
+            url = `${process.env.REACT_APP_BACKEND_URL}/user/signUp`
             console.log(`URL: ${url}`)
             formData = {
                 username: formValues.username,
@@ -107,9 +120,33 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
             }
         }
 
-        console.log(formData)
+        // console.log(formData)
 
-        // reset form values
+        // send data to back end
+        let responseData
+
+        try {
+            responseData = sendRequest(
+                // url
+                url,
+                // method
+                "POST",
+                // headers
+                {
+                    "Content-Type": 'application/json'
+                },
+                // body
+                JSON.stringify(formData)
+            )
+
+            navigate("/")
+        } catch (error) {
+
+        }
+
+        // reset form values & errors
+        resetFormErrors()
+        resetFormValues()
     }
 
 
@@ -161,7 +198,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                 changeFormErrors={changeFormErrorsHandler}
             />
 
-            <Button className="" type="submit" disabled={!allValuesEmpty}>Sign Up</Button>
+            {
+                isLoading ?
+                    <LoadingButton />
+                    :
+                    <Button className="" type="submit" disabled={!allValuesEmpty}>Sign Up</Button>
+            }
         </div>
     )
 
@@ -202,14 +244,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
 
 
 
-            <Button className="" type="submit" disabled={!allValuesEmpty}>Log In</Button>
+            {
+                isLoading ?
+                    <LoadingButton />
+                    :
+                    <Button className="" type="submit" disabled={!allValuesEmpty}>Log In</Button>
+            }
         </div>
     )
 
     return (
-        <form onSubmit={formSubmitHandler}>
-            {isLoggingIn ? loginForm : signUpForm}
-        </form>
+        <div>
+            {hasError ? 
+                <p onClick={clearError}>ERROR!!!!!!</p>
+            :
+                <form onSubmit={formSubmitHandler}>
+                    {isLoggingIn && !isLoading ? loginForm : signUpForm}
+                </form>
+            }
+
+        </div>
     )
 }
 
