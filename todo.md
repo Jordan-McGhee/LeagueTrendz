@@ -12,3 +12,5 @@
     <!-- - Get login/signup working with backend DONE -->
     - Make dialog close with successful login
     - Proper loading and error states on login/signup
+
+    - Different pop up content depending on form state [ error, successful, default ]
