@@ -16,7 +16,7 @@ import AuthInput from "./AuthInput";
 import { useFetch } from "../../../Hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 
-const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting }) => {
 
     const navigate = useNavigate()
     const { isLoading, hasError, sendRequest, clearError } = useFetch()
@@ -139,7 +139,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
                 JSON.stringify(formData)
             )
 
-            navigate("/")
+            console.log(responseData)
         } catch (error) {
 
         }
@@ -147,6 +147,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn }) => {
         // reset form values & errors
         resetFormErrors()
         resetFormValues()
+        // changeDialogSetting()
     }
 
 

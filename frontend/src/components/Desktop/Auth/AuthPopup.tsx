@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import { DialogContent, DialogTitle, DialogHeader, DialogDescription, DialogFooter } from "../../ui/dialog"
 
 // type imports
-import { SignUpForm, LoginForm } from "../../../types";
+import { AuthPopupProps } from "../../../types";
+
 
 // component imports
 import AuthForm from "../Auth/AuthForm"
 
-const AuthPopup = () => {
+const AuthPopup: React.FC<AuthPopupProps> = ({ changeDialogSetting }) => {
 
     // states
     const [showLogin, setShowLogin] = useState(false)
@@ -26,7 +27,7 @@ const AuthPopup = () => {
                     }
                 </DialogDescription>
             </DialogHeader>
-            <AuthForm isLoggingIn = { showLogin } />
+            <AuthForm isLoggingIn = { showLogin } changeDialogSetting = { changeDialogSetting }/>
             <DialogFooter className="text-center">
                 <div onClick={() => setShowLogin(!showLogin)}>
                     {showLogin ? 

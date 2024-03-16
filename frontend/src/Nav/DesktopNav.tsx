@@ -7,6 +7,12 @@ import AuthPopup from "../components/Desktop/Auth/AuthPopup";
 
 const DesktopNav = () => {
 
+    const [ open, setOpen ] = useState(false)
+
+    const changeDialogStateHandler = () => {
+        setOpen(!open)
+    }
+
 
     return (
         <nav className="text-white left-0 h-full w-1/5">
@@ -68,15 +74,15 @@ const DesktopNav = () => {
                 <div className="gap-y-8 flex flex-col">
 
                     <li>
-                        <Dialog>
+                        <Dialog open = {open} onOpenChange={setOpen}>
                             <DialogTrigger>
                                 <div className="flex">
                                     {/* icon placeholder */}
                                     <p className="mr-2">I</p>
                                     <p>Sign Up/Login</p>
                                 </div>
-                            </DialogTrigger>
-                            <AuthPopup />
+                            </DialogTrigger >
+                            <AuthPopup changeDialogSetting = { changeDialogStateHandler }/>
                         </Dialog>
                     </li>
 

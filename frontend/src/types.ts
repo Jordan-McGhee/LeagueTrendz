@@ -1,4 +1,8 @@
 // auth popup
+export interface AuthPopupProps { 
+    changeDialogSetting: () => void
+}
+
 export interface SignUpForm {
     username: string,
     email: string,
@@ -13,7 +17,8 @@ export interface LoginForm {
 
 // auth form
 export interface AuthFormProps {
-    isLoggingIn: boolean
+    isLoggingIn: boolean,
+    changeDialogSetting: () => void
 }
 
 // auth input
