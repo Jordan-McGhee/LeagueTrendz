@@ -4,6 +4,7 @@ import { pool } from "../server"
 import { Request, Response, NextFunction } from "express"
 const { validationResult } = require("express-validator")
 import { QueryResult } from "pg";
+const jwt = require("jsonwebtoken")
 
 // types/interfaces
 interface SignUpRequestBody {
@@ -116,7 +117,20 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
         ))
     }
 
-    res.status(201).json({message: "Successfully created user!", user: createUserResponse.rows[0]})
+    let token
+    try {
+        token = jwt.sign({ user_id: createUserResponse.rows[0].user_id, email: createUserResponse.rows[0].email },
+            process.env.JWT_TOKEN,
+            { expiresIn: '3h' }
+        )
+    } catch (error) {
+        console.log(`Error creating token: ${error}`)
+        return next(new HttpError(
+            `Error creating token: ${error}`, 500
+        ))
+    }
+
+    res.status(201).json({ message: "Successfully created user!", user: createUserResponse.rows[0].user_id, email: createUserResponse.rows[0].email, token: token })
 }
 
 // login user
@@ -167,8 +181,21 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         ))
     }
 
+    let token
+    try {
+        token = jwt.sign({ user_id: userQueryResult.rows[0].user_id, email: userQueryResult.rows[0].email },
+            process.env.JWT_TOKEN,
+            { expiresIn: '3h' }
+        )
+    } catch (error) {
+        console.log(`Error creating login token: ${error}`)
+        return next(new HttpError(
+            `Error creating login token: ${error}`, 500
+        ))
+    }
+
     // no issues, log user in
-    res.status(200).json({ message: `login successful!`, user: userQueryResult.rows[0] })
+    res.status(200).json({ message: `login successful!`, user: userQueryResult.rows[0].user_id, email: userQueryResult.rows[0].email, token: token })
 }
 
 // change password
@@ -321,7 +348,7 @@ export const changeAdminStatus = async (req: Request, res: Response, next: NextF
     let adminQueryResult: QueryResult
 
     try {
-        adminQueryResult = await pool.query(adminQuery, [ adminStatus, user_id ])
+        adminQueryResult = await pool.query(adminQuery, [adminStatus, user_id])
     } catch (error) {
         console.log(`Error updating user #${user_id}'s admin status to ${adminStatus}. ${error}`, 500)
         return next(new HttpError(
@@ -329,5 +356,5 @@ export const changeAdminStatus = async (req: Request, res: Response, next: NextF
         ))
     }
 
-    res.status(201).json({message: `Updated user #${user_id}'s admin status to ${adminStatus}`, user_id: user_id})
+    res.status(201).json({ message: `Updated user #${user_id}'s admin status to ${adminStatus}`, user_id: user_id })
 }
