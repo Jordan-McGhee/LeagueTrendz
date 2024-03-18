@@ -27,10 +27,10 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ changeDialogSetting }) => {
                     }
                 </DialogDescription>
             </DialogHeader>
-            <AuthForm isLoggingIn = { showLogin } changeDialogSetting = { changeDialogSetting }/>
+            <AuthForm isLoggingIn={showLogin} changeDialogSetting={changeDialogSetting} />
             <DialogFooter className="text-center">
                 <div onClick={() => setShowLogin(!showLogin)}>
-                    {showLogin ? 
+                    {showLogin ?
                         <p>Need an account? <span className="underline hover:cursor-pointer">Switch to sign up!</span></p>
                         :
                         <p>Have an account? <span className="underline hover:cursor-pointer">Switch to login!</span></p>
