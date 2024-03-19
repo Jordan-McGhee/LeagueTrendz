@@ -21,7 +21,7 @@ const GameDayTable: React.FC<GameDayTableProps> = ({ dateObject }) => {
 
     return (
         <div className="mb-4">
-            <p className="text-xl font-semibold">{ dateObject.date }</p>
+            <p className="text-xl font-semibold">{dateObject.date}</p>
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -31,12 +31,12 @@ const GameDayTable: React.FC<GameDayTableProps> = ({ dateObject }) => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    { dateObject.gamesOfDay.map((game, index) => (
+                    {dateObject.gamesOfDay.map((game, index) => (
                         <TableRow key={index}>
                             {/* Render your game details here */}
                             <TableCell>{`LOGO ${game.away_team} @ LOGO ${game.home_team}`}</TableCell>
                             <TableCell>{game.time}</TableCell>
-                            <TableCell>{ Math.random() > .5 ? `${game.away_team}` : `${game.home_team}` }</TableCell>
+                            <TableCell>{Math.random() > .5 ? `${game.away_team}` : `${game.home_team}`}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

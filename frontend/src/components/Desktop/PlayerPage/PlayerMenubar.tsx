@@ -9,7 +9,7 @@ type PlayerMenuProps = {
     onMenuChange: (menuOption: MenuItem) => void
 }
 
-const PlayerMenuBar:React.FC<PlayerMenuProps> = ( { onMenuChange }) => {
+const PlayerMenuBar: React.FC<PlayerMenuProps> = ({ onMenuChange }) => {
 
     const handleMenuClick = (menuOption: MenuItem) => {
         onMenuChange(menuOption)

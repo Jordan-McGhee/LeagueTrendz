@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../../ui/card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../ui/card"
 
 type StoryProps = {
     player_name: string,
@@ -14,16 +14,16 @@ const Favorite = (props: StoryProps) => {
         <div className="border-t-2 py-2 flex gap-x-2">
 
             {/* image placeholder */}
-            <div className="bg-red-500 h-10 w-10"/>
+            <div className="bg-red-500 h-10 w-10" />
 
             {/* content div */}
             <div>
-                <p className="text-sm font-bold">{ props.player_name }</p>
-                <p className="text-xs">{ props.team }</p>
+                <p className="text-sm font-bold">{props.player_name}</p>
+                <p className="text-xs">{props.team}</p>
 
                 {/* time posted & author div */}
                 <div className="">
-                    <p>{ props.stats }</p>
+                    <p>{props.stats}</p>
                 </div>
             </div>
         </div>
@@ -46,11 +46,11 @@ const HomeFavorites = () => {
             </CardHeader>
 
             <CardContent>
-                { favorites.map((favorite) => (
+                {favorites.map((favorite) => (
                     <Favorite
-                        player_name={ favorite.player_name }
-                        team = { favorite.team }
-                        stats= { favorite.stats }
+                        player_name={favorite.player_name}
+                        team={favorite.team}
+                        stats={favorite.stats}
                     />
                 ))}
             </CardContent>

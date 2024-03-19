@@ -93,10 +93,10 @@ const ScoresPage = () => {
                     </CardHeader>
 
                     <CardContent>
-                        { today_games.gamesOfDay.map((game, index) => (
+                        {today_games.gamesOfDay.map((game, index) => (
                             <IndividualGame
-                                key = { index }
-                                game = { game}
+                                key={index}
+                                game={game}
                             />
                         ))}
                     </CardContent>
