@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, Navigate, } from "react-router-dom";
+
+// context import
+import { AuthContext } from "../context/auth-context";
 
 // ui imports
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog"
@@ -7,7 +10,9 @@ import AuthPopup from "../components/Desktop/Auth/AuthPopup";
 
 const DesktopNav = () => {
 
-    const [ open, setOpen ] = useState(false)
+    const auth = useContext(AuthContext)
+
+    const [open, setOpen] = useState(false)
 
     const changeDialogStateHandler = () => {
         setOpen(!open)
@@ -73,26 +78,43 @@ const DesktopNav = () => {
                 {/* user nav options profile/favorites/notifications */}
                 <div className="gap-y-8 flex flex-col">
 
-                    <li>
-                        <Dialog open = {open} onOpenChange={setOpen}>
-                            <DialogTrigger>
-                                <div className="flex">
-                                    {/* icon placeholder */}
-                                    <p className="mr-2">I</p>
-                                    <p>Sign Up/Login</p>
-                                </div>
-                            </DialogTrigger >
-                            <AuthPopup changeDialogSetting = { changeDialogStateHandler }/>
-                        </Dialog>
-                    </li>
+                    {/* NOT SIGNED IN */}
+                    {!auth.isLoggedIn &&
+                        <li>
+                            <Dialog open={open} onOpenChange={setOpen}>
+                                <DialogTrigger>
+                                    <div className="flex">
+                                        {/* icon placeholder */}
+                                        <p className="mr-2">I</p>
+                                        <p>Sign Up/Login</p>
+                                    </div>
+                                </DialogTrigger >
+                                <AuthPopup changeDialogSetting={changeDialogStateHandler} />
+                            </Dialog>
+                        </li>
+                    }
 
-                    <li>
-                        <NavLink to="/" className="flex">
-                            {/* icon placeholder */}
-                            <p className="mr-2">I</p>
-                            <p>Profile</p>
-                        </NavLink>
-                    </li>
+
+                    {/* SIGNED IN */}
+                    {auth.isLoggedIn &&
+                        <li>
+                            <NavLink to="/" className="flex">
+                                {/* icon placeholder */}
+                                <p className="mr-2">I</p>
+                                <p>Favorites</p>
+                            </NavLink>
+                        </li>
+                    }
+
+                    {auth.isLoggedIn &&
+                        <li>
+                            <NavLink to="/" className="flex">
+                                {/* icon placeholder */}
+                                <p className="mr-2">I</p>
+                                <p>Profile</p>
+                            </NavLink>
+                        </li>
+                    }
 
                 </div>
 

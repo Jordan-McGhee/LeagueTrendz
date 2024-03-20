@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import { Route, Routes } from "react-router-dom"
+
+// context import
+import { AuthContext } from './context/auth-context';
 
 // NAV IMPORT
 import DesktopNav from './Nav/DesktopNav';
@@ -15,6 +18,16 @@ import ScoresPage from './pages/ScoresPage';
 import StandingsPage from './pages/StandingsPage';
 
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true)
+  }, [])
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false)
+  }, [])
 
   let routes = (
     <Routes>
@@ -34,19 +47,21 @@ function App() {
 
   return (
     // APP CONTAINER
-    <div className="bg-black overflow-y-scroll">
+    <AuthContext.Provider value={ {isLoggedIn: isLoggedIn, login:login, logout: logout}}>
+      <div className="bg-black overflow-y-scroll">
 
-      <div className='w-4/5 m-auto h-lvh flex'>
-        <DesktopNav />
+        <div className='w-4/5 m-auto h-lvh flex'>
+          <DesktopNav />
 
-        {/* content div */}
-        <div className='w-full h-fit bg-[#e2dfe2] p-4'>
-          {routes}
+          {/* content div */}
+          <div className='w-full h-fit bg-[#e2dfe2] p-4'>
+            {routes}
+          </div>
         </div>
+
+
       </div>
-
-
-    </div>
+    </AuthContext.Provider>
   );
 }
 

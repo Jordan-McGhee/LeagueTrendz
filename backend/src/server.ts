@@ -51,10 +51,13 @@ export const pool = new Pool({
 //     res.send('Hello, world!');
 // });
 
-// route imports
 
+// middleware to check for token
+const checkAuth = require('./middleware/check-auth')
+
+// route imports
 const userRoutes = require("./routes/user-routes")
-// import * as leagueRoutes from './routes/league-routes'
+// const leagueRoutes = require('./routes/league-routes')
 
 const app: Express = express();
 
@@ -79,6 +82,8 @@ app.use((req, res, next) => {
 // route variables
 app.use("/user", userRoutes)
 // app.use("/league", leagueRoutes)
+
+// app.use(checkAuth)
 
 
 // ERROR ROUTE
