@@ -1,4 +1,3 @@
-const HttpError = require("../models/http-error.js")
 const jwt = require('jsonwebtoken')
 
 import { Request, Response, NextFunction } from "express"
@@ -18,9 +17,7 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
         const token = req.headers.authorization?.split(' ')[1]
 
         if (!token) {
-            const error = new HttpError(`Authentication failed!`, 401)
-
-            return next(error)
+            return next(new Error(`Authentication failed! No token.`))
         }
 
         // use jsonwebtoken package to verify the token matches the user
@@ -35,10 +32,6 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
 
     } catch (error) {
         // .split() worked, but the token is incorrect
-        error = new HttpError(
-            'Authentication failed. IN ERROR BLOCK. Please try again!', 401
-        )
-
-        return next(error)
+        return next(new Error('Authentication failed. IN ERROR BLOCK. Please try again!'))
     }
 }

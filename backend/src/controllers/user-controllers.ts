@@ -1,4 +1,3 @@
-const HttpError = require("../models/http-error")
 const bcrypt = require('bcryptjs');
 import { pool } from "../server"
 import { Request, Response, NextFunction } from "express"
