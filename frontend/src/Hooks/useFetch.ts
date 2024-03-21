@@ -3,12 +3,13 @@ import { useCallback, useRef, MutableRefObject, useState, useEffect } from "reac
 export const useFetch = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [hasError, setHasError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
 
     // keeps track of any requests created with this hook and it's information that won't change upon re-render cycles
     type AbortControllerRef = MutableRefObject<AbortController[]>
-    const activeHttpRequests:AbortControllerRef = useRef<AbortController[]>([])
+    const activeHttpRequests: AbortControllerRef = useRef<AbortController[]>([])
 
-    const sendRequest = useCallback(async (url:string, method:string = "GET", headers = {}, body: string | null) => {
+    const sendRequest = useCallback(async (url: string, method: string = "GET", headers = {}, body: string | null) => {
 
         setIsLoading(true)
 
@@ -32,26 +33,29 @@ export const useFetch = () => {
                 reqCtrl => reqCtrl !== httpAbortController
             );
 
-
             // checks to see if the code associated with the response is 200ish. If not, we need to go to the catch block. Doesn't happen on its own because a 400 or 500ish response code is still considered a response, not an error
-            if (!response.ok) {
+            if (response.ok === false) {
+                console.log(`useFetch response not ok`)
                 throw new Error(responseData.message)
             }
 
             setIsLoading(false)
             return responseData
 
-        } catch (err) {
+        } catch (err: any) {
             console.log(err)
             // setHasError(err.message || "Something went wrong. Please try again!")
             setIsLoading(false)
             setHasError(true)
+            setErrorMessage(err.message || "Something went wrong. Please try again!")
+            throw err
         }
 
     }, [])
 
     const clearError = () => {
         setHasError(false)
+        setErrorMessage(undefined)
     }
 
     // this useEffect block is going to be clean-up code. This will run whenever the component mounts
@@ -63,5 +67,5 @@ export const useFetch = () => {
         }
     }, [])
 
-    return { isLoading, hasError, sendRequest, clearError }
+    return { isLoading, hasError, errorMessage, sendRequest, clearError }
 }

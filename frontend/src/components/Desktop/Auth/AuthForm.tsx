@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react"
+import react, { useState, useContext } from "react"
 
 // ui imports
 import { Button } from "../../ui/button";
@@ -14,12 +14,14 @@ import AuthInput from "./AuthInput";
 
 // hook imports
 import { useFetch } from "../../../Hooks/useFetch";
-import { useNavigate } from "react-router-dom";
+
+// context imports
+import { AuthContext } from "../../../context/auth-context"
 
 const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting }) => {
 
-    const navigate = useNavigate()
-    const { isLoading, hasError, sendRequest, clearError } = useFetch()
+    const auth = useContext(AuthContext)
+    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
 
     const [formErrors, setFormErrors] = useState({
@@ -91,7 +93,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
         })
     }
 
-    const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const formSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (!allValuesEmpty) {
@@ -126,7 +128,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
         let responseData
 
         try {
-            responseData = sendRequest(
+            responseData = await sendRequest(
                 // url
                 url,
                 // method
@@ -144,10 +146,19 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
 
         }
 
-        // reset form values & errors
-        resetFormErrors()
-        resetFormValues()
-        // changeDialogSetting()
+        if (responseData) {
+            console.log(`Entered response data check`)
+
+            // reset form values & errors
+            resetFormErrors()
+            resetFormValues()
+    
+            // login and close form
+            changeDialogSetting()
+            auth.login()
+        }
+
+        return
     }
 
 
@@ -256,9 +267,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
 
     return (
         <div>
-            {hasError ? 
-                <p onClick={clearError}>ERROR!!!!!!</p>
-            :
+            {hasError ?
+                <div onClick={clearError}>
+                    <p>ERROR!!!!!!</p>
+                    <p>{errorMessage}</p>
+                </div>
+                :
                 <form onSubmit={formSubmitHandler}>
                     {isLoggingIn && !isLoading ? loginForm : signUpForm}
                 </form>

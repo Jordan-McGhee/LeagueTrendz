@@ -5,7 +5,7 @@ import { NavLink, Navigate, } from "react-router-dom";
 import { AuthContext } from "../context/auth-context";
 
 // ui imports
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog"
+import { Dialog, DialogTrigger } from "../components/ui/dialog"
 import AuthPopup from "../components/Desktop/Auth/AuthPopup";
 
 const DesktopNav = () => {
@@ -107,7 +107,7 @@ const DesktopNav = () => {
                     }
 
                     {auth.isLoggedIn &&
-                        <li>
+                        <li onClick={() => auth.logout()}>
                             <NavLink to="/" className="flex">
                                 {/* icon placeholder */}
                                 <p className="mr-2">I</p>
