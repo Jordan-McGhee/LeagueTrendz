@@ -15,6 +15,14 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ changeDialogSetting }) => {
     // states
     const [showLogin, setShowLogin] = useState(false)
 
+    const errorDialogHeader = (
+        <div></div>
+    )
+
+    const errorDialogFooter = (
+        <div></div>
+    )
+
     return (
         <DialogContent className="sm:max-w-[400px]">
             <DialogHeader>
