@@ -28,7 +28,7 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
     } catch (error) {
         console.log(`Error getting all users`, 500)
 
-        return res.status(500).json({ message: "Error getting all users."})
+        return res.status(500).json({ message: "Error getting all users." })
     }
 
     res.status(200).json({ message: 'Got all users.', users: (await userResponse).rows })
@@ -45,7 +45,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
 
         console.log(errors)
 
-        return res.status(401).json({ message: "There's something wrong with the information you entered. Please make sure you entered a valid email and password."})
+        return res.status(401).json({ message: "There's something wrong with the information you entered. Please make sure you entered a valid email and password." })
     }
 
     // pull data from body
@@ -63,7 +63,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     } catch (error) {
         console.log(error)
 
-        return res.status(500).json({ message: `Error checking if username is available: ${error}`})
+        return res.status(500).json({ message: `Error checking if username is available: ${error}` })
     }
 
     try {
@@ -71,7 +71,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     } catch (error) {
         console.log(error)
 
-        return res.status(500).json({ message: `Error checking if email is available: ${error}`})
+        return res.status(500).json({ message: `Error checking if email is available: ${error}` })
     }
 
     if (nameResponse.rows.length > 0) {
@@ -94,7 +94,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     } catch (error) {
         console.log(`Error hashing password: ${error}`)
 
-        return res.status(500).json({ message: `Error hashing password: ${error}`})
+        return res.status(500).json({ message: `Error hashing password: ${error}` })
     }
 
     // create user with hashed password
@@ -104,7 +104,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     } catch (error) {
         console.log(`Error creating new user: ${error}`)
 
-        return res.status(500).json({ message: `Error creating new user: ${error}`})
+        return res.status(500).json({ message: `Error creating new user: ${error}` })
     }
 
     let token
@@ -116,7 +116,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     } catch (error) {
         console.log(`Error creating token: ${error}`)
 
-        return res.status(500).json({ message: `Error creating token: ${error}`})
+        return res.status(500).json({ message: `Error creating token: ${error}` })
     }
 
     res.status(201).json({ message: "Successfully created user!", user: createUserResponse.rows[0].user_id, email: createUserResponse.rows[0].email, token: token })
@@ -138,13 +138,13 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     } catch (error) {
         console.log(`Something went wrong trying to find the user. Please try again. ${error}`, 500)
 
-        return res.status(500).json({ message: `Something went wrong trying to find the user. Please try again. ${error}`})
+        return res.status(500).json({ message: `Something went wrong trying to find the user. Please try again. ${error}` })
     }
 
     // if query didn't return a user, ask user to create an account
     if (userQueryResult.rows.length === 0) {
 
-        return res.status(401).json({ message: `Couldn't find a user with that email or username. Maybe try logging in?`})
+        return res.status(401).json({ message: `Couldn't find a user with that email or username. Maybe try logging in?` })
     }
 
     // reach this point, there's a user in our database with that username or email. Now we check the password
@@ -156,7 +156,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     } catch (error) {
         console.log(`Error comparing entered password to stored password. ${error}`)
 
-        return res.status(500).json({ message: `Error comparing entred password to stored password. ${error}`})
+        return res.status(500).json({ message: `Error comparing entred password to stored password. ${error}` })
     }
 
     // no match case
@@ -165,7 +165,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         //     `Incorrect Password. Please try again.`, 401
         // ))
 
-        return res.status(401).json({ message: "Incorrect Password. Please try again."})
+        return res.status(401).json({ message: "Incorrect Password. Please try again." })
     }
 
     let token
@@ -177,7 +177,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     } catch (error) {
         console.log(`Error creating login token: ${error}`)
 
-        return res.status(500).json({ message: `Error creating login token: ${error}`})
+        return res.status(500).json({ message: `Error creating login token: ${error}` })
     }
 
     // no issues, log user in
@@ -195,7 +195,7 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
 
         console.log(errors)
 
-        return res.status(401).json({ message: `Please make sure your new password is formatted correctly.`})
+        return res.status(401).json({ message: `Please make sure your new password is formatted correctly.` })
     }
 
     // need username, email, current password, and new password from req.body
@@ -213,13 +213,13 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
     } catch (error) {
         console.log(`Something went wrong trying to find the user. Please try again. ${error}`, 500)
 
-        return res.status(500).json({ message: `Something went wrong trying to find the user. Please try again. ${error}`})
+        return res.status(500).json({ message: `Something went wrong trying to find the user. Please try again. ${error}` })
     }
 
     // if query didn't return a user, return error
     if (userQueryResult.rows.length === 0) {
 
-        return res.status(401).json({ message: `Couldn't find a user with that email or username.`})
+        return res.status(401).json({ message: `Couldn't find a user with that email or username.` })
     }
 
     // found user, now need to verify password = saved password in database
@@ -231,11 +231,11 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
     } catch (error) {
         console.log(`Error comparing current password to stored password. ${error}`)
 
-        return res.status(500).json({ message: `Error comparing current password to stored password: ${error}`})
+        return res.status(500).json({ message: `Error comparing current password to stored password: ${error}` })
     }
 
     if (!passwordsMatch) {
-        return res.status(401).json({ message: `Incorrect password. Please try again.`})
+        return res.status(401).json({ message: `Incorrect password. Please try again.` })
     }
 
     // if passwords match, hash new password
@@ -247,7 +247,7 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
     } catch (error) {
         console.log(`Error hashing password: ${error}`)
 
-        return res.status(500).json({ message: `Error hashing password: ${error}`})
+        return res.status(500).json({ message: `Error hashing password: ${error}` })
     }
 
     //  and save it as user's password
@@ -258,7 +258,7 @@ export const changePassword = async (req: Request, res: Response, next: NextFunc
     } catch (error) {
         console.log(`Error updating user password: ${error}`)
 
-        return res.status(500).json({ message: `Error updating user password: ${error}`})
+        return res.status(500).json({ message: `Error updating user password: ${error}` })
     }
 
     res.status(201).json({ message: "Updated password!", user_id: userQueryResult.rows[0].user_id })
@@ -279,7 +279,7 @@ export const getUserIDByUsername = async (req: Request, res: Response, next: Nex
     } catch (error) {
         console.log(error)
 
-        return res.status(500).json({ message: `Error checking if username is available: ${error}`})
+        return res.status(500).json({ message: `Error checking if username is available: ${error}` })
     }
 
     if (nameResponse.rows.length > 0) {
@@ -303,12 +303,12 @@ export const changeAdminStatus = async (req: Request, res: Response, next: NextF
     } catch (error) {
         console.log(`Error finding user`, 500)
 
-        return res.status(500).json({ message: `Error finding user: ${error}`})
+        return res.status(500).json({ message: `Error finding user: ${error}` })
     }
 
     if (userQueryResult.rows.length < 0) {
 
-        return res.status(500).json({ message: `No user with this id. Please try again.`})
+        return res.status(500).json({ message: `No user with this id. Please try again.` })
     }
 
     // query database and update based on current status
@@ -323,7 +323,7 @@ export const changeAdminStatus = async (req: Request, res: Response, next: NextF
     } catch (error) {
         console.log(`Error updating user #${user_id}'s admin status to ${adminStatus}. ${error}`, 500)
 
-        return res.status(500).json({ message: `Error updating user #${user_id}'s admin status to ${adminStatus}. ${error}`})
+        return res.status(500).json({ message: `Error updating user #${user_id}'s admin status to ${adminStatus}. ${error}` })
     }
 
     res.status(201).json({ message: `Updated user #${user_id}'s admin status to ${adminStatus}`, user_id: user_id })
