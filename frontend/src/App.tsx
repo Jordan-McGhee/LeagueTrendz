@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, { useState, useCallback } from 'react';
 import { Route, Routes } from "react-router-dom"
 
 // context import
@@ -19,14 +19,17 @@ import StandingsPage from './pages/StandingsPage';
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [token, setToken] = useState<undefined | string>(undefined)
+  const [userID, setUserID] = useState<undefined | number>(undefined)
 
-  const login = useCallback(() => {
-    setIsLoggedIn(true)
+  const login = useCallback((user_id: number, token: string) => {
+    setToken(token)
+    setUserID(user_id)
   }, [])
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false)
+    setToken(undefined)
+    setUserID(undefined)
   }, [])
 
   let routes = (
@@ -47,7 +50,14 @@ function App() {
 
   return (
     // APP CONTAINER
-    <AuthContext.Provider value={ {isLoggedIn: isLoggedIn, login:login, logout: logout}}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: !!token,
+        user_id: userID,
+        token: token,
+        login: login,
+        logout: logout
+      }}>
       <div className="bg-black overflow-y-scroll">
 
         <div className='w-4/5 m-auto h-lvh flex'>

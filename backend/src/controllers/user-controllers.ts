@@ -24,14 +24,14 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
     let userResponse
 
     try {
-        userResponse = pool.query(userQuery)
+        userResponse = await pool.query(userQuery)
     } catch (error) {
         console.log(`Error getting all users`, 500)
 
         return res.status(500).json({ message: "Error getting all users." })
     }
 
-    res.status(200).json({ message: 'Got all users.', users: (await userResponse).rows })
+    res.status(200).json({ message: 'Got all users.', users: userResponse.rows })
 }
 
 // signUp a new user
@@ -83,8 +83,6 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     }
 
     // if we don't get any responses, create the user
-
-
     const createUserQuery: string = "INSERT INTO users (username, email, password, admin, created_at, updated_at) VALUES ($1, $2, $3, $4, NOW(), NOW()) RETURNING *"
     let createUserResponse: QueryResult, encryptedPassword: string
 
@@ -119,7 +117,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
         return res.status(500).json({ message: `Error creating token: ${error}` })
     }
 
-    res.status(201).json({ message: "Successfully created user!", user: createUserResponse.rows[0].user_id, email: createUserResponse.rows[0].email, token: token })
+    res.status(201).json({ message: "Successfully created user!", user_id: createUserResponse.rows[0].user_id, email: createUserResponse.rows[0].email, token: token })
 }
 
 // login user
@@ -144,7 +142,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     // if query didn't return a user, ask user to create an account
     if (userQueryResult.rows.length === 0) {
 
-        return res.status(401).json({ message: `Couldn't find a user with that email or username. Maybe try logging in?` })
+        return res.status(404).json({ message: `Couldn't find a user with that email or username. Maybe try logging in?` })
     }
 
     // reach this point, there's a user in our database with that username or email. Now we check the password
@@ -181,7 +179,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     }
 
     // no issues, log user in
-    res.status(200).json({ message: `login successful!`, user: userQueryResult.rows[0].user_id, email: userQueryResult.rows[0].email, token: token })
+    res.status(200).json({ message: `login successful!`, user_id: userQueryResult.rows[0].user_id, email: userQueryResult.rows[0].email, token: token })
 }
 
 // change password

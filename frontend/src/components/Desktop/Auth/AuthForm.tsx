@@ -147,7 +147,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
         }
 
         if (responseData) {
-            console.log(`Entered response data check`)
+            // console.log(`Entered response data check`)
+            const user_id = responseData.user_id
+            const token = responseData.token
+
+            // console.log(user_id, token)
 
             // reset form values & errors
             resetFormErrors()
@@ -155,7 +159,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
     
             // login and close form
             changeDialogSetting()
-            auth.login()
+            auth.login(user_id, token)
         }
 
         return

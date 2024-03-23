@@ -1,7 +1,7 @@
 <!-- BACKEND -->
 - USER AUTH
     <!-- DONE - Verify email address is real or remove email check entirely -->
-
+    - Add protected routes and pass token through to backend from frontend forms
 
 
 <!-- FRONTEND -->
@@ -14,3 +14,11 @@
     - Proper loading and error states on login/signup
 
     - Different pop up content depending on form state [ error, successful, default ]
+
+- useAuth hook
+    - finish setting up
+    - move context login/logout out of app.tsx
+
+- TOKEN
+    - on requests that need token, add following header to the request
+    Authorization: `Bearer ${auth.token}`

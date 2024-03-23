@@ -1,3 +1,12 @@
+// context
+export interface ContextType {
+    isLoggedIn: boolean,
+    user_id: number | undefined,
+    token: string | undefined,
+    login: (user_id: number, token: string) => void
+    logout: () => void
+}
+
 // auth popup
 export interface AuthPopupProps { 
     changeDialogSetting: () => void

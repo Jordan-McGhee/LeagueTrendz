@@ -4,11 +4,11 @@ let logoutTimer: any
 
 export const useAuth = () => {
     // manage whether we are logged in or not app-wide with useState
-    const [token, setToken] = useState(null)
+    const [token, setToken] = useState<string | undefined>(undefined)
     const [tokenExpirationDate, setTokenExpirationDate] = useState()
-    const [userID, setUserID] = useState(null)
+    const [userID, setUserID] = useState<number | undefined>(undefined)
 
-    const login = useCallback((user_id: any, userToken: any, givenExpirationDate: any) => {
+    const login = useCallback((user_id: number, userToken: string, givenExpirationDate: any) => {
         // console.log('Logged in!')
 
         setUserID(user_id)
@@ -23,7 +23,7 @@ export const useAuth = () => {
 
         // saving userData to local storage so refreshing the page doesn't reload the app
         localStorage.setItem('userData', JSON.stringify({
-            userID: user_id,
+            user_id: user_id,
             token: userToken,
             expirationDate: expirationDate.toISOString()
         }))
@@ -33,8 +33,8 @@ export const useAuth = () => {
     }, [])
 
     const logout = useCallback(() => {
-        setUserID(null)
-        setToken(null)
+        setUserID(undefined)
+        setToken(undefined)
         setTokenExpirationDate(undefined)
 
         // remove data from localStorage upon logout
