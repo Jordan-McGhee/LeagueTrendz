@@ -109,7 +109,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     try {
         token = jwt.sign({ user_id: createUserResponse.rows[0].user_id, email: createUserResponse.rows[0].email },
             process.env.JWT_TOKEN,
-            { expiresIn: '3h' }
+            { expiresIn: '1h' }
         )
     } catch (error) {
         console.log(`Error creating token: ${error}`)
@@ -170,7 +170,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     try {
         token = jwt.sign({ user_id: userQueryResult.rows[0].user_id, email: userQueryResult.rows[0].email },
             process.env.JWT_TOKEN,
-            { expiresIn: '3h' }
+            { expiresIn: '1h' }
         )
     } catch (error) {
         console.log(`Error creating login token: ${error}`)

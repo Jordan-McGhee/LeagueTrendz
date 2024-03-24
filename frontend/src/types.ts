@@ -1,8 +1,8 @@
 // context
 export interface ContextType {
     isLoggedIn: boolean,
-    user_id: number | undefined,
-    token: string | undefined,
+    user_id: number | null,
+    token: string | null,
     login: (user_id: number, token: string) => void
     logout: () => void
 }

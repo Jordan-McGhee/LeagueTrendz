@@ -1,8 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { Route, Routes } from "react-router-dom"
 
 // context import
 import { AuthContext } from './context/auth-context';
+
+// hook import
+import { useAuth } from "./Hooks/useAuth"
 
 // NAV IMPORT
 import DesktopNav from './Nav/DesktopNav';
@@ -19,18 +22,7 @@ import StandingsPage from './pages/StandingsPage';
 
 function App() {
 
-  const [token, setToken] = useState<undefined | string>(undefined)
-  const [userID, setUserID] = useState<undefined | number>(undefined)
-
-  const login = useCallback((user_id: number, token: string) => {
-    setToken(token)
-    setUserID(user_id)
-  }, [])
-
-  const logout = useCallback(() => {
-    setToken(undefined)
-    setUserID(undefined)
-  }, [])
+  const { userID, token, login, logout } = useAuth()
 
   let routes = (
     <Routes>

@@ -4,11 +4,11 @@ let logoutTimer: any
 
 export const useAuth = () => {
     // manage whether we are logged in or not app-wide with useState
-    const [token, setToken] = useState<string | undefined>(undefined)
-    const [tokenExpirationDate, setTokenExpirationDate] = useState()
-    const [userID, setUserID] = useState<number | undefined>(undefined)
+    const [token, setToken] = useState<string | null>(null)
+    const [tokenExpirationDate, setTokenExpirationDate] = useState<Date | null>(null)
+    const [userID, setUserID] = useState<number | null>(null)
 
-    const login = useCallback((user_id: number, userToken: string, givenExpirationDate: any) => {
+    const login = useCallback((user_id: number, userToken: string, givenExpirationDate?: Date) => {
         // console.log('Logged in!')
 
         setUserID(user_id)
@@ -33,47 +33,53 @@ export const useAuth = () => {
     }, [])
 
     const logout = useCallback(() => {
-        setUserID(undefined)
-        setToken(undefined)
-        setTokenExpirationDate(undefined)
+        setUserID(null)
+        setToken(null)
+        setTokenExpirationDate(null)
 
         // remove data from localStorage upon logout
         localStorage.removeItem('userData')
     }, [])
 
     // useEffect to automatically log the user out if their token lasts longer than an hour
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     if (token && tokenExpirationDate) {
+        if (token && tokenExpirationDate) {
 
-    //         // get the difference between the expiration date and current time in milliseconds to pass to setTimeout
-    //         const remainingTime = tokenExpirationDate.getTime() - new Date().getTime()
-    //         // console.log(remainingTime)
+            // get the difference between the expiration date and current time in milliseconds to pass to setTimeout
+            const remainingTime:number = tokenExpirationDate.getTime() - new Date().getTime()
+            // console.log(remainingTime)
 
-    //         logoutTimer = setTimeout(logout, remainingTime)
-    //     } else {
+            logoutTimer = setTimeout(logout, remainingTime)
+        } else {
+            // clear all timers if we reach else block
+            clearTimeout(logoutTimer)
+        }
+    }, [token, logout, tokenExpirationDate])
 
-    //         // clear all timers if we reach else block
-    //         clearTimeout(logoutTimer)
-    //     }
-    // }, [token, logout, tokenExpirationDate])
+
+    // useEffect to check localStorage for a token. No dependencies means it will only run when App.js mounts, after the render cycle
+    useEffect(() => {
+
+        let userData = localStorage.getItem('userData')
+        let storedData
 
 
-    // // useEffect to check localStorage for a token. No dependencies means it will only run when App.js mounts, after the render cycle
-    // useEffect(() => {
+        if (userData) {
+            storedData = JSON.parse(userData)
+        }
 
-    //     const storedData = JSON.parse(localStorage.getItem('userData'))
 
-    //     if (
-    //         storedData &&
-    //         storedData.token &&
-    //         // check to make sure the token's expiration date is greater than the current time. If so, login the user in automatically and keep the token's date
-    //         new Date(storedData.expirationDate) > new Date()
-    //     ) {
-    //         login(storedData.userID, storedData.token, new Date(storedData.expirationDate))
-    //     }
+        if (
+            storedData &&
+            storedData.token &&
+            // check to make sure the token's expiration date is greater than the current time. If so, login the user in automatically and keep the token's date
+            new Date(storedData.expirationDate) > new Date()
+        ) {
+            login(storedData.userID, storedData.token, new Date(storedData.expirationDate))
+        }
 
-    // }, [login])
+    }, [login])
 
     return { token, userID, login, logout }
 }
