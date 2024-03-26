@@ -14,6 +14,7 @@
     <!-- - Proper loading and error states on login/signup DONE -->
     - fetch on entered username and email to see if it's available already or not in database
     <!-- - Different pop up content depending on form state [ error, successful, default ] DONE -->
+    <!-- - make sure user_id is passed to login when logging in DONE -->
 
 
 - useAuth hook

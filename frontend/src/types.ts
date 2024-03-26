@@ -1,3 +1,5 @@
+// // CONTEXT & AUTH TYPES
+
 // context
 export interface ContextType {
     isLoggedIn: boolean,
@@ -12,6 +14,7 @@ export interface AuthPopupProps {
     changeDialogSetting: () => void
 }
 
+// login/signup
 export interface SignUpForm {
     username: string,
     email: string,
@@ -42,4 +45,10 @@ export interface AuthInputProps {
     entered_password?: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     changeFormErrors: (input: string, remove: boolean, newError?: string) => void
+}
+
+// // USER PAGE
+
+export interface UserPageProps {
+    user_id: number | null
 }

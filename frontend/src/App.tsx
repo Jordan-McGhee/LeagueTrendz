@@ -19,6 +19,7 @@ import SchedulePage from './pages/SchedulePage';
 import SingleTeamPage from './pages/Data-Pages/Team/SingleTeamPage';
 import ScoresPage from './pages/ScoresPage';
 import StandingsPage from './pages/StandingsPage';
+import UserPage from './pages/UserPage';
 
 function App() {
 
@@ -26,7 +27,6 @@ function App() {
 
   let routes = (
     <Routes>
-
       <Route path="/" element={<HomePage />} />
       <Route path="/teams" element={<AllTeamsPage />} />
       <Route path="/player" element={<PlayerPage />} />
@@ -35,7 +35,7 @@ function App() {
       <Route path="/schedule" element={<SchedulePage />} />
       <Route path="/singleTeam" element={<SingleTeamPage />} />
       <Route path='/standings' element={<StandingsPage />} />
-
+      <Route path='/user' element={<UserPage user_id={userID}  />} />
     </Routes>
   )
 

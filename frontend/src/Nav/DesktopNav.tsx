@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { NavLink, Navigate, } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // context import
 import { AuthContext } from "../context/auth-context";
@@ -101,14 +101,14 @@ const DesktopNav = () => {
                             <NavLink to="/" className="flex">
                                 {/* icon placeholder */}
                                 <p className="mr-2">I</p>
-                                <p>Favorites</p>
+                                <p>Notifications</p>
                             </NavLink>
                         </li>
                     }
 
                     {auth.isLoggedIn &&
-                        <li onClick={() => auth.logout()}>
-                            <NavLink to="/" className="flex">
+                        <li>
+                            <NavLink to="/user" className="flex">
                                 {/* icon placeholder */}
                                 <p className="mr-2">I</p>
                                 <p>Profile</p>

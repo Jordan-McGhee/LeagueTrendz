@@ -34,6 +34,26 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
     res.status(200).json({ message: 'Got all users.', users: userResponse.rows })
 }
 
+// get single user
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+
+    // grab id from params
+    const { user_id } = req.params
+
+    const userQuery: string = "SELECT * FROM users WHERE user_id = $1"
+
+    let userQueryResult: QueryResult
+    try {
+        userQueryResult = await pool.query(userQuery, [user_id])
+    } catch (error) {
+        console.log(`Something went wrong trying to find the user. Please try again. ${error}`, 500)
+
+        return res.status(500).json({ message: `Something went wrong trying to find the user. Please try again. ${error}` })
+    }
+
+    res.status(200).json({ message: "Found user!", user: userQueryResult.rows[0]})
+}
+
 // signUp a new user
 export const signUp = async (req: Request, res: Response, next: NextFunction) => {
 

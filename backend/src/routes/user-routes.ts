@@ -6,6 +6,8 @@ const router = express.Router()
 
 router.get("/", userControllers.getAllUsers)
 
+router.get("/:user_id", userControllers.getUser),
+
 router.post("/signUp",
     [
         check("email").normalizeEmail().isEmail(),
