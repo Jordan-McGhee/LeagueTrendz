@@ -28,12 +28,13 @@ export interface LoginForm {
 export interface AuthFormProps {
     isLoggingIn: boolean,
     changeDialogSetting: () => void
+    passErrorUp: (errorMessage: string | undefined) => void
 }
 
 // auth input
 export interface AuthInputProps {
     name: string,
-    placeholder: string,
+    placeholder?: string,
     bottomText?: string,
     errorBottomText?: string | null,
     isPassword?: boolean,

@@ -10,14 +10,15 @@
     - Add ability to show passwords entered
     <!-- - fix confirm_password DONE -->
     <!-- - Get login/signup working with backend DONE -->
-    - Make dialog close with successful login
-    - Proper loading and error states on login/signup
+    <!-- - Make dialog close with successful login DONE -->
+    <!-- - Proper loading and error states on login/signup DONE -->
+    - fetch on entered username and email to see if it's available already or not in database
+    <!-- - Different pop up content depending on form state [ error, successful, default ] DONE -->
 
-    - Different pop up content depending on form state [ error, successful, default ]
 
 - useAuth hook
-    - finish setting up
-    - move context login/logout out of app.tsx
+    <!-- - finish setting up DONE -->
+    <!-- - move context login/logout out of app.tsx DONE -->
 
 - TOKEN
     - on requests that need token, add following header to the request

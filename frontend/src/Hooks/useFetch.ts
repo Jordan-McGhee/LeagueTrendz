@@ -34,8 +34,8 @@ export const useFetch = () => {
             );
 
             // checks to see if the code associated with the response is 200ish. If not, we need to go to the catch block. Doesn't happen on its own because a 400 or 500ish response code is still considered a response, not an error
-            if (response.ok === false) {
-                console.log(`useFetch response not ok`)
+            if (!response.ok) {
+                console.log(`useFetch response not ok. Response Data Message: ${responseData.message}`)
                 throw new Error(responseData.message)
             }
 

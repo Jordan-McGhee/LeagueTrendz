@@ -1,4 +1,4 @@
-import react, { useState, useContext } from "react"
+import react, { useState, useContext, useEffect } from "react"
 
 // ui imports
 import { Button } from "../../ui/button";
@@ -18,7 +18,7 @@ import { useFetch } from "../../../Hooks/useFetch";
 // context imports
 import { AuthContext } from "../../../context/auth-context"
 
-const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting, passErrorUp }) => {
 
     const auth = useContext(AuthContext)
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -38,6 +38,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
     })
 
     // handler function to pass into each input
+    // updates state values of formValues on each change
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
 
@@ -68,11 +69,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
     }
 
     // iterates over all values in formErrors. If every error === an empty string, form is able to be submitted
-
     // every check for login/signup depending on stat
     let notEmptyCheck = isLoggingIn ? formValues['username'] !== '' && formValues['password'] !== '' : Object.values(formValues).every(value => value !== '')
 
-    const allValuesEmpty = Object.values(formErrors).every(error => error === '') && notEmptyCheck
+    // quick boolean for disabling form submission and button if values aren't valid 
+    const allValuesOK = Object.values(formErrors).every(error => error === '') && notEmptyCheck
 
     // reset functions
     const resetFormErrors = () => {
@@ -93,14 +94,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
         })
     }
 
+    // error useEffect to pass error up to dialog. Changes when hasError changes
+    useEffect(() => {
+        if (hasError) {
+            console.log(`Entered hasError useEffect. Error Message: ${errorMessage}`)
+            passErrorUp(errorMessage)
+        } else {
+            passErrorUp(undefined)
+        }
+    }, [hasError])
+
     const formSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        
+        // clears error to reset error in parent component
+        clearError()
 
-        if (!allValuesEmpty) {
+        // quick boolean check to exit function immediately
+        if (!allValuesOK) {
             return
         }
-
-        console.log(formValues)
 
         // url to send request to - changes if logging in or signing up
         let url: string, formData: SignUpForm | LoginForm
@@ -121,8 +134,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
                 password: formValues.password
             }
         }
-
-        // console.log(formData)
 
         // send data to back end
         let responseData
@@ -146,23 +157,15 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
 
         }
 
+        // if we get data back, use it to log user in
         if (responseData) {
-            // console.log(`Entered response data check`)
             const user_id = responseData.user_id
             const token = responseData.token
 
-            // console.log(user_id, token)
-
-            // reset form values & errors
-            resetFormErrors()
-            resetFormValues()
-    
-            // login and close form
+            // login and close form and dialog
             changeDialogSetting()
             auth.login(user_id, token)
         }
-
-        return
     }
 
 
@@ -218,7 +221,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
                 isLoading ?
                     <LoadingButton />
                     :
-                    <Button className="" type="submit" disabled={!allValuesEmpty}>Sign Up</Button>
+                    <Button className="" type="submit" disabled={!allValuesOK}>Sign Up</Button>
             }
         </div>
     )
@@ -264,24 +267,16 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLoggingIn, changeDialogSetting })
                 isLoading ?
                     <LoadingButton />
                     :
-                    <Button className="" type="submit" disabled={!allValuesEmpty}>Log In</Button>
+                    <Button className="" type="submit" disabled={!allValuesOK}>Log In</Button>
             }
         </div>
     )
 
     return (
         <div>
-            {hasError ?
-                <div onClick={clearError}>
-                    <p>ERROR!!!!!!</p>
-                    <p>{errorMessage}</p>
-                </div>
-                :
-                <form onSubmit={formSubmitHandler}>
-                    {isLoggingIn && !isLoading ? loginForm : signUpForm}
-                </form>
-            }
-
+            <form onSubmit={formSubmitHandler}>
+                {isLoggingIn && !isLoading ? loginForm : signUpForm}
+            </form>
         </div>
     )
 }

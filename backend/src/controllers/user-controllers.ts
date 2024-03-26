@@ -142,7 +142,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     // if query didn't return a user, ask user to create an account
     if (userQueryResult.rows.length === 0) {
 
-        return res.status(404).json({ message: `Couldn't find a user with that email or username. Maybe try logging in?` })
+        return res.status(404).json({ message: `Couldn't find a user with that username. Maybe try signing up?` })
     }
 
     // reach this point, there's a user in our database with that username or email. Now we check the password
@@ -159,10 +159,6 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
     // no match case
     if (!isValidPassword) {
-        // return next(new HttpError(
-        //     `Incorrect Password. Please try again.`, 401
-        // ))
-
         return res.status(401).json({ message: "Incorrect Password. Please try again." })
     }
 
