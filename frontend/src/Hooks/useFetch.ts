@@ -9,7 +9,7 @@ export const useFetch = () => {
     type AbortControllerRef = MutableRefObject<AbortController[]>
     const activeHttpRequests: AbortControllerRef = useRef<AbortController[]>([])
 
-    const sendRequest = useCallback(async (url: string, method: string = "GET", headers = {}, body: string | null) => {
+    const sendRequest = useCallback(async (url: string, method: string = "GET", headers = {}, body?: string | null) => {
 
         setIsLoading(true)
 

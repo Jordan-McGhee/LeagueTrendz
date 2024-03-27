@@ -24,3 +24,7 @@
 - TOKEN
     - on requests that need token, add following header to the request
     Authorization: `Bearer ${auth.token}`
+
+- USER PAGE
+    - Add favorites to user page and watch list
+    - update types accordingly 

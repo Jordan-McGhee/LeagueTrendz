@@ -6,11 +6,11 @@ export const useAuth = () => {
     // manage whether we are logged in or not app-wide with useState
     const [token, setToken] = useState<string | null>(null)
     const [tokenExpirationDate, setTokenExpirationDate] = useState<Date | null>(null)
-    const [userID, setUserID] = useState<number | null>(null)
+    const [user_id, setUser_id] = useState<number | null>(null)
 
-    const login = useCallback((user_id: number, userToken: string, givenExpirationDate?: Date) => {
+    const login = useCallback((id: number, userToken: string, givenExpirationDate?: Date) => {
 
-        setUserID(user_id)
+        setUser_id(id)
         setToken(userToken)
 
         // expiration date for token
@@ -22,7 +22,7 @@ export const useAuth = () => {
 
         // saving userData to local storage so refreshing the page doesn't reload the app
         localStorage.setItem('userData', JSON.stringify({
-            user_id: user_id,
+            user_id: id,
             token: userToken,
             expirationDate: expirationDate.toISOString()
         }))
@@ -30,7 +30,7 @@ export const useAuth = () => {
     }, [])
 
     const logout = useCallback(() => {
-        setUserID(null)
+        setUser_id(null)
         setToken(null)
         setTokenExpirationDate(null)
 
@@ -78,5 +78,5 @@ export const useAuth = () => {
 
     }, [login])
 
-    return { token, userID, login, logout }
+    return { token, user_id, login, logout }
 }

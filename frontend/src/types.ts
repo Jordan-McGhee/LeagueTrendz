@@ -52,3 +52,14 @@ export interface AuthInputProps {
 export interface UserPageProps {
     user_id: number | null
 }
+
+// export interface UserFavorites {
+
+// }
+
+export interface User {
+    username: string,
+    member_since: Date | string,
+    isAdmin: boolean,
+    // favorites?: 
+}

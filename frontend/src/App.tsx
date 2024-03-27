@@ -23,7 +23,7 @@ import UserPage from './pages/UserPage';
 
 function App() {
 
-  const { userID, token, login, logout } = useAuth()
+  const { user_id, token, login, logout } = useAuth()
 
   let routes = (
     <Routes>
@@ -35,7 +35,7 @@ function App() {
       <Route path="/schedule" element={<SchedulePage />} />
       <Route path="/singleTeam" element={<SingleTeamPage />} />
       <Route path='/standings' element={<StandingsPage />} />
-      <Route path='/user' element={<UserPage user_id={userID}  />} />
+      <Route path='/user' element={<UserPage />} />
     </Routes>
   )
 
@@ -45,7 +45,7 @@ function App() {
     <AuthContext.Provider
       value={{
         isLoggedIn: !!token,
-        user_id: userID,
+        user_id: user_id,
         token: token,
         login: login,
         logout: logout
