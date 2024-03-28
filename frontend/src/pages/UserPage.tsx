@@ -13,6 +13,8 @@ import { AuthContext } from "../context/auth-context";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../components/ui/card"
 import { Menubar, MenubarMenu, MenubarTrigger } from "../components/ui/menubar"
 
+import LoadingPage from "./LoadingPage";
+
 const UserPage = () => {
 
     // context variables to grab user and fetch with token
@@ -67,15 +69,25 @@ const UserPage = () => {
     return (
         <div className="min-h-svh">
             {
+                isLoading &&
+                <LoadingPage />
+            }
+
+            {
                 user &&
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-4xl">{user?.username}</CardTitle>
-                        {typeof user.created_at === 'string' && (
-                            <CardDescription>
-                                Member since {`${monthNames[new Date(user.created_at.split('T')[0]).getMonth()]} ${new Date(user.created_at.split('T')[0]).getFullYear()}`}
-                            </CardDescription>
-                        )}
+                        <div className="flex items-center gap-x-2 mb-3">
+                            <div className="bg-red-500 rounded-full size-14" />
+                            <div>
+                                <CardTitle className="text-4xl">{user?.username}</CardTitle>
+                                {typeof user.created_at === 'string' && (
+                                    <CardDescription>
+                                        Member since {`${monthNames[new Date(user.created_at.split('T')[0]).getMonth()]} ${new Date(user.created_at.split('T')[0]).getFullYear()}`}
+                                    </CardDescription>
+                                )}
+                            </div>
+                        </div>
                         <Menubar className="w-fit">
                             <MenubarMenu>
                                 <MenubarTrigger>
