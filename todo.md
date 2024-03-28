@@ -5,6 +5,8 @@
 
 
 <!-- FRONTEND -->
+- 404 not found page
+
 - USER AUTH
     <!-- - password & Confirm password: pass entered password into confirm password input and verify they match DONE -->
     - Add ability to show passwords entered
@@ -28,3 +30,5 @@
 - USER PAGE
     - Add favorites to user page and watch list
     - update types accordingly 
+    - Make User Page inaccessible without context
+    - page for if no user found

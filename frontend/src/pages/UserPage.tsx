@@ -10,56 +10,99 @@ import { User } from "../types"
 import { AuthContext } from "../context/auth-context";
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../components/ui/card"
+import { Menubar, MenubarMenu, MenubarTrigger } from "../components/ui/menubar"
 
-const UserPage= () => {
+const UserPage = () => {
 
+    // context variables to grab user and fetch with token
     const { user_id, token } = useContext(AuthContext)
-
-    console.log(`User ID: ${user_id}, token: ${token}`)
 
     // useFetch to fetch user info
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
-    // state to hold user info
-    const [ user, setUser ] = useState<User | null>(null)
+    // states - mounted is to make sure fetchUser only runs after component has mounted 
+    const [mounted, setMounted] = useState<boolean>(false)
+    const [user, setUser] = useState<User | null>(null)
+
+    // all months in an array for when we use date api later
+    const monthNames: string[] = [
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"
+    ];
 
     // useEffect to fetch user on page load
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/user/${user_id}`
+        if (mounted) {
+            const url: string = `${process.env.REACT_APP_BACKEND_URL}/user/${user_id}`
 
-        console.log(url)
+            let responseData: any
 
-        let responseData
+            const fetchUser = async () => {
+                try {
+                    responseData = await sendRequest(
+                        // URL
+                        url,
+                        // METHOD
+                        "GET",
+                        // HEADERS
+                        {
+                            Authorization: `Bearer ${token}`
+                        },
+                    )
 
-        const fetchUser = async () => {
-            try {
-                responseData = await sendRequest(
-                    // URL
-                    url,
-                    // METHOD
-                    "GET",
-                    // HEADERS
-                    {
-                        Authorization: `Bearer ${token}`
-                    },
-                )
-            } catch (error) {
-                
+                    setUser(responseData.user)
+                } catch (error) {
+
+                }
             }
+
+            fetchUser()
+        } else {
+            setMounted(true)
         }
 
-    }, [])
-
-
+    }, [mounted])
 
     return (
         <div className="min-h-svh">
-            <Card>
-                <CardHeader>
-
-                </CardHeader>
-            </Card>
+            {
+                user &&
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-4xl">{user?.username}</CardTitle>
+                        {typeof user.created_at === 'string' && (
+                            <CardDescription>
+                                Member since {`${monthNames[new Date(user.created_at.split('T')[0]).getMonth()]} ${new Date(user.created_at.split('T')[0]).getFullYear()}`}
+                            </CardDescription>
+                        )}
+                        <Menubar className="w-fit">
+                            <MenubarMenu>
+                                <MenubarTrigger>
+                                    Favorites
+                                </MenubarTrigger>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger>
+                                    Watchlist
+                                </MenubarTrigger>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger>
+                                    Account
+                                </MenubarTrigger>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger>
+                                    Settings
+                                </MenubarTrigger>
+                            </MenubarMenu>
+                        </Menubar>
+                    </CardHeader>
+                    <CardContent>
+                    </CardContent>
+                </Card>
+            }
         </div>
     )
 }

@@ -1,5 +1,7 @@
 // // CONTEXT & AUTH TYPES
 
+import { ReactNode } from "react"
+
 // context
 export interface ContextType {
     isLoggedIn: boolean,
@@ -59,7 +61,7 @@ export interface UserPageProps {
 
 export interface User {
     username: string,
-    member_since: Date | string,
+    created_at: string,
     isAdmin: boolean,
     // favorites?: 
 }

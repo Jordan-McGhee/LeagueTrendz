@@ -73,7 +73,7 @@ export const useAuth = () => {
             // check to make sure the token's expiration date is greater than the current time. If so, login the user in automatically and keep the token's date
             new Date(storedData.expirationDate) > new Date()
         ) {
-            login(storedData.userID, storedData.token, new Date(storedData.expirationDate))
+            login(storedData.user_id, storedData.token, new Date(storedData.expirationDate))
         }
 
     }, [login])
