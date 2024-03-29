@@ -78,11 +78,11 @@ const UserPage = () => {
                 <Card>
                     <CardHeader>
                         <div className="flex items-center gap-x-2 mb-3">
-                            <div className="bg-red-500 rounded-full size-14" />
+                            <div className="bg-red-500 rounded-full size-20" />
                             <div>
-                                <CardTitle className="text-4xl">{user?.username}</CardTitle>
+                                <CardTitle className="text-4xl mb-2">{user?.username}</CardTitle>
                                 {typeof user.created_at === 'string' && (
-                                    <CardDescription>
+                                    <CardDescription className="">
                                         Member since {`${monthNames[new Date(user.created_at.split('T')[0]).getMonth()]} ${new Date(user.created_at.split('T')[0]).getFullYear()}`}
                                     </CardDescription>
                                 )}
