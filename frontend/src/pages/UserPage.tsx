@@ -73,6 +73,7 @@ const UserPage = () => {
                 <LoadingPage />
             }
 
+
             {
                 user &&
                 <Card>
