@@ -3,6 +3,9 @@
     <!-- DONE - Verify email address is real or remove email check entirely -->
     - Add protected routes and pass token through to backend from frontend forms
 
+- Teams
+    - view for season standings
+
 
 <!-- FRONTEND -->
 - 404 not found page

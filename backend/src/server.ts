@@ -57,7 +57,7 @@ const checkAuth = require('./middleware/check-auth')
 
 // route imports
 const userRoutes = require("./routes/user-routes")
-// const leagueRoutes = require('./routes/league-routes')
+const teamRoutes = require("./routes/team-routes")
 
 const app: Express = express();
 
@@ -80,6 +80,7 @@ app.use((req, res, next) => {
 })
 
 // route variables
+app.use("/nba/teams", teamRoutes)
 app.use("/user", userRoutes)
 // app.use("/league", leagueRoutes)
 

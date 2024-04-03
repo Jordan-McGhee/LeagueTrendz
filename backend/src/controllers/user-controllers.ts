@@ -5,7 +5,7 @@ const { validationResult } = require("express-validator")
 import { QueryResult } from "pg";
 const jwt = require("jsonwebtoken")
 
-// types/interfaces
+// types
 interface SignUpRequestBody {
     username: string,
     email: string,
