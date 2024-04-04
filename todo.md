@@ -9,6 +9,7 @@
 
 <!-- FRONTEND -->
 - 404 not found page
+- Error Modal
 
 - USER AUTH
     <!-- - password & Confirm password: pass entered password into confirm password input and verify they match DONE -->

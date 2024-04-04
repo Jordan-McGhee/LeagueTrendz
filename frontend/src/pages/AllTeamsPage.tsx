@@ -1,75 +1,87 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
+// ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 
-import Division from "../components/Desktop/AllTeamsPage/Division";
+// component imports
+import DivisionList from "../components/Desktop/AllTeamsPage/DivisionList";
+import LoadingPage from "./LoadingPage";
+
+// type imports
+import { Team, AllTeamsState } from "../types"
+
+// hook import
+import { useFetch } from "../Hooks/useFetch";
 
 // DUMMY IMPORT
 const teams = require("../DUMMYDATA/NBA_Teams.json")
 
 const AllTeamsPage = () => {
 
-    type Team = {
-        team_id: number,
-        name: string,
-        abbreviation: string,
-        league_id: number,
-        description: string,
-        record: string,
-        conference: string,
-        division: string
-    }
+    // data state
+    const [data, setData] = useState<AllTeamsState | undefined>()
 
-    const teamsData: { teams: Team[] } = teams
+    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
-    // EASTERN CONFERENCE
+    useEffect(() => {
 
-    const atlanticTeams: Team[] = teamsData.teams.filter((team: Team) => team.division === "Atlantic")
-    const centralTeams: Team[] = teamsData.teams.filter((team: Team) => team.division === "Central")
-    const southeastTeams: Team[] = teamsData.teams.filter((team: Team) => team.division === "Southeast")
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/division`
 
-    // WESTERN CONFERENCE
+        let responseData: any
 
-    const northwestTeams: Team[] = teamsData.teams.filter((team: Team) => team.division === "Northwest")
-    const pacificTeams: Team[] = teamsData.teams.filter((team: Team) => team.division === "Pacific")
-    const southwestTeams: Team[] = teamsData.teams.filter((team: Team) => team.division === "Southwest")
+        const fetchTeams = async () => {
 
+            try {
+                responseData = await sendRequest(url, 'GET')
 
+                setData(responseData)
+                console.log(responseData)
+            } catch (error) {
+
+            }
+        }
+
+        fetchTeams()
+    }, [])
 
     return (
-        <Card className="">
-            <CardHeader>
-                <CardTitle className="text-2xl">
-                    NBA Teams
-                </CardTitle>
+        <div className="">
+
+            {isLoading && <LoadingPage />}
+
+            <Card className="">
+                <CardHeader>
+                    <CardTitle className="text-2xl">
+                        NBA Teams
+                    </CardTitle>
+                </CardHeader>
 
                 <CardContent className="px-0">
 
                     {/* EASTERN CONFERENCE */}
-                    <div className="w-full flex justify-between py-4">
-                        <Division division="Atlantic" teams={atlanticTeams} />
+                    <div className="w-full flex justify-between px-4 mb-4">
+                        <DivisionList division="Atlantic" teams={data?.atlantic} />
 
-                        <Division division="Central" teams={centralTeams} />
+                        <DivisionList division="Central" teams={data?.central} />
 
-                        <Division division="Southeast" teams={southeastTeams} />
+                        <DivisionList division="Southeast" teams={data?.southeast} />
                     </div>
 
 
                     {/* WESTERN CONFERENCE */}
 
-                    <div className="w-full flex justify-between py-4">
-                        <Division division="Northwest" teams={northwestTeams} />
+                    <div className="w-full flex justify-between px-4">
+                        <DivisionList division="Northwest" teams={data?.northwest} />
 
-                        <Division division="Pacific" teams={pacificTeams} />
+                        <DivisionList division="Pacific" teams={data?.pacific} />
 
-                        <Division division="Southwest" teams={southwestTeams} />
+                        <DivisionList division="Southwest" teams={data?.southwest} />
                     </div>
 
 
                 </CardContent>
-
-            </CardHeader>
-        </Card>
+            </Card>
+        </div>
     )
 }
 

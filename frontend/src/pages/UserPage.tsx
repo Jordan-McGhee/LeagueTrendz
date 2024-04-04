@@ -13,6 +13,7 @@ import { AuthContext } from "../context/auth-context";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../components/ui/card"
 import { Menubar, MenubarMenu, MenubarTrigger } from "../components/ui/menubar"
 
+// component imports
 import LoadingPage from "./LoadingPage";
 
 const UserPage = () => {

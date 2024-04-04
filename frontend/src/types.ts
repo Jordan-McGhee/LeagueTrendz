@@ -65,3 +65,35 @@ export interface User {
     isAdmin: boolean,
     // favorites?: 
 }
+
+// LOGO TYPES
+export interface TeamLogoProps {
+    team_id: number,
+    abbreviation: string,
+    logoClass?: string
+}
+
+// TEAM TYPES
+export interface Team {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    league_id: number,
+    description: string,
+    wins: number,
+    losses: number,
+    conference: string,
+    division: string,
+    stadium: string,
+    stadium_location: string
+}
+
+export interface AllTeamsState {
+    message: string,
+    atlantic: Team[],
+    central: Team[],
+    southeast: Team[],
+    northwest: Team[],
+    pacific: Team[],
+    southwest: Team[]
+}

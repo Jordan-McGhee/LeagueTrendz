@@ -28,13 +28,13 @@ function App() {
   let routes = (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/teams" element={<AllTeamsPage />} />
+      <Route path="/nba/teams" element={<AllTeamsPage />} />
+      <Route path="/nba/teams/:abbreviation" element={<SingleTeamPage />} />
       <Route path="/player" element={<PlayerPage />} />
       <Route path="/roster" element={<RosterPage />} />
-      <Route path='/scores' element={<ScoresPage />} />
-      <Route path="/schedule" element={<SchedulePage />} />
-      <Route path="/singleTeam" element={<SingleTeamPage />} />
-      <Route path='/standings' element={<StandingsPage />} />
+      <Route path='/nba/scores' element={<ScoresPage />} />
+      <Route path="/nba/schedule" element={<SchedulePage />} />
+      <Route path='/nba/standings' element={<StandingsPage />} />
       <Route path='/user' element={<UserPage />} />
     </Routes>
   )

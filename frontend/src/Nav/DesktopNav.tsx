@@ -42,7 +42,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/scores" className="flex text-[#ffa023]">
+                        <NavLink to="/nba/scores" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Scores</p>
@@ -50,7 +50,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/schedule" className="flex text-[#ffa023]">
+                        <NavLink to="/nba/schedule" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Schedule</p>
@@ -58,7 +58,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/standings" className="flex text-[#ffa023]">
+                        <NavLink to="/nba/standings" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Standings</p>
@@ -66,7 +66,7 @@ const DesktopNav = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/teams" className="flex text-[#ffa023]">
+                        <NavLink to="/nba/teams" className="flex text-[#ffa023]">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Teams</p>
