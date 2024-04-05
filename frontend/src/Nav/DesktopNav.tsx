@@ -34,12 +34,12 @@ const DesktopNav = () => {
                     </li>
 
                     
-                    {/* <li>
+                    <li>
                         <NavLink to="/" className="flex">
                             <p className="mr-2">I</p>
-                            <p>News</p>
+                            <p>Metrics</p>
                         </NavLink>
-                    </li> */}
+                    </li>
 
                     <li className="hover:text-[#ffa023]">
                         <NavLink to="/nba/scores" className="flex">

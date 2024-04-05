@@ -20,7 +20,7 @@ const TeamItem = (props: { team: Team }) => {
 
                 <div className="w-full">
                     <Link to={teamPageUrl}
-                        className="text-sm font-bold"
+                        className="text-xl font-semibold"
                     >{props.team.full_name}</Link>
 
                     {/* link div */}
