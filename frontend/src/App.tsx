@@ -50,13 +50,13 @@ function App() {
         login: login,
         logout: logout
       }}>
-      <div className="bg-black overflow-y-scroll">
+      <div className="bg-[#e2dfe2] overflow-y-scroll">
 
-        <div className='w-4/5 m-auto h-lvh flex'>
+        <div className=' max-w-screen-2xl h-lvh flex m-auto'>
           <DesktopNav />
 
           {/* content div */}
-          <div className='w-full h-fit bg-[#e2dfe2] p-4'>
+          <div className='ml-[20%] w-4/5 h-fit min-h-full bg-[#e2dfe2] p-4'>
             {routes}
           </div>
         </div>

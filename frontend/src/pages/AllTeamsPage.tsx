@@ -32,10 +32,10 @@ const AllTeamsPage = () => {
         const fetchTeams = async () => {
 
             try {
-                responseData = await sendRequest(url, 'GET')
+                responseData = await sendRequest(url)
 
                 setData(responseData)
-                console.log(responseData)
+                // console.log(responseData)
             } catch (error) {
 
             }

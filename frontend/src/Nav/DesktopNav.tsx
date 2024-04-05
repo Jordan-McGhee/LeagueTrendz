@@ -20,53 +20,53 @@ const DesktopNav = () => {
 
 
     return (
-        <nav className="text-white left-0 h-full w-1/5">
-            <ul className="flex flex-col justify-between py-8 items-center h-full bg-black">
+        <nav className="text-white fixed h-full w-[20%] max-w-xs bg-black">
+            <ul className="flex flex-col justify-between py-8 items-center h-full text-lg">
 
                 {/* regular nav options */}
-                <div className="h-1/3 flex flex-col gap-y-8">
-                    <li>
-                        <NavLink to="/" className="flex text-[#ffa023]">
+                <div className="h-1/3 flex flex-col gap-y-10">
+                    <li className="hover:text-[#ffa023]">
+                        <NavLink to="/" className="flex">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>LeagueTrendz</p>
                         </NavLink>
                     </li>
 
-                    <li>
+                    
+                    {/* <li>
                         <NavLink to="/" className="flex">
-                            {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>News</p>
                         </NavLink>
-                    </li>
+                    </li> */}
 
-                    <li>
-                        <NavLink to="/nba/scores" className="flex text-[#ffa023]">
+                    <li className="hover:text-[#ffa023]">
+                        <NavLink to="/nba/scores" className="flex">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Scores</p>
                         </NavLink>
                     </li>
 
-                    <li>
-                        <NavLink to="/nba/schedule" className="flex text-[#ffa023]">
+                    <li className="hover:text-[#ffa023]">
+                        <NavLink to="/nba/schedule" className="flex">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Schedule</p>
                         </NavLink>
                     </li>
 
-                    <li>
-                        <NavLink to="/nba/standings" className="flex text-[#ffa023]">
+                    <li className="hover:text-[#ffa023]">
+                        <NavLink to="/nba/standings" className="flex">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Standings</p>
                         </NavLink>
                     </li>
 
-                    <li>
-                        <NavLink to="/nba/teams" className="flex text-[#ffa023]">
+                    <li className="hover:text-[#ffa023]">
+                        <NavLink to="/nba/teams" className="flex">
                             {/* icon placeholder */}
                             <p className="mr-2">I</p>
                             <p>Teams</p>
@@ -76,11 +76,11 @@ const DesktopNav = () => {
                 </div>
 
                 {/* user nav options profile/favorites/notifications */}
-                <div className="gap-y-8 flex flex-col">
+                <div className="gap-y-10 flex flex-col">
 
                     {/* NOT SIGNED IN */}
                     {!auth.isLoggedIn &&
-                        <li>
+                        <li className="hover:text-[#ffa023]">
                             <Dialog open={open} onOpenChange={setOpen}>
                                 <DialogTrigger>
                                     <div className="flex">
@@ -97,7 +97,7 @@ const DesktopNav = () => {
 
                     {/* SIGNED IN */}
                     {auth.isLoggedIn &&
-                        <li>
+                        <li className="hover:text-[#ffa023]">
                             <NavLink to="/" className="flex">
                                 {/* icon placeholder */}
                                 <p className="mr-2">I</p>
@@ -107,7 +107,7 @@ const DesktopNav = () => {
                     }
 
                     {auth.isLoggedIn &&
-                        <li>
+                        <li className="hover:text-[#ffa023]">
                             <NavLink to="/user" className="flex">
                                 {/* icon placeholder */}
                                 <p className="mr-2">I</p>

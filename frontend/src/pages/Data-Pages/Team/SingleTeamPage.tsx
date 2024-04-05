@@ -1,5 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+// hook imports
+import { useFetch } from "../../../Hooks/useFetch"
+
+// type imports
+import { Team } from "../../../types"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
@@ -11,80 +18,138 @@ import TeamHome from "./Views/TeamHome";
 import Roster from "./Views/Roster";
 import Stats from "./Views/Stats"
 
+// component imports
+import TeamLogo from "../../../components/ui/TeamLogo"
+import ErrorModal from "../../../components/ui/ErrorModal"
+import LoadingPage from "../../LoadingPage"
 
 const SingleTeamPage = () => {
+
+    // pull abbreviation from params
+    const { abbreviation } = useParams()
+
+    // data state
+    const [team, setTeam] = useState<Team | undefined>()
+
+    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
+
+    // fetch from database
+    useEffect(() => {
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${abbreviation}`
+
+        let responseData: any
+
+        const fetchTeam = async () => {
+            try {
+                responseData = await sendRequest(url)
+                setTeam(responseData.team)
+            } catch (error) {
+
+            }
+        }
+
+        fetchTeam()
+    }, [])
 
     // menu item type
     type MenuItem = "home" | "stats" | "schedule" | "roster" | "injuries"
 
-    const [ selectedMenuItem, setSelectedMenuItem ] = useState<MenuItem>('home')
+    const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem>('home')
 
     const handleMenuClick = (option: MenuItem) => {
         setSelectedMenuItem(option)
     }
 
+    // team name consts
+    let teamNameFirst: string | undefined, teamNameLast: string | undefined
+
+    // assigning these variables for displying the team name up top
+    // special cases for golden state and portland because their team names are 3 words long
+    
+    // golden state case
+    if (team?.team_id === 10) {
+        teamNameFirst = [team.full_name.split(' ')[0], team.full_name.split(' ')[1]].join(' ')
+        teamNameLast = team.full_name.split(' ')[2]
+    } else if (team?.team_id === 25) {
+        // portland case
+        teamNameFirst = team.full_name.split(' ')[0]
+        teamNameLast = [team.full_name.split(' ')[1], team.full_name.split(' ')[2]].join(' ')
+    } else {
+        teamNameFirst = team?.full_name.split(' ')[0]
+        teamNameLast = team?.full_name.split(' ')[1]
+    }
+
     return (
-        <div className="h-fit min-h-svh">
-            <Card>
-                <CardHeader>
+        <div className="h-full min-h-svh">
+            {/* error */}
+            <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
-                    <div className="flex items-center gap-x-4 mb-4">
+            {/* loading state */}
+            {isLoading && <LoadingPage />}
 
-                        {/* logo placeholder */}
-                        <div className="bg-red-700 h-24 w-24 rounded-full" />
+            {
+                team &&
+                <Card>
+                    <CardHeader>
 
-                        <div className="flex flex-col gap-y-2">
-                            <div>
-                                <CardTitle className="text-2xl font-light">ATLANTA <span className="font-bold">HAWKS</span></CardTitle>
+                        <div className="flex items-center gap-x-4 mb-4">
+
+                            {/* logo placeholder */}
+                            <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20"/>
+
+                            <div className="flex flex-col gap-y-2">
+                                <div>
+                                    <CardTitle className="text-2xl font-light">{teamNameFirst} <span className="font-bold">{teamNameLast}</span></CardTitle>
+                                </div>
+
+                                {/* team info div */}
+                                <div className="flex items-center gap-x-2 text-sm">
+                                    <Button>Add to Favorites</Button>
+                                    <p>{team.wins}-{team.losses}</p>
+                                    <p>|</p>
+                                    <p><span className="font-semibold">3rd</span> in Southeast Division</p>
+                                </div>
                             </div>
 
-                            {/* team info div */}
-                            <div className="flex items-center gap-x-2 text-sm">
-                                <Button>Add to Favorites</Button>
-                                <p>24-29</p>
-                                <p>|</p>
-                                <p>3rd in Southeast Division</p>
-                            </div>
                         </div>
 
-                    </div>
+                        {/* menubar */}
+                        <Menubar className="w-fit">
+                            <MenubarMenu>
+                                <MenubarTrigger onClick={() => handleMenuClick('home')}>Home</MenubarTrigger>
+                            </MenubarMenu>
 
-                    {/* menubar */}
-                    <Menubar className="w-fit">
-                        <MenubarMenu>
-                            <MenubarTrigger onClick = {() => handleMenuClick('home')}>Home</MenubarTrigger>
-                        </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger onClick={() => handleMenuClick('stats')}>Stats</MenubarTrigger>
+                            </MenubarMenu>
 
-                        <MenubarMenu>
-                            <MenubarTrigger onClick = {() => handleMenuClick('stats')}>Stats</MenubarTrigger>
-                        </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger onClick={() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
+                            </MenubarMenu>
 
-                        <MenubarMenu>
-                            <MenubarTrigger onClick = {() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
-                        </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger onClick={() => handleMenuClick('roster')}>Roster</MenubarTrigger>
+                            </MenubarMenu>
 
-                        <MenubarMenu>
-                            <MenubarTrigger onClick = {() => handleMenuClick('roster')}>Roster</MenubarTrigger>
-                        </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger onClick={() => handleMenuClick('injuries')}>Injuries</MenubarTrigger>
+                            </MenubarMenu>
 
-                        <MenubarMenu>
-                            <MenubarTrigger onClick = {() => handleMenuClick('injuries')}>Injuries</MenubarTrigger>
-                        </MenubarMenu>
-
-                    </Menubar>
+                        </Menubar>
 
 
-                </CardHeader>
+                    </CardHeader>
 
-                <CardContent>
-                    { selectedMenuItem === "home" && <TeamHome />}
-                    { selectedMenuItem === "stats" && <Stats />}
-                    {/* { selectedMenuItem === "schedule" && <TeamHome />} */}
-                    { selectedMenuItem === "roster" &&<Roster />}
-                    {/* { selectedMenuItem === "injuries" && <TeamHome />} */}
-                    
-                </CardContent>
-            </Card>
+                    <CardContent>
+                        {selectedMenuItem === "home" && <TeamHome />}
+                        {selectedMenuItem === "stats" && <Stats />}
+                        {/* { selectedMenuItem === "schedule" && <TeamHome />} */}
+                        {selectedMenuItem === "roster" && <Roster />}
+                        {/* { selectedMenuItem === "injuries" && <TeamHome />} */}
+
+                    </CardContent>
+                </Card>
+            }
         </div>
     )
 }

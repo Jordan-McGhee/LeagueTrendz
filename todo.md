@@ -36,3 +36,6 @@
     - update types accordingly 
     - Make User Page inaccessible without context
     - page for if no user found
+
+- ALLTEAMS PAGE
+    - Query parameters to go automatically to stats/schedule/roster view?

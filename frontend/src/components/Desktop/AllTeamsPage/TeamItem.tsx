@@ -24,7 +24,7 @@ const TeamItem = (props: { team: Team }) => {
                     >{props.team.full_name}</Link>
 
                     {/* link div */}
-                    <div className="flex justify-between w-2/3 text-xs gap-x-2">
+                    <div className="flex justify-between w-2/3 max-w-36 text-xs gap-x-2">
                         <Link
                             to={teamPageUrl + '/stats'}
                             className="hover:font-semibold hover:scale-110"

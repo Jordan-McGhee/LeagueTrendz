@@ -66,6 +66,13 @@ export interface User {
     // favorites?: 
 }
 
+// ERROR TYPES
+export interface ErrorModalProps {
+    error: boolean,
+    errorMessage: string | undefined,
+    onClear: () => void
+}
+
 // LOGO TYPES
 export interface TeamLogoProps {
     team_id: number,
