@@ -4,6 +4,10 @@
     - Add protected routes and pass token through to backend from frontend forms
 
 - Teams
+    - routes/controllers for single team page
+        - get roster
+        - get stats
+        
     - view for season standings
 
 

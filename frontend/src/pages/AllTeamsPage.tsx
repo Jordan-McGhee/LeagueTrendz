@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 // component imports
 import DivisionList from "../components/Desktop/AllTeamsPage/DivisionList";
 import LoadingPage from "./LoadingPage";
+import ErrorModal from "../components/ui/ErrorModal";
 
 // type imports
 import { Team, AllTeamsState } from "../types"
@@ -47,40 +48,52 @@ const AllTeamsPage = () => {
     return (
         <div className="">
 
+            {/* error modal */}
+            <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
+
+            {/* unable to query for teams for whatever reason */}
+            {/* {!data && <ErrorModal error errorMessage="Couldn't get all the teams in the NBA. Please try again!" onClear={clearError} />} */}
+
+            {/* loading state */}
             {isLoading && <LoadingPage />}
 
-            <Card className="">
-                <CardHeader>
-                    <CardTitle className="text-2xl">
-                        NBA Teams
-                    </CardTitle>
-                </CardHeader>
+            {
+                data &&
+                <Card className="">
+                    <CardHeader>
+                        <CardTitle className="text-2xl">
+                            NBA Teams
+                        </CardTitle>
+                    </CardHeader>
 
-                <CardContent className="px-0">
+                    <CardContent className="px-0">
 
-                    {/* EASTERN CONFERENCE */}
-                    <div className="w-full flex justify-between px-4 mb-4">
-                        <DivisionList division="Atlantic" teams={data?.atlantic} />
+                        {/* EASTERN CONFERENCE */}
+                        <div className="w-full flex justify-between px-4 mb-4">
+                            <DivisionList division="Atlantic" teams={data.atlantic} />
 
-                        <DivisionList division="Central" teams={data?.central} />
+                            <DivisionList division="Central" teams={data.central} />
 
-                        <DivisionList division="Southeast" teams={data?.southeast} />
-                    </div>
-
-
-                    {/* WESTERN CONFERENCE */}
-
-                    <div className="w-full flex justify-between px-4">
-                        <DivisionList division="Northwest" teams={data?.northwest} />
-
-                        <DivisionList division="Pacific" teams={data?.pacific} />
-
-                        <DivisionList division="Southwest" teams={data?.southwest} />
-                    </div>
+                            <DivisionList division="Southeast" teams={data.southeast} />
+                        </div>
 
 
-                </CardContent>
-            </Card>
+                        {/* WESTERN CONFERENCE */}
+
+                        <div className="w-full flex justify-between px-4">
+                            <DivisionList division="Northwest" teams={data.northwest} />
+
+                            <DivisionList division="Pacific" teams={data.pacific} />
+
+                            <DivisionList division="Southwest" teams={data.southwest} />
+                        </div>
+
+
+                    </CardContent>
+                </Card>
+
+            }
+
         </div>
     )
 }
