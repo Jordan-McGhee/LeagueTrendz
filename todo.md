@@ -7,8 +7,13 @@
     - routes/controllers for single team page
         - get roster
         - get stats
-        
+
     - view for season standings
+    <!-- - Add Coach field DONE -->
+
+- SAVING PLAYERS
+    - UPDATE DRAFT IDEAS IN DRAFT OBJECT!!!!
+    - get age correct
 
 
 <!-- FRONTEND -->

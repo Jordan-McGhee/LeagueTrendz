@@ -1,35 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
+// hook imports
+import { useFetch } from "../../../../Hooks/useFetch";
 
-import { ColumnDef } from "@tanstack/react-table";
+// type imports
+import { Player, Team } from "../../../../types"
 
 // ui imports
+import { ColumnDef } from "@tanstack/react-table";
 import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
 import { Button } from "../../../../components/ui/button"
 import { ArrowUpZAIcon, ArrowDownAZIcon, ArrowUp01Icon, ArrowDown10Icon } from "lucide-react"
 
 import { DataTable } from "../../../../components/ui/DataTable";
 
-// dummy data import
-const data = require("../../../../DUMMYDATA/NBA_Roster.json")
+// component imports
+import LoadingPage from "../../../LoadingPage";
+import ErrorModal from "../../../../components/ui/ErrorModal"
 
-const Roster = () => {
+const Roster = (props: { team: Team }) => {
 
-    // types
-    type Player = {
-        id: number,
-        name: string,
-        number: number,
-        height: string,
-        weight: number,
-        birthday: string,
-        age: number,
-        college: string | "--",
-        status: "healthy" | "out" | "day-to-day"
-    }
+    type Roster = Player[]
 
-    type Team = Player[]
-    const roster: Team = data.lineup
+    const [roster, setRoster] = useState<Roster>([])
+
+    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
+
+    // fetch roster from database
+    useEffect(() => {
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${props.team.team_id}/roster`
+
+        let responseData: any
+
+        const fetchRoster = async () => {
+            try {
+                responseData = await sendRequest(url)
+                setRoster(responseData.roster)
+                console.log(responseData.roster)
+            } catch (error) {
+
+            }
+        }
+
+        fetchRoster()
+    }, [])
+
 
     const columns: ColumnDef<Player>[] = [
         {
@@ -55,7 +70,7 @@ const Roster = () => {
             },
         },
         {
-            accessorKey: "position",
+            accessorKey: "player_position",
             header: "POS"
         },
         {
@@ -93,24 +108,30 @@ const Roster = () => {
             header: "COLLEGE"
         },
         {
-            accessorKey: "salary",
-            header: "SALARY"
+            accessorKey: "status",
+            header: "STATUS"
         },
     ]
 
     return (
         <div>
+
+            {/* error */}
+            <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
+
+            {isLoading && <LoadingPage />}
+
             <Card>
                 <CardHeader>
                     <CardTitle>
-                        Atlanta Hawks Roster 2023-24
+                        {props.team.full_name} Roster 2023-24
                     </CardTitle>
                 </CardHeader>
 
                 <CardContent>
                     <DataTable columns={columns} data={roster} />
 
-                    <p className="text-sm font-bold mt-4">Coach <span className="font-light">Quin Snyder</span></p>
+                    <p className="text-sm font-bold mt-4">Coach: <span className="font-light">{props.team.head_coach}</span></p>
                 </CardContent>
             </Card>
         </div>

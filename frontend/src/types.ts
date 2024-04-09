@@ -85,7 +85,8 @@ export interface Team {
     conference: string,
     division: string,
     stadium: string,
-    stadium_location: string
+    stadium_location: string,
+    head_coach: string
 }
 
 export interface AllTeamsState {
@@ -96,4 +97,38 @@ export interface AllTeamsState {
     northwest: Team[],
     pacific: Team[],
     southwest: Team[]
+}
+
+export interface RosterProps {
+    team_id: number
+}
+
+// PLAYER TYPES
+export interface Player {
+    player_id: number,
+    name: string,
+    height: string,
+    weight: string,
+    status: string,
+    player_position: string,
+    jersey_number: number,
+    photo_url: string,
+    transactions: any,
+    draft: {
+        round: number,
+        pick: number,
+        tid: number,
+        originalTid: number,
+        year: number
+    },
+    awards: {
+        season: number,
+        type: string
+    }[],
+    born: {
+        year: number,
+        loc: string
+    },
+    college: string,
+    team_id: number
 }

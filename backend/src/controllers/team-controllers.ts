@@ -99,7 +99,9 @@ export const getDivisionTeams = async (req: Request, res: Response, next: NextFu
     res.status(200).json({ message: `Got all teams by division.`, atlantic, central, southeast, northwest, pacific, southwest})
 }
 
-// get single team
+// SINGLE TEAM PAGE
+
+// get team home
 export const getSingleTeam = async (req: Request, res: Response, next: NextFunction) => {
     const { abbreviation } = req.params
 
@@ -121,4 +123,25 @@ export const getSingleTeam = async (req: Request, res: Response, next: NextFunct
     }
 
     res.status(200).json({ message: `Got data for the ${teamResponse.rows[0].full_name}`, team: teamResponse.rows[0]})
+}
+
+
+// get roster
+
+export const getTeamRoster = async (req: Request, res: Response, next: NextFunction) => {
+    const { team_id } = req.params
+
+    const rosterQuery: string = "SELECT * FROM players WHERE team_id = $1"
+
+    let rosterResponse: QueryResult
+
+    try {
+        rosterResponse = await pool.query(rosterQuery, [team_id])
+    } catch (error) {
+        console.log(`Error getting roster for team: ${team_id}. ${error}`, 500)
+
+        return res.status(500).json(`Error getting roster for team: ${team_id}. ${error}`)
+    }
+
+    res.status(200).json({ message: `Retrieved roster for team ${team_id}`, roster: rosterResponse.rows})
 }

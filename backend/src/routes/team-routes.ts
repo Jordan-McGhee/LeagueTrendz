@@ -11,4 +11,6 @@ router.get("/division", teamControllers.getDivisionTeams),
 
 router.get("/:abbreviation", teamControllers.getSingleTeam)
 
+router.get("/:team_id/roster", teamControllers.getTeamRoster)
+
 module.exports = router
