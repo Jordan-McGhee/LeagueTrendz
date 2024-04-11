@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // hook imports
 import { useFetch } from "../../../../Hooks/useFetch";
@@ -36,7 +37,6 @@ const Roster = (props: { team: Team }) => {
             try {
                 responseData = await sendRequest(url)
                 setRoster(responseData.roster)
-                console.log(responseData.roster)
             } catch (error) {
 
             }
@@ -47,6 +47,22 @@ const Roster = (props: { team: Team }) => {
 
 
     const columns: ColumnDef<Player>[] = [
+        {
+            accessorKey: 'photo_url',
+            header:"",
+            cell: ({row}) => {
+                const player_id = row.original.player_id
+                const photo_url = row.original.photo_url
+                const name = row.original.name
+                const urlName: string = name.toLowerCase().replace(" ", "-")
+
+                return (
+                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player_id}/${urlName}`} className="hover:underline">
+                        <img src={photo_url} alt="img" className="h-8 object-contain rounded-full"/>
+                    </Link>
+                )
+            }
+        },
         {
             accessorKey: "name",
             header: ({ column }) => {
@@ -68,6 +84,18 @@ const Roster = (props: { team: Team }) => {
                     </Button>
                 )
             },
+            cell: ({ row }) => {
+                const player_id = row.original.player_id
+                const name: string = row.getValue("name")
+                const urlName: string = name.toLowerCase().replace(" ", "-")
+                const jersey_number = row.original.jersey_number
+
+                return (
+                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player_id}/${urlName}`} className="hover:underline">
+                        {name} <span className="text-gray-500 font-light ml-1">#{jersey_number}</span>
+                    </Link>
+                )
+            }
         },
         {
             accessorKey: "player_position",

@@ -99,7 +99,7 @@ const SingleTeamPage = () => {
 
                             <div className="flex flex-col gap-y-2">
                                 <div>
-                                    <CardTitle className="text-2xl font-light">{teamNameFirst} <span className="font-bold">{teamNameLast}</span></CardTitle>
+                                    <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span className="font-bold">{teamNameLast}</span></CardTitle>
                                 </div>
 
                                 {/* team info div */}

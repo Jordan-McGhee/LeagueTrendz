@@ -73,6 +73,14 @@ const DesktopNav = () => {
                         </NavLink>
                     </li>
 
+                    <li className="hover:text-[#ffa023]">
+                        <NavLink to="/nba/players" className="flex">
+                            {/* icon placeholder */}
+                            <p className="mr-2">I</p>
+                            <p>Players</p>
+                        </NavLink>
+                    </li>
+
                 </div>
 
                 {/* user nav options profile/favorites/notifications */}

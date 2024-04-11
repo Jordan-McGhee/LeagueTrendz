@@ -2,8 +2,6 @@ import { pool } from "../server"
 import { Request, Response, NextFunction } from "express"
 import { QueryResult } from "pg";
 
-// types
-
 // get all teams
 export const getAllTeams = async (req: Request, res: Response, next: NextFunction) => {
     const teamsQuery: string = "SELECT * FROM teams"
@@ -13,7 +11,7 @@ export const getAllTeams = async (req: Request, res: Response, next: NextFunctio
     try {
         teamResponse = await pool.query(teamsQuery)
     } catch (error) {
-        console.log(`Error getting all teams ${error}`, 500)
+        console.log(`Error getting all teams: ${error}`)
 
         return res.status(500).json({ message: `Error getting all teams ${error}` })
     }
@@ -31,7 +29,7 @@ export const getConferenceTeams = async (req: Request, res: Response, next: Next
     try {
         eastResponse = await pool.query(eastQuery, ['Eastern'])
     } catch (error) {
-        console.log(`Error getting all EASTERN teams ${error}`, 500)
+        console.log(`Error getting all EASTERN teams: ${error}`)
 
         return res.status(500).json({ message: `Error getting all EASTERN teams ${error}` })
     }
@@ -39,7 +37,7 @@ export const getConferenceTeams = async (req: Request, res: Response, next: Next
     try {
         westResponse = await pool.query(westQuery, [`Western`])
     } catch (error) {
-        console.log(`Error getting all WESTERN teams ${error}`, 500)
+        console.log(`Error getting all WESTERN teams: ${error}`)
 
         return res.status(500).json({ message: `Error getting all WESTERN teams ${error}` })
     }
@@ -56,7 +54,7 @@ export const getDivisionTeams = async (req: Request, res: Response, next: NextFu
     try {
         teamResponse = await pool.query(teamsQuery)
     } catch (error) {
-        console.log(`Error getting all teams ${error}`, 500)
+        console.log(`Error getting all teams: ${error}`)
 
         return res.status(500).json({ message: `Error getting all teams ${error}` })
     }
@@ -112,7 +110,7 @@ export const getSingleTeam = async (req: Request, res: Response, next: NextFunct
     try {
         teamResponse = await pool.query(teamQuery, [abbreviation])
     } catch (error) {
-        console.log(`Error getting all teams ${error}`, 500)
+        console.log(`Error getting all teams: ${error}`)
 
         return res.status(500).json({ message: `Error getting all teams ${error}` })
     }
@@ -138,7 +136,7 @@ export const getTeamRoster = async (req: Request, res: Response, next: NextFunct
     try {
         rosterResponse = await pool.query(rosterQuery, [team_id])
     } catch (error) {
-        console.log(`Error getting roster for team: ${team_id}. ${error}`, 500)
+        console.log(`Error getting roster for team: ${team_id}. ${error}`)
 
         return res.status(500).json(`Error getting roster for team: ${team_id}. ${error}`)
     }

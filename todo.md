@@ -5,14 +5,14 @@
 
 - Teams
     - routes/controllers for single team page
-        - get roster
+        <!-- - get roster DONE -->
         - get stats
 
     - view for season standings
     <!-- - Add Coach field DONE -->
 
 - SAVING PLAYERS
-    - UPDATE DRAFT IDEAS IN DRAFT OBJECT!!!!
+    - UPDATETEAM IDs IN DRAFT/TRANSACTION OBJECTS!!!!
     - get age correct
 
 
@@ -48,3 +48,6 @@
 
 - ALLTEAMS PAGE
     - Query parameters to go automatically to stats/schedule/roster view?
+    
+    !!ROSTER!!
+    - change icons to not be ugly
