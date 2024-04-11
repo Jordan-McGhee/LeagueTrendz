@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../../../../Hooks/useFetch";
 
 // type imports
-import { Player, Team } from "../../../../types"
+import { Player, RosterProps, Team } from "../../../../types"
 
 // ui imports
 import { ColumnDef } from "@tanstack/react-table";
 import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
 import { Button } from "../../../../components/ui/button"
-import { ArrowUpZAIcon, ArrowDownAZIcon, ArrowUp01Icon, ArrowDown10Icon } from "lucide-react"
+import { CaretSortIcon, CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
 
 import { DataTable } from "../../../../components/ui/DataTable";
 
@@ -19,7 +19,7 @@ import { DataTable } from "../../../../components/ui/DataTable";
 import LoadingPage from "../../../LoadingPage";
 import ErrorModal from "../../../../components/ui/ErrorModal"
 
-const Roster = (props: { team: Team }) => {
+const Roster: React.FC<RosterProps> = ({team}) => {
 
     type Roster = Player[]
 
@@ -29,7 +29,7 @@ const Roster = (props: { team: Team }) => {
 
     // fetch roster from database
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${props.team.team_id}/roster`
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/roster`
 
         let responseData: any
 
@@ -70,17 +70,10 @@ const Roster = (props: { team: Team }) => {
                     <Button
                         variant="ghost"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                        className="px-0"
+                        className={column.getIsSorted() ? "px-2 bg-gray-100" : "px-2"}
                     >
                         NAME
-                        {
-                            column.getIsSorted() === "asc"
-                                ?
-                                <ArrowDownAZIcon className="ml-2 h-4 w-4" />
-                                :
-                                <ArrowUpZAIcon className="ml-2 h-4 w-4" />
-
-                        }
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
             },
@@ -108,17 +101,10 @@ const Roster = (props: { team: Team }) => {
                     <Button
                         variant="ghost"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                        className="px-0"
+                        className="px-2"
                     >
                         AGE
-                        {
-                            column.getIsSorted() === "asc"
-                                ?
-                                <ArrowUp01Icon className="ml-2 h-4 w-4" />
-                                :
-                                <ArrowDown10Icon className="ml-2 h-4 w-4" />
-
-                        }
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
                     </Button>
                 )
             },
@@ -152,14 +138,14 @@ const Roster = (props: { team: Team }) => {
             <Card>
                 <CardHeader>
                     <CardTitle>
-                        {props.team.full_name} Roster 2023-24
+                        {team.full_name} Roster 2023-24
                     </CardTitle>
                 </CardHeader>
 
                 <CardContent>
                     <DataTable columns={columns} data={roster} />
 
-                    <p className="text-sm font-bold mt-4">Coach: <span className="font-light">{props.team.head_coach}</span></p>
+                    <p className="text-sm font-bold mt-4">Coach: <span className="font-light">{team.head_coach}</span></p>
                 </CardContent>
             </Card>
         </div>

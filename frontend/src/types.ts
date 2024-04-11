@@ -86,7 +86,8 @@ export interface Team {
     division: string,
     stadium: string,
     stadium_location: string,
-    head_coach: string
+    head_coach: string,
+    main_color: string
 }
 
 export interface AllTeamsState {
@@ -100,7 +101,7 @@ export interface AllTeamsState {
 }
 
 export interface RosterProps {
-    team_id: number
+    team: Team
 }
 
 // PLAYER TYPES
@@ -131,4 +132,9 @@ export interface Player {
     },
     college: string,
     team_id: number
+}
+
+export interface PlayerPageProps {
+    player: Player,
+    currentTeam: Team
 }

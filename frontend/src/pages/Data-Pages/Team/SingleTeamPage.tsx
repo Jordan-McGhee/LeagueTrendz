@@ -67,7 +67,7 @@ const SingleTeamPage = () => {
     // special cases for golden state and portland because their team names are 3 words long
     
     // golden state case
-    if (team?.team_id === 10) {
+    if (team?.team_id === 10 || team?.team_id === 14 || team?.team_id === 19 || team?.team_id === 20 || team?.team_id === 21 || team?.team_id === 27) {
         teamNameFirst = [team.full_name.split(' ')[0], team.full_name.split(' ')[1]].join(' ')
         teamNameLast = team.full_name.split(' ')[2]
     } else if (team?.team_id === 25) {
@@ -99,12 +99,12 @@ const SingleTeamPage = () => {
 
                             <div className="flex flex-col gap-y-2">
                                 <div>
-                                    <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span className="font-bold">{teamNameLast}</span></CardTitle>
+                                    <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color}} className="font-bold">{teamNameLast}</span></CardTitle>
                                 </div>
 
                                 {/* team info div */}
                                 <div className="flex items-center gap-x-2 text-sm">
-                                    <Button>Add to Favorites</Button>
+                                    <Button style={{ backgroundColor: team.main_color}}>Add to Favorites</Button>
                                     <p>{team.wins}-{team.losses}</p>
                                     <p>|</p>
                                     <p><span className="font-semibold">3rd</span> in Southeast Division</p>

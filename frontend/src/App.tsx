@@ -11,6 +11,7 @@ import { useAuth } from "./Hooks/useAuth"
 import DesktopNav from './Nav/DesktopNav';
 
 // PAGE IMPORTS
+import AllPlayersPage from "./pages/AllPlayersPage"
 import AllTeamsPage from './pages/AllTeamsPage';
 import HomePage from './pages/HomePage';
 import PlayerPage from './pages/Data-Pages/Player/PlayerPage';
@@ -30,7 +31,8 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/nba/teams" element={<AllTeamsPage />} />
       <Route path="/nba/teams/:abbreviation" element={<SingleTeamPage />} />
-      <Route path="/player" element={<PlayerPage />} />
+      <Route path='nba/players' element={<AllPlayersPage />} />
+      <Route path="/nba/players/id/:player_id/:player_name" element={<PlayerPage />} />
       <Route path="/roster" element={<RosterPage />} />
       <Route path='/nba/scores' element={<ScoresPage />} />
       <Route path="/nba/schedule" element={<SchedulePage />} />

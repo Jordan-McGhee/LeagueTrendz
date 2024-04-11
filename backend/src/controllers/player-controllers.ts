@@ -32,5 +32,17 @@ export const getSinglePlayer = async (req: Request, res: Response, next: NextFun
         return res.status(500).json({ message: `Error getting player #${player_id}. ${error}` })
     }
 
-    res.status(200).json({ message: `Got player #${player_id}`, player: playerResponse.rows[0]})
+    const currentTeamQuery: string = "SELECT * FROM teams WHERE team_id = $1"
+
+    let currentTeamResponse: QueryResult
+
+    try {
+        currentTeamResponse = await pool.query(currentTeamQuery, [ playerResponse.rows[0].team_id])
+    } catch (error) {
+        console.log(`Error getting current team for ${playerResponse.rows[0].name}. ${error}`)
+
+        return res.status(500).json({ message: `Error getting current team for ${playerResponse.rows[0].name}. ${error}`})
+    }
+
+    res.status(200).json({ message: `Got player #${player_id}`, player: playerResponse.rows[0], currentTeam: currentTeamResponse.rows[0]})
 }

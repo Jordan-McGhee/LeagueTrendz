@@ -1,7 +1,15 @@
+// type imports
+import { PlayerPageProps } from "../../../../types"
+
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
 
-const PlayerBiography = () => {
+// team dummy data
+const teams = require("../../../../DUMMYDATA/NBA_Teams.json")
+
+const PlayerBiography: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
+
+    const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid + 1)
 
     return (
         <Card>
@@ -16,18 +24,18 @@ const PlayerBiography = () => {
                     <div className="flex text-sm">
                         <div className="flex flex-col gap-y-4 uppercase mr-4 font-semibold">
                             <p>Team</p>
-                            <p>Birthdate</p>
+                            <p>Born</p>
                             <p>Experience</p>
                             <p>Position</p>
                             <p>Draft Info</p>
                         </div>
 
                         <div className="flex flex-col gap-y-4">
-                            <p>Atlanta Hawks</p>
-                            <p>9/19/1998 (25)</p>
-                            <p>5th Season</p>
-                            <p>Point Guard</p>
-                            <p>2018: Rd 1, Pk 5 (DAL)</p>
+                            <p>{currentTeam.full_name}</p>
+                            <p>{player.born.year} ({2024 - player.born.year})</p>
+                            <p>{2024 - player.draft.year} Seasons</p>
+                            <p>{player.player_position}</p>
+                            <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation})</p>
                         </div>
                     </div>
 
@@ -41,12 +49,12 @@ const PlayerBiography = () => {
                         </div>
 
                         <div className="flex flex-col gap-y-4">
-                            <p>6'1", 164 lbs</p>
-                            <p>Oklahoma</p>
-                            <p>Lubbock, TX</p>
-                            <p className="flex gap-x-2 items-center">
-                                <div className="size-4 rounded-full bg-red-500" />
-                                OUT
+                            <p>{player.height}, {player.weight} lbs</p>
+                            <p>{player.college}</p>
+                            <p>{player.born.loc}</p>
+                            <p className="flex gap-x-2 items-center capitalize">
+                                <div className="size-4 rounded-full bg-green-500" />
+                                {player.status}
                             </p>
                         </div>
                     </div>

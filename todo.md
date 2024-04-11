@@ -4,6 +4,7 @@
     - Add protected routes and pass token through to backend from frontend forms
 
 - Teams
+    - Add team colors to db
     - routes/controllers for single team page
         <!-- - get roster DONE -->
         - get stats
@@ -51,3 +52,7 @@
     
     !!ROSTER!!
     - change icons to not be ugly
+
+- PLAYER PAGE
+    - LOOP OVER TRANSACTIONS & PLAYER AWARDS
+    - Styling for player status

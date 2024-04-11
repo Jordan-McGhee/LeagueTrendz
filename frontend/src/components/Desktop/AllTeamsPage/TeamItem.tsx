@@ -19,9 +19,23 @@ const TeamItem = (props: { team: Team }) => {
                 <TeamLogo team_id={props.team.team_id} abbreviation={props.team.abbreviation} logoClass="w-12 h-12 object-contain mr-4" />
 
                 <div className="w-full">
-                    <Link to={teamPageUrl}
+                    <Link
+                        to={teamPageUrl}
                         className="text-xl font-semibold"
-                    >{props.team.full_name}</Link>
+                        
+                        onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                            if (e.target instanceof HTMLElement) {
+                                e.target.style.color = props.team.main_color;
+                            }
+                        }}
+                        onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                            if (e.target instanceof HTMLElement) {
+                                e.target.style.color = 'black';
+                            }
+                        }}
+                    >
+                        {props.team.full_name}
+                    </Link>
 
                     {/* link div */}
                     <div className="flex justify-between w-2/3 max-w-36 text-xs gap-x-2">

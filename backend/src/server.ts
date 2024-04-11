@@ -82,8 +82,8 @@ app.use((req, res, next) => {
 
 // route variables
 app.use("/nba/teams", teamRoutes)
-app.use("/user", userRoutes)
 app.use("/nba/players", playerRoutes)
+app.use("/user", userRoutes)
 // app.use("/league", leagueRoutes)
 
 // app.use(checkAuth)
