@@ -11,6 +11,33 @@ const PlayerBiography: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
 
     const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid)
 
+    let playerStatusSplit: string = player.status.type.split(" ")[0]
+
+    let playerStatus
+
+    if (playerStatusSplit === "Healthy") {
+        playerStatus = (
+            <div className="flex gap-x-2 items-center capitalize">
+                <div className="size-4 rounded-full bg-green-500" />
+                <p>Active</p>
+            </div>
+        )
+    } else if (playerStatusSplit === "Suspended") {
+        playerStatus = (
+            <div className="flex gap-x-2 items-center capitalize">
+                <div className="size-4 rounded-full bg-red-500" />
+                <p>Suspended - {player.status.gamesRemaining} Games</p>
+            </div>
+        )
+    } else {
+        playerStatus = (
+            <div className="flex gap-x-2 items-center capitalize">
+                <div className="size-4 rounded-full bg-red-500" />
+                <p>Out - {playerStatusSplit} ({player.status.gamesRemaining} Games)</p>
+            </div>
+        )
+    }
+
     return (
         <Card>
             <CardHeader>
@@ -57,10 +84,7 @@ const PlayerBiography: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
                             <p>{player.height}, {player.weight} lbs</p>
                             <p>{player.college}</p>
                             <p>{player.born.loc}</p>
-                            <p className="flex gap-x-2 items-center capitalize">
-                                <div className="size-4 rounded-full bg-green-500" />
-                                {player.status.type}
-                            </p>
+                            {playerStatus}
                         </div>
                     </div>
 

@@ -18,6 +18,24 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
     const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid)
 
+    let playerStatusSplit: string = player.status.type.split(" ")[0]
+
+    let playerStatus
+
+    if (playerStatusSplit === "Healthy") {
+        playerStatus = (
+                <p>Active</p>
+        )
+    } else if (playerStatusSplit === "Suspended") {
+        playerStatus = (
+                <p>Suspended - {player.status.gamesRemaining} Games</p>
+        )
+    } else {
+        playerStatus = (
+                <p>Out - {playerStatusSplit} ({player.status.gamesRemaining} Games)</p>
+        )
+    }
+
     return (
         <div>
 
@@ -31,7 +49,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                         <p className="text-2xl uppercase font-semibold">{player.name}</p>
                         <p className="flex gap-x-1 items-center">
                             <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline"><TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{currentTeam.full_name}</Link>• #{player.jersey_number} • {player.player_position}</p>
-                        <Button>Add to Favorites</Button>
+                        <Button className="w-fit">Add to Favorites</Button>
                     </div>
                 </div>
 
@@ -55,7 +73,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                             :
                             <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
                         }
-                        <p className="capitalize">{player.status.type}</p>
+                        <p className="capitalize">{playerStatus}</p>
                     </div>
                 </div>
 

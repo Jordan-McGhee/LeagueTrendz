@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 // hook imports
 import { useFetch } from "../../../Hooks/useFetch";
@@ -9,10 +9,10 @@ import { Player, Team } from "../../../types"
 
 // ui imports
 import { Card, CardContent } from "../../../components/ui/card"
+import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/menubar"
 
 // component imports
 import PlayerHero from "../../../components/Desktop/PlayerPage/PlayerHero";
-import PlayerMenuBar from "../../../components/Desktop/PlayerPage/PlayerMenubar";
 import ErrorModal from "../../../components/ui/ErrorModal"
 import LoadingPage from "../../LoadingPage"
 
@@ -25,21 +25,21 @@ import PlayerSplits from "./Views/PlayerSplits";
 
 const PlayerPage = () => {
 
-    // menu bar
-    type MenuItem = "overview" | "stats" | "bio" | "splits" | "log"
-
-    const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem>('overview')
-
-    const handleMenuClick = (menuOption: MenuItem) => {
-        setSelectedMenuItem(menuOption)
-    }
-
     // pull player id from params
     const { player_id } = useParams()
 
+    // grab query params from url if any
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const view = queryParams.get('view');
+    const navigate = useNavigate()
+
     // data state
     const [player, setPlayer] = useState<Player | undefined>()
-    const [ currentTeam, setCurrentTeam ] = useState<Team | undefined>()
+    const [currentTeam, setCurrentTeam] = useState<Team | undefined>()
+
+    // name for url navigation for menubar
+    const urlName: string | undefined = player?.name.toLowerCase().replace(" ", "-")
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
@@ -55,13 +55,27 @@ const PlayerPage = () => {
                 setPlayer(responseData.player)
                 setCurrentTeam(responseData.currentTeam)
             } catch (error) {
-                
+
             }
         }
 
         fetchPlayer()
-    }, [player_id])
+    }, [player_id, sendRequest])
 
+    // MENU BAR
+    const [selectedMenuItem, setSelectedMenuItem] = useState<string>('overview')
+
+    // update menubar state based on query param
+    useEffect(() => {
+        if (view) {
+            setSelectedMenuItem(view);
+        }
+    }, [view]);
+
+    const handleMenuClick = (menuOption: string) => {
+        setSelectedMenuItem(menuOption)
+        navigate(`/nba/players/id/${player_id}/${urlName}?view=${menuOption}`)
+    }
 
 
     return (
@@ -76,13 +90,44 @@ const PlayerPage = () => {
             {
                 player && currentTeam &&
                 <Card className="p-4">
-                    <PlayerHero player={player} currentTeam={currentTeam}/>
-                    <PlayerMenuBar onMenuChange={handleMenuClick} />
+                    <PlayerHero player={player} currentTeam={currentTeam} />
+
+                    <Menubar className="w-fit mt-4">
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            style={selectedMenuItem === "overview" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('overview')} >Overview</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            style={selectedMenuItem === "stats" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('stats')} >Stats</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            style={selectedMenuItem === "bio" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('bio')} >Bio</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            style={selectedMenuItem === "splits" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('splits')} >Splits</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            style={selectedMenuItem === "log" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('log')} >Game Log</MenubarTrigger>
+                        </MenubarMenu>
+                    </Menubar>
 
                     <CardContent className="p-0">
                         {selectedMenuItem === "overview" && <Overview />}
                         {selectedMenuItem === "stats" && <PlayerStatsView />}
-                        {selectedMenuItem === "bio" && <PlayerBio player={player} currentTeam ={currentTeam} />}
+                        {selectedMenuItem === "bio" && <PlayerBio player={player} currentTeam={currentTeam} />}
                         {selectedMenuItem === "splits" && <PlayerSplits />}
                         {selectedMenuItem === "log" && <PlayerGameLog />}
                     </CardContent>

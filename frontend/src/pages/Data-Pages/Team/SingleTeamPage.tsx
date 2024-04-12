@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 // hook imports
 import { useFetch } from "../../../Hooks/useFetch"
@@ -26,7 +26,13 @@ import LoadingPage from "../../LoadingPage"
 const SingleTeamPage = () => {
 
     // pull abbreviation from params
-    const { abbreviation } = useParams()
+    const { abbreviation } = useParams<{ abbreviation: string }>()
+
+    // grab query params from url if any
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const view = queryParams.get('view');
+    const navigate = useNavigate()
 
     // data state
     const [team, setTeam] = useState<Team | undefined>()
@@ -49,25 +55,33 @@ const SingleTeamPage = () => {
         }
 
         fetchTeam()
-    }, [])
+    }, [abbreviation, sendRequest])
 
-    // menu item type
-    type MenuItem = "home" | "stats" | "schedule" | "roster" | "injuries"
+    // MENUBAR
+    const [selectedMenuItem, setSelectedMenuItem] = useState<string>('home')
 
-    const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem>('home')
+    // update menubar state based on query param
+    useEffect(() => {
+        if (view) {
+            setSelectedMenuItem(view);
+        }
+    }, [view]);
 
-    const handleMenuClick = (option: MenuItem) => {
+    const handleMenuClick = (option: string) => {
         setSelectedMenuItem(option)
+        navigate(`/nba/teams/${abbreviation}?view=${option}`);
     }
+
+
 
     // team name consts
     let teamNameFirst: string | undefined, teamNameLast: string | undefined
 
     // assigning these variables for displying the team name up top
-    // special cases for golden state and portland because their team names are 3 words long
-    
+    // special cases for golden state, LAC, LAL, NYK, NOP, OKC, SAS and portland because their team names are 3 words long
+
     // golden state, NY, NOP, SAS, LAL, OKC cases
-    if (team?.team_id === 9 || team?.team_id === 13 || team?.team_id === 18 || team?.team_id === 19 || team?.team_id === 20 || team?.team_id === 26) {
+    if (team?.team_id === 9 || team?.team_id === 12 || team?.team_id === 13 || team?.team_id === 18 || team?.team_id === 19 || team?.team_id === 20 || team?.team_id === 26) {
         teamNameFirst = [team.full_name.split(' ')[0], team.full_name.split(' ')[1]].join(' ')
         teamNameLast = team.full_name.split(' ')[2]
     } else if (team?.team_id === 24) {
@@ -95,16 +109,16 @@ const SingleTeamPage = () => {
                         <div className="flex items-center gap-x-4 mb-4">
 
                             {/* logo placeholder */}
-                            <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20 object-contain"/>
+                            <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20 object-contain" />
 
                             <div className="flex flex-col gap-y-2">
                                 <div>
-                                    <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color}} className="font-bold">{teamNameLast}</span></CardTitle>
+                                    <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color }} className="font-bold">{teamNameLast}</span></CardTitle>
                                 </div>
 
                                 {/* team info div */}
                                 <div className="flex items-center gap-x-2 text-sm">
-                                    <Button style={{ backgroundColor: team.main_color}}>Add to Favorites</Button>
+                                    <Button style={{ backgroundColor: team.main_color }}>Add to Favorites</Button>
                                     <p>{team.wins}-{team.losses}</p>
                                     <p>|</p>
                                     <p><span className="font-semibold">3rd</span> in Southeast Division</p>
@@ -116,23 +130,33 @@ const SingleTeamPage = () => {
                         {/* menubar */}
                         <Menubar className="w-fit">
                             <MenubarMenu>
-                                <MenubarTrigger onClick={() => handleMenuClick('home')}>Home</MenubarTrigger>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "home" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    onClick={() => handleMenuClick('home')}>Home</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
-                                <MenubarTrigger onClick={() => handleMenuClick('stats')}>Stats</MenubarTrigger>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "stats" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    onClick={() => handleMenuClick('stats')}>Stats</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
-                                <MenubarTrigger onClick={() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "schedule" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    onClick={() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
-                                <MenubarTrigger onClick={() => handleMenuClick('roster')}>Roster</MenubarTrigger>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "roster" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    onClick={() => handleMenuClick('roster')}>Roster</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
-                                <MenubarTrigger onClick={() => handleMenuClick('injuries')}>Injuries</MenubarTrigger>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "injuries" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    onClick={() => handleMenuClick('injuries')}>Injuries</MenubarTrigger>
                             </MenubarMenu>
 
                         </Menubar>
@@ -143,9 +167,9 @@ const SingleTeamPage = () => {
                     <CardContent>
                         {selectedMenuItem === "home" && <TeamHome />}
                         {selectedMenuItem === "stats" && <Stats />}
-                        {/* { selectedMenuItem === "schedule" && <TeamHome />} */}
+                        {selectedMenuItem === "schedule" && <TeamHome />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}
-                        {/* { selectedMenuItem === "injuries" && <TeamHome />} */}
+                        {selectedMenuItem === "injuries" && <TeamHome />}
 
                     </CardContent>
                 </Card>

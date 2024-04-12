@@ -114,7 +114,7 @@ export interface Player {
     weight: string,
     status: {
         type: string,
-        gamesRemainging: number
+        gamesRemaining: number
     },
     player_position: string,
     jersey_number: number,

@@ -14,13 +14,13 @@ const TeamItem = (props: { team: Team }) => {
 
     return (
         <Link to={teamPageUrl}>
-            <Card className="flex items-center mb-4 p-4 min-h-18 min-w-48 hover:scale-105" key={props.team.team_id}>
+            <Card className="flex items-center mb-4 p-4 min-h-18 min-w-48 hover:scale-105">
 
                 <TeamLogo team_id={props.team.team_id} abbreviation={props.team.abbreviation} logoClass="w-12 h-12 object-contain mr-4" />
 
                 <div className="w-full">
                     <Link
-                        to={teamPageUrl}
+                        to={`${teamPageUrl}?view=home`}
                         className="text-xl font-semibold"
                         
                         onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -40,19 +40,19 @@ const TeamItem = (props: { team: Team }) => {
                     {/* link div */}
                     <div className="flex justify-between w-2/3 max-w-36 text-xs gap-x-2">
                         <Link
-                            to={teamPageUrl + '/stats'}
+                            to={`${teamPageUrl}?view=stats`}
                             className="hover:font-semibold hover:scale-110"
                         >
                             Stats
                         </Link>
                         <Link
-                            to={teamPageUrl + '/schedule'}
+                            to={`${teamPageUrl}?view=schedule`}
                             className="hover:font-semibold hover:scale-110"
                         >
                             Schedule
                         </Link>
                         <Link
-                            to={teamPageUrl + '/roster'}
+                            to={`${teamPageUrl}?view=roster`}
                             className="hover:font-semibold hover:scale-110"
                         >
                             Roster
