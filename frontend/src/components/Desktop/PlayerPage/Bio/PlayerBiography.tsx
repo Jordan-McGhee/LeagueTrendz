@@ -9,7 +9,7 @@ const teams = require("../../../../DUMMYDATA/NBA_Teams.json")
 
 const PlayerBiography: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
-    const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid + 1)
+    const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid)
 
     return (
         <Card>
@@ -35,7 +35,12 @@ const PlayerBiography: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
                             <p>{player.born.year} ({2024 - player.born.year})</p>
                             <p>{2024 - player.draft.year} Seasons</p>
                             <p>{player.player_position}</p>
-                            <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation})</p>
+                            {
+                                draftTeam[0].team_id === -1 ?
+                                    <p>UNDRAFTED</p>
+                                    :
+                                    <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
+                            }
                         </div>
                     </div>
 
@@ -54,7 +59,7 @@ const PlayerBiography: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
                             <p>{player.born.loc}</p>
                             <p className="flex gap-x-2 items-center capitalize">
                                 <div className="size-4 rounded-full bg-green-500" />
-                                {player.status}
+                                {player.status.type}
                             </p>
                         </div>
                     </div>

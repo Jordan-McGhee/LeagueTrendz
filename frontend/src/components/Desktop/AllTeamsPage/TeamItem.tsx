@@ -13,7 +13,7 @@ const TeamItem = (props: { team: Team }) => {
     const teamPageUrl = `${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${props.team.abbreviation.toLowerCase()}`
 
     return (
-        <Link to={teamPageUrl} className="">
+        <Link to={teamPageUrl}>
             <Card className="flex items-center mb-4 p-4 min-h-18 min-w-48 hover:scale-105" key={props.team.team_id}>
 
                 <TeamLogo team_id={props.team.team_id} abbreviation={props.team.abbreviation} logoClass="w-12 h-12 object-contain mr-4" />

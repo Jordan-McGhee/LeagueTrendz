@@ -16,7 +16,7 @@ const teams = require("../../../DUMMYDATA/NBA_Teams.json")
 
 const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
-    const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid+1)
+    const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid)
 
     return (
         <div>
@@ -49,8 +49,13 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                         <p>{player.height}, {player.weight} lbs</p>
                         <p>{player.born.year} ({2024-player.born.year}) | {player.born.loc}</p>
                         <p>{ player.college }</p>
-                        <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation})</p>
-                        <p className="capitalize">{player.status}</p>
+                        {
+                            draftTeam[0].team_id === -1 ?
+                            <p>UNDRAFTED</p>
+                            :
+                            <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
+                        }
+                        <p className="capitalize">{player.status.type}</p>
                     </div>
                 </div>
 

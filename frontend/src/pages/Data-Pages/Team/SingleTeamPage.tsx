@@ -66,11 +66,11 @@ const SingleTeamPage = () => {
     // assigning these variables for displying the team name up top
     // special cases for golden state and portland because their team names are 3 words long
     
-    // golden state case
-    if (team?.team_id === 10 || team?.team_id === 14 || team?.team_id === 19 || team?.team_id === 20 || team?.team_id === 21 || team?.team_id === 27) {
+    // golden state, NY, NOP, SAS, LAL, OKC cases
+    if (team?.team_id === 9 || team?.team_id === 13 || team?.team_id === 18 || team?.team_id === 19 || team?.team_id === 20 || team?.team_id === 26) {
         teamNameFirst = [team.full_name.split(' ')[0], team.full_name.split(' ')[1]].join(' ')
         teamNameLast = team.full_name.split(' ')[2]
-    } else if (team?.team_id === 25) {
+    } else if (team?.team_id === 24) {
         // portland case
         teamNameFirst = team.full_name.split(' ')[0]
         teamNameLast = [team.full_name.split(' ')[1], team.full_name.split(' ')[2]].join(' ')
@@ -95,7 +95,7 @@ const SingleTeamPage = () => {
                         <div className="flex items-center gap-x-4 mb-4">
 
                             {/* logo placeholder */}
-                            <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20"/>
+                            <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20 object-contain"/>
 
                             <div className="flex flex-col gap-y-2">
                                 <div>

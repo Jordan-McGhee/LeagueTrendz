@@ -104,13 +104,18 @@ export interface RosterProps {
     team: Team
 }
 
+// STATS TYPES
+
 // PLAYER TYPES
 export interface Player {
     player_id: number,
     name: string,
     height: string,
     weight: string,
-    status: string,
+    status: {
+        type: string,
+        gamesRemainging: number
+    },
     player_position: string,
     jersey_number: number,
     photo_url: string,
@@ -130,6 +135,7 @@ export interface Player {
         year: number,
         loc: string
     },
+    age: number,
     college: string,
     team_id: number
 }

@@ -123,7 +123,12 @@ const Roster: React.FC<RosterProps> = ({team}) => {
         },
         {
             accessorKey: "status",
-            header: "STATUS"
+            header: "STATUS",
+            cell: ({row}) => {
+                return (
+                    <div>{row.original.status.type === "Healthy" ? "Active" : row.original.status.type}</div>
+                )
+            }
         },
     ]
 
