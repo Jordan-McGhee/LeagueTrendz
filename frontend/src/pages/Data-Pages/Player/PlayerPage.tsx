@@ -126,7 +126,7 @@ const PlayerPage = () => {
 
                     <CardContent className="p-0">
                         {selectedMenuItem === "overview" && <Overview />}
-                        {selectedMenuItem === "stats" && <PlayerStatsView />}
+                        {selectedMenuItem === "stats" && <PlayerStatsView player={player} currentTeam={currentTeam} />}
                         {selectedMenuItem === "bio" && <PlayerBio player={player} currentTeam={currentTeam} />}
                         {selectedMenuItem === "splits" && <PlayerSplits />}
                         {selectedMenuItem === "log" && <PlayerGameLog />}

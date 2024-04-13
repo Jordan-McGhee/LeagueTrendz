@@ -10,7 +10,7 @@ export interface ContextType {
 }
 
 // auth popup
-export interface AuthPopupProps { 
+export interface AuthPopupProps {
     changeDialogSetting: () => void
 }
 
@@ -105,6 +105,54 @@ export interface RosterProps {
 }
 
 // STATS TYPES
+export interface StatObject {
+    playoffs: boolean,
+    yearsWithTeam: number,
+    jerseyNumber: string,
+    season: number,
+    tid: number,
+
+    per: number,
+
+    // GAMES PLAYED
+    gp: number,
+    gs: number,
+    pts: number,
+    min: number,
+    fg: number,
+    fga: number,
+    tp: number,
+    tpa: number,
+    ft: number,
+    fta: number,
+    orb: number,
+    drb: number,
+    ast: number,
+    stl: number,
+    blk: number,
+    pf: number,
+    tov: number,
+    dd: number,
+    td: number,
+
+    // SEASON HIGHS
+    minMax: number[],
+    fgMax: number[],
+    fgaMax: number[],
+    tpMax: number[],
+    tpaMax: number[],
+    ftMax: number[],
+    ftaMax: number[],
+    orbMax: number[],
+    drbMax: number[],
+    trbMax: number[],
+    astMax: number[],
+    stlMax: number[],
+    blkMax: number[],
+    tovMax: number[],
+    pfMax: number[],
+    ptsMax: number[],
+}
 
 // PLAYER TYPES
 export interface Player {
@@ -137,10 +185,21 @@ export interface Player {
     },
     age: number,
     college: string,
-    team_id: number
+    team_id: number,
+
+    // remove?
+    regular_season_stats?: StatObject[],
+
+    playoff_stats?: StatObject[]
 }
 
 export interface PlayerPageProps {
     player: Player,
     currentTeam: Team
+}
+
+export interface PlayerStatsTableAveragesProps {
+    title: string,
+    // fix later
+    data: StatObject[] | undefined,
 }

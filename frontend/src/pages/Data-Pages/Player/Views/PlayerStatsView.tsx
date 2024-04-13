@@ -1,10 +1,13 @@
+// type imports
+import { PlayerPageProps } from "../../../../types"
+
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../../components/ui/card"
 
 // component imports
-import PlayerStatsTable from "../../../../components/Desktop/PlayerPage/Stats/PlayerStatsTable"
+import PlayerStatsTableAverages from "../../../../components/Desktop/PlayerPage/Stats/PlayerStatsTable-Averages"
 
-const PlayerStatsView = () => {
+const PlayerStatsView: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
     return (
         <Card className="mt-4">
@@ -14,23 +17,23 @@ const PlayerStatsView = () => {
                         <p>STATS</p>
 
                         {/* dropdown placeholders */}
-                        <div className="flex gap-x-4">
-                            <div className="w-24 h-8 bg-red-500 rounded-full" />
-
-                            <div className="w-24 h-8 bg-red-500 rounded-full" />
-                        </div>
+                        <div className="w-24 h-8 bg-red-500 rounded-full" />
                     </div>
                 </CardTitle>
             </CardHeader>
 
-            <CardContent className="flex flex-col gap-y-4">
-                {/* reg season avg */}
-                <PlayerStatsTable />
-                {/* reg season totals */}
-                <PlayerStatsTable />
-                {/* misc totals */}
-                <PlayerStatsTable />
-            </CardContent>
+            {
+                player &&
+                <CardContent className="flex flex-col gap-y-4">
+                    {/* reg season avg */}
+                    {/* <PlayerStatsTable /> */}
+                    {/* reg season totals */}
+                    <PlayerStatsTableAverages title={"Regular Season Averages"} data={player.regular_season_stats} />
+                    {/* misc totals */}
+                    {/* <PlayerStatsTable /> */}
+                </CardContent>
+
+            }
 
             <CardFooter>
                 <div className="w-full pt-2">
@@ -80,7 +83,7 @@ const PlayerStatsView = () => {
                             <p><span className="font-bold">TECH:</span> Technical Fouls</p>
                             <p><span className="font-bold">TO:</span> Turnovers Per Game</p>
                         </div>
-                        
+
                     </div>
                 </div>
             </CardFooter>
