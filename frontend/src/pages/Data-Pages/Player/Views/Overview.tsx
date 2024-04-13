@@ -1,5 +1,8 @@
 import React from "react";
 
+// type imports
+import { PlayerPageProps } from "../../../../types";
+
 // component imports
 import NextGame from "../../../../components/Desktop/PlayerPage/Overview/NextGame";
 import OverviewPlayerStats from "../../../../components/Desktop/PlayerPage/Overview/OverviewPlayerStats";
@@ -7,7 +10,7 @@ import OverviewRecentGames from "../../../../components/Desktop/PlayerPage/Overv
 import TeamStandings from "../../../../components/Desktop/SingleTeamPage/TeamStandings";
 import SwitchPlayer from "../../../../components/Desktop/PlayerPage/Overview/SwitchPlayer";
 
-const Overview = () => {
+const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam}) => {
 
     return (
         // full content div

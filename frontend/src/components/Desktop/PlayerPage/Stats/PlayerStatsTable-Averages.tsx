@@ -14,33 +14,30 @@ const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ tit
 
     return (
         <div>
-            <p>{title}</p>
+            <p className="font-bold text-xl">{title}</p>
             <Table className="text-xs">
                 <TableHeader>
                     <TableRow>
                         <TableHead>SEASON</TableHead>
                         <TableHead>TEAM</TableHead>
-                        <TableHead>GP</TableHead>
-                        <TableHead>GS</TableHead>
-                        <TableHead>PTS</TableHead>
-                        <TableHead>MIN</TableHead>
-                        <TableHead>FGM</TableHead>
-                        <TableHead>FGA</TableHead>
-                        <TableHead>FG%</TableHead>
-                        <TableHead>3PM</TableHead>
-                        <TableHead>3PA</TableHead>
-                        <TableHead>3P%</TableHead>
-                        <TableHead>FTM</TableHead>
-                        <TableHead>FTA</TableHead>
-                        <TableHead>FT%</TableHead>
-                        <TableHead>OR</TableHead>
-                        <TableHead>DR</TableHead>
-                        <TableHead>REB</TableHead>
-                        <TableHead>AST</TableHead>
-                        <TableHead>BLK</TableHead>
-                        <TableHead>STL</TableHead>
-                        <TableHead>PF</TableHead>
-                        <TableHead>TO</TableHead>
+                        <TableHead className="text-center">GP</TableHead>
+                        <TableHead className="text-center">GS</TableHead>
+                        <TableHead className="text-center">PTS</TableHead>
+                        <TableHead className="text-center">MIN</TableHead>
+                        <TableHead className="text-center">FGM-FGA</TableHead>
+                        <TableHead className="text-center">FG%</TableHead>
+                        <TableHead className="text-center">3PM-3PA</TableHead>
+                        <TableHead className="text-center">3P%</TableHead>
+                        <TableHead className="text-center">FTM-FTA</TableHead>
+                        <TableHead className="text-center">FT%</TableHead>
+                        <TableHead className="text-center">OR</TableHead>
+                        <TableHead className="text-center">DR</TableHead>
+                        <TableHead className="text-center">REB</TableHead>
+                        <TableHead className="text-center">AST</TableHead>
+                        <TableHead className="text-center">BLK</TableHead>
+                        <TableHead className="text-center">STL</TableHead>
+                        <TableHead className="text-center">PF</TableHead>
+                        <TableHead className="text-center">TO</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -88,27 +85,24 @@ const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ tit
                                 <TableRow>
                                     <TableCell>{seasonString}</TableCell>
                                     <TableCell>{seasonTeamCell}</TableCell>
-                                    <TableCell>{season.gp}</TableCell>
-                                    <TableCell>{season.gs}</TableCell>
-                                    <TableCell>{avgPts.toFixed(1)}</TableCell>
-                                    <TableCell>{avgMin.toFixed(1)}</TableCell>
-                                    <TableCell>{avgFGM.toFixed(1)}</TableCell>
-                                    <TableCell>{avgFGA.toFixed(1)}</TableCell>
-                                    <TableCell>{fgPercentage.toFixed(1)}</TableCell>
-                                    <TableCell>{avgTPM.toFixed(1)}</TableCell>
-                                    <TableCell>{avgTPA.toFixed(1)}</TableCell>
-                                    <TableCell>{tpPercentage.toFixed(1)}</TableCell>
-                                    <TableCell>{avgFTM.toFixed(1)}</TableCell>
-                                    <TableCell>{avgFTA.toFixed(1)}</TableCell>
-                                    <TableCell>{ftPercentage.toFixed(1)}</TableCell>
-                                    <TableCell>{avgOR.toFixed(1)}</TableCell>
-                                    <TableCell>{avgDR.toFixed(1)}</TableCell>
-                                    <TableCell>{avgReb.toFixed(1)}</TableCell>
-                                    <TableCell>{avgAst.toFixed(1)}</TableCell>
-                                    <TableCell>{avgBlk.toFixed(1)}</TableCell>
-                                    <TableCell>{avgStl.toFixed(1)}</TableCell>
-                                    <TableCell>{avgPF.toFixed(1)}</TableCell>
-                                    <TableCell>{avgTO.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{season.gp}</TableCell>
+                                    <TableCell className="text-center">{season.gs}</TableCell>
+                                    <TableCell className="text-center">{avgPts.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgMin.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgFGM.toFixed(1)}-{avgFGA.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{fgPercentage.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgTPM.toFixed(1)}-{avgTPA.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{tpPercentage.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgFTM.toFixed(1)}-{avgFTA.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{ftPercentage.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgOR.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgDR.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgReb.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgAst.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgBlk.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgStl.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgPF.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center">{avgTO.toFixed(1)}</TableCell>
                                 </TableRow>
                             )
                         })
@@ -117,27 +111,24 @@ const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ tit
                 <TableFooter>
                     <TableRow>
                         <TableCell colSpan={2}>CAREER</TableCell>
-                        <TableCell>81</TableCell>
-                        <TableCell>81</TableCell>
-                        <TableCell>19.1</TableCell>
-                        <TableCell>30.9</TableCell>
-                        <TableCell>6.5</TableCell>
-                        <TableCell>15.5</TableCell>
-                        <TableCell>41.8</TableCell>
-                        <TableCell>1.9</TableCell>
-                        <TableCell>6.0</TableCell>
-                        <TableCell>32.4</TableCell>
-                        <TableCell>4.2</TableCell>
-                        <TableCell>5.1</TableCell>
-                        <TableCell>82.8</TableCell>
-                        <TableCell>0.8</TableCell>
-                        <TableCell>2.9</TableCell>
-                        <TableCell>3.7</TableCell>
-                        <TableCell>8.1</TableCell>
-                        <TableCell>0.2</TableCell>
-                        <TableCell>0.9</TableCell>
-                        <TableCell>1.7</TableCell>
-                        <TableCell>3.8</TableCell>
+                        <TableCell className="text-center">81</TableCell>
+                        <TableCell className="text-center">81</TableCell>
+                        <TableCell className="text-center">19.1</TableCell>
+                        <TableCell className="text-center">30.9</TableCell>
+                        <TableCell className="text-center">6.5-15.5</TableCell>
+                        <TableCell className="text-center">41.8</TableCell>
+                        <TableCell className="text-center">1.9-6.0</TableCell>
+                        <TableCell className="text-center">32.4</TableCell>
+                        <TableCell className="text-center">4.2-5.1</TableCell>
+                        <TableCell className="text-center">82.8</TableCell>
+                        <TableCell className="text-center">0.8</TableCell>
+                        <TableCell className="text-center">2.9</TableCell>
+                        <TableCell className="text-center">3.7</TableCell>
+                        <TableCell className="text-center">8.1</TableCell>
+                        <TableCell className="text-center">0.2</TableCell>
+                        <TableCell className="text-center">0.9</TableCell>
+                        <TableCell className="text-center">1.7</TableCell>
+                        <TableCell className="text-center">3.8</TableCell>
                     </TableRow>
                 </TableFooter>
             </Table>

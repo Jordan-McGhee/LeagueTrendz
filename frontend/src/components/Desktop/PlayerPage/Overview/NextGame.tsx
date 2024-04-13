@@ -58,25 +58,25 @@ const NextGame = () => {
                     <div className="flex justify-between my-4">
 
                         {/* points div */}
-                        <div className="text-center border rounded-lg py-3 px-6">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
                             <p className="text-xs">PPG VS TOR</p>
                             <p className="text-3xl font-bold text-red-700">34.3</p>
                         </div>
 
                         {/* assists div */}
-                        <div className="text-center border rounded-lg py-3 px-6">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
                             <p className="text-xs">APG VS TOR</p>
                             <p className="text-3xl font-bold text-red-700">13.3</p>
                         </div>
 
                         {/* 3P% div */}
-                        <div className="text-center border rounded-lg py-3 px-6">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
                             <p className="text-xs">3P% VS TOR</p>
                             <p className="text-3xl font-bold text-red-700">42.9</p>
                         </div>
 
                         {/* FG% div */}
-                        <div className="text-center border rounded-lg py-3 px-6">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
                             <p className="text-xs">FG% VS TOR</p>
                             <p className="text-3xl font-bold text-red-700">46.3</p>
                         </div>

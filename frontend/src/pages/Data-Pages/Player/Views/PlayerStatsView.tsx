@@ -1,13 +1,44 @@
+import react, { useState } from "react"
+
 // type imports
 import { PlayerPageProps } from "../../../../types"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../../components/ui/card"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../../../components/ui/select"
 
 // component imports
 import PlayerStatsTableAverages from "../../../../components/Desktop/PlayerPage/Stats/PlayerStatsTable-Averages"
 
 const PlayerStatsView: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
+
+    const [showPlayoffs, setShowPlayoffs] = useState<boolean>(false)
+
+    const changePlayoffViewHandler = () => {
+        setShowPlayoffs(!showPlayoffs)
+    }
+
+    const regularSeasonTables = (
+        <CardContent className="flex flex-col gap-y-4">
+            {/* reg season avg */}
+            <PlayerStatsTableAverages title={"Regular Season Averages"} data={player.regular_season_stats} />
+            {/* reg season totals */}
+            <PlayerStatsTableAverages title={"Regular Season Totals"} data={player.regular_season_stats} />
+            {/* misc totals */}
+            {/* <PlayerStatsTable /> */}
+        </CardContent>
+    )
+
+    const playoffTables = (
+        <CardContent className="flex flex-col gap-y-4">
+            {/* reg season avg */}
+            <PlayerStatsTableAverages title={"Playoff Averages"} data={player.playoff_stats} />
+            {/* reg season totals */}
+            <PlayerStatsTableAverages title={"Playoff Totals"} data={player.playoff_stats} />
+            {/* misc totals */}
+            {/* <PlayerStatsTable /> */}
+        </CardContent>
+    )
 
     return (
         <Card className="mt-4">
@@ -16,23 +47,26 @@ const PlayerStatsView: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
                     <div className="flex justify-between items-center">
                         <p>STATS</p>
 
-                        {/* dropdown placeholders */}
-                        <div className="w-24 h-8 bg-red-500 rounded-full" />
+                        {/* REGULAR SEASON/PLAYOFFS SELECT */}
+                        <Select onValueChange={changePlayoffViewHandler}>
+                            <SelectTrigger className="w-[200px]" >
+                                <SelectValue placeholder="Regular Season" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectItem value="regular-season">Regular Season</SelectItem>
+                                    <SelectItem value="playoffs">Playoffs</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+
                     </div>
                 </CardTitle>
             </CardHeader>
 
             {
                 player &&
-                <CardContent className="flex flex-col gap-y-4">
-                    {/* reg season avg */}
-                    {/* <PlayerStatsTable /> */}
-                    {/* reg season totals */}
-                    <PlayerStatsTableAverages title={"Regular Season Averages"} data={player.regular_season_stats} />
-                    {/* misc totals */}
-                    {/* <PlayerStatsTable /> */}
-                </CardContent>
-
+                showPlayoffs ? playoffTables : regularSeasonTables
             }
 
             <CardFooter>

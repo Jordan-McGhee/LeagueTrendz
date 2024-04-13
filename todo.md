@@ -16,6 +16,17 @@
     - UPDATETEAM IDs IN DRAFT/TRANSACTION OBJECTS!!!!
     - get age correct
 
+- VIEWS
+    <!-- TEAM -->
+    - STANDINGS (LEAGUE/DIVISION/CONFERENCE)
+    - TEAM STATS
+
+    <!-- PLAYER -->
+    - PLAYER SEASON AVERAGES
+    - PLAYER CAREER TOTALS/AVERAGES
+    - PLAYER SPLITS
+
+
 
 <!-- FRONTEND -->
 - 404 not found page
