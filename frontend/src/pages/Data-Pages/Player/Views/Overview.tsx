@@ -27,9 +27,9 @@ const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam}) => {
 
             {/* right side */}
             <div className="w-[35%] flex flex-col gap-y-4">
-                <SwitchPlayer />
+                <SwitchPlayer player = { player } currentTeam = {currentTeam} />
 
-                <TeamStandings />
+                {/* <TeamStandings /> */}
             </div>
         </div>
     )

@@ -12,6 +12,7 @@ import { Team } from "../../../types"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
 import { Button } from "../../../components/ui/button";
 import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/menubar"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../../components/ui/select"
 
 // views imports
 import TeamHome from "./Views/TeamHome";
@@ -22,6 +23,9 @@ import Stats from "./Views/Stats"
 import TeamLogo from "../../../components/ui/TeamLogo"
 import ErrorModal from "../../../components/ui/ErrorModal"
 import LoadingPage from "../../LoadingPage"
+
+// team dummy data imports
+const teams = require("../../../DUMMYDATA/NBA_Teams.json")
 
 const SingleTeamPage = () => {
 
@@ -34,14 +38,15 @@ const SingleTeamPage = () => {
     const view = queryParams.get('view');
     const navigate = useNavigate()
 
-    // data state
+    // data states
     const [team, setTeam] = useState<Team | undefined>()
+    const [currentAbbreviation, setCurrentAbbreviation] = useState<string | undefined>(abbreviation)
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
     // fetch from database
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${abbreviation}`
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${currentAbbreviation}`
 
         let responseData: any
 
@@ -49,13 +54,14 @@ const SingleTeamPage = () => {
             try {
                 responseData = await sendRequest(url)
                 setTeam(responseData.team)
+                console.log(team)
             } catch (error) {
 
             }
         }
 
         fetchTeam()
-    }, [abbreviation, sendRequest])
+    }, [currentAbbreviation, sendRequest])
 
     // MENUBAR
     const [selectedMenuItem, setSelectedMenuItem] = useState<string>('home')
@@ -93,6 +99,12 @@ const SingleTeamPage = () => {
         teamNameLast = team?.full_name.split(' ')[1]
     }
 
+
+    const teamSelectHandler = (value: string) => {
+        setCurrentAbbreviation(value)
+        navigate(`/nba/teams/${value}?view=${selectedMenuItem}`)
+    }
+
     return (
         <div className="h-full min-h-svh">
             {/* error */}
@@ -106,26 +118,50 @@ const SingleTeamPage = () => {
                 <Card>
                     <CardHeader>
 
-                        <div className="flex items-center gap-x-4 mb-4">
+                        <div className="flex justify-between items-start">
+                            <div className="flex items-center gap-x-4 mb-4">
 
-                            {/* logo placeholder */}
-                            <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20 object-contain" />
+                                {/* logo placeholder */}
+                                <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20 object-contain" />
 
-                            <div className="flex flex-col gap-y-2">
-                                <div>
-                                    <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color }} className="font-bold">{teamNameLast}</span></CardTitle>
+                                <div className="flex flex-col gap-y-2">
+                                    <div>
+                                        <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color }} className="font-bold">{teamNameLast}</span></CardTitle>
+                                    </div>
+
+                                    {/* team info div */}
+                                    <div className="flex items-center gap-x-2 text-sm">
+                                        {/* <Button style={{ backgroundColor: team.main_color }}>Add to Favorites</Button> */}
+                                        <p>{team.wins}-{team.losses}</p>
+                                        <p>|</p>
+                                        <p><span className="font-semibold">3rd</span> in Southeast Division</p>
+                                    </div>
                                 </div>
 
-                                {/* team info div */}
-                                <div className="flex items-center gap-x-2 text-sm">
-                                    <Button style={{ backgroundColor: team.main_color }}>Add to Favorites</Button>
-                                    <p>{team.wins}-{team.losses}</p>
-                                    <p>|</p>
-                                    <p><span className="font-semibold">3rd</span> in Southeast Division</p>
-                                </div>
                             </div>
 
+                            {/* SELECT A DIFFERENT TEAM */}
+                            <Select onValueChange={(newValue) => teamSelectHandler(newValue)}>
+                                <SelectTrigger className="w-[300px]">
+                                    <SelectValue placeholder='Change NBA Teams' defaultValue={team.full_name} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {
+                                        teams.teams.map((team: any) => {
+
+                                            if (team.team_id >= 0) {
+
+                                                return (
+                                                    <SelectItem value={team.abbreviation.toLowerCase()}>{team.name}</SelectItem>
+                                                )
+                                            }
+
+                                        })
+                                    }
+                                </SelectContent>
+                            </Select>
                         </div>
+
 
                         {/* menubar */}
                         <Menubar className="w-fit">

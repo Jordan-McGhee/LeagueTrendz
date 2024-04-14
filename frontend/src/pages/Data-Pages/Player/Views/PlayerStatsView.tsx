@@ -53,10 +53,8 @@ const PlayerStatsView: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
                                 <SelectValue placeholder="Regular Season" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectGroup>
-                                    <SelectItem value="regular-season">Regular Season</SelectItem>
-                                    <SelectItem value="playoffs">Playoffs</SelectItem>
-                                </SelectGroup>
+                                <SelectItem value="regular-season">Regular Season</SelectItem>
+                                <SelectItem value="playoffs">Playoffs</SelectItem>
                             </SelectContent>
                         </Select>
 
@@ -66,7 +64,7 @@ const PlayerStatsView: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
 
             {
                 player &&
-                showPlayoffs ? playoffTables : regularSeasonTables
+                    showPlayoffs ? playoffTables : regularSeasonTables
             }
 
             <CardFooter>

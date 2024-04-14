@@ -1,58 +1,79 @@
+import { useState, useEffect } from "react"
+
+// hook import
+import { useFetch } from "../../../../Hooks/useFetch"
+
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
+import ErrorModal from "../../../ui/ErrorModal"
+import { Skeleton } from "../../../ui/skeleton"
 
-// dummy data
-const data = require("../../../../DUMMYDATA/NBA_Roster.json")
+// type imports
+import { PlayerPageProps, Player } from "../../../../types"
 
-// type
-type Player = {
-    id: number,
-    name: string,
-    number: number,
-    position: string
-}
+// component imports
+import SwitchPlayerItem from "./SwichPlayerItem"
 
-type Team = Player[]
+const SwitchPlayer: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
-const roster: Team = data.lineup
+    type Roster = Player[]
 
-const PlayerSelect = (props: Player) => {
+    const [roster, setRoster] = useState<Roster>([])
+
+    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
+
+    // fetch roster
+    // fetch roster from database
+    useEffect(() => {
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${currentTeam.team_id}/roster`
+
+        let responseData: any
+
+        const fetchRoster = async () => {
+            try {
+                responseData = await sendRequest(url)
+                setRoster(responseData.roster)
+            } catch (error) {
+
+            }
+        }
+
+        fetchRoster()
+    }, [currentTeam, player, sendRequest])
 
     return (
-        <div className="flex items-center gap-x-4 w-full py-2" key={props.id}>
-            <div className="size-12 rounded-full bg-red-500" />
-            <div>
-                <p>{props.name}</p>
-                <div className="flex gap-x-1 text-sm font-light">
-                    <p>{props.number}</p>
-                    <p>{props.position}</p>
-                </div>
-            </div>
+
+        <div>
+            {/* error */}
+            < ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
+
+            <Card>
+                <CardHeader className="flex flex-row justify-between items-center">
+                    <CardTitle>Switch Player</CardTitle>
+                    <p className="font-bold" style={{ color: currentTeam.main_color }}>{currentTeam.abbreviation}</p>
+                </CardHeader>
+
+                {isLoading && <Skeleton />}
+
+                {roster &&
+                    <CardContent>
+                        <div className="flex flex-col divide-y">
+                            {roster.map((teammate: Player) => {
+                                if (teammate.player_id !== player.player_id) {
+                                    return (
+                                        <SwitchPlayerItem
+                                            player={teammate}
+                                        />
+                                    )
+                                }
+                            })}
+                        </div>
+                    </CardContent>
+                }
+            </Card>
+
         </div>
-    )
-}
 
-const SwitchPlayer = () => {
-
-    return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Switch Player</CardTitle>
-            </CardHeader>
-
-            <CardContent>
-                <div className="flex flex-col divide-y">
-                    { roster.map((player: Player) => (
-                        <PlayerSelect
-                            id={player.id}
-                            name={player.name}
-                            number={player.number}
-                            position={player.position}
-                        />
-                    ))}
-                </div>
-            </CardContent>
-        </Card>
     )
 }
 

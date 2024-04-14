@@ -43,7 +43,7 @@ const Roster: React.FC<RosterProps> = ({team}) => {
         }
 
         fetchRoster()
-    }, [])
+    }, [team, sendRequest])
 
 
     const columns: ColumnDef<Player>[] = [
