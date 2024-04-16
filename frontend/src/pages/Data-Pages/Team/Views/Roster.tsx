@@ -19,7 +19,10 @@ import { DataTable } from "../../../../components/ui/DataTable";
 import LoadingPage from "../../../LoadingPage";
 import ErrorModal from "../../../../components/ui/ErrorModal"
 
-const Roster: React.FC<RosterProps> = ({team}) => {
+// utility function import
+import { convertPlayerPosition } from "../../../../Utils/utils";
+
+const Roster: React.FC<RosterProps> = ({ team }) => {
 
     type Roster = Player[]
 
@@ -49,8 +52,8 @@ const Roster: React.FC<RosterProps> = ({team}) => {
     const columns: ColumnDef<Player>[] = [
         {
             accessorKey: 'photo_url',
-            header:"",
-            cell: ({row}) => {
+            header: "",
+            cell: ({ row }) => {
                 const player_id = row.original.player_id
                 const photo_url = row.original.photo_url
                 const name = row.original.name
@@ -58,7 +61,7 @@ const Roster: React.FC<RosterProps> = ({team}) => {
 
                 return (
                     <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player_id}/${urlName}`} className="hover:underline">
-                        <img src={photo_url} alt="img" className="h-8 object-contain rounded-full"/>
+                        <img src={photo_url} alt="img" className="h-8 object-contain rounded-full" />
                     </Link>
                 )
             }
@@ -92,7 +95,23 @@ const Roster: React.FC<RosterProps> = ({team}) => {
         },
         {
             accessorKey: "player_position",
-            header: "POS"
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className="px-4"
+                    >
+                        POS
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <div className="px-4">{convertPlayerPosition(row.original.player_position)}</div>
+                )
+            }
         },
         {
             accessorKey: "age",
@@ -108,14 +127,51 @@ const Roster: React.FC<RosterProps> = ({team}) => {
                     </Button>
                 )
             },
+            cell: ({ row }) => {
+                return (
+                    <div className="px-2">{row.original.age}</div>
+                )
+            }
         },
         {
             accessorKey: "height",
-            header: "HT"
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className="px-2"
+                    >
+                        HT
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <div className="px-2">{row.original.height}</div>
+                )
+            }
         },
         {
             accessorKey: "weight",
-            header: "WT"
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className="px-2"
+                    >
+                        WT
+                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <div className="px-2">{row.original.weight}</div>
+                )
+            }
         },
         {
             accessorKey: "college",
@@ -124,9 +180,28 @@ const Roster: React.FC<RosterProps> = ({team}) => {
         {
             accessorKey: "status",
             header: "STATUS",
-            cell: ({row}) => {
+            cell: ({ row }) => {
+
+                let playerStatusSplit: string = row.original.status.type.split(" ")[0]
+
+                let playerStatus
+
+                if (playerStatusSplit === "Healthy") {
+                    playerStatus = (
+                        <p>Active</p>
+                    )
+                } else if (playerStatusSplit === "Suspended") {
+                    playerStatus = (
+                        <p>Suspended - {row.original.status.gamesRemaining} Games</p>
+                    )
+                } else {
+                    playerStatus = (
+                        <p>Out - {playerStatusSplit} ({row.original.status.gamesRemaining} Games)</p>
+                    )
+                }
+
                 return (
-                    <div>{row.original.status.type === "Healthy" ? "Active" : row.original.status.type}</div>
+                    <div>{playerStatus}</div>
                 )
             }
         },

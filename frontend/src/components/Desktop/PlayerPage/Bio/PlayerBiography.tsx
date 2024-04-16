@@ -4,6 +4,9 @@ import { PlayerPageProps } from "../../../../types"
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
 
+// utils imports
+import { convertPlayerPosition } from "../../../../Utils/utils"
+
 // team dummy data
 const teams = require("../../../../DUMMYDATA/NBA_Teams.json")
 
@@ -61,7 +64,7 @@ const PlayerBiography: React.FC<PlayerPageProps> = ({ player, currentTeam }) => 
                             <p>{currentTeam.full_name}</p>
                             <p>{player.born.year} ({2024 - player.born.year})</p>
                             <p>{2024 - player.draft.year} Seasons</p>
-                            <p>{player.player_position}</p>
+                            <p>{convertPlayerPosition(player.player_position)}</p>
                             {
                                 draftTeam[0].team_id === -1 ?
                                     <p>UNDRAFTED</p>

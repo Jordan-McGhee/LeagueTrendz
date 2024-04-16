@@ -11,6 +11,9 @@ import TeamLogo from "../../ui/TeamLogo"
 // icon imports
 import { PersonIcon } from "@radix-ui/react-icons";
 
+// utils imports
+import { convertPlayerPosition } from "../../../Utils/utils"
+
 // team data
 const teams = require("../../../DUMMYDATA/NBA_Teams.json")
 
@@ -48,7 +51,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                     <div className="flex flex-col gap-y-1">
                         <p className="text-2xl uppercase font-semibold">{player.name}</p>
                         <p className="flex gap-x-1 items-center">
-                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline"><TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{currentTeam.full_name}</Link>• #{player.jersey_number} • {player.player_position}</p>
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline"><TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{currentTeam.full_name}</Link>• #{player.jersey_number} • {convertPlayerPosition(player.player_position)}</p>
                         {/* <Button className="w-fit">Add to Favorites</Button> */}
                     </div>
                 </div>
