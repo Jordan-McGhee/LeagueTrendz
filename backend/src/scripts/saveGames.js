@@ -59,16 +59,36 @@ async function saveGame(game) {
     // Create a Date object from the UTC string
     const utcDate = new Date(gameDateTimeInUTC);
 
-    // GET DATE AND TIME IN EST
-    const estDate = new Date(utcDate.toLocaleString('en-US', {timeZone: 'America/New_York'}))
+    // GET DATE AND TIME IN EST 
+    // GIVEN DATE/TIME = "2023-10-25T02:00:00+00:00"
+    // CONVERTS TO TUE OCT 24 2023 22:00:00 GMT-400 EDT
+    const estDateTime = new Date(utcDate.toLocaleString('en-US', { timeZone: 'America/New_York' }))
 
-    // format date string as YYYY-MM-DD
-    const estDateString = estDate.toISOString().split('T')[0]
+    // extra year, month and day
+    const year = estDateTime.getFullYear();
 
-    // format time string without seconds -> 3:30 PM
-    const estTimeString = estDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true})
+    // months are zero-indexed so add 1 to get correct month
+    const month = (estDateTime.getMonth() + 1).toString().padStart(2, '0');
+    const day = estDateTime.getDate().toString().padStart(2, '0');
 
-    // console.log(estDateString, estTimeString)
+    // format date to be processed by db YYYY-MM-DD
+    const estFormattedDate = `${year}-${month}-${day}`
+
+    // Extract hours and minutes
+    const hours = estDateTime.getHours();
+    const minutes = estDateTime.getMinutes();
+
+    // Convert hours to 12-hour format and add 'AM' or 'PM'
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = (hours % 12 || 12).toString();
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+
+    // Format time as HH:MM AM/PM
+    const estFormattedTime = `${formattedHours}:${formattedMinutes} ${ampm}`;
+
+    // console.log(`EST Date: ${estDateTime}`)
+
+    // console.log(estFormattedDate, estFormattedTime)
 
     // filter given team names against teams.json
     const home_team = teams.teams.filter((team) => team.name.toUpperCase() === game.home_team)[0]
@@ -83,8 +103,8 @@ async function saveGame(game) {
 
     const values = [
         season,
-        estDateString,
-        estTimeString,
+        estFormattedDate,
+        estFormattedTime,
         home_team_id,
         game.home_team_score,
         away_team_id,
