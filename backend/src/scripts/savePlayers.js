@@ -31,7 +31,7 @@ async function savePlayer(player) {
     const jerseyNumber = !player.stats ? parseInt(player.jerseyNumber) : parseInt(player.stats[player.stats.length - 1].jerseyNumber)
 
     // add 1 to tid to align with team_ids in db
-    const team_id = player.tid >= 0 ? player.tid : undefined
+    const team_id = player.tid
 
     // convert height from inches into (ft' inches")
     const playerHeight = `${Math.floor(player.hgt / 12)}'${player.hgt % 12}"`
@@ -55,6 +55,21 @@ async function savePlayer(player) {
         }
     }
 
+    // create slug
+    const nameSplit = player.name.split(" ")
+    const firstName = nameSplit[0]
+    const lastName = nameSplit[1]
+
+    let slug
+
+    if (lastName.length >= 5) {
+        slug = lastName.slice(0, 5) + firstName.slice(0, 2) + "01"
+    } else {
+        slug = lastName + firstName.slice(0, 2) + "01"
+    }
+
+    slug = slug.toLowerCase()
+
 
     const values = [
         player.name,
@@ -72,10 +87,11 @@ async function savePlayer(player) {
         age,
         player.college,
         regular_season_stats,
-        playoff_stats
+        playoff_stats,
+        slug
     ]
 
-    const query = 'INSERT INTO players (name, team_id, height, weight, status, player_position, jersey_number, photo_url, transactions, draft, awards, born, age, college, regular_season_stats, playoff_stats) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *;'
+    const query = 'INSERT INTO players (name, team_id, height, weight, status, player_position, jersey_number, photo_url, transactions, draft, awards, born, age, college, regular_season_stats, playoff_stats, slug) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *;'
 
     try {
         await pool.query(query, values)
@@ -87,7 +103,7 @@ async function savePlayer(player) {
 
 async function savePlayers() {
     for (const player of playersData.players) {
-        if (player.tid >= 0) {
+        if (player.tid === -1) {
             await savePlayer(player)
         }
     }
