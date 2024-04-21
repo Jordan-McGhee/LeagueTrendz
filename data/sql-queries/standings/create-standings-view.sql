@@ -2,6 +2,9 @@ CREATE VIEW standings_view AS
 SELECT
     t.team_id,
     t.full_name,
+    t.abbreviation,
+    t.conference,
+    t.division,
     SUM(CASE WHEN g.home_team_id = t.team_id AND g.home_team_score > g.away_team_score THEN 1
             WHEN g.away_team_id = t.team_id AND g.away_team_score > g.home_team_score THEN 1 ELSE 0 END) AS wins,
     SUM(CASE WHEN g.home_team_id = t.team_id AND g.home_team_score < g.away_team_score THEN 1

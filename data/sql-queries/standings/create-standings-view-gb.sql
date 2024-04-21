@@ -2,7 +2,11 @@ CREATE VIEW standings_view_with_GB AS
 SELECT
     team_id,
     full_name,
+    abbreviation,
+    conference,
+    division,
     wins,
+	losses,
     pct,
     CASE
         WHEN wins = MAX(wins) OVER () THEN '-' -- Leading team
