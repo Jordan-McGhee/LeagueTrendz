@@ -26,21 +26,19 @@ SELECT
         ) THEN 1 ELSE 0
     END) AS "3_point_game_losses",
 
-	-- 10 pt wins
-    -- !!FIX!!
+	-- 10+ pt wins
     SUM(CASE
         WHEN (
-            (g.home_team_score - g.away_team_score BETWEEN 4 AND 11 AND g.home_team_id = sv.team_id)
-            OR (g.away_team_score - g.home_team_score BETWEEN 4 AND 11 AND g.away_team_id = sv.team_id)
+            (g.home_team_score - g.away_team_score >= 10 AND g.home_team_id = sv.team_id)
+            OR (g.away_team_score - g.home_team_score  >= 10 AND g.away_team_id = sv.team_id)
         ) THEN 1 ELSE 0
     END) AS "10_point_game_wins",
 
-	-- 10 pt losses
-    -- !!FIX!!
+	-- 10+ pt losses
     SUM(CASE 
         WHEN (
-            (g.away_team_score - g.home_team_score BETWEEN 4 AND 11 AND g.home_team_id = sv.team_id)
-            OR (g.home_team_score - g.away_team_score BETWEEN 4 AND 11 AND g.away_team_id = sv.team_id)
+            (g.away_team_score - g.home_team_score  >= 10 AND g.home_team_id = sv.team_id)
+            OR (g.home_team_score - g.away_team_score  >= 10 AND g.away_team_id = sv.team_id)
         ) THEN 1 ELSE 0
     END) AS "10_point_game_losses",
 

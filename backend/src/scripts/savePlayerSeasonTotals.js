@@ -78,41 +78,42 @@ async function savePlayerTotals(player) {
 
 
         const old_stats = statsResponse.rows[0]
+        console.log(old_stats)
 
         // calculate new values for all stats
 
         // gp & gs
-        const new_gp = old_stats.gp || 0 + player.games_played
-        const new_gs = old_stats.gs || 0 + player.games_started
+        const new_gp = old_stats.gp + player.games_played
+        const new_gs = old_stats.gs ? old_stats.gs + player.games_started : player.games_started
 
         // minutes & points
-        const new_min = old_stats.min || 0 + player.minutes_played
-        const new_pts = old_stats.pts || 0 + player.points
+        const new_min = old_stats.min + player.minutes_played
+        const new_pts = old_stats.pts ? old_stats.pts + player.points : player.points
 
         // fg, tp, ft
-        const new_fgm = old_stats.fg || 0 + player.made_field_goals
-        const new_fga = old_stats.fga || 0 + player.attempted_field_goals
+        const new_fgm = old_stats.fgm ? old_stats.fgm + player.made_field_goals : player.made_field_goals
+        const new_fga = old_stats.fga ? old_stats.fga + player.attempted_field_goals : player.attempted_field_goals
         const new_fg_percentage = new_fga > 0 ? parseFloat(((new_fgm / new_fga) * 100).toFixed(1)) : 0.0
 
-        const new_tpm = old_stats.tpm || 0 + player.made_three_point_field_goals
-        const new_tpa = old_stats.tpa || 0 + player.attempted_three_point_field_goals
+        const new_tpm = old_stats.tpm ? old_stats.tpm + player.made_three_point_field_goals : player.made_three_point_field_goals
+        const new_tpa = old_stats.tpa ? old_stats.tpa + player.attempted_three_point_field_goals : player.attempted_three_point_field_goals
         const new_tp_percentage = new_tpa > 0 ? parseFloat(((new_tpm / new_tpa) * 100).toFixed(1)) : 0.0
 
-        const new_ftm = old_stats.ftm || 0 + player.made_free_throws
-        const new_fta = old_stats.fta || 0 + player.attempted_free_throws
+        const new_ftm = old_stats.ftm ? old_stats.ftm + player.made_free_throws : player.made_free_throws
+        const new_fta = old_stats.fta ? old_stats.fta + player.attempted_free_throws : player.attempted_free_throws
         const new_ft_percentage = new_fta > 0 ? parseFloat(((new_ftm / new_fta) * 100).toFixed(1)) : 0.0
 
         // rebs
-        const new_orb = old_stats.orb || 0 + player.offensive_rebounds
-        const new_drb = old_stats.drb || 0 + player.defensive_rebounds
-        const new_rbs = old_stats.reb || 0 + player.offensive_rebounds + player.defensive_rebounds
+        const new_orb = old_stats.orb ? old_stats.orb + player.offensive_rebounds : player.offensive_rebounds
+        const new_drb = old_stats.drb ? old_stats.drb + player.defensive_rebounds : player.defensive_rebounds
+        const new_rbs = old_stats.reb ? old_stats.reb + new_orb + new_drb : new_orb + new_drb
 
         // asts, stls, blks, turnovers, pfs
-        const new_ast = old_stats.ast || 0 + player.assists
-        const new_stl = old_stats.stl || 0 + player.steals
-        const new_blk = old_stats.blk || 0 + player.blocks
-        const new_turnovers = old_stats.turnovers || 0 + player.turnovers
-        const new_pf = old_stats.pf || 0 + player.personal_fouls
+        const new_ast = old_stats.ast ? old_stats.ast + player.assists : player.assists
+        const new_stl = old_stats.stl ? old_stats.stl + player.steals : player.steals
+        const new_blk = old_stats.blk ? old_stats.blk + player.blocks : player.blocks
+        const new_turnovers = old_stats.turnovers ? old_stats.turnovers + player.turnovers : player.turnovers
+        const new_pf = old_stats.pf ? old_stats.pf + player.personal_fouls : player.personal_fouls
 
         // "UPDATE orders set tip_amount = $1, updated_at = NOW() WHERE order_id = $2 RETURNING *"
         const update_query = "UPDATE player_totals_2023_24 SET gp = $1, gs = $2, min = $3, pts = $4, fgm = $5, fga = $6, fg_percentage = $7, tpm = $8, tpa = $9, tp_percentage = $10, ftm = $11, fta = $12, ft_percentage = $13, orb = $14, drb = $15, reb = $16, ast = $17, stl = $18, blk = $19, turnovers = $20, pf = $21 WHERE player_id = $22"
@@ -122,7 +123,7 @@ async function savePlayerTotals(player) {
         } catch (error) {
             console.log(`Error updating 2023-24 stats for ${playerResponse.rows[0].name}. ${error}`)
         }
-
+        
     } else {
         // if no stats response, this is a new player that needs a row in our table
 
