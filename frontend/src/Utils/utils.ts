@@ -13,3 +13,25 @@ export const convertPlayerPosition = (position: string) => {
     return position
 }
 
+export const determineSuffix = (rank: string) => {
+    
+    // convert rank to int
+    const numberRank = +rank
+
+    if (numberRank % 100 >= 11 && numberRank % 100 <= 13) {
+        return "th";
+    }
+
+    switch (numberRank % 10) {
+        case 1:
+            return "st";
+        case 2:
+            return "nd";
+        case 3:
+            return "rd";
+        default:
+            return "th";
+    }
+}
+
+

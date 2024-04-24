@@ -37,6 +37,7 @@ const PlayerPage = () => {
     // data state
     const [player, setPlayer] = useState<Player | undefined>()
     const [currentTeam, setCurrentTeam] = useState<Team | undefined>()
+    const [stats, setStats] = useState()
 
     // name for url navigation for menubar
     const urlName: string | undefined = player?.name.toLowerCase().replace(" ", "-")
@@ -54,6 +55,7 @@ const PlayerPage = () => {
                 responseData = await sendRequest(url)
                 setPlayer(responseData.player)
                 setCurrentTeam(responseData.currentTeam)
+                setStats(responseData.stats)
             } catch (error) {
 
             }
@@ -90,7 +92,7 @@ const PlayerPage = () => {
             {
                 player && currentTeam &&
                 <Card className="p-4">
-                    <PlayerHero player={player} currentTeam={currentTeam} />
+                    <PlayerHero player={player} currentTeam={currentTeam} mainStats={stats} />
 
                     <Menubar className="w-fit mt-4">
                         <MenubarMenu>

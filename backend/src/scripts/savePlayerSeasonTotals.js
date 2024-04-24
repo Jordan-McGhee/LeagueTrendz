@@ -106,7 +106,7 @@ async function savePlayerTotals(player) {
         // rebs
         const new_orb = old_stats.orb ? old_stats.orb + player.offensive_rebounds : player.offensive_rebounds
         const new_drb = old_stats.drb ? old_stats.drb + player.defensive_rebounds : player.defensive_rebounds
-        const new_rbs = old_stats.reb ? old_stats.reb + new_orb + new_drb : new_orb + new_drb
+        const new_rbs = new_orb + new_drb
 
         // asts, stls, blks, turnovers, pfs
         const new_ast = old_stats.ast ? old_stats.ast + player.assists : player.assists

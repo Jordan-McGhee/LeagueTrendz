@@ -9,6 +9,8 @@ router.get("/conference", teamControllers.getConferenceTeams),
 
 router.get("/division", teamControllers.getDivisionTeams),
 
+// SINGLE TEAM
+
 router.get("/:abbreviation", teamControllers.getSingleTeam)
 
 router.get("/:team_id/roster", teamControllers.getTeamRoster)

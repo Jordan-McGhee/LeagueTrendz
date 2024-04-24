@@ -195,7 +195,8 @@ export interface Player {
 
 export interface PlayerPageProps {
     player: Player,
-    currentTeam: Team
+    currentTeam: Team,
+    mainStats?: any,
 }
 
 export interface PlayerStatsTableAveragesProps {

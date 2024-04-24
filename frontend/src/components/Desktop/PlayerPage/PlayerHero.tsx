@@ -12,12 +12,12 @@ import TeamLogo from "../../ui/TeamLogo"
 import { PersonIcon } from "@radix-ui/react-icons";
 
 // utils imports
-import { convertPlayerPosition } from "../../../Utils/utils"
+import { convertPlayerPosition, determineSuffix } from "../../../Utils/utils"
 
 // team data
 const teams = require("../../../DUMMYDATA/NBA_Teams.json")
 
-const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
+const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats }) => {
 
     const draftTeam = teams.teams.filter((team: any) => team.team_id === player.draft.tid)
 
@@ -27,15 +27,15 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
     if (playerStatusSplit === "Healthy") {
         playerStatus = (
-                <p>Active</p>
+            <p>Active</p>
         )
     } else if (playerStatusSplit === "Suspended") {
         playerStatus = (
-                <p>Suspended - {player.status.gamesRemaining} Games</p>
+            <p>Suspended - {player.status.gamesRemaining} Games</p>
         )
     } else {
         playerStatus = (
-                <p>Out - {playerStatusSplit} ({player.status.gamesRemaining} Games)</p>
+            <p>Out - {playerStatusSplit} ({player.status.gamesRemaining} Games)</p>
         )
     }
 
@@ -68,13 +68,13 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
                     <div className="flex flex-col font-semibold">
                         <p>{player.height}, {player.weight} lbs</p>
-                        <p>{player.born.year} ({2024-player.born.year}) | {player.born.loc}</p>
-                        <p>{ player.college }</p>
+                        <p>{player.born.year} ({2024 - player.born.year}) | {player.born.loc}</p>
+                        <p>{player.college}</p>
                         {
                             draftTeam[0].team_id === -1 ?
-                            <p>UNDRAFTED</p>
-                            :
-                            <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
+                                <p>UNDRAFTED</p>
+                                :
+                                <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
                         }
                         <p className="capitalize">{playerStatus}</p>
                     </div>
@@ -90,29 +90,37 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                         {/* points */}
                         <div className="flex flex-col items-center">
                             <p>PTS</p>
-                            <p className="text-2xl font-bold text-red-700">26.7</p>
-                            <p>11th</p>
+                            <p className="text-2xl font-bold"
+                                style={{color: currentTeam.main_color}}
+                            >{mainStats.avg_pts}</p>
+                            <p>{`${mainStats.pts_rank}${determineSuffix(mainStats.pts_rank)}`}</p>
                         </div>
 
                         {/* rebounds */}
                         <div className="flex flex-col items-center">
-                            <p>RED</p>
-                            <p className="text-2xl font-bold text-red-700">2.7</p>
-                            <p>150+</p>
+                            <p>REB</p>
+                            <p className="text-2xl font-bold"
+                                style={{color: currentTeam.main_color}}
+                            >{mainStats.avg_reb}</p>
+                            <p>{`${mainStats.reb_rank}${determineSuffix(mainStats.reb_rank)}`}</p>
                         </div>
 
                         {/* assist */}
                         <div className="flex flex-col items-center">
                             <p>AST</p>
-                            <p className="text-2xl font-bold text-red-700">10.9</p>
-                            <p>2nd</p>
+                            <p className="text-2xl font-bold"
+                                style={{color: currentTeam.main_color}}
+                            >{mainStats.avg_ast}</p>
+                            <p>{`${mainStats.ast_rank}${determineSuffix(mainStats.ast_rank)}`}</p>
                         </div>
 
                         {/* fg% */}
                         <div className="flex flex-col items-center">
                             <p>FG%</p>
-                            <p className="text-2xl font-bold text-red-700">42.7</p>
-                            <p>131st</p>
+                            <p className="text-2xl font-bold"
+                                style={{color: currentTeam.main_color}}
+                            >{mainStats.avg_fg_percentage}</p>
+                            <p>{`${mainStats.fg_rank}${determineSuffix(mainStats.fg_rank)}`}</p>
                         </div>
                     </div>
                 </div>
