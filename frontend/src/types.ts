@@ -154,6 +154,58 @@ export interface StatObject {
     ptsMax: number[],
 }
 
+export interface TotalsAndAveragesObject {
+    player_id: number,
+    name: string,
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    gp: number,
+    gs: number,
+
+    // averages
+    avg_min: number,
+    avg_pts: number,
+    avg_fgm: number,
+    avg_fga: number,
+    avg_fg_percentage: number,
+    avg_tpm: number,
+    avg_tpa: number,
+    avg_tp_percentage: number,
+    avg_ftm: number,
+    avg_fta: number,
+    avg_ft_percentage: number,
+    avg_orb: number,
+    avg_drb: number,
+    avg_reb: number,
+    avg_ast: number,
+    avg_stl: number,
+    avg_blk: number,
+    avg_turnovers: number,
+    avg_pf: number,
+
+    // totals
+    min: number,
+    pts: number,
+    fgm: number,
+    fga: number,
+    fg_percentage: number,
+    tpm: number,
+    tpa: number,
+    tp_percentage: number,
+    ftm: number,
+    fta: number,
+    ft_percentage: number,
+    orb: number,
+    drb: number,
+    reb: number,
+    ast: number,
+    stl: number,
+    blk: number,
+    turnovers: number,
+    pf: number
+}
+
 // PLAYER TYPES
 export interface Player {
     player_id: number,
@@ -199,8 +251,13 @@ export interface PlayerPageProps {
     mainStats?: any,
 }
 
+export interface PlayerStatsProps {
+    player: Player,
+    currentTeam: Team
+}
+
 export interface PlayerStatsTableAveragesProps {
     title: string,
-    // fix later
     data: StatObject[] | undefined,
+    currentData?: TotalsAndAveragesObject
 }

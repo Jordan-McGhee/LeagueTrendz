@@ -83,7 +83,7 @@ async function savePlayerTotals(player) {
         // calculate new values for all stats
 
         // gp & gs
-        const new_gp = old_stats.gp + player.games_played
+        const new_gp = old_stats.gp ? old_stats.gp + player.games_played : player.games_played 
         const new_gs = old_stats.gs ? old_stats.gs + player.games_started : player.games_started
 
         // minutes & points

@@ -20,6 +20,7 @@ const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam}) => {
             <div className="w-[65%] flex flex-col gap-y-4">
                 <NextGame />
 
+                
                 <OverviewPlayerStats />
 
                 <OverviewRecentGames />

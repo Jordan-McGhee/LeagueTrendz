@@ -7,6 +7,11 @@ const router = express.Router()
 
 router.get("/", playerControllers.getAllPlayers),
 
-router.get("/:player_id", playerControllers.getSinglePlayer)
+router.get("/:player_id", playerControllers.getSinglePlayer),
+
+// overview
+
+// stats
+router.get("/:player_id/stats", playerControllers.getSinglePlayerStatsView)
 
 module.exports = router
