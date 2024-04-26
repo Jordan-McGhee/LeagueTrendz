@@ -44,6 +44,8 @@
     <!-- - make sure user_id is passed to login when logging in DONE -->
 
 
+
+
 - useAuth hook
     <!-- - finish setting up DONE -->
     <!-- - move context login/logout out of app.tsx DONE -->
@@ -59,11 +61,13 @@
     - page for if no user found
 
 - ALLTEAMS PAGE
-    - Query parameters to go automatically to stats/schedule/roster view?
+    <!-- - Query parameters to go automatically to stats/schedule/roster view? DONE -->
     
     !!ROSTER!!
-    - change icons to not be ugly
+    <!-- - change icons to not be ugly DONE -->
 
 - PLAYER PAGE
     - LOOP OVER TRANSACTIONS & PLAYER AWARDS
     - Styling for player status
+    - Player Game Logs
+    - Add Link to View Game

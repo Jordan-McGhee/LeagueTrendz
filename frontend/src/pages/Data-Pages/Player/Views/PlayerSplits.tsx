@@ -21,11 +21,11 @@ const PlayerSplits = () => {
             </CardHeader>
 
             <CardContent className="flex flex-col gap-y-2">
+                {/* <PlayerGameLogTable />
                 <PlayerGameLogTable />
                 <PlayerGameLogTable />
                 <PlayerGameLogTable />
-                <PlayerGameLogTable />
-                <PlayerGameLogTable />
+                <PlayerGameLogTable /> */}
             </CardContent>
 
             <CardFooter>

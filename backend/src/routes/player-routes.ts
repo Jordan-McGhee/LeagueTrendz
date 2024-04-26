@@ -12,6 +12,9 @@ router.get("/:player_id", playerControllers.getSinglePlayer),
 // overview
 
 // stats
-router.get("/:player_id/stats", playerControllers.getSinglePlayerStatsView)
+router.get("/:player_id/stats", playerControllers.getSinglePlayerStatsView),
+
+// game logs
+router.get("/:player_id/gamelog", playerControllers.getSinglePlayerGameLogView)
 
 module.exports = router

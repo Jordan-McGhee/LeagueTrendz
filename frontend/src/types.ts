@@ -251,6 +251,7 @@ export interface PlayerPageProps {
     mainStats?: any,
 }
 
+// PLAYER STATS
 export interface PlayerStatsProps {
     player: Player,
     currentTeam: Team
@@ -260,4 +261,77 @@ export interface PlayerStatsTableAveragesProps {
     title: string,
     data: StatObject[] | undefined,
     currentData?: TotalsAndAveragesObject
+}
+
+// PLAYER GAME LOG
+export interface Game {
+    game_id: number,
+    game_date: string,
+    day_of_week: string,
+    game_location: string,
+    game_result: "W" | "L",
+    player_team_score: number,
+    opp_team_id: number,
+    opp_team_abbreviation: string,
+    opp_team_full_name: string,
+    opp_team_score: number,
+    player_id: number,
+    player_name: string,
+    minutes: number,
+    pts: number,
+    fgm: number,
+    fga: number,
+    fg_percentage: number,
+    tpm: number,
+    tpa: number,
+    tp_percentage: number,
+    ftm: number,
+    fta: number,
+    ft_percentage: number,
+    orb: number,
+    drb: number,
+    reb: number,
+    ast: number,
+    stl: number,
+    blk: number,
+    turnovers: number,
+    pf: number
+}
+
+export interface MonthAverages {
+    avg_minutes: number,
+    avg_pts: number,
+    avg_fgm: number,
+    avg_fga: number,
+    avg_fg_percentage: number,
+    avg_tpm: number,
+    avg_tpa: number,
+    avg_tp_percentage: number,
+    avg_ftm: number,
+    avg_fta: number,
+    avg_ft_percentage: number,
+    avg_orb: number,
+    avg_drb: number,
+    avg_reb: number,
+    avg_ast: number,
+    avg_stl: number,
+    avg_blk: number,
+    avg_turnovers: number,
+    avg_pf: number
+}
+
+export interface PlayerGameLogProps {
+    month: number,
+    games: Game[],
+    avg_stats: MonthAverages
+}
+
+export interface GameLogData { 
+    month: number,
+    year: number,
+    player_id: number,
+    name: string,
+    games_played: number,
+    games: Game[],
+    avg_stats: MonthAverages
 }

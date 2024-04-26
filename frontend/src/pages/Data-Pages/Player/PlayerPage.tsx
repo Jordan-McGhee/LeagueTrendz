@@ -131,7 +131,7 @@ const PlayerPage = () => {
                         {selectedMenuItem === "stats" && <PlayerStatsView player={player} currentTeam={currentTeam} />}
                         {selectedMenuItem === "bio" && <PlayerBio player={player} currentTeam={currentTeam} />}
                         {selectedMenuItem === "splits" && <PlayerSplits />}
-                        {selectedMenuItem === "log" && <PlayerGameLog />}
+                        {selectedMenuItem === "log" && <PlayerGameLog player={player} currentTeam={currentTeam} />}
                     </CardContent>
                 </Card>
             }
