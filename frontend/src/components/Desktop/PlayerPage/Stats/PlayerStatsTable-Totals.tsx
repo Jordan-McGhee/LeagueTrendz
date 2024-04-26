@@ -66,6 +66,10 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
                     {
                         data?.map((season) => {
 
+                            if (season.gp === 0) {
+                                return
+                            } 
+
                             // update totals
                             dataTotals['pts'] += season.pts
                             dataTotals['fgm'] += season.fg
