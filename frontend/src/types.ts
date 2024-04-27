@@ -335,3 +335,43 @@ export interface GameLogData {
     games: Game[],
     avg_stats: MonthAverages
 }
+
+// PLAYER SPLITS
+export interface SplitAverages {
+    gp: number,
+    avg_minutes: number,
+    avg_pts: number,
+    avg_fgm: number,
+    avg_fga: number,
+    avg_fg_percentage: number,
+    avg_tpm: number,
+    avg_tpa: number,
+    avg_tp_percentage: number,
+    avg_ftm: number,
+    avg_fta: number,
+    avg_ft_percentage: number,
+    avg_orb: number,
+    avg_drb: number,
+    avg_reb: number,
+    avg_ast: number,
+    avg_stl: number,
+    avg_blk: number,
+    avg_turnovers: number,
+    avg_pf: number
+}
+
+export interface SplitsData {
+    player_id: number,
+    player_name: string,
+    overall_averages: SplitAverages,
+    home_averages: SplitAverages,
+    away_averages: SplitAverages,
+    conference_averages: SplitAverages,
+    division_averages: SplitAverages,
+    win_averages: SplitAverages,
+    loss_averages: SplitAverages
+}
+
+export interface SplitsTableProps {
+    data: SplitsData | undefined
+}

@@ -88,7 +88,23 @@ export const getSinglePlayerStatsView = async (req: Request, res: Response, next
 
 
 // SINGLE PLAYER SPLITS VIEW DATA
+export const getSinglePlayerSplitsView = async (req: Request, res: Response, next: NextFunction) => {
+    const { player_id } = req.params
 
+    const playerSplitsQuery: string = "SELECT * FROM player_stats_splits_view WHERE player_id = $1"
+
+    let playerSplitsReponse: QueryResult
+
+    try {
+        playerSplitsReponse = await pool.query(playerSplitsQuery, [player_id])
+    } catch (error) {
+        console.log(`Error getting regular season stats for player #${player_id}. ${error}`)
+
+        return res.status(500).json({ message: `Error getting regular season stats for player #${player_id}. ${error}`})
+    }
+
+    res.status(200).json({ message: `Got stats for player #${player_id}`, splits: playerSplitsReponse.rows[0]})
+}
 
 
 // SINGLE PLAYER GAME LOG VIEW DATA

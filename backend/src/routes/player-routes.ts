@@ -11,6 +11,9 @@ router.get("/:player_id", playerControllers.getSinglePlayer),
 
 // overview
 
+// splits
+router.get("/:player_id/splits", playerControllers.getSinglePlayerSplitsView),
+
 // stats
 router.get("/:player_id/stats", playerControllers.getSinglePlayerStatsView),
 
