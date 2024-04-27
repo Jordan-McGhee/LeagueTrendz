@@ -83,6 +83,6 @@ export const convertNumberToFullMonth = (month: number): string => {
         12: 'December'
     };
     
-    return `${monthMap[month]}`;
+    return monthMap[month];
 };
     
