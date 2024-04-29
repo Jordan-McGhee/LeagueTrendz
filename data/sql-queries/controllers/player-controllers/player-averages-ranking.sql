@@ -23,4 +23,4 @@ FROM
             player_2023_24_regularseason_totals_and_averages
     ) ranks ON pt.player_id = ranks.player_id
 WHERE
-    p.player_id = 45;
+    p.player_id = $1;

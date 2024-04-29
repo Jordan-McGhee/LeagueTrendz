@@ -64,8 +64,12 @@ export const getSinglePlayer = async (req: Request, res: Response, next: NextFun
 }
 
 // SINGLE PLAYER OVERVIEW DATA
+export const getSinglePlayerOverview = async (req: Request, res: Response, next: NextFunction) => {
+    const { player_id } = req.params
+    
 
 
+}
 
 // SINGLE PLAYER STATS VIEW DATA
 export const getSinglePlayerStatsView = async (req: Request, res: Response, next: NextFunction) => {

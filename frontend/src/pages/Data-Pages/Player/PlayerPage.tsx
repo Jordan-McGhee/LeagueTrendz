@@ -81,7 +81,7 @@ const PlayerPage = () => {
 
 
     return (
-        <div className="h-fit min-h-screen">
+        <div className="">
 
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />

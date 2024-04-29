@@ -10,6 +10,7 @@ router.get("/", playerControllers.getAllPlayers),
 router.get("/:player_id", playerControllers.getSinglePlayer),
 
 // overview
+router.get("/:player_id/overview", playerControllers.getSinglePlayerOverview)
 
 // splits
 router.get("/:player_id/splits", playerControllers.getSinglePlayerSplitsView),

@@ -47,29 +47,30 @@ const SwitchPlayer: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
             {/* error */}
             < ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
-            <Card>
-                <CardHeader className="flex flex-row justify-between items-center">
+            <Card className="h-[35%] overflow-y-auto">
+                <CardHeader className="flex flex-row justify-between items-center sticky top-0 bg-white">
                     <CardTitle>Switch Player</CardTitle>
                     <p className="font-bold" style={{ color: currentTeam.main_color }}>{currentTeam.abbreviation}</p>
                 </CardHeader>
 
-                {isLoading && <Skeleton />}
+                <CardContent>
+                    {isLoading && <Skeleton />}
 
-                {roster &&
-                    <CardContent>
-                        <div className="flex flex-col divide-y">
-                            {roster.map((teammate: Player) => {
-                                if (teammate.player_id !== player.player_id) {
-                                    return (
-                                        <SwitchPlayerItem
-                                            player={teammate}
-                                        />
-                                    )
-                                }
-                            })}
-                        </div>
-                    </CardContent>
-                }
+                    {roster &&
+                            <div className="flex flex-col divide-y">
+                                {roster.map((teammate: Player) => {
+                                    if (teammate.player_id !== player.player_id) {
+                                        return (
+                                            <SwitchPlayerItem
+                                                player={teammate}
+                                            />
+                                        )
+                                    }
+                                })}
+                            </div>
+                    }
+                </CardContent>
+
             </Card>
 
         </div>

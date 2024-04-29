@@ -71,3 +71,5 @@
     - Styling for player status
     - Player Game Logs
     - Add Link to View Game
+    - Fix window size on each view
+        - currently scrolls too far down without content being there

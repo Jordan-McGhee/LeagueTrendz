@@ -14,23 +14,22 @@ const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam}) => {
 
     return (
         // full content div
-        <div className="flex justify-between gap-x-4 h-fit mt-4">
+        <div className="flex justify-between gap-x-4 mt-4">
 
             {/* left side */}
             <div className="w-[65%] flex flex-col gap-y-4">
                 <NextGame />
 
-                
-                <OverviewPlayerStats />
+                {/* <OverviewPlayerStats /> */}
 
                 <OverviewRecentGames />
             </div>
 
             {/* right side */}
             <div className="w-[35%] flex flex-col gap-y-4">
+                <TeamStandings />
                 <SwitchPlayer player = { player } currentTeam = {currentTeam} />
 
-                {/* <TeamStandings /> */}
             </div>
         </div>
     )
