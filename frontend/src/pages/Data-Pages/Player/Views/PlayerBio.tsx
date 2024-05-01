@@ -22,8 +22,8 @@ const PlayerBio: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
 
             {/* right side */}
-            <div className="h-screen w-[35%] flex flex-col gap-y-4">
-                <PlayerCareerHighlights />
+            <div className="h-fit w-[35%] flex flex-col gap-y-4">
+                <PlayerCareerHighlights player = {player} currentTeam={currentTeam}/>
             </div>
         </div>
     )

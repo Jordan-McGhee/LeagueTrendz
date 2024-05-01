@@ -469,3 +469,45 @@ export interface OverviewSplitsTableProps {
     showConference: boolean,
     showDivision: boolean
 }
+
+// PLAYER BIO
+export interface AwardsDict {
+    // awards
+    rookieOTY: number[];
+    mostImproved: number[];
+    defensivePOTY: number[];
+    clutchPOTY: number[];
+    sixthMan: number[];
+    MVP: number[];
+    // allstar
+    allStar: number[];
+    allStarMVP: number[];
+    threePointChamp: number[];
+    slamDunkChamp: number[];
+    // all league
+    firstTeam: number[];
+    secondTeam: number[];
+    thirdTeam: number[];
+    firstTeamDefense: number[];
+    secondTeamDefense: number[];
+    rookieTeam: number[];
+    inSeasonTournamentTeam: number[];
+    // league leaders
+    scoringLeader: number[];
+    assistLeader: number[];
+    reboundLeader: number[];
+    stealLeader: number[];
+    blockLeader: number[];
+    // champion/finals mvp
+    champion: number[];
+    finalsMVP: number[];
+    semifinalsMVP: number[];
+    //in season tournament
+    inSeasonChamp: number[],
+    inSeasonMVP: number[]
+};
+
+export interface AwardItemProps {
+    award: string,
+    years: number[] 
+}
