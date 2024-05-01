@@ -27,7 +27,7 @@ const TeamHome = () => {
 
                 {/* right side */}
                 <div className="w-[35%] h-lvh flex flex-col gap-y-4">
-                    <TeamStandings />
+                    {/* <TeamStandings /> */}
 
                     <TeamInjuries />
                 </div>

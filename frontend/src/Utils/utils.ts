@@ -85,4 +85,70 @@ export const convertNumberToFullMonth = (month: number): string => {
     
     return monthMap[month];
 };
+
+/**
+ * Takes in string of last 10 games returns count of wins/losses in a row, most recent first
+ * @param lastTen string - "W-W-L-L-W-W-W-W-W-L" format
+ * @returns W/L streak - W2
+ */
+export const countStreak = (lastTen: string) => {
+    let count: number = 1
+    let winOrLoss: string
+
+    const lastTenSplit = lastTen.split("-")
     
+    lastTenSplit[0] === "W" ? winOrLoss = "W" : winOrLoss = "L"
+
+    for (let i = 1; i<lastTenSplit.length; i++) {
+        if (lastTenSplit[i] === winOrLoss) {
+            count++
+        } else {
+            return `${winOrLoss}${count}`
+        }
+    }
+
+    return `${winOrLoss}${count}`
+}
+
+/**
+ * Takes in a team's id and returns their shortened team name
+ * @param team_id team's id from database
+ * @returns team's shortened name. 0 -> Hawks, 1 -> Celtics, etc.
+ */
+export const shortenTeamName = (team_id: number) => {
+
+    const mascot_dict: { [key: number]: string } = {
+        0: "Hawks",
+        1: "Celtics",
+        2: "Nets",
+        3: "Hornets",
+        4: "Bulls",
+        5: "Cavaliers",
+        6: "Mavericks",
+        7: "Nuggets",
+        8: "Pistons",
+        9: "Warriors",
+        10: "Rockets",
+        11: "Pacers",
+        12: "Clippers",
+        13: "Lakers",
+        14: "Grizzlies",
+        15: "Heat",
+        16: "Bucks",
+        17: "Timberwolves",
+        18: "Pelicans",
+        19: "Knicks",
+        20: "Thunder",
+        21: "Magic",
+        22: "76ers",
+        23: "Suns",
+        24: "Trail Blazers",
+        25: "Kings",
+        26: "Spurs",
+        27: "Raptors",
+        28: "Jazz",
+        29: "Wizards"
+    }
+
+    return mascot_dict[team_id]
+}

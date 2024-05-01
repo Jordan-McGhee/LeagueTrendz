@@ -81,7 +81,7 @@ const PlayerPage = () => {
 
 
     return (
-        <div className="">
+        <div className="h-fit">
 
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />

@@ -65,10 +65,44 @@ export const getSinglePlayer = async (req: Request, res: Response, next: NextFun
 
 // SINGLE PLAYER OVERVIEW DATA
 export const getSinglePlayerOverview = async (req: Request, res: Response, next: NextFunction) => {
-    const { player_id } = req.params
+    const { player_id, team_id } = req.params
     
+    const teamStandingsQuery: string = "WITH team_division AS (SELECT division FROM standings_view WHERE team_id = $1) SELECT s.team_id, s.full_name, s.abbreviation, s.division, s.wins, s.losses, ROUND((s.wins::float / (s.wins + s.losses))::numeric, 3) AS pct, CASE WHEN ROW_NUMBER() OVER (PARTITION BY s.division ORDER BY s.wins DESC) = 1 THEN 0 ELSE (SELECT Max(wins) - s.wins FROM standings_view sv WHERE sv.division = s.division ) END AS gb, last_10 FROM standings_view s JOIN team_division td ON s.division = td.division ORDER BY wins DESC"
 
+    let teamStandingsResponse: QueryResult
+    try {
+        teamStandingsResponse = await pool.query(teamStandingsQuery, [team_id])
+    } catch (error) {
+        console.log(`Error getting team standings for team #${team_id}'s division. ${error}`)
 
+        return res.status(500).json({ message: `Error getting team standings for team #${team_id}'s division. ${error}`})
+    }
+
+    const lastFiveGamesQuery: string = "SELECT pgv.*, TO_CHAR(pgv.game_date, 'Day') AS day_of_week, player_team.wins AS player_team_wins, player_team.losses AS player_team_losses, opp_team.wins AS opp_team_wins, opp_team.losses AS opp_team_losses, CASE WHEN player_team.conference = opp_team.conference THEN TRUE ELSE FALSE END AS conference_game, CASE WHEN player_team.division = opp_team.division THEN TRUE ELSE FALSE END AS division_game FROM (SELECT * FROM player_gamelog_view WHERE player_id = $1 ORDER BY game_date DESC LIMIT 5) pgv LEFT JOIN standings_view AS player_team ON pgv.player_team_id = player_team.team_id LEFT JOIN standings_view AS opp_team ON pgv.opp_team_id = opp_team.team_id ORDER BY game_date DESC"
+    
+    let lastFiveGamesResult: QueryResult
+
+    try {
+        lastFiveGamesResult = await pool.query(lastFiveGamesQuery, [player_id])
+    } catch (error) {
+        console.log(`Error getting last five games for player #${player_id}. ${error}`)
+
+        return res.status(500).json({ message: `Error getting last five games for player #${player_id}. ${error}`})
+    }
+
+    const playerSplitsQuery: string = 'SELECT * FROM player_stats_splits_view WHERE player_id = $1'
+
+    let playerSplitsResponse: QueryResult
+
+    try {
+        playerSplitsResponse = await pool.query(playerSplitsQuery, [player_id])
+    } catch (error) {
+        console.log(`Error getting splits for player #${player_id}. ${error}`)
+
+        return res.status(500).json({ message: `Error getting splits for player #${player_id}. ${error}`})
+    }
+
+    res.status(200).json({ message: `Got overview stats for player #${player_id}`, teamStandings: teamStandingsResponse.rows, lastFive: lastFiveGamesResult.rows, splits: playerSplitsResponse.rows[0]})
 }
 
 // SINGLE PLAYER STATS VIEW DATA
@@ -97,17 +131,17 @@ export const getSinglePlayerSplitsView = async (req: Request, res: Response, nex
 
     const playerSplitsQuery: string = "SELECT * FROM player_stats_splits_view WHERE player_id = $1"
 
-    let playerSplitsReponse: QueryResult
+    let playerSplitsResponse: QueryResult
 
     try {
-        playerSplitsReponse = await pool.query(playerSplitsQuery, [player_id])
+        playerSplitsResponse = await pool.query(playerSplitsQuery, [player_id])
     } catch (error) {
-        console.log(`Error getting regular season stats for player #${player_id}. ${error}`)
+        console.log(`Error getting splits for player #${player_id}. ${error}`)
 
-        return res.status(500).json({ message: `Error getting regular season stats for player #${player_id}. ${error}`})
+        return res.status(500).json({ message: `Error getting splits for player #${player_id}. ${error}`})
     }
 
-    res.status(200).json({ message: `Got stats for player #${player_id}`, splits: playerSplitsReponse.rows[0]})
+    res.status(200).json({ message: `Got splits for player #${player_id}`, splits: playerSplitsResponse.rows[0]})
 }
 
 

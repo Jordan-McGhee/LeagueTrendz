@@ -47,7 +47,7 @@ const SwitchPlayer: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
             {/* error */}
             < ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
-            <Card className="h-[35%] overflow-y-auto">
+            <Card className="h-[40%] overflow-y-auto">
                 <CardHeader className="flex flex-row justify-between items-center sticky top-0 bg-white">
                     <CardTitle>Switch Player</CardTitle>
                     <p className="font-bold" style={{ color: currentTeam.main_color }}>{currentTeam.abbreviation}</p>

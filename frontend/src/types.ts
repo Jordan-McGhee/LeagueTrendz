@@ -326,7 +326,7 @@ export interface PlayerGameLogProps {
     avg_stats: MonthAverages
 }
 
-export interface GameLogData { 
+export interface GameLogData {
     month: number,
     year: number,
     player_id: number,
@@ -374,4 +374,98 @@ export interface SplitsData {
 
 export interface SplitsTableProps {
     data: SplitsData | undefined
+}
+
+// PLAYER OVERVIEW
+
+export interface OverviewGameInfo {
+    game_id: number,
+    game_date: string,
+    day_of_week: string,
+    game_location: string,
+    game_result: string,
+    player_team_id: number,
+    player_team_full_name: string,
+    player_team_abbreviation: string,
+    player_team_score: number,
+    player_team_wins: number,
+    player_team_losses: number,
+    opp_team_id: number,
+    opp_team_abbreviation: string,
+    opp_team_full_name: string,
+    opp_team_score: number,
+    opp_team_wins: number,
+    opp_team_losses: number,
+    conference_game: boolean,
+    division_game: boolean,
+    minutes: number,
+    pts: number,
+    fgm: number,
+    fga: number,
+    fg_percentage: number,
+    tpm: number,
+    tpa: number,
+    tp_percentage: number,
+    ftm: number,
+    fta: number,
+    ft_percentage: number,
+    orb: number,
+    drb: number,
+    reb: number,
+    ast: number,
+    stl: number,
+    blk: number,
+    turnovers: number,
+    pf: number
+}
+
+export interface OverviewData {
+    message: string,
+    teamStandings: {
+        team_id: number,
+        full_name: string,
+        abbreviation: string,
+        division: string,
+        wins: number,
+        losses: number,
+        pct: string,
+        gb: string,
+        last_10: string
+    }[],
+    lastFive: OverviewGameInfo[],
+    splits: SplitsData
+}
+
+export interface OverviewRecentGamesProps {
+    player: Player,
+    games: OverviewGameInfo[]
+}
+
+export interface OverviewStandingsProps {
+    currentTeam: Team,
+    standings: {
+        team_id: number,
+        full_name: string,
+        abbreviation: string,
+        division: string,
+        wins: number,
+        losses: number,
+        pct: string,
+        gb: string,
+        last_10: string
+    }[]
+}
+
+export interface OverviewSplitsProps {
+    currentTeam: Team,
+    lastGame: OverviewGameInfo,
+    splits: SplitsData
+}
+
+export interface OverviewSplitsTableProps {
+    splits: SplitsData,
+    showHome: boolean,
+    showWins: boolean,
+    showConference: boolean,
+    showDivision: boolean
 }
