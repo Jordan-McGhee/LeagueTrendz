@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import TeamHome from "./Views/TeamHome";
 import Roster from "./Views/Roster";
 import Stats from "./Views/Stats"
+import TeamSchedule from "./Views/TeamSchedule";
 
 // component imports
 import TeamLogo from "../../../components/ui/TeamLogo"
@@ -203,7 +204,7 @@ const SingleTeamPage = () => {
                     <CardContent>
                         {selectedMenuItem === "home" && <TeamHome />}
                         {selectedMenuItem === "stats" && <Stats />}
-                        {selectedMenuItem === "schedule" && <TeamHome />}
+                        {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}
                         {selectedMenuItem === "injuries" && <TeamHome />}
 

@@ -194,3 +194,32 @@ export const shortenYears = (years: number[]) => {
     console.log(displayYears.join(", ")); // Output: "2005-2006, 2009-Current"
     return `${displayYears.join(", ")} (${years.length} Seasons)`;
 };
+
+/**
+ * Generates a string representation of a range of years based on an array of years.
+ * If the range ends with 2024, the end year is labeled as "Current".
+ * @param years An array of years to be shortened into ranges.
+ * @returns A string representing the shortened years along with the number of seasons.
+ */
+export const teamStatLeaderFormatter = (player: string) => {
+    // string comes formatted like: 13 - Jayson Tatum (34)
+
+    // Regular expression to match the pattern "id - name (stat)"
+    const regex = /^(\d+)\s*-\s*([^()]+)\s*\((\d+)\)$/;
+
+    // Execute the regular expression on the input string
+    const match = player.match(regex);
+
+    // If the input string doesn't match the pattern, return null
+    if (!match || match.length !== 4) {
+        return null;
+    }
+
+    // Extract id, name, and stat from the matched groups
+    const id = parseInt(match[1], 10);
+    const name = match[2].trim();
+    const stat = parseInt(match[3], 10);
+
+    // Return the extracted values as a PlayerStat object
+    return { id, name, stat };
+}

@@ -100,9 +100,34 @@ export interface AllTeamsState {
     southwest: Team[]
 }
 
-export interface RosterProps {
+// // TEAM PAGE PROPS
+export interface TeamPageProps {
     team: Team
 }
+
+// TEAM SCHEDULE
+export interface TeamScheduleObject {
+    game_id: number,
+    game_date: string,
+    day_of_week: string,
+    team_id: number,
+    team_full_name: string,
+    team_abbreviation: string,
+    game_location: string,
+    opponent_team_id: number,
+    opponent_team_full_name: string,
+    opponent_team_abbreviation: string,
+    result: string,
+    team_score: string,
+    opponent_score: string,
+    wins: string,
+    losses: string,
+    pts_leader: string,
+    reb_leader: string,
+    ast_leader: string
+}
+
+
 
 // STATS TYPES
 export interface StatObject {

@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../../../../Hooks/useFetch";
 
 // type imports
-import { Player, RosterProps, Team } from "../../../../types"
+import { Player, TeamPageProps, Team } from "../../../../types"
 
 // ui imports
 import { ColumnDef } from "@tanstack/react-table";
 import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
 import { Button } from "../../../../components/ui/button"
 import { CaretSortIcon, CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
-
 import { DataTable } from "../../../../components/ui/DataTable";
 
 // component imports
@@ -22,7 +21,7 @@ import ErrorModal from "../../../../components/ui/ErrorModal"
 // utility function import
 import { convertPlayerPosition } from "../../../../Utils/utils";
 
-const Roster: React.FC<RosterProps> = ({ team }) => {
+const Roster: React.FC<TeamPageProps> = ({ team }) => {
 
     type Roster = Player[]
 
