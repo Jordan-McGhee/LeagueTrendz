@@ -48,6 +48,27 @@ const PlayerCareerHistory: React.FC<PlayerPageProps> = ({ player, currentTeam })
             }
 
         }
+
+        // current team
+
+        // if this player's current team id doesn't equal the first team in team order array
+        if (careerHistory.teamOrder[0] !== currentTeam.team_id) {
+            // add the current team to beginning of teamOrder array
+            careerHistory.teamOrder.unshift(currentTeam.team_id)
+
+            // Ensure careerHistory[currentTeam.team_id] is initialized as an array
+            if (!Array.isArray(careerHistory[currentTeam.team_id])) {
+                careerHistory[currentTeam.team_id] = [];
+            }
+
+            // Check if the current season (2023) is not already in the array
+            if (!careerHistory[currentTeam.team_id].includes(2023)) {
+                // Add the current season to the array for the current team
+                careerHistory[currentTeam.team_id].push(2023);
+            }
+        } else {
+            careerHistory[currentTeam.team_id].push(2023);
+        }
     }
 
     // create set of teams, this will give us most recent first and remove any duplicates

@@ -186,7 +186,7 @@ export const shortenYears = (years: number[]) => {
     // Push the last range or single year
     const endLabel = (endYear + 1) === 2024 ? "Current" : (endYear + 1).toString();
     if (startYear === endYear) {
-        displayYears.push(`${startYear}`);
+        displayYears.push(`${startYear}-${endLabel}`);
     } else {
         displayYears.push(`${startYear}-${endLabel}`);
     }
