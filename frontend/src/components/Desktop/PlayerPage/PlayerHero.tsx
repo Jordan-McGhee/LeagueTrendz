@@ -49,7 +49,8 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
                     {player.photo_url ? <img src={player.photo_url} alt="player img" className="h-24" /> : <PersonIcon className="h-24 w-24" />}
 
                     <div className="flex flex-col gap-y-1">
-                        <p className="text-2xl uppercase font-semibold">{player.name}</p>
+                        <p className="text-2xl uppercase">{player.name.split(' ')[0]}</p>
+                        <p className="text-2xl uppercase font-bold">{player.name.split(' ').slice(1)}</p>
                         <p className="flex gap-x-1 items-center">
                             <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline"><TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{currentTeam.full_name}</Link>• #{player.jersey_number} • {convertPlayerPosition(player.player_position)}</p>
                         {/* <Button className="w-fit">Add to Favorites</Button> */}

@@ -82,7 +82,7 @@ export const convertNumberToFullMonth = (month: number): string => {
         11: 'November',
         12: 'December'
     };
-    
+
     return monthMap[month];
 };
 
@@ -96,10 +96,10 @@ export const countStreak = (lastTen: string) => {
     let winOrLoss: string
 
     const lastTenSplit = lastTen.split("-")
-    
+
     lastTenSplit[0] === "W" ? winOrLoss = "W" : winOrLoss = "L"
 
-    for (let i = 1; i<lastTenSplit.length; i++) {
+    for (let i = 1; i < lastTenSplit.length; i++) {
         if (lastTenSplit[i] === winOrLoss) {
             count++
         } else {
@@ -152,3 +152,45 @@ export const shortenTeamName = (team_id: number) => {
 
     return mascot_dict[team_id]
 }
+
+
+/**
+ * Generates a string representation of a range of years based on an array of years.
+ * If the range ends with 2024, the end year is labeled as "Current".
+ * @param years An array of years to be shortened into ranges.
+ * @returns A string representing the shortened years along with the number of seasons.
+ */
+
+export const shortenYears = (years: number[]) => {
+    let displayYears: string[] = [];
+    let startYear = years[0];
+    let endYear = years[0];
+
+    for (let i = 1; i < years.length; i++) {
+        if (years[i] === endYear + 1) {
+            // If the current year is subsequent to the previous year, update the end year
+            endYear = years[i];
+        } else {
+            // If the current year is not subsequent, push the range if it's more than one year, otherwise push the single year
+            if (startYear === endYear) {
+                displayYears.push(`${startYear}`);
+            } else {
+                const endLabel = (endYear + 1) === 2024 ? "Current" : (endYear + 1).toString();
+                displayYears.push(`${startYear}-${endLabel}`);
+            }
+            // Reset start and end years for the next range
+            startYear = endYear = years[i];
+        }
+    }
+
+    // Push the last range or single year
+    const endLabel = (endYear + 1) === 2024 ? "Current" : (endYear + 1).toString();
+    if (startYear === endYear) {
+        displayYears.push(`${startYear}`);
+    } else {
+        displayYears.push(`${startYear}-${endLabel}`);
+    }
+
+    console.log(displayYears.join(", ")); // Output: "2005-2006, 2009-Current"
+    return `${displayYears.join(", ")} (${years.length} Seasons)`;
+};

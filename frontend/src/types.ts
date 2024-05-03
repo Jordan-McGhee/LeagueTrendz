@@ -511,3 +511,14 @@ export interface AwardItemProps {
     award: string,
     years: number[] 
 }
+
+// player career history
+export interface PlayerCareerHistoryDict {
+    teamOrder: number[],
+    [team_id: number]: number[]
+}
+
+export interface CareerHistoryItemProps {
+    team_id: number,
+    years: number[]
+}

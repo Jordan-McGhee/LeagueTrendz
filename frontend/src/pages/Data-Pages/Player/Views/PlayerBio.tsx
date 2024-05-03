@@ -17,7 +17,7 @@ const PlayerBio: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
             {/* left side */}
             <div className="h-screen w-[65%] flex flex-col gap-y-4">
                 <PlayerBiography player = {player} currentTeam={currentTeam}/>
-                <PlayerCareerHistory />
+                <PlayerCareerHistory player = {player} currentTeam={currentTeam} />
             </div>
 
 
