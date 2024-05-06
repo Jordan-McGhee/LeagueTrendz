@@ -12,7 +12,7 @@ import { Team } from "../../../types"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
 import { Button } from "../../../components/ui/button";
 import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/menubar"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../../components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/select"
 
 // views imports
 import TeamHome from "./Views/TeamHome";
@@ -192,8 +192,8 @@ const SingleTeamPage = () => {
 
                             <MenubarMenu>
                                 <MenubarTrigger
-                                    style={selectedMenuItem === "injuries" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    onClick={() => handleMenuClick('injuries')}>Injuries</MenubarTrigger>
+                                    style={selectedMenuItem === "history" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    onClick={() => handleMenuClick('history')}>History</MenubarTrigger>
                             </MenubarMenu>
 
                         </Menubar>
@@ -206,7 +206,7 @@ const SingleTeamPage = () => {
                         {selectedMenuItem === "stats" && <Stats />}
                         {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}
-                        {selectedMenuItem === "injuries" && <TeamHome />}
+                        {selectedMenuItem === "history" && <TeamHome />}
 
                     </CardContent>
                 </Card>
