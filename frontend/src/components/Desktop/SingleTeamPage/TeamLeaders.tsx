@@ -1,10 +1,17 @@
+import React from "react"
 import { Link } from "react-router-dom"
+
+// type imports
+import { TeamPlayersProps } from "../../../types"
+
+// utils imports
+import { convertPlayerPosition } from "../../../Utils/utils"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card"
 import { Separator } from "../../ui/separator"
 
-const TeamLeaders = () => {
+const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
     return (
         <Card>
@@ -25,16 +32,17 @@ const TeamLeaders = () => {
                         {/* points */}
                         <div className="text-sm">
                             <p className="mb-2 font-bold ">Points Per Game</p>
-                            <div className="flex items-center">
-                                <div className="bg-red-500 h-12 w-12 rounded-full mr-2" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.pts_leader_id}/${players.pts_leader_name.toLowerCase().replace(" ", "-")}`}>
+                                <div className="flex items-center">
+                                    <img src={players.pts_leader_photo_url} alt={players.pts_leader_name} className="h-12 object-contain mr-2" />
+                                    {/* player info div */}
+                                    <div>
+                                        <p className="font-bold">{players.pts_leader_name} <span className="font-light">{convertPlayerPosition(players.pts_leader_position)} #{players.pts_leader_number}</span></p>
+                                        <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.pts_leader_stat}</p>
+                                    </div>
 
-                                {/* player info div */}
-                                <div>
-                                    <p>Trae Young <span className="font-light">PG #11</span></p>
-                                    <p className="text-2xl font-bold">27.0</p>
                                 </div>
-
-                            </div>
+                            </Link>
 
                         </div>
 
@@ -44,17 +52,18 @@ const TeamLeaders = () => {
 
                         <div className="text-sm">
                             <p className="mb-2 font-bold ">Assists Per Game</p>
-                            <div className="flex items-center">
-                                <div className="bg-red-500 h-12 w-12 rounded-full mr-2" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.ast_leader_id}/${players.ast_leader_name.toLowerCase().replace(" ", "-")}`}>
+                                <div className="flex items-center">
+                                    <img src={players.ast_leader_photo_url} alt={players.ast_leader_name} className="h-12 object-contain mr-2" />
+                                    {/* player info div */}
+                                    <div>
+                                        <p className="font-bold">{players.ast_leader_name} <span className="font-light">{convertPlayerPosition(players.ast_leader_position)} #{players.ast_leader_number}</span></p>
+                                        <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.ast_leader_stat}</p>
+                                    </div>
 
-                                {/* player info div */}
-                                <div>
-                                    <p>Trae Young <span className="font-light">PG #11</span></p>
-                                    <p className="text-2xl font-bold">10.9</p>
                                 </div>
+                            </Link>
 
-                            </div>
-                            
                         </div>
 
                         <Separator className="w-4/5" />
@@ -63,17 +72,18 @@ const TeamLeaders = () => {
 
                         <div className="text-sm">
                             <p className="mb-2 font-bold ">Field Goal Percentage</p>
-                            <div className="flex items-center">
-                                <div className="bg-red-500 h-12 w-12 rounded-full mr-2" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.fg_percentage_leader_id}/${players.fg_percentage_leader_name.toLowerCase().replace(" ", "-")}`}>
+                                <div className="flex items-center">
+                                    <img src={players.fg_percentage_leader_photo_url} alt={players.fg_percentage_leader_name} className="h-12 object-contain mr-2" />
+                                    {/* player info div */}
+                                    <div>
+                                        <p className="font-bold">{players.fg_percentage_leader_name} <span className="font-light">{convertPlayerPosition(players.fg_percentage_leader_position)} #{players.fg_percentage_leader_number}</span></p>
+                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.fg_percentage_leader_stat}%</p>
+                                    </div>
 
-                                {/* player info div */}
-                                <div>
-                                    <p>Onyeka Okongwu <span className="font-light">F #17</span></p>
-                                    <p className="text-2xl font-bold">61.0</p>
                                 </div>
+                            </Link>
 
-                            </div>
-                            
                         </div>
 
                     </div>
@@ -88,16 +98,17 @@ const TeamLeaders = () => {
                         {/* steals */}
                         <div className="text-sm">
                             <p className="mb-2 font-bold ">Steals Per Game</p>
-                            <div className="flex items-center">
-                                <div className="bg-red-500 h-12 w-12 rounded-full mr-2" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.stl_leader_id}/${players.stl_leader_name.toLowerCase().replace(" ", "-")}`}>
+                                <div className="flex items-center">
+                                    <img src={players.stl_leader_photo_url} alt={players.stl_leader_name} className="h-12 object-contain mr-2" />
+                                    {/* player info div */}
+                                    <div>
+                                        <p className="font-bold">{players.stl_leader_name} <span className="font-light">{convertPlayerPosition(players.stl_leader_position)} #{players.stl_leader_number}</span></p>
+                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.stl_leader_stat}</p>
+                                    </div>
 
-                                {/* player info div */}
-                                <div>
-                                    <p>Trae Young <span className="font-light">PG #11</span></p>
-                                    <p className="text-2xl font-bold">1.4</p>
                                 </div>
-
-                            </div>
+                            </Link>
 
                         </div>
 
@@ -107,17 +118,18 @@ const TeamLeaders = () => {
 
                         <div className="text-sm">
                             <p className="mb-2 font-bold ">Blocks Per Game</p>
-                            <div className="flex items-center">
-                                <div className="bg-red-500 h-12 w-12 rounded-full mr-2" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.blk_leader_id}/${players.blk_leader_name.toLowerCase().replace(" ", "-")}`}>
+                                <div className="flex items-center">
+                                    <img src={players.blk_leader_photo_url} alt={players.blk_leader_name} className="h-12 object-contain mr-2" />
+                                    {/* player info div */}
+                                    <div>
+                                        <p className="font-bold">{players.blk_leader_name} <span className="font-light">{convertPlayerPosition(players.blk_leader_position)} #{players.blk_leader_number}</span></p>
+                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.blk_leader_stat}</p>
+                                    </div>
 
-                                {/* player info div */}
-                                <div>
-                                    <p>Clint Capela <span className="font-light">C #15</span></p>
-                                    <p className="text-2xl font-bold">1.5</p>
                                 </div>
+                            </Link>
 
-                            </div>
-                            
                         </div>
 
                         <Separator className="w-4/5" />
@@ -126,17 +138,18 @@ const TeamLeaders = () => {
 
                         <div className="text-sm">
                             <p className="mb-2 font-bold ">Rebounds Per Game</p>
-                            <div className="flex items-center">
-                                <div className="bg-red-500 h-12 w-12 rounded-full mr-2" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.reb_leader_id}/${players.reb_leader_name.toLowerCase().replace(" ", "-")}`}>
+                                <div className="flex items-center">
+                                    <img src={players.reb_leader_photo_url} alt={players.reb_leader_name} className="h-12 object-contain mr-2" />
+                                    {/* player info div */}
+                                    <div>
+                                        <p className="font-bold">{players.reb_leader_name} <span className="font-light">{convertPlayerPosition(players.reb_leader_position)} #{players.reb_leader_number}</span></p>
+                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.reb_leader_stat}</p>
+                                    </div>
 
-                                {/* player info div */}
-                                <div>
-                                    <p>Clint Capela <span className="font-light">C #15</span></p>
-                                    <p className="text-2xl font-bold">10.6</p>
                                 </div>
+                            </Link>
 
-                            </div>
-                            
                         </div>
 
 
@@ -147,7 +160,7 @@ const TeamLeaders = () => {
             </CardContent>
 
             <CardFooter className="text-sm font-semibold text-blue-700">
-                <Link to="/standings">
+                <Link to={`/nba/teams/${team.abbreviation}?view=stats`}>
                     See Full Team Stats
                 </Link>
             </CardFooter>

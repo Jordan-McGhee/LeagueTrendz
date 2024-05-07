@@ -138,61 +138,83 @@ export interface TeamExpanded {
     team_standings: TeamStandingsItem[]
 }
 
-export interface TeamGamesState {
-    games: {
-        game_id: number,
-        game_date: string,
-        team_score: string,
-        opp_team_id: number,
-        opp_abbreviation: string,
-        opp_full_name: string,
-        opp_team_score: string,
-        game_result: string,
-        game_location: string
-    }[]
+export interface TeamGames {
+    game_id: number,
+    game_date: string,
+    team_score: string,
+    opp_team_id: number,
+    opp_abbreviation: string,
+    opp_full_name: string,
+    opp_team_score: string,
+    game_result: string,
+    game_location: string
 }
 
-export interface TeamPlayersState{
-    players: {
-        team_id: number,
-        full_name: string,
-        abbreviation: string,
-        pts_leader_id: number,
-        pts_leader_name: string,
-        pts_leader_photo_url: string,
-        pts_leader_stat: string,
-        ast_leader_id: number,
-        ast_leader_name: string,
-        ast_leader_photo_url: string,
-        ast_leader_stat: string,
-        fg_percentage_leader_id: number,
-        fg_percentage_leader_name: string,
-        fg_percentage_leader_photo_url: string,
-        fg_percentage_leader_stat: string,
-        stl_leader_id: number,
-        stl_leader_name: string,
-        stl_leader_photo_url: string,
-        stl_leader_stat: string,
-        reb_leader_id: number,
-        reb_leader_name: string,
-        reb_leader_photo_url: string,
-        reb_leader_stat: string,
-        blk_leader_id: number,
-        blk_leader_name: string,
-        blk_leader_photo_url: string,
-        blk_leader_stat: string,
-    }
+export interface TeamGamesState {
+    games: TeamGames[]
+}
+
+export interface TeamPlayersState {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    pts_leader_id: number,
+    pts_leader_name: string,
+    pts_leader_position: string,
+    pts_leader_number: number,
+    pts_leader_photo_url: string,
+    pts_leader_stat: string,
+    ast_leader_id: number,
+    ast_leader_name: string,
+    ast_leader_position: string,
+    ast_leader_number: number,
+    ast_leader_photo_url: string,
+    ast_leader_stat: string,
+    fg_percentage_leader_id: number,
+    fg_percentage_leader_name: string,
+    fg_percentage_leader_position: string,
+    fg_percentage_leader_number: number,
+    fg_percentage_leader_photo_url: string,
+    fg_percentage_leader_stat: string,
+    stl_leader_id: number,
+    stl_leader_name: string,
+    stl_leader_position: string,
+    stl_leader_number: number,
+    stl_leader_photo_url: string,
+    stl_leader_stat: string,
+    reb_leader_id: number,
+    reb_leader_name: string,
+    reb_leader_position: string,
+    reb_leader_number: number,
+    reb_leader_photo_url: string,
+    reb_leader_stat: string,
+    blk_leader_id: number,
+    blk_leader_name: string,
+    blk_leader_position: string,
+    blk_leader_number: number,
+    blk_leader_photo_url: string,
+    blk_leader_stat: string,
 }
 
 // TEAM PAGEPROPS
 export interface TeamHomeProps {
     team: TeamExpanded,
-    games: TeamGamesState,
+    games: TeamGames[],
     players: TeamPlayersState
 }
 
 export interface TeamPageProps {
     team: TeamExpanded
+}
+
+export interface TeamScheduleProps {
+    team: TeamExpanded,
+    games: TeamGames[]
+}
+
+export interface TeamPlayersProps {
+    team: TeamExpanded,
+    players: TeamPlayersState
 }
 
 // TEAM SCHEDULE

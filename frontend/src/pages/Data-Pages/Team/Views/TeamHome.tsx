@@ -3,33 +3,35 @@ import React from "react";
 // ui imports
 import { Separator } from "../../../../components/ui/separator";
 
+// type imports
+import { TeamHomeProps } from "../../../../types"
+
 // component imports
 import TeamSchedule from "../../../../components/Desktop/SingleTeamPage/TeamSchedule";
-import TeamStandings from "../../../../components/Desktop/PlayerPage/Overview/OverviewTeamStandings";
+import Standings from "../../../../components/Desktop/SingleTeamPage/Standings"
+
 import TeamStats from "../../../../components/Desktop/SingleTeamPage/TeamStats";
-import TeamInjuries from "../../../../components/Desktop/SingleTeamPage/TeamInjuries";
 import TeamLeaders from "../../../../components/Desktop/SingleTeamPage/TeamLeaders";
 
-const TeamHome = () => {
+const TeamHome: React.FC<TeamHomeProps> = ({ team, games, players }) => {
 
     return (
-        <div className="h-fit">
-            <TeamSchedule />
+        <div className="h-fit w-full">
+            <TeamSchedule team={team} games={games} />
 
             {/* content div */}
-            <div className="flex gap-x-4 mt-4">
+            <div className="flex gap-x-4 mt-4 w-full">
 
                 {/* left side */}
                 <div className="w-[60%] h-lvh flex flex-col gap-y-4">
-                    <TeamStats />
-                    <TeamLeaders />
+                    <TeamStats team={team} />
+                    <TeamLeaders team={team} players={players} />
                 </div>
 
                 {/* right side */}
                 <div className="w-[35%] h-lvh flex flex-col gap-y-4">
-                    {/* <TeamStandings /> */}
+                    <Standings team={team} />
 
-                    <TeamInjuries />
                 </div>
 
             </div>

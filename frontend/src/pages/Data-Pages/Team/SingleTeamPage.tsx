@@ -6,7 +6,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useFetch } from "../../../Hooks/useFetch"
 
 // type imports
-import { TeamExpanded, TeamGamesState, TeamPlayersState } from "../../../types"
+import { TeamExpanded, TeamGames, TeamPlayersState } from "../../../types"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
@@ -41,8 +41,8 @@ const SingleTeamPage = () => {
 
     // data states
     const [team, setTeam] = useState<TeamExpanded | undefined>()
-    const [ games, setGames ] = useState<TeamGamesState | undefined>()
-    const [ players, setPlayers ] = useState<TeamPlayersState | undefined>()
+    const [games, setGames] = useState<TeamGames[] | undefined>()
+    const [players, setPlayers] = useState<TeamPlayersState | undefined>()
     const [currentAbbreviation, setCurrentAbbreviation] = useState<string | undefined>(abbreviation)
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -59,7 +59,7 @@ const SingleTeamPage = () => {
                 setTeam(responseData.team)
                 setGames(responseData.games)
                 setPlayers(responseData.players)
-                console.log(team)
+                console.log(responseData.team)
             } catch (error) {
 
             }
@@ -119,7 +119,7 @@ const SingleTeamPage = () => {
             {isLoading && <LoadingPage />}
 
             {
-                team &&
+                team && games && players &&
                 <Card>
                     <CardHeader>
 
@@ -127,19 +127,31 @@ const SingleTeamPage = () => {
                             <div className="flex items-center gap-x-4 mb-4">
 
                                 {/* logo placeholder */}
-                                <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-20 object-contain" />
+                                <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-24 object-contain" />
 
                                 <div className="flex flex-col gap-y-2">
                                     <div>
-                                        <CardTitle className="text-2xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color }} className="font-bold">{teamNameLast}</span></CardTitle>
+                                        <CardTitle className="text-4xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color }} className="font-bold">{teamNameLast}</span></CardTitle>
                                     </div>
 
                                     {/* team info div */}
-                                    <div className="flex items-center gap-x-2 text-sm">
+                                    <div className="flex items-center justify-between uppercase max-w-64">
                                         {/* <Button style={{ backgroundColor: team.main_color }}>Add to Favorites</Button> */}
-                                        <p>{team.wins}-{team.losses}</p>
-                                        <p>|</p>
-                                        <p><span className="font-semibold">3rd</span> in Southeast Division</p>
+                                        <div className="text-center">
+                                            <p className="font-light text-sm">RECORD</p>
+                                            <p className="font-bold track">{team.wins}-{team.losses}</p>
+                                        </div>
+                                        
+                                        <div className="text-center">
+                                            <p className="font-light text-sm">Conference</p>
+                                            <p className="font-bold">{team.conference}</p>
+                                        </div>
+
+                                        <div className="text-center">
+                                            <p className="font-light text-sm">Division</p>
+                                            <p className="font-bold">{team.division}</p>
+                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -206,11 +218,11 @@ const SingleTeamPage = () => {
                     </CardHeader>
 
                     <CardContent>
-                        {selectedMenuItem === "home" && <TeamHome />}
+                        {selectedMenuItem === "home" && <TeamHome team={team} games={games} players={players} />}
                         {selectedMenuItem === "stats" && <Stats />}
                         {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}
-                        {selectedMenuItem === "history" && <TeamHome />}
+                        {selectedMenuItem === "history" && <TeamHome team={team} games={games} players={players} />}
 
                     </CardContent>
                 </Card>

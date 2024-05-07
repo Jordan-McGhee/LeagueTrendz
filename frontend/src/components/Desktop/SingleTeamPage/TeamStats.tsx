@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
 
+// type imports
+import { TeamPageProps } from "@/types"
+
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card"
 import { Separator } from "../../ui/separator"
 
-const TeamStats = () => {
+const TeamStats: React.FC<TeamPageProps> = ({ team }) => {
 
     return (
         <Card>
@@ -21,22 +24,22 @@ const TeamStats = () => {
                     {/* points per game */}
                     <div className="text-center flex flex-col gap-y-2">
                         <p className="text-sm">Points Per Game</p>
-                        <p className="text-red-700 font-black text-5xl">121.7</p>
-                        <p className="font-bold">#2 in the NBA</p>
+                        <p className="font-black text-5xl" style={{color: team.main_color}}>{team.avg_pts}</p>
+                        <p className="font-bold">#{team.pts_rank} in the NBA</p>
                     </div>
 
                     {/* rebounds per game */}
                     <div className="text-center flex flex-col gap-y-2">
                         <p className="text-sm">Rebounds Per Game</p>
-                        <p className="text-red-700 font-black text-5xl">44.9</p>
-                        <p className="font-bold">#17 in the NBA</p>
+                        <p className="font-black text-5xl" style={{color: team.main_color}}>{team.avg_reb}</p>
+                        <p className="font-bold">#{team.reb_rank} in the NBA</p>
                     </div>
 
                     {/* assists per game */}
                     <div className="text-center flex flex-col gap-y-2">
                         <p className="text-sm">Assists Per Game</p>
-                        <p className="text-red-700 font-black text-5xl">26.3</p>
-                        <p className="font-bold">#12 in the NBA</p>
+                        <p className="font-black text-5xl" style={{color: team.main_color}}>{team.avg_ast}</p>
+                        <p className="font-bold">#{team.ast_rank} in the NBA</p>
                     </div>
 
                 </div>
@@ -44,7 +47,7 @@ const TeamStats = () => {
             </CardContent>
 
             <CardFooter className="text-sm font-semibold text-blue-700">
-                <Link to="/standings">
+                <Link to={"/standings"}>
                     See All Team Stats
                 </Link>
             </CardFooter>
