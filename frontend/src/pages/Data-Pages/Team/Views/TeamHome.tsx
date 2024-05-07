@@ -5,7 +5,7 @@ import { Separator } from "../../../../components/ui/separator";
 
 // component imports
 import TeamSchedule from "../../../../components/Desktop/SingleTeamPage/TeamSchedule";
-import TeamStandings from "../../../../components/Desktop/SingleTeamPage/TeamStandings";
+import TeamStandings from "../../../../components/Desktop/PlayerPage/Overview/OverviewTeamStandings";
 import TeamStats from "../../../../components/Desktop/SingleTeamPage/TeamStats";
 import TeamInjuries from "../../../../components/Desktop/SingleTeamPage/TeamInjuries";
 import TeamLeaders from "../../../../components/Desktop/SingleTeamPage/TeamLeaders";

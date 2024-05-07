@@ -100,9 +100,99 @@ export interface AllTeamsState {
     southwest: Team[]
 }
 
-// // TEAM PAGE PROPS
+// // TEAM PAGE 
+
+// TEAM HOME STATE
+
+export interface TeamStandingsItem {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    wins: number,
+    losses: number,
+    pct: string,
+    gb: number,
+    last_10: string
+}
+
+export interface TeamExpanded {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    league_id: number,
+    description: string,
+    wins: number,
+    losses: number,
+    conference: string,
+    division: string,
+    stadium: string,
+    stadium_location: string,
+    head_coach: string,
+    main_color: string,
+    avg_pts: string,
+    pts_rank: string,
+    avg_reb: string,
+    reb_rank: string,
+    avg_ast: string,
+    ast_rank: string,
+    team_standings: TeamStandingsItem[]
+}
+
+export interface TeamGamesState {
+    games: {
+        game_id: number,
+        game_date: string,
+        team_score: string,
+        opp_team_id: number,
+        opp_abbreviation: string,
+        opp_full_name: string,
+        opp_team_score: string,
+        game_result: string,
+        game_location: string
+    }[]
+}
+
+export interface TeamPlayersState{
+    players: {
+        team_id: number,
+        full_name: string,
+        abbreviation: string,
+        pts_leader_id: number,
+        pts_leader_name: string,
+        pts_leader_photo_url: string,
+        pts_leader_stat: string,
+        ast_leader_id: number,
+        ast_leader_name: string,
+        ast_leader_photo_url: string,
+        ast_leader_stat: string,
+        fg_percentage_leader_id: number,
+        fg_percentage_leader_name: string,
+        fg_percentage_leader_photo_url: string,
+        fg_percentage_leader_stat: string,
+        stl_leader_id: number,
+        stl_leader_name: string,
+        stl_leader_photo_url: string,
+        stl_leader_stat: string,
+        reb_leader_id: number,
+        reb_leader_name: string,
+        reb_leader_photo_url: string,
+        reb_leader_stat: string,
+        blk_leader_id: number,
+        blk_leader_name: string,
+        blk_leader_photo_url: string,
+        blk_leader_stat: string,
+    }
+}
+
+// TEAM PAGEPROPS
+export interface TeamHomeProps {
+    team: TeamExpanded,
+    games: TeamGamesState,
+    players: TeamPlayersState
+}
+
 export interface TeamPageProps {
-    team: Team
+    team: TeamExpanded
 }
 
 // TEAM SCHEDULE
@@ -534,7 +624,7 @@ export interface AwardsDict {
 
 export interface AwardItemProps {
     award: string,
-    years: number[] 
+    years: number[]
 }
 
 // player career history

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../../../../Hooks/useFetch";
 
 // type imports
-import { Player, TeamPageProps, Team } from "../../../../types"
+import { Player, TeamPageProps } from "../../../../types"
 
 // ui imports
 import { ColumnDef } from "@tanstack/react-table";

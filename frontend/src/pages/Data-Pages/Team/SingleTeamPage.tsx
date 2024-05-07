@@ -6,7 +6,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useFetch } from "../../../Hooks/useFetch"
 
 // type imports
-import { Team } from "../../../types"
+import { TeamExpanded, TeamGamesState, TeamPlayersState } from "../../../types"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
@@ -40,7 +40,9 @@ const SingleTeamPage = () => {
     const navigate = useNavigate()
 
     // data states
-    const [team, setTeam] = useState<Team | undefined>()
+    const [team, setTeam] = useState<TeamExpanded | undefined>()
+    const [ games, setGames ] = useState<TeamGamesState | undefined>()
+    const [ players, setPlayers ] = useState<TeamPlayersState | undefined>()
     const [currentAbbreviation, setCurrentAbbreviation] = useState<string | undefined>(abbreviation)
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -55,6 +57,8 @@ const SingleTeamPage = () => {
             try {
                 responseData = await sendRequest(url)
                 setTeam(responseData.team)
+                setGames(responseData.games)
+                setPlayers(responseData.players)
                 console.log(team)
             } catch (error) {
 

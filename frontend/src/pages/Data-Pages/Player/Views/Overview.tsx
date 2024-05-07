@@ -8,7 +8,7 @@ import { PlayerPageProps, OverviewData } from "../../../../types";
 
 // component imports
 import OverviewRecentGames from "../../../../components/Desktop/PlayerPage/Overview/OverviewRecentGames"
-import TeamStandings from "../../../../components/Desktop/SingleTeamPage/TeamStandings";
+import TeamStandings from "../../../../components/Desktop/PlayerPage/Overview/OverviewTeamStandings";
 import SwitchPlayer from "../../../../components/Desktop/PlayerPage/Overview/SwitchPlayer";
 import OverviewSplits from "../../../../components/Desktop/PlayerPage/Overview/OverviewSplits";
 
