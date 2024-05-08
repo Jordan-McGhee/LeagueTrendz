@@ -13,27 +13,29 @@ import TeamLogo from "../../ui/TeamLogo"
 
 const SingleGame: React.FC<TeamGames> = ({ game_id, game_date, team_score, opp_team_id, opp_abbreviation, opp_full_name, opp_team_score, game_result, game_location }) => {
 
-    const outcome = game_result === "W" ? (<p className="flex items-center gap-x-1 group-hover:underline group-hover:underline-offset-2"><span className="text-green-600">W</span>{team_score}-{opp_team_score}</p>) : (<p className="flex items-center gap-x-1 group-hover:underline group-hover:underline-offset-2"><span className="text-red-600">L</span>{opp_team_score}-{team_score}</p>)
+    const outcome = game_result === "W" ? (<p className="flex items-center gap-x-1"><span className="text-green-600">W</span>{team_score}-{opp_team_score}</p>) : (<p className="flex items-center gap-x-1"><span className="text-red-600">L</span>{opp_team_score}-{team_score}</p>)
 
     return (
 
-        <Link to={'/'} className="hover:scale-105 group">
-            {/* // content div */}
-            <div className="flex flex-col items-center text-xs text-center border px-4 py-3 rounded-sm" key={game_id}>
+        // content div
+        <div className="flex flex-col items-center text-xs text-center border px-4 py-3 rounded-sm hover:scale-105" key={game_id}>
 
-                {/* date & logo */}
-                <div className="flex gap-x-2 items-center">
-                    <p>{convertDateTeamSchedule(game_date)}</p>
+            {/* date & logo */}
+            <div className="flex gap-x-2 items-center">
+                <p>{convertDateTeamSchedule(game_date)}</p>
+                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${opp_abbreviation.toLowerCase()}`}>
                     <TeamLogo team_id={opp_team_id} abbreviation={opp_abbreviation} logoClass="size-5 object-contain" />
-                </div>
-
-                {/* vs/@ and team abbreviation */}
-                <p className="my-1 font-bold">{game_location === "HOME" ? "VS" : "@"} {opp_abbreviation}</p>
-
-                {outcome}
-
+                </Link>
             </div>
-        </Link>
+
+            {/* vs/@ and team abbreviation */}
+            <p className="my-1 font-bold">{game_location === "HOME" ? "VS" : "@"} {opp_abbreviation}</p>
+
+            <Link to={'/'} className="hover:underline">
+                {outcome}
+            </Link>
+
+        </div>
     )
 }
 
@@ -59,7 +61,7 @@ const TeamSchedule: React.FC<TeamScheduleProps> = ({ team, games }) => {
                         game_location={game.game_location} />
                 ))}
 
-                <Link to={`/nba/teams/${team.abbreviation}?view=schedule`}className="flex flex-col justify-center items-center px-6 py-3 border text-sm">
+                <Link to={`/nba/teams/${team.abbreviation}?view=schedule`} className="flex flex-col justify-center items-center px-6 py-3 border text-sm">
                     <p>See Full</p>
                     <p>Schedule</p>
                 </Link>

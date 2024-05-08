@@ -67,12 +67,14 @@
     <!-- - change icons to not be ugly DONE -->
 
 - PLAYER PAGE
-    - LOOP OVER TRANSACTIONS & PLAYER AWARDS
-    - Styling for player status
-    - Player Game Logs
+    <!-- - LOOP OVER TRANSACTIONS & PLAYER AWARDS DONE -->
+    <!-- - Styling for player status DONE -->
+    <!-- - Player Game Logs DONE -->
+    - Fix last game styling
+        - date and outcome should always be in direct center. Use grid?
     - Add Link to View Game
     - Fix window size on each view
         - currently scrolls too far down without content being there
     - Career Highlights:
-        - case if player has no awards
-        - fix length issue in career highlights
+        <!-- - case if player has no awards DONE -->
+        <!-- - fix length issue in career highlights DONE -->

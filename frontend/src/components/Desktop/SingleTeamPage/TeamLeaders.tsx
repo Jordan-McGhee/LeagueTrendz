@@ -8,7 +8,7 @@ import { TeamPlayersProps } from "../../../types"
 import { convertPlayerPosition } from "../../../Utils/utils"
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card"
+import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card"
 import { Separator } from "../../ui/separator"
 
 const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
@@ -16,8 +16,12 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>
+                <CardTitle className="flex justify-between">
                     2023-24 Team Leaders
+
+                    <Link to={`/nba/teams/${team.abbreviation}?view=stats`} className="font-semibold text-blue-700">
+                        See Full Team Stats
+                    </Link>
                 </CardTitle>
             </CardHeader>
 
@@ -78,7 +82,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     {/* player info div */}
                                     <div>
                                         <p className="font-bold">{players.fg_percentage_leader_name} <span className="font-light">{convertPlayerPosition(players.fg_percentage_leader_position)} #{players.fg_percentage_leader_number}</span></p>
-                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.fg_percentage_leader_stat}%</p>
+                                        <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.fg_percentage_leader_stat}%</p>
                                     </div>
 
                                 </div>
@@ -104,7 +108,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     {/* player info div */}
                                     <div>
                                         <p className="font-bold">{players.stl_leader_name} <span className="font-light">{convertPlayerPosition(players.stl_leader_position)} #{players.stl_leader_number}</span></p>
-                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.stl_leader_stat}</p>
+                                        <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.stl_leader_stat}</p>
                                     </div>
 
                                 </div>
@@ -124,7 +128,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     {/* player info div */}
                                     <div>
                                         <p className="font-bold">{players.blk_leader_name} <span className="font-light">{convertPlayerPosition(players.blk_leader_position)} #{players.blk_leader_number}</span></p>
-                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.blk_leader_stat}</p>
+                                        <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.blk_leader_stat}</p>
                                     </div>
 
                                 </div>
@@ -144,7 +148,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     {/* player info div */}
                                     <div>
                                         <p className="font-bold">{players.reb_leader_name} <span className="font-light">{convertPlayerPosition(players.reb_leader_position)} #{players.reb_leader_number}</span></p>
-                                        <p className="text-2xl font-bold" style={{color: team.main_color}}>{players.reb_leader_stat}</p>
+                                        <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.reb_leader_stat}</p>
                                     </div>
 
                                 </div>
@@ -158,12 +162,6 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                 </div>
 
             </CardContent>
-
-            <CardFooter className="text-sm font-semibold text-blue-700">
-                <Link to={`/nba/teams/${team.abbreviation}?view=stats`}>
-                    See Full Team Stats
-                </Link>
-            </CardFooter>
         </Card>
     )
 }

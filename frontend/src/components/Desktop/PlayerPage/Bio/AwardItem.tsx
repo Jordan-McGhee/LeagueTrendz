@@ -12,7 +12,7 @@ const AwardItem: React.FC<AwardItemProps> = ({ award, years }) => {
             awardName = 'Rookie of the Year'
             imageSrc = require('../../../../nba-trophies/wilt-chamberlain-rookie.png')
             break;
-        case 'mostImpoved':
+        case 'mostImproved':
             awardName = 'Most Improved Player'
             imageSrc = require('../../../../nba-trophies/george-mikan-most-improved.png')
             break;

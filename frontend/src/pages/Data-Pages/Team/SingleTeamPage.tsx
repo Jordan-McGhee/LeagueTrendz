@@ -43,13 +43,12 @@ const SingleTeamPage = () => {
     const [team, setTeam] = useState<TeamExpanded | undefined>()
     const [games, setGames] = useState<TeamGames[] | undefined>()
     const [players, setPlayers] = useState<TeamPlayersState | undefined>()
-    const [currentAbbreviation, setCurrentAbbreviation] = useState<string | undefined>(abbreviation)
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
     // fetch from database
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${currentAbbreviation}`
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${abbreviation}`
 
         let responseData: any
 
@@ -59,14 +58,13 @@ const SingleTeamPage = () => {
                 setTeam(responseData.team)
                 setGames(responseData.games)
                 setPlayers(responseData.players)
-                console.log(responseData.team)
             } catch (error) {
 
             }
         }
 
         fetchTeam()
-    }, [currentAbbreviation, sendRequest])
+    }, [abbreviation, sendRequest])
 
     // MENUBAR
     const [selectedMenuItem, setSelectedMenuItem] = useState<string>('home')
@@ -106,7 +104,6 @@ const SingleTeamPage = () => {
 
 
     const teamSelectHandler = (value: string) => {
-        setCurrentAbbreviation(value)
         navigate(`/nba/teams/${value}?view=${selectedMenuItem}`)
     }
 
@@ -158,9 +155,9 @@ const SingleTeamPage = () => {
                             </div>
 
                             {/* SELECT A DIFFERENT TEAM */}
-                            <Select onValueChange={(newValue) => teamSelectHandler(newValue)}>
+                            <Select value={abbreviation} onValueChange={(newValue) => teamSelectHandler(newValue)}>
                                 <SelectTrigger className="w-[300px]">
-                                    <SelectValue placeholder='Change NBA Teams' defaultValue={team.full_name} />
+                                    <SelectValue placeholder='Change NBA Teams'/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {

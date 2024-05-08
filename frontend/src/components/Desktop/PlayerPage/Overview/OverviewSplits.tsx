@@ -15,9 +15,10 @@ import OverviewSplitsTable from "./OverviewSplitsTable";
 
 const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, splits }) => {
 
-    // was a home game
+    // checks if last game was a home game
     let homeGame = lastGame.game_location === 'HOME'
 
+    // home and away team variables based on game location
     let homeTeamName = homeGame ? shortenTeamName(lastGame.player_team_id) : shortenTeamName(lastGame.opp_team_id)
     let homeTeamAbbreviation = homeGame ? lastGame.player_team_abbreviation : lastGame.opp_team_abbreviation
     let homeTeamId = homeGame ? lastGame.player_team_id : lastGame.opp_team_id
@@ -46,7 +47,9 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                 <CardTitle>
                     <div className="flex justify-between">
                         <p>Last Game</p>
-                        <p>See Full Splits</p>
+                        <Link to={`/nba/players/id/${splits.player_id}/${splits.player_name.toLowerCase().replace(" ", "-")}?view=${splits}`} className="text-blue-600">
+                            See Full Splits
+                        </Link>
                     </div>
                 </CardTitle>
             </CardHeader>
@@ -56,7 +59,7 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                 <div>
 
                     {/* next team data/time div */}
-                    <div className="flex items-center justify-around w-4/5 mx-auto mb-2">
+                    <div className="flex items-center justify-around mx-auto mb-2">
 
                         {/* home team */}
                         <div className="flex items-center gap-x-4">

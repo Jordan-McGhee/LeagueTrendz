@@ -158,7 +158,7 @@ const PlayerCareerHighlights: React.FC<PlayerPageProps> = ({ player, currentTeam
         }
     }
 
-
+    console.log(awards)
 
     return (
         <Card>

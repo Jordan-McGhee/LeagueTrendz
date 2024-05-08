@@ -74,9 +74,6 @@ const PlayerCareerHistory: React.FC<PlayerPageProps> = ({ player, currentTeam })
     // create set of teams, this will give us most recent first and remove any duplicates
     let teamSet = new Set(careerHistory.teamOrder)
 
-    console.log(teamSet)
-    console.log(careerHistory)
-
     return (
         <Card>
             <CardHeader>

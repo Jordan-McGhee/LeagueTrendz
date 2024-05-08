@@ -152,14 +152,14 @@ export const shortenTeamName = (team_id: number) => {
         14: "Grizzlies",
         15: "Heat",
         16: "Bucks",
-        17: "Timberwolves",
+        17: "T'Wolves",
         18: "Pelicans",
         19: "Knicks",
         20: "Thunder",
         21: "Magic",
         22: "76ers",
         23: "Suns",
-        24: "Trail Blazers",
+        24: "Blazers",
         25: "Kings",
         26: "Spurs",
         27: "Raptors",
@@ -208,8 +208,8 @@ export const shortenYears = (years: number[]) => {
         displayYears.push(`${startYear}-${endLabel}`);
     }
 
-    console.log(displayYears.join(", ")); // Output: "2005-2006, 2009-Current"
-    return `${displayYears.join(", ")} (${years.length} Seasons)`;
+    // console.log(displayYears.join(", ")); // Output: "2005-2006, 2009-Current"
+    return `${displayYears.join(", ")} (${years.length} ${years.length === 1 ? "Season" : "Seasons"})`;
 };
 
 /**
