@@ -11,7 +11,7 @@ import { Player, TeamPageProps } from "../../../../types"
 import { ColumnDef } from "@tanstack/react-table";
 import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
 import { Button } from "../../../../components/ui/button"
-import { CaretSortIcon, CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon } from "@radix-ui/react-icons";
 import { DataTable } from "../../../../components/ui/DataTable";
 
 // component imports
@@ -217,7 +217,7 @@ const Roster: React.FC<TeamPageProps> = ({ team }) => {
             <Card>
                 <CardHeader>
                     <CardTitle>
-                        {team.full_name} Roster 2023-24
+                        2023-24 Roster
                     </CardTitle>
                 </CardHeader>
 

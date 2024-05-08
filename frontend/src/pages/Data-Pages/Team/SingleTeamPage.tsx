@@ -216,7 +216,7 @@ const SingleTeamPage = () => {
 
                     <CardContent>
                         {selectedMenuItem === "home" && <TeamHome team={team} games={games} players={players} />}
-                        {selectedMenuItem === "stats" && <Stats />}
+                        {selectedMenuItem === "stats" && <Stats team={team} players={players} />}
                         {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}
                         {selectedMenuItem === "history" && <TeamHome team={team} games={games} players={players} />}

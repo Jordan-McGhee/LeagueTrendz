@@ -54,7 +54,7 @@ const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
                 <Card>
                     <CardHeader>
                         <CardTitle>
-                            {team.full_name} Schedule 2023-24
+                            2023-24 Schedule
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
