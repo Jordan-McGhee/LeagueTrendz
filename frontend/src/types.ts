@@ -217,6 +217,89 @@ export interface TeamPlayersProps {
     players: TeamPlayersState
 }
 
+// TEAM STATS
+export interface PlayerStatsObject {
+    players: {
+        player_id: string,
+        name: string,
+        player_position: string,
+        jersey_number: number,
+        gp: number,
+        gs: number,
+        avg_min: string,
+        avg_pts: string,
+        avg_orb: string,
+        avg_drb: string,
+        avg_reb: string,
+        avg_ast: string,
+        avg_stl: string,
+        avg_blk: string,
+        avg_pf: string,
+        avg_turnovers: string,
+        ast_to_ratio: string,
+        avg_fgm: string,
+        avg_fga: string,
+        avg_fg_percentage: string,
+        avg_tpm: string,
+        avg_tpa: string,
+        avg_tp_percentage: string,
+        avg_ftm: string,
+        avg_fta: string,
+        avg_ft_percentage: string,
+        player_avg_two_m: string,
+        player_avg_two_a: string,
+        player_avg_two_percentage: string
+    }[]
+}
+
+export interface TeamStatsObject {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    gp: string,
+    wins: string,
+    losses: string,
+    win_percentage: string,
+    total_pts: string,
+    total_fgm: string,
+    total_fga: string,
+    total_tpm: string,
+    total_tpa: string,
+    total_ftm: string,
+    total_fta: string,
+    total_reb: string,
+    total_orb: string,
+    total_drb: string,
+    total_ast: string,
+    total_stl: string,
+    total_blk: string,
+    total_turnovers: string,
+    total_pf: string,
+    avg_pts: string,
+    avg_fgm: string,
+    avg_fga: string,
+    avg_fg_percentage: string,
+    avg_tpm: string,
+    avg_tpa: string,
+    avg_tp_percentage: string,
+    avg_ftm: string,
+    avg_fta: string,
+    avg_ft_percentage: string,
+    avg_reb: string,
+    avg_orb: string,
+    avg_drb: string,
+    avg_ast: string,
+    avg_stl: string,
+    avg_blk: string,
+    avg_turnovers: string,
+    avg_pf: string
+}
+
+export interface TeamStatsTableProps {
+    playerStats: PlayerStatsObject,
+    teamStats: TeamStatsObject
+}
+
 // TEAM SCHEDULE
 export interface TeamScheduleObject {
     game_id: number,

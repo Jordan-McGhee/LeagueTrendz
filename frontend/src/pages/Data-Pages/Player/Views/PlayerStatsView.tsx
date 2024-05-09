@@ -111,7 +111,7 @@ const PlayerStatsView: React.FC<PlayerStatsProps> = ({ player, currentTeam }) =>
                         {/* GLOSSARY */}
                         <div className="text-xs mt-4 flex justify-between">
 
-                            <div>
+                            <div className="flex flex-col gap-y-1">
                                 <p><span className="font-bold">3P%:</span> 3-Point Field Goal Percentage</p>
                                 <p><span className="font-bold">3PA:</span> 3-Point Field Goals Attempted Per Game</p>
                                 <p><span className="font-bold">3PM:</span> 3-Point Field Goals Made Per Game</p>
@@ -125,7 +125,7 @@ const PlayerStatsView: React.FC<PlayerStatsProps> = ({ player, currentTeam }) =>
                                 <p><span className="font-bold">FGA:</span> Field Goal Attempts Per Game</p>
                             </div>
 
-                            <div>
+                            <div className="flex flex-col gap-y-1">
                                 <p><span className="font-bold">FGM:</span> Field Goals Made Per Game</p>
                                 <p><span className="font-bold">FG%:</span> Field Goal Percentage</p>
                                 {/* <p><span className="font-bold">FLAG:</span> Flagrant Fouls</p> */}
@@ -136,7 +136,7 @@ const PlayerStatsView: React.FC<PlayerStatsProps> = ({ player, currentTeam }) =>
                                 <p><span className="font-bold">GS:</span> Games Started</p>
                             </div>
 
-                            <div>
+                            <div className="flex flex-col gap-y-1">
                                 <p><span className="font-bold">MIN:</span> Minutes Per Game</p>
                                 <p><span className="font-bold">OR:</span> Offensive Rebounds Per Game</p>
                                 <p><span className="font-bold">PF:</span> Fouls Per Game</p>

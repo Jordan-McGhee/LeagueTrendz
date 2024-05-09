@@ -16,6 +16,9 @@ router.get("/division", teamControllers.getDivisionTeams)
 // home
 router.get("/:abbreviation", teamControllers.getSingleTeam)
 
+// stats
+router.get("/:team_id/stats-regular", teamControllers.getTeamStatsRegularSeason)
+
 // schedule
 router.get("/:team_id/schedule-regular", teamControllers.getTeamScheduleRegularSeason)
 
