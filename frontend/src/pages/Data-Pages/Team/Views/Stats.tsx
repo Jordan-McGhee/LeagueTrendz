@@ -28,7 +28,7 @@ const data = require("../../../../DUMMYDATA/NBA_Roster.json")
 const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
     const [showPlayoffs, setShowPlayoffs] = useState<boolean>(false)
-    const [playerStats, setPlayerStats] = useState<PlayerStatsObject | undefined>()
+    const [playerStats, setPlayerStats] = useState<PlayerStatsObject[] | undefined>()
     const [teamStats, setTeamStats] = useState<TeamStatsObject | undefined>()
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -78,7 +78,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
                         {/* all stats table placeholder */}
                         <p className="my-8 font-semibold text-lg">Player Stats - All Splits</p>
-                        <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} />
+                        {/* <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} /> */}
 
 
                         {/* shooting stats table placeholder */}

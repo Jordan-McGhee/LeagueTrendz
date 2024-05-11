@@ -132,23 +132,23 @@ const SingleTeamPage = () => {
                                     </div>
 
                                     {/* team info div */}
-                                    <div className="flex items-center justify-between uppercase max-w-64">
+                                    <div className="flex items-center justify-between uppercase w-72">
                                         {/* <Button style={{ backgroundColor: team.main_color }}>Add to Favorites</Button> */}
-                                        <div className="text-center">
-                                            <p className="font-light text-sm">RECORD</p>
-                                            <p className="font-bold track">{team.wins}-{team.losses}</p>
-                                        </div>
                                         
                                         <div className="text-center">
                                             <p className="font-light text-sm">Conference</p>
-                                            <p className="font-bold">{team.conference}</p>
+                                            <p className="font-bold" style={{color: team.main_color}}>{team.conference}</p>
                                         </div>
 
                                         <div className="text-center">
                                             <p className="font-light text-sm">Division</p>
-                                            <p className="font-bold">{team.division}</p>
+                                            <p className="font-bold" style={{color: team.main_color}}>{team.division}</p>
                                         </div>
                                         
+                                        <div className="text-center">
+                                            <p className="font-light text-sm">RECORD</p>
+                                            <p className="font-bold" style={{color: team.main_color}}>{team.wins}-{team.losses}</p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -169,6 +169,8 @@ const SingleTeamPage = () => {
                                                     <SelectItem value={team.abbreviation.toLowerCase()}>{team.name}</SelectItem>
                                                 )
                                             }
+
+                                            return null
 
                                         })
                                     }
