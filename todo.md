@@ -78,3 +78,7 @@
     - Career Highlights:
         <!-- - case if player has no awards DONE -->
         <!-- - fix length issue in career highlights DONE -->
+
+
+- LONG PLAYER NAMES
+    - Add styling for players like Shai Gilgeous-Alexander

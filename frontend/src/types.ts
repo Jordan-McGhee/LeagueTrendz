@@ -294,7 +294,7 @@ export interface TeamStatsObject {
 }
 
 export interface TeamStatsTableProps {
-    playerStats: PlayerStatsObject,
+    playerStats: PlayerStatsObject[],
     teamStats: TeamStatsObject
 }
 

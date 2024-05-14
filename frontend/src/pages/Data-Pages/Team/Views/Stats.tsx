@@ -21,6 +21,7 @@ import { DataTable } from "../../../../components/ui/DataTable";
 import StatsTeamLeaders from "../../../../components/Desktop/SingleTeamPage/Stats/StatsTeamLeaders"
 import LoadingPage from "../../../LoadingPage"
 import TeamAllStatsTable from "../../../../components/Desktop/SingleTeamPage/Stats/TeamAllStatsTable";
+import TeamShootingStatsTable from "../../../../components/Desktop/SingleTeamPage/Stats/TeamShootingStatsTable";
 
 // dummy data import
 const data = require("../../../../DUMMYDATA/NBA_Roster.json")
@@ -76,16 +77,13 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
                         <StatsTeamLeaders team={team} players={players} />
 
-                        {/* all stats table placeholder */}
-                        <p className="my-8 font-semibold text-lg">Player Stats - All Splits</p>
-                        {/* <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} /> */}
+                        {/* all stats table */}
+                        <p className="my-4 font-semibold text-lg">Player Stats</p>
+                        <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} />
 
-
-                        {/* shooting stats table placeholder */}
-                        {/* <p className="my-4 font-semibold text-lg">Shooting Stats - All Splits</p>
-                    <div className="min-h-96 w-full bg-blue-200 mt-4 rounded-sm p-4">
-                        <p>Shooting Stats Table Placeholder</p>
-                    </div> */}
+                        {/* Shooting stats table */}
+                        <p className="my-4 font-semibold text-lg">Shooting Stats</p>
+                        <TeamShootingStatsTable playerStats={playerStats} teamStats={teamStats} />
 
                     </CardContent>
 

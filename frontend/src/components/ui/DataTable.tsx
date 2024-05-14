@@ -4,17 +4,19 @@ import React from "react"
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable, SortingState, getSortedRowModel } from "@tanstack/react-table"
 
 // ui imports
-import { Table, TableBody, TableRow, TableCell, TableHead, TableHeader } from "./table"
+import { Table, TableBody, TableRow, TableCell, TableHead, TableHeader, TableFooter } from "./table"
 
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
-    data: TData[]
+    data: TData[],
+    footer?: React.ReactNode
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    footer
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const table = useReactTable({
@@ -73,6 +75,13 @@ export function DataTable<TData, TValue>({
                         </TableRow>
                     )}
                 </TableBody>
+
+                {
+                    footer &&
+                    <TableFooter>
+                        {footer}
+                    </TableFooter>
+                }
             </Table>
         </div>
     )
