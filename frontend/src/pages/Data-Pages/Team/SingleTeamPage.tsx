@@ -19,6 +19,7 @@ import TeamHome from "./Views/TeamHome";
 import Roster from "./Views/Roster";
 import Stats from "./Views/Stats"
 import TeamSchedule from "./Views/TeamSchedule";
+import History from "./Views/History";
 
 // component imports
 import TeamLogo from "../../../components/ui/TeamLogo"
@@ -221,7 +222,7 @@ const SingleTeamPage = () => {
                         {selectedMenuItem === "stats" && <Stats team={team} players={players} />}
                         {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}
-                        {selectedMenuItem === "history" && <TeamHome team={team} games={games} players={players} />}
+                        {selectedMenuItem === "history" && <History team={team} />}
 
                     </CardContent>
                 </Card>

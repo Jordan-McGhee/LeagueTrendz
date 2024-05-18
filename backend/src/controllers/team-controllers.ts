@@ -201,7 +201,6 @@ export const getTeamScheduleRegularSeason = async (req: Request, res: Response, 
 }
 
 // get roster
-
 export const getTeamRoster = async (req: Request, res: Response, next: NextFunction) => {
     const { team_id } = req.params
 
@@ -218,4 +217,23 @@ export const getTeamRoster = async (req: Request, res: Response, next: NextFunct
     }
 
     res.status(200).json({ message: `Retrieved roster for team ${team_id}`, roster: rosterResponse.rows })
+}
+
+// get history
+export const getTeamHistory = async (req: Request, res: Response, next: NextFunction) => {
+    const { team_id } = req.params
+
+    const historyQuery: string = "SELECT * FROM histories WHERE team_id = $1"
+
+    let historyResponse: QueryResult
+
+    try {
+        historyResponse = await pool.query(historyQuery, [team_id])
+    } catch (error) {
+        console.log(`Error getting history for team: ${team_id}. ${error}`)
+
+        return res.status(500).json(`Error getting history for team: ${team_id}. ${error}`)
+    }
+
+    res.status(200).json({ message: `Retrieved roster for team ${team_id}`, history: historyResponse.rows })
 }

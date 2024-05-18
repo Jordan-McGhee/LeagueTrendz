@@ -23,9 +23,6 @@ import LoadingPage from "../../../LoadingPage"
 import TeamAllStatsTable from "../../../../components/Desktop/SingleTeamPage/Stats/TeamAllStatsTable";
 import TeamShootingStatsTable from "../../../../components/Desktop/SingleTeamPage/Stats/TeamShootingStatsTable";
 
-// dummy data import
-const data = require("../../../../DUMMYDATA/NBA_Roster.json")
-
 const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
     const [showPlayoffs, setShowPlayoffs] = useState<boolean>(false)

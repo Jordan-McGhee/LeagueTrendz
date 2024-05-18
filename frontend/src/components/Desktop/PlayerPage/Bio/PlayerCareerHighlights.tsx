@@ -103,10 +103,10 @@ const PlayerCareerHighlights: React.FC<PlayerPageProps> = ({ player, currentTeam
                 case 'Third Team All-League':
                     awards.thirdTeam.push(season);
                     break;
-                case 'First Team All-Defense':
+                case 'First Team All-Defensive':
                     awards.firstTeamDefense.push(season);
                     break;
-                case 'Second Team All-Defense':
+                case 'Second Team All-Defensive':
                     awards.secondTeamDefense.push(season);
                     break;
                 case 'All-Rookie Team':

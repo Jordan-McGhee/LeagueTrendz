@@ -159,8 +159,7 @@
     "imgURL":"https://i.ibb.co/cwqs7TY/atl2016.png","imgURLSmall":"https://i.imgur.com/bFOmyEh.png","colors":["#e03a3e","#C1D32F","#26282A"]},
     {"season":2021,"won":41,"lost":31,"playoffRoundsWon":2},
     {"season":2022,"won":43,"lost":39,"playoffRoundsWon":0},
-    {"season":2023,"won":41,"lost":41,"playoffRoundsWon":0,"hype":0.44,"pop":5.8,"stadiumCapacity":18118,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.44,"pop":5.8,"stadiumCapacity":18118,"numPlayersTradedAway":0}]
+    {"season":2023,"won":41,"lost":41,"playoffRoundsWon":0,"hype":0.44,"pop":5.8,"stadiumCapacity":18118,"numPlayersTradedAway":0}]
     },
     {"tid":1,"cid":0,"did":0,
     "region":"Boston","name":"Celtics","abbrev":"BOS","pop":4.6,"strategy":"contending",
@@ -270,8 +269,7 @@
     {"season":2020,"won":48,"lost":24,"playoffRoundsWon":2},
     {"season":2021,"won":36,"lost":36,"playoffRoundsWon":0},
     {"season":2022,"won":51,"lost":31,"playoffRoundsWon":3},
-    {"season":2023,"won":57,"lost":25,"playoffRoundsWon":2,"hype":0.64,"pop":4.6,"stadiumCapacity":18624,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.64,"pop":4.6,"stadiumCapacity":18624,"numPlayersTradedAway":0}]
+    {"season":2023,"won":57,"lost":25,"playoffRoundsWon":2,"hype":0.64,"pop":4.6,"stadiumCapacity":18624,"numPlayersTradedAway":0}]
     },
     {"tid":2,"cid":0,"did":0,
     "region":"Brooklyn","name":"Nets","abbrev":"BKN","pop":19.1,"strategy":"contending",
@@ -334,8 +332,7 @@
     {"season":2020,"won":35,"lost":37,"playoffRoundsWon":0},
     {"season":2021,"won":48,"lost":24,"playoffRoundsWon":1},
     {"season":2022,"won":44,"lost":38,"playoffRoundsWon":0},
-    {"season":2023,"won":45,"lost":37,"playoffRoundsWon":0,"hype":0.24,"pop":19.1,"stadiumCapacity":17732,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.24,"pop":19.1,"stadiumCapacity":17732,"numPlayersTradedAway":0}]
+    {"season":2023,"won":45,"lost":37,"playoffRoundsWon":0,"hype":0.24,"pop":19.1,"stadiumCapacity":17732,"numPlayersTradedAway":0}]
     },
     {"tid":3,"cid":0,"did":2,
     "region":"Charlotte","name":"Hornets","abbrev":"CHA","pop":2.5,"strategy":"rebuilding",
@@ -379,8 +376,7 @@
     {"season":2020,"won":23,"lost":42,"playoffRoundsWon":-1},
     {"season":2021,"won":33,"lost":39,"playoffRoundsWon":-1},
     {"season":2022,"won":43,"lost":39,"playoffRoundsWon":-1},
-    {"season":2023,"won":27,"lost":55,"playoffRoundsWon":-1,"hype":0.25,"pop":2.5,"stadiumCapacity":19077,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.20,"pop":2.5,"stadiumCapacity":19077,"numPlayersTradedAway":0}]},
+    {"season":2023,"won":27,"lost":55,"playoffRoundsWon":-1,"hype":0.25,"pop":2.5,"stadiumCapacity":19077,"numPlayersTradedAway":0}]},
     {"tid":4,"cid":0,"did":1,
     "region":"Chicago","name":"Bulls","abbrev":"CHI","pop":9.5,"strategy":"contending",
     "stadiumCapacity":20917,
@@ -450,8 +446,7 @@
     {"season":2020,"won":22,"lost":43,"playoffRoundsWon":-1},
     {"season":2021,"won":31,"lost":41,"playoffRoundsWon":-1},
     {"season":2022,"won":46,"lost":36,"playoffRoundsWon":0},
-    {"season":2023,"won":40,"lost":42,"playoffRoundsWon":-1,"hype":0.50,"pop":9.5,"stadiumCapacity":20917,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.40,"pop":9.5,"stadiumCapacity":20917,"numPlayersTradedAway":0}]
+    {"season":2023,"won":40,"lost":42,"playoffRoundsWon":-1,"hype":0.50,"pop":9.5,"stadiumCapacity":20917,"numPlayersTradedAway":0}]
     },
     {"tid":5,"cid":0,"did":1,
     "region":"Cleveland","name":"Cavaliers","abbrev":"CLE","pop":2.1,"strategy":"contending",
@@ -521,8 +516,7 @@
     {"season":2020,"won":19,"lost":46,"playoffRoundsWon":-1,"imgURL":"https://i.ibb.co/b3sKtb1/cle2018.png","imgURLSmall":"https://i.imgur.com/VXYRGJ5.png","colors":["#860038","#041E42","#FDBB30"]},
     {"season":2021,"won":22,"lost":50,"playoffRoundsWon":-1,"imgURL":"https://i.ibb.co/b3sKtb1/cle2018.png","imgURLSmall":"https://i.imgur.com/VXYRGJ5.png","colors":["#860038","#041E42","#FDBB30"]},
     {"season":2022,"won":44,"lost":38,"playoffRoundsWon":-1,"imgURL":"https://i.ibb.co/b3sKtb1/cle2018.png","imgURLSmall":"https://i.imgur.com/VXYRGJ5.png","colors":["#860038","#041E42","#FDBB30"]},
-    {"season":2023,"won":51,"lost":31,"playoffRoundsWon":0,"hype":0.35,"pop":2.1,"stadiumCapacity":20562,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.35,"pop":2.1,"stadiumCapacity":20562,"numPlayersTradedAway":0}]
+    {"season":2023,"won":51,"lost":31,"playoffRoundsWon":0,"hype":0.35,"pop":2.1,"stadiumCapacity":20562,"numPlayersTradedAway":0}]
     },
     {"tid":6,"cid":1,"did":3,
     "region":"Dallas","name":"Mavericks","abbrev":"DAL","pop":7.2,"strategy":"contending",
@@ -579,8 +573,7 @@
     {"season":2020,"won":43,"lost":32,"playoffRoundsWon":0},
     {"season":2021,"won":42,"lost":30,"playoffRoundsWon":0},
     {"season":2022,"won":52,"lost":30,"playoffRoundsWon":2},
-    {"season":2023,"won":38,"lost":44,"playoffRoundsWon":-1,"hype":0.55,"pop":7.2,"stadiumCapacity":19200,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.55,"pop":7.2,"stadiumCapacity":19200,"numPlayersTradedAway":0}]
+    {"season":2023,"won":38,"lost":44,"playoffRoundsWon":-1,"hype":0.55,"pop":7.2,"stadiumCapacity":19200,"numPlayersTradedAway":0}]
     },
     {"tid":7,"cid":1,"did":4,
     "region":"Denver","name":"Nuggets","abbrev":"DEN","pop":2.9,"strategy":"contending",
@@ -644,8 +637,7 @@
     {"season":2020,"won":46,"lost":27,"playoffRoundsWon":2},
     {"season":2021,"won":47,"lost":25,"playoffRoundsWon":1},
     {"season":2022,"won":48,"lost":34,"playoffRoundsWon":0},
-    {"season":2023,"won":53,"lost":29,"playoffRoundsWon":4,"hype":0.50,"pop":2.9,"stadiumCapacity":19155,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.60,"pop":2.9,"stadiumCapacity":19155,"numPlayersTradedAway":0}]
+    {"season":2023,"won":53,"lost":29,"playoffRoundsWon":4,"hype":0.50,"pop":2.9,"stadiumCapacity":19155,"numPlayersTradedAway":0}]
     },
     {"tid":8,"cid":0,"did":1,
     "region":"Detroit","name":"Pistons","abbrev":"DET","pop":4.3,"strategy":"rebuilding",
@@ -743,8 +735,7 @@
     {"season":2020,"won":20,"lost":46,"playoffRoundsWon":-1},
     {"season":2021,"won":20,"lost":52,"playoffRoundsWon":-1},
     {"season":2022,"won":23,"lost":59,"playoffRoundsWon":-1},
-    {"season":2023,"won":17,"lost":65,"playoffRoundsWon":-1,"hype":0.20,"pop":4.3,"stadiumCapacity":20491,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.20,"pop":4.3,"stadiumCapacity":20491,"numPlayersTradedAway":0}]
+    {"season":2023,"won":17,"lost":65,"playoffRoundsWon":-1,"hype":0.20,"pop":4.3,"stadiumCapacity":20491,"numPlayersTradedAway":0}]
     },
     {"tid":9,"cid":1,"did":5,
     "region":"Golden State","name":"Warriors","abbrev":"GSW","pop":4.7,"strategy":"contending",
@@ -837,8 +828,7 @@
     {"season":2020,"won":15,"lost":50,"playoffRoundsWon":-1},
     {"season":2021,"won":39,"lost":33,"playoffRoundsWon":-1},
     {"season":2022,"won":53,"lost":29,"playoffRoundsWon":4},
-    {"season":2023,"won":44,"lost":38,"playoffRoundsWon":0,"hype":0.65,"pop":4.7,"stadiumCapacity":18064,"numPlayersTradedAway":0},
-    {"season":2023,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.62,"pop":4.7,"stadiumCapacity":18064,"numPlayersTradedAway":0}]},
+    {"season":2023,"won":44,"lost":38,"playoffRoundsWon":0,"hype":0.65,"pop":4.7,"stadiumCapacity":18064,"numPlayersTradedAway":0}]},
     {"tid":10,"cid":1,"did":3,
     "region":"Houston","name":"Rockets","abbrev":"HOU","pop":6.3,"strategy":"rebuilding",
     "stadiumCapacity":18055,
@@ -910,8 +900,7 @@
     {"season":2020,"won":44,"lost":28,"playoffRoundsWon":1},
     {"season":2021,"won":17,"lost":55,"playoffRoundsWon":-1},
     {"season":2022,"won":20,"lost":62,"playoffRoundsWon":-1},
-    {"season":2023,"won":22,"lost":60,"playoffRoundsWon":-1,"hype":0.20,"pop":6.3,"stadiumCapacity":18055,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.35,"pop":6.3,"stadiumCapacity":18055,"numPlayersTradedAway":0}]
+    {"season":2023,"won":22,"lost":60,"playoffRoundsWon":-1,"hype":0.20,"pop":6.3,"stadiumCapacity":18055,"numPlayersTradedAway":0}]
     },
     {"tid":11,"cid":0,"did":1,
     "region":"Indiana","name":"Pacers","abbrev":"IND","pop":2,"strategy":"rebuilding",
@@ -973,8 +962,7 @@
     {"season":2020,"won":45,"lost":28,"playoffRoundsWon":0},
     {"season":2021,"won":34,"lost":38,"playoffRoundsWon":-1},
     {"season":2022,"won":25,"lost":57,"playoffRoundsWon":-1},
-    {"season":2023,"won":35,"lost":47,"playoffRoundsWon":-1,"hype":0.25,"pop":2,"stadiumCapacity":17923,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.22,"pop":2,"stadiumCapacity":17923,"numPlayersTradedAway":0}]},
+    {"season":2023,"won":35,"lost":47,"playoffRoundsWon":-1,"hype":0.25,"pop":2,"stadiumCapacity":17923,"numPlayersTradedAway":0}]},
     {"tid":12,"cid":1,"did":5,
     "region":"Los Angeles","name":"Clippers","abbrev":"LAC","pop":13.1,"strategy":"contending",
     "stadiumCapacity":19060,
@@ -1036,8 +1024,7 @@
     {"season":2020,"won":49,"lost":23,"playoffRoundsWon":1},
     {"season":2021,"won":47,"lost":25,"playoffRoundsWon":2},
     {"season":2022,"won":42,"lost":40,"playoffRoundsWon":-1},
-    {"season":2023,"won":44,"lost":38,"playoffRoundsWon":0,"hype":0.45,"pop":13.1,"stadiumCapacity":19060,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.40,"pop":13.1,"stadiumCapacity":19060,"numPlayersTradedAway":0}]
+    {"season":2023,"won":44,"lost":38,"playoffRoundsWon":0,"hype":0.45,"pop":13.1,"stadiumCapacity":19060,"numPlayersTradedAway":0}]
     },
     {"tid":13,"cid":1,"did":5,
     "region":"Los Angeles","name":"Lakers","abbrev":"LAL","pop":13.1,"strategy":"contending",
@@ -1135,8 +1122,7 @@
     {"season":2020,"won":52,"lost":19,"playoffRoundsWon":4,"imgURL":"https://content.sportslogos.net/logos/6/237/full/los_angeles_lakers_logo_primary_2018_sportslogosnet-5533.png"},
     {"season":2021,"won":42,"lost":30,"playoffRoundsWon":0,"imgURL":"https://content.sportslogos.net/logos/6/237/full/los_angeles_lakers_logo_primary_2018_sportslogosnet-5533.png"},
     {"season":2022,"won":33,"lost":49,"playoffRoundsWon":-1,"imgURL":"https://content.sportslogos.net/logos/6/237/full/los_angeles_lakers_logo_primary_2018_sportslogosnet-5533.png"},
-    {"season":2023,"won":43,"lost":39,"playoffRoundsWon":2,"hype":0.35,"pop":13.1,"stadiumCapacity":18997,"numPlayersTradedAway":0,"imgURL":"https://content.sportslogos.net/logos/6/237/full/los_angeles_lakers_logo_primary_2018_sportslogosnet-5533.png"},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.40,"pop":13.1,"stadiumCapacity":18997,"numPlayersTradedAway":0}]
+    {"season":2023,"won":43,"lost":39,"playoffRoundsWon":2,"hype":0.35,"pop":13.1,"stadiumCapacity":18997,"numPlayersTradedAway":0,"imgURL":"https://content.sportslogos.net/logos/6/237/full/los_angeles_lakers_logo_primary_2018_sportslogosnet-5533.png"}]
     },
     {"tid":14,"cid":1,"did":3,
     "region":"Memphis","name":"Grizzlies","abbrev":"MEM","pop":1.3,"strategy":"contending",
@@ -1177,8 +1163,7 @@
     {"season":2020,"won":34,"lost":39,"playoffRoundsWon":-1},
     {"season":2021,"won":38,"lost":34,"playoffRoundsWon":0},
     {"season":2022,"won":56,"lost":26,"playoffRoundsWon":1},
-    {"season":2023,"won":51,"lost":31,"playoffRoundsWon":0,"hype":0.50,"pop":1.3,"stadiumCapacity":18119,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.50,"pop":1.3,"stadiumCapacity":18119,"numPlayersTradedAway":0}]
+    {"season":2023,"won":51,"lost":31,"playoffRoundsWon":0,"hype":0.50,"pop":1.3,"stadiumCapacity":18119,"numPlayersTradedAway":0}]
     },
     {"tid":15,"cid":0,"did":2,
     "region":"Miami","name":"Heat","abbrev":"MIA","pop":5.6,"strategy":"contending",
@@ -1230,8 +1215,7 @@
     {"season":2020,"won":44,"lost":29,"playoffRoundsWon":3},
     {"season":2021,"won":40,"lost":32,"playoffRoundsWon":0},
     {"season":2022,"won":53,"lost":29,"playoffRoundsWon":2},
-    {"season":2023,"won":44,"lost":38,"playoffRoundsWon":3,"hype":0.54,"pop":5.6,"stadiumCapacity":19600,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.58,"pop":5.6,"stadiumCapacity":19600,"numPlayersTradedAway":0}]
+    {"season":2023,"won":44,"lost":38,"playoffRoundsWon":3,"hype":0.54,"pop":5.6,"stadiumCapacity":19600,"numPlayersTradedAway":0}]
     },
     {"tid":16,"cid":0,"did":1,
     "region":"Milwaukee","name":"Bucks","abbrev":"MIL","pop":1.6,"strategy":"contending",
@@ -1305,8 +1289,7 @@
     {"season":2020,"won":56,"lost":17,"playoffRoundsWon":1},
     {"season":2021,"won":46,"lost":26,"playoffRoundsWon":4},
     {"season":2022,"won":51,"lost":31,"playoffRoundsWon":1},
-    {"season":2023,"won":58,"lost":24,"playoffRoundsWon":0,"hype":0.50,"pop":1.6,"stadiumCapacity":18717,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.50,"pop":1.6,"stadiumCapacity":18717,"numPlayersTradedAway":0}]
+    {"season":2023,"won":58,"lost":24,"playoffRoundsWon":0,"hype":0.50,"pop":1.6,"stadiumCapacity":18717,"numPlayersTradedAway":0}]
     },
     {"tid":17,"cid":1,"did":4,
     "region":"Minnesota","name":"Timberwolves","abbrev":"MIN","pop":3.6,"strategy":"contending",
@@ -1352,8 +1335,7 @@
     {"season":2020,"won":19,"lost":45,"playoffRoundsWon":-1},
     {"season":2021,"won":23,"lost":49,"playoffRoundsWon":-1},
     {"season":2022,"won":46,"lost":36,"playoffRoundsWon":0},
-    {"season":2023,"won":42,"lost":40,"playoffRoundsWon":0,"hype":0.42,"pop":3.6,"stadiumCapacity":19356,"numPlayersTradedAway":0},
-    {"season":2023,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.40,"pop":3.6,"stadiumCapacity":19356,"numPlayersTradedAway":0}]
+    {"season":2023,"won":42,"lost":40,"playoffRoundsWon":0,"hype":0.42,"pop":3.6,"stadiumCapacity":19356,"numPlayersTradedAway":0}]
     },
     {"tid":18,"cid":1,"did":3,
     "region":"New Orleans","name":"Pelicans","abbrev":"NOP","pop":1.3,"strategy":"contending",
@@ -1385,8 +1367,7 @@
     {"season":2020,"won":30,"lost":42,"playoffRoundsWon":-1,"imgURL":"https://i.imgur.com/vB0C6GZ.png","imgURLSmall":"https://i.imgur.com/NUWBVXh.png"},
     {"season":2021,"won":31,"lost":41,"playoffRoundsWon":-1,"imgURL":"https://i.imgur.com/vB0C6GZ.png","imgURLSmall":"https://i.imgur.com/NUWBVXh.png"},
     {"season":2022,"won":36,"lost":46,"playoffRoundsWon":0,"imgURL":"https://i.imgur.com/vB0C6GZ.png","imgURLSmall":"https://i.imgur.com/NUWBVXh.png"},
-    {"season":2023,"won":42,"lost":40,"playoffRoundsWon":-1,"hype":0.38,"pop":1.3,"stadiumCapacity":16867,"numPlayersTradedAway":0,"imgURL":"https://i.imgur.com/vB0C6GZ.png","imgURLSmall":"https://i.imgur.com/NUWBVXh.png"},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.38,"pop":1.3,"stadiumCapacity":16867,"numPlayersTradedAway":0}]
+    {"season":2023,"won":42,"lost":40,"playoffRoundsWon":-1,"hype":0.38,"pop":1.3,"stadiumCapacity":16867,"numPlayersTradedAway":0,"imgURL":"https://i.imgur.com/vB0C6GZ.png","imgURLSmall":"https://i.imgur.com/NUWBVXh.png"}]
     },
     {"tid":19,"cid":0,"did":0,
     "region":"New York","name":"Knicks","abbrev":"NYK","pop":20.3,"strategy":"contending",
@@ -1482,8 +1463,7 @@
     {"season":2020,"won":21,"lost":45,"playoffRoundsWon":-1},
     {"season":2021,"won":41,"lost":31,"playoffRoundsWon":0},
     {"season":2022,"won":37,"lost":45,"playoffRoundsWon":-1},
-    {"season":2023,"won":47,"lost":35,"playoffRoundsWon":1,"hype":0.20,"pop":20.3,"stadiumCapacity":19812,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.35,"pop":20.3,"stadiumCapacity":19812,"numPlayersTradedAway":0}]
+    {"season":2023,"won":47,"lost":35,"playoffRoundsWon":1,"hype":0.20,"pop":20.3,"stadiumCapacity":19812,"numPlayersTradedAway":0}]
     },
     {"tid":20,"cid":1,"did":4,
     "region":"Oklahoma City","name":"Thunder","abbrev":"OKC","pop":1.4,"strategy":"rebuilding",
@@ -1556,8 +1536,7 @@
     {"season":2020,"won":44,"lost":28,"playoffRoundsWon":0},
     {"season":2021,"won":22,"lost":50,"playoffRoundsWon":-1},
     {"season":2022,"won":24,"lost":58,"playoffRoundsWon":-1},
-    {"season":2023,"won":40,"lost":42,"playoffRoundsWon":-1,"hype":0.15,"pop":1.4,"stadiumCapacity":18203,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.20,"pop":1.4,"stadiumCapacity":18203,"numPlayersTradedAway":0}]
+    {"season":2023,"won":40,"lost":42,"playoffRoundsWon":-1,"hype":0.15,"pop":1.4,"stadiumCapacity":18203,"numPlayersTradedAway":0}]
     },
     {"tid":21,"cid":0,"did":2,
     "region":"Orlando","name":"Magic","abbrev":"ORL","pop":2.4,"strategy":"rebuilding",
@@ -1602,8 +1581,7 @@
     {"season":2020,"won":33,"lost":40,"playoffRoundsWon":0},
     {"season":2021,"won":21,"lost":51,"playoffRoundsWon":-1},
     {"season":2022,"won":22,"lost":60,"playoffRoundsWon":-1},
-    {"season":2023,"won":34,"lost":48,"playoffRoundsWon":-1,"hype":0.27,"pop":2.4,"stadiumCapacity":18846,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.27,"pop":2.4,"stadiumCapacity":18846,"numPlayersTradedAway":0}]
+    {"season":2023,"won":34,"lost":48,"playoffRoundsWon":-1,"hype":0.27,"pop":2.4,"stadiumCapacity":18846,"numPlayersTradedAway":0}]
     },
     {"tid":22,"cid":0,"did":0,
     "region":"Philadelphia","name":"76ers","abbrev":"PHI","pop":6.1,"strategy":"contending",
@@ -1703,8 +1681,7 @@
     {"season":2020,"won":43,"lost":30,"playoffRoundsWon":0},
     {"season":2021,"won":49,"lost":23,"playoffRoundsWon":1},
     {"season":2022,"won":51,"lost":31,"playoffRoundsWon":1},
-    {"season":2023,"won":54,"lost":28,"playoffRoundsWon":1,"hype":0.5,"pop":6.1,"stadiumCapacity":20328,"numPlayersTradedAway":0},
-    {"season":2023,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.45,"pop":6.1,"stadiumCapacity":20328,"numPlayersTradedAway":0}]
+    {"season":2023,"won":54,"lost":28,"playoffRoundsWon":1,"hype":0.5,"pop":6.1,"stadiumCapacity":20328,"numPlayersTradedAway":0}]
     },
     {"tid":23,"cid":1,"did":5,
     "region":"Phoenix","name":"Suns","abbrev":"PHX","pop":4.7,"strategy":"contending",
@@ -1778,8 +1755,7 @@
     {"season":2020,"won":34,"lost":39,"playoffRoundsWon":-1},
     {"season":2021,"won":51,"lost":21,"playoffRoundsWon":3},
     {"season":2022,"won":64,"lost":18,"playoffRoundsWon":1},
-    {"season":2023,"won":45,"lost":37,"playoffRoundsWon":1,"hype":0.51,"pop":4.7,"stadiumCapacity":18422,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.59,"pop":4.7,"stadiumCapacity":18422,"numPlayersTradedAway":0}]
+    {"season":2023,"won":45,"lost":37,"playoffRoundsWon":1,"hype":0.51,"pop":4.7,"stadiumCapacity":18422,"numPlayersTradedAway":0}]
     },
     {"tid":24,"cid":1,"did":4,
     "region":"Portland","name":"Trail Blazers","abbrev":"POR","pop":2.4,"strategy":"rebuilding",
@@ -1855,8 +1831,7 @@
     {"season":2020,"won":35,"lost":39,"playoffRoundsWon":0},
     {"season":2021,"won":42,"lost":30,"playoffRoundsWon":0},
     {"season":2022,"won":27,"lost":55,"playoffRoundsWon":-1},
-    {"season":2023,"won":33,"lost":49,"playoffRoundsWon":-1,"hype":0.28,"pop":2.4,"stadiumCapacity":19980,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.28,"pop":2.4,"stadiumCapacity":19980,"numPlayersTradedAway":0}]
+    {"season":2023,"won":33,"lost":49,"playoffRoundsWon":-1,"hype":0.28,"pop":2.4,"stadiumCapacity":19980,"numPlayersTradedAway":0}]
     },
     {"tid":25,"cid":1,"did":5,
     "region":"Sacramento","name":"Kings","abbrev":"SAC","pop":2.1,"strategy":"contending",
@@ -1951,8 +1926,7 @@
     {"season":2020,"won":31,"lost":41,"playoffRoundsWon":-1},
     {"season":2021,"won":31,"lost":41,"playoffRoundsWon":-1},
     {"season":2022,"won":30,"lost":52,"playoffRoundsWon":-1},
-    {"season":2023,"won":48,"lost":34,"playoffRoundsWon":0,"hype":0.26,"pop":2.1,"stadiumCapacity":17608,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.36,"pop":2.1,"stadiumCapacity":17608,"numPlayersTradedAway":0}]
+    {"season":2023,"won":48,"lost":34,"playoffRoundsWon":0,"hype":0.26,"pop":2.1,"stadiumCapacity":17608,"numPlayersTradedAway":0}]
     },
     {"tid":26,"cid":1,"did":3,
     "region":"San Antonio","name":"Spurs","abbrev":"SAS","pop":2.5,"strategy":"rebuilding",
@@ -2019,8 +1993,7 @@
     {"season":2020,"won":32,"lost":39,"playoffRoundsWon":-1},
     {"season":2021,"won":33,"lost":39,"playoffRoundsWon":-1},
     {"season":2022,"won":34,"lost":48,"playoffRoundsWon":-1},
-    {"season":2023,"won":22,"lost":60,"playoffRoundsWon":-1,"hype":0.20,"pop":2.5,"stadiumCapacity":18418,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.30,"pop":2.5,"stadiumCapacity":18418,"numPlayersTradedAway":0}]
+    {"season":2023,"won":22,"lost":60,"playoffRoundsWon":-1,"hype":0.20,"pop":2.5,"stadiumCapacity":18418,"numPlayersTradedAway":0}]
     },
     {"tid":27,"cid":0,"did":0,
     "region":"Toronto","name":"Raptors","abbrev":"TOR","pop":5.9,"strategy":"contending",
@@ -2058,8 +2031,7 @@
     {"season":2020,"won":53,"lost":19,"playoffRoundsWon":1,"imgURL":"https://i.ibb.co/7XtpXhq/tor2016.png","imgURLSmall":"https://i.imgur.com/SgfQfil.png","colors":["#ce1141","#000000","#A1A1A4"]},
     {"season":2021,"won":27,"lost":45,"playoffRoundsWon":-1},
     {"season":2022,"won":48,"lost":34,"playoffRoundsWon":0},
-    {"season":2023,"won":41,"lost":41,"playoffRoundsWon":-1,"hype":0.45,"pop":5.9,"stadiumCapacity":19800,"numPlayersTradedAway":0},
-    {"season":2024,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.35,"pop":5.9,"stadiumCapacity":19800,"numPlayersTradedAway":0}]},
+    {"season":2023,"won":41,"lost":41,"playoffRoundsWon":-1,"hype":0.45,"pop":5.9,"stadiumCapacity":19800,"numPlayersTradedAway":0}]},
     {"tid":28,"cid":1,"did":4,
     "region":"Utah","name":"Jazz","abbrev":"UTA","pop":1.2,"strategy":"rebuilding",
     "stadiumCapacity":18303,
@@ -2127,8 +2099,7 @@
     {"season":2020,"won":44,"lost":28,"playoffRoundsWon":0,"imgURL":"https://i.imgur.com/H3ZIR44.png","imgURLSmall":"https://i.imgur.com/MUB0Jcx.png","colors":["#0a2f50","#ffb321","#ffb321"]},
     {"season":2021,"won":52,"lost":20,"playoffRoundsWon":1,"imgURL":"https://i.imgur.com/H3ZIR44.png","imgURLSmall":"https://i.imgur.com/MUB0Jcx.png","colors":["#0a2f50","#ffb321","#ffb321"]},
     {"season":2022,"won":49,"lost":33,"playoffRoundsWon":0,"imgURL":"https://i.imgur.com/H3ZIR44.png","imgURLSmall":"https://i.imgur.com/MUB0Jcx.png","colors":["#0a2f50","#ffb321","#ffb321"]},
-    {"season":2023,"won":37,"lost":45,"playoffRoundsWon":-1,"hype":0.15,"pop":1.2,"stadiumCapacity":18303,"numPlayersTradedAway":0},
-    {"season":2023,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.15,"pop":1.2,"stadiumCapacity":18303,"numPlayersTradedAway":0}]
+    {"season":2023,"won":37,"lost":45,"playoffRoundsWon":-1,"hype":0.15,"pop":1.2,"stadiumCapacity":18303,"numPlayersTradedAway":0}]
     },
     {"tid":29,"cid":0,"did":2,
     "region":"Washington","name":"Wizards","abbrev":"WAS","pop":6.1,"strategy":"rebuilding",
@@ -2205,97 +2176,7 @@
     {"season":2020,"won":25,"lost":47,"playoffRoundsWon":-1},
     {"season":2021,"won":34,"lost":38,"playoffRoundsWon":0},
     {"season":2022,"won":35,"lost":47,"playoffRoundsWon":-1},
-    {"season":2023,"won":35,"lost":47,"playoffRoundsWon":-1,"hype":0.25,"pop":6.1,"stadiumCapacity":20356,"numPlayersTradedAway":0},
-    {"season":2023,"won":0,"lost":0,"playoffRoundsWon":-1,"hype":0.15,"pop":6.1,"stadiumCapacity":20356,"numPlayersTradedAway":0}]},
-    {"tid":30,"cid":1,"did":4,
-    "region":"Washington","name":"Capitols","pop":3.9,"abbrev":"WSC",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/2qhptoZ.png",
-    "imgURLSmall":"https://i.imgur.com/ra63y6q.png",
-    "seasons":[
-    {"season":1947,"won":49,"lost":11,"playoffRoundsWon":2},
-    {"season":1948,"won":28,"lost":20,"playoffRoundsWon":-1},
-    {"season":1949,"won":38,"lost":22,"playoffRoundsWon":3},
-    {"season":1950,"won":32,"lost":36,"playoffRoundsWon":0},
-    {"season":1951,"won":10,"lost":25,"playoffRoundsWon":-1}],
-    "disabled":true},
-    {"tid":31,"cid":1,"did":4,
-    "region":"St. Louis","name":"Bombers","pop":3.9,"abbrev":"SLB",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/d7un2Oe.png",
-    "imgURLSmall":"https://i.imgur.com/5bthyy9.png",
-    "seasons":[
-    {"season":1947,"won":38,"lost":23,"playoffRoundsWon":1},
-    {"season":1948,"won":29,"lost":19,"playoffRoundsWon":2},
-    {"season":1949,"won":29,"lost":31,"playoffRoundsWon":1},
-    {"season":1950,"won":26,"lost":42,"playoffRoundsWon":-1}],
-    "disabled":true},
-    {"tid":32,"cid":1,"did":4,
-    "region":"Indianapolis","name":"Olympians","pop":3.9,"abbrev":"INO",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/LSuWBwF.png",
-    "imgURLSmall":"https://i.imgur.com/dGV8CZ6.png",
-    "seasons":[
-    {"season":1950,"won":39,"lost":25,"playoffRoundsWon":1},
-    {"season":1951,"won":31,"lost":37,"playoffRoundsWon":1},
-    {"season":1952,"won":34,"lost":32,"playoffRoundsWon":1},
-    {"season":1953,"won":28,"lost":43,"playoffRoundsWon":1}],
-    "disabled":true},
-    {"tid":33,"cid":1,"did":4,
-    "region":"Baltimore","name":"Bullets","pop":3.9,"abbrev":"BAL",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/RPXnWof.png",
-    "imgURLSmall":"https://i.imgur.com/05Rmeez.png",
-    "seasons":[
-    {"season":1948,"won":28,"lost":20,"playoffRoundsWon":4},
-    {"season":1949,"won":29,"lost":31,"playoffRoundsWon":1},
-    {"season":1950,"won":25,"lost":43,"playoffRoundsWon":-1},
-    {"season":1951,"won":24,"lost":42,"playoffRoundsWon":-1},
-    {"season":1952,"won":20,"lost":46,"playoffRoundsWon":-1},
-    {"season":1953,"won":16,"lost":54,"playoffRoundsWon":1},
-    {"season":1954,"won":16,"lost":56,"playoffRoundsWon":-1}],
-    "disabled":true},
-    {"tid":34,"cid":1,"did":4,
-    "region":"Sheboygan","name":"Red Skins","pop":3.9,"abbrev":"SHE",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/Z1GghyQ.png",
-    "imgURLSmall":"https://i.imgur.com/AdPlUrk.png",
-    "seasons":[
-    {"season":1950,"won":22,"lost":40,"playoffRoundsWon":0}],
-    "disabled":true},
-    {"tid":35,"cid":1,"did":4,
-    "region":"Anderson","name":"Packers","pop":3.9,"abbrev":"AND",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/oYl12wq.png",
-    "imgURLSmall":"https://i.imgur.com/gedTPsK.png",
-    "seasons":[
-    {"season":1950,"won":37,"lost":27,"playoffRoundsWon":2}],
-    "disabled":true},
-    {"tid":36,"cid":1,"did":4,
-    "region":"Chicago","name":"Stags","pop":3.9,"abbrev":"CHS",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/VQAT5Mg.png",
-    "imgURLSmall":"https://i.imgur.com/eNMiGRZ.png",
-    "seasons":[
-    {"season":1947,"won":39,"lost":22,"playoffRoundsWon":3},
-    {"season":1948,"won":28,"lost":20,"playoffRoundsWon":2},
-    {"season":1949,"won":38,"lost":22,"playoffRoundsWon":1},
-    {"season":1950,"won":40,"lost":28,"playoffRoundsWon":0}],
-    "disabled":true},
-    {"tid":37,"cid":1,"did":4,
-    "region":"Cleveland","name":"Rebels","pop":3.9,"abbrev":"CLR",
-    "colors":["#00653A","#FFC200","#FFFFFF"],"jersey":"jersey2",
-    "stadiumCapacity":17072,
-    "imgURL":"https://i.imgur.com/TtPDmjC.png",
-    "imgURLSmall":"https://i.imgur.com/C7JPtrU.png",
-    "seasons":[
-    {"season":1947,"won":30,"lost":30,"playoffRoundsWon":1}],
-    "disabled":true}
+    {"season":2023,"won":35,"lost":47,"playoffRoundsWon":-1,"hype":0.25,"pop":6.1,"stadiumCapacity":20356,"numPlayersTradedAway":0}]}
     ]}
+
+    

@@ -25,4 +25,7 @@ router.get("/:team_id/schedule-regular", teamControllers.getTeamScheduleRegularS
 // roster
 router.get("/:team_id/roster", teamControllers.getTeamRoster)
 
+// history
+router.get("/:team_id/history", teamControllers.getTeamHistory)
+
 module.exports = router
