@@ -76,11 +76,11 @@ async function saveHistory(team) {
 
         seasons.push(season_object)
 
-        if (season.playoffRoundsWon = 3) {
+        if (season.playoffRoundsWon >= 3) {
             conference_championships.push(season.season)
         }
 
-        if (season.playoffRoundsWon = 4) {
+        if (season.playoffRoundsWon === 4) {
             championships.push(season.season)
         }
     }

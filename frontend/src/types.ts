@@ -320,6 +320,30 @@ export interface TeamScheduleObject {
     ast_leader: string
 }
 
+// TEAM HISTORY
+export interface TeamHistoryState {
+    history_id: number,
+    team_id: number,
+    abbreviation: string,
+    jersey_numbers: {
+        number: string,
+        season_retired: number,
+        player_name: string
+    }[],
+    seasons: {
+        team_name: string,
+        season: number,
+        wins: number,
+        losses: number,
+        pct: string,
+        playoffs: number,
+        champion: boolean,
+        conference_champion: boolean,
+        img_url: string | null,
+        img_url_small: string | null
+    }[]
+}
+
 
 
 // STATS TYPES

@@ -235,5 +235,5 @@ export const getTeamHistory = async (req: Request, res: Response, next: NextFunc
         return res.status(500).json(`Error getting history for team: ${team_id}. ${error}`)
     }
 
-    res.status(200).json({ message: `Retrieved roster for team ${team_id}`, history: historyResponse.rows })
+    res.status(200).json({ message: `Retrieved roster for team ${team_id}`, history: historyResponse.rows[0] })
 }
