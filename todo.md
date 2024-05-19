@@ -79,6 +79,10 @@
         <!-- - case if player has no awards DONE -->
         <!-- - fix length issue in career highlights DONE -->
 
+- TEAM PAGE
+    - History:
+        - make table of history static height and scrollable
+        - make jersey numbers and names a grid to be even
 
 - LONG PLAYER NAMES
     - Add styling for players like Shai Gilgeous-Alexander
