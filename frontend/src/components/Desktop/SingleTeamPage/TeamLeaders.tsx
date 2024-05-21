@@ -19,7 +19,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                 <CardTitle className="flex justify-between">
                     2023-24 Team Leaders
 
-                    <Link to={`/nba/teams/${team.abbreviation}?view=stats`} className="font-semibold text-blue-700">
+                    <Link to={`/nba/teams/${team.abbreviation.toLowerCase()}?view=stats`} className="font-semibold text-blue-700">
                         See Full Team Stats
                     </Link>
                 </CardTitle>

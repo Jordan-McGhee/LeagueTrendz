@@ -61,7 +61,7 @@ const TeamSchedule: React.FC<TeamScheduleProps> = ({ team, games }) => {
                         game_location={game.game_location} />
                 ))}
 
-                <Link to={`/nba/teams/${team.abbreviation}?view=schedule`} className="flex flex-col justify-center items-center px-6 py-3 border text-sm">
+                <Link to={`/nba/teams/${team.abbreviation.toLowerCase()}?view=schedule`} className="flex flex-col justify-center items-center px-6 py-3 border text-sm">
                     <p>See Full</p>
                     <p>Schedule</p>
                 </Link>

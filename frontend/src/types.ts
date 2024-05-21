@@ -200,7 +200,8 @@ export interface TeamPlayersState {
 export interface TeamHomeProps {
     team: TeamExpanded,
     games: TeamGames[],
-    players: TeamPlayersState
+    players: TeamPlayersState,
+    history: TeamHistoryState
 }
 
 export interface TeamPageProps {
@@ -215,6 +216,11 @@ export interface TeamScheduleProps {
 export interface TeamPlayersProps {
     team: TeamExpanded,
     players: TeamPlayersState
+}
+
+export interface TeamHistoryProps {
+    team: TeamExpanded,
+    history: TeamHistoryState
 }
 
 // TEAM STATS

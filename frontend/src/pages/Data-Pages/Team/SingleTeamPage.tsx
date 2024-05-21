@@ -6,7 +6,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useFetch } from "../../../Hooks/useFetch"
 
 // type imports
-import { TeamExpanded, TeamGames, TeamPlayersState } from "../../../types"
+import { TeamExpanded, TeamGames, TeamHistoryState, TeamPlayersState } from "../../../types"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
@@ -44,6 +44,7 @@ const SingleTeamPage = () => {
     const [team, setTeam] = useState<TeamExpanded | undefined>()
     const [games, setGames] = useState<TeamGames[] | undefined>()
     const [players, setPlayers] = useState<TeamPlayersState | undefined>()
+    const [history, setHistory] = useState<TeamHistoryState | undefined>()
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
@@ -59,6 +60,7 @@ const SingleTeamPage = () => {
                 setTeam(responseData.team)
                 setGames(responseData.games)
                 setPlayers(responseData.players)
+                setHistory(responseData.history)
             } catch (error) {
 
             }
@@ -105,7 +107,7 @@ const SingleTeamPage = () => {
 
 
     const teamSelectHandler = (value: string) => {
-        navigate(`/nba/teams/${value}?view=${selectedMenuItem}`)
+        navigate(`/nba/teams/${value.toLowerCase()}?view=${selectedMenuItem}`)
     }
 
     return (
@@ -117,7 +119,7 @@ const SingleTeamPage = () => {
             {isLoading && <LoadingPage />}
 
             {
-                team && games && players &&
+                team && games && players && history &&
                 <Card>
                     <CardHeader>
 
@@ -135,20 +137,20 @@ const SingleTeamPage = () => {
                                     {/* team info div */}
                                     <div className="flex items-center justify-between uppercase w-72">
                                         {/* <Button style={{ backgroundColor: team.main_color }}>Add to Favorites</Button> */}
-                                        
+
                                         <div className="text-center">
                                             <p className="font-light text-sm">Conference</p>
-                                            <p className="font-bold" style={{color: team.main_color}}>{team.conference}</p>
+                                            <p className="font-bold" style={{ color: team.main_color }}>{team.conference}</p>
                                         </div>
 
                                         <div className="text-center">
                                             <p className="font-light text-sm">Division</p>
-                                            <p className="font-bold" style={{color: team.main_color}}>{team.division}</p>
+                                            <p className="font-bold" style={{ color: team.main_color }}>{team.division}</p>
                                         </div>
-                                        
+
                                         <div className="text-center">
                                             <p className="font-light text-sm">RECORD</p>
-                                            <p className="font-bold" style={{color: team.main_color}}>{team.wins}-{team.losses}</p>
+                                            <p className="font-bold" style={{ color: team.main_color }}>{team.wins}-{team.losses}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +160,7 @@ const SingleTeamPage = () => {
                             {/* SELECT A DIFFERENT TEAM */}
                             <Select value={abbreviation} onValueChange={(newValue) => teamSelectHandler(newValue)}>
                                 <SelectTrigger className="w-[300px]">
-                                    <SelectValue placeholder='Change NBA Teams'/>
+                                    <SelectValue placeholder='Change NBA Teams' />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {
@@ -218,7 +220,7 @@ const SingleTeamPage = () => {
                     </CardHeader>
 
                     <CardContent>
-                        {selectedMenuItem === "home" && <TeamHome team={team} games={games} players={players} />}
+                        {selectedMenuItem === "home" && <TeamHome team={team} games={games} players={players} history={history} />}
                         {selectedMenuItem === "stats" && <Stats team={team} players={players} />}
                         {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}

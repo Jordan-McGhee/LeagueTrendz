@@ -147,7 +147,19 @@ export const getSingleTeam = async (req: Request, res: Response, next: NextFunct
         return res.status(500).json({ message: `Error getting top players for the ${team.full_name}: ${error}` })
     }
 
-    res.status(200).json({ message: `Got data for the ${teamResponse.rows[0].full_name}`, team: teamResponse.rows[0], games: lastTenResponse.rows, players: topPlayersResponse.rows[0] })
+    const historyQuery: string = "SELECT * FROM histories WHERE team_id = $1"
+
+    let historyResponse: QueryResult
+
+    try {
+        historyResponse = await pool.query(historyQuery, [ team.team_id ])
+    } catch (error) {
+        console.log(`Error getting history for the ${team.full_name}: ${error}`)
+
+        return res.status(500).json({ message: `Error getting history for the ${team.full_name}: ${error}` })
+    }
+
+    res.status(200).json({ message: `Got data for the ${teamResponse.rows[0].full_name}`, team: teamResponse.rows[0], games: lastTenResponse.rows, players: topPlayersResponse.rows[0], history: historyResponse.rows[0] })
 }
 
 // get status
