@@ -5,7 +5,15 @@ const router = express.Router()
 
 // /nba/teams
 
-router.get("/", teamControllers.getAllTeams),
+router.get("/", teamControllers.getAllTeams)
+
+// standings
+router.get("/standings", teamControllers.getStandings)
+
+router.get("/expanded", teamControllers.getStandingsExpanded)
+
+router.get("/divisions", teamControllers.getStandingsDivisions)
+
 
 router.get("/conference", teamControllers.getConferenceTeams)
 

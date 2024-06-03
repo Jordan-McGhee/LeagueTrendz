@@ -1,7 +1,6 @@
 import React from "react";
 
 // ui import
-
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
 
 type Team = {

@@ -128,6 +128,27 @@ export const countStreak = (lastTen: string) => {
 }
 
 /**
+ * Takes in string of last 10 games returns the team's W/L record
+ * @param lastTen string - "W-W-L-L-W-W-W-W-W-L" format
+ * @returns W/L record -- 7-3
+ */
+export const lastTenConverter = (lastTen: string) => {
+    let winCount: number = 0, lossCount: number = 0
+
+    const lastTenSplit = lastTen.split("-")
+
+    for (let i =0; i <lastTenSplit.length; i++) {
+        if (lastTenSplit[i] === "W") {
+            winCount++
+        } else{
+            lossCount++
+        }
+    }
+
+    return `${winCount}-${lossCount}`
+}
+
+/**
  * Takes in a team's id and returns their shortened team name
  * @param team_id team's id from database
  * @returns team's shortened name. 0 -> Hawks, 1 -> Celtics, etc.

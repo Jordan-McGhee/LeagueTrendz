@@ -13,8 +13,6 @@ const teams = require("../DUMMYDATA/NBA_Teams.json")
 
 const StandingsPage = () => {
 
-    // const [ standingsSelection, setStandingsSelection ] = useState('conference')
-
     return (
         <div className="h-full min-h-lvh">
             <Card>

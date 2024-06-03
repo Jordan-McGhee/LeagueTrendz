@@ -19,6 +19,56 @@ export const getAllTeams = async (req: Request, res: Response, next: NextFunctio
     res.status(200).json({ message: "Got all teams", teams: teamResponse.rows })
 }
 
+// standings
+export const getStandings = async (req: Request, res: Response, next: NextFunction) => {
+    const standingsQuery: string = "SELECT * FROM standings_view_with_gb"
+
+    let standingsResponse: QueryResult
+
+    try {
+        standingsResponse = await pool.query(standingsQuery)
+    } catch (error) {
+        console.log(`Error getting NBA standings, ${error}`)
+
+        return res.status(500).json({ message: `Error getting NBA standings, ${error}`})
+    }
+
+    res.status(200).json({ message: "Got standings!", standings: standingsResponse.rows})
+}
+
+export const getStandingsExpanded = async (req: Request, res: Response, next: NextFunction) => {
+    const standingsQuery: string = "SELECT * FROM standings_view_with_gb_expanded"
+
+    let standingsResponse: QueryResult
+
+    try {
+        standingsResponse = await pool.query(standingsQuery)
+    } catch (error) {
+        console.log(`Error getting NBA expanded standings, ${error}`)
+
+        return res.status(500).json({ message: `Error getting NBA expanded standings, ${error}`})
+    }
+
+    res.status(200).json({ message: "Got expanded standings!", standings: standingsResponse.rows})
+}
+
+export const getStandingsDivisions = async (req: Request, res: Response, next: NextFunction) => {
+    const standingsQuery: string = "SELECT * FROM standings_view_with_gb_division"
+
+    let standingsResponse: QueryResult
+
+    try {
+        standingsResponse = await pool.query(standingsQuery)
+    } catch (error) {
+        console.log(`Error getting NBA division standings, ${error}`)
+
+        return res.status(500).json({ message: `Error getting NBA division standings, ${error}`})
+    }
+
+    res.status(200).json({ message: "Got division standings!", standings: standingsResponse.rows})
+}
+
+
 // get all teams grouped by conference
 export const getConferenceTeams = async (req: Request, res: Response, next: NextFunction) => {
     const eastQuery: string = "SELECT * FROM teams WHERE conference = $1"

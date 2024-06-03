@@ -100,6 +100,33 @@ export interface AllTeamsState {
     southwest: Team[]
 }
 
+// // STANDiNGS PAGE
+
+export interface StandingsTeamItem {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    conference: string,
+    division: string,
+    wins: string,
+    losses: string,
+    pct: string,
+    gb: string,
+    home_wins: string,
+    home_losses: string,
+    away_wins: string,
+    away_losses: string,
+    div_wins: string,
+    div_losses: string,
+    conf_wins: string,
+    conf_losses: string,
+    ppg: string,
+    opp_ppg: string,
+    diff: string,
+    last_10: string
+}
+
+
 // // TEAM PAGE 
 
 // TEAM HOME STATE
