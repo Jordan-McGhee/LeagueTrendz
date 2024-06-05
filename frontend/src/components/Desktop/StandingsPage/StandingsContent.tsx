@@ -51,15 +51,11 @@ const StandingsContent = () => {
         fullLeague = data
 
         // conferences
-        easternConference = data.filter((team: StandingsTeamItem) =>
-            team.conference === "Eastern"
-        )
-        westernConference = data.filter((team: StandingsTeamItem) =>
-            team.conference === "Western"
-        )
+        easternConference = data.filter((team: StandingsTeamItem) => team.conference === "Eastern")
+        westernConference = data.filter((team: StandingsTeamItem) => team.conference === "Western")
 
         // divisions
-        // EASTERB CONFERENCE
+        // EASTERN CONFERENCE
         atlanticTeams = data.filter((team: StandingsTeamItem) => team.division === "Atlantic")
         centralTeams = data.filter((team: StandingsTeamItem) => team.division === "Central")
         southeastTeams = data.filter((team: StandingsTeamItem) => team.division === "Southeast")
@@ -99,6 +95,7 @@ const StandingsContent = () => {
             // streak --
 
             // l10
+            
         ]
     }
 

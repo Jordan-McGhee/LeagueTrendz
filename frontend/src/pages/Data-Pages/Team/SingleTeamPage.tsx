@@ -225,7 +225,6 @@ const SingleTeamPage = () => {
                         {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}
                         {selectedMenuItem === "roster" && <Roster team={team} />}
                         {selectedMenuItem === "history" && <History team={team} />}
-
                     </CardContent>
                 </Card>
             }

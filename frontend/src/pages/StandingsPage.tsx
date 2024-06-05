@@ -28,7 +28,7 @@ const StandingsPage = () => {
 
                 <CardFooter>
                     <div className="w-full pt-2">
-                        Standings are updated with the completion of each game.
+                        {/* Standings are updated with the completion of each game. */}
 
                         {/* GLOSSARY */}
                         <div className="text-sm mt-4 flex justify-between">
@@ -37,7 +37,7 @@ const StandingsPage = () => {
                                 <p><span className="font-bold">W:</span> Wins</p>
                                 <p><span className="font-bold">L:</span> Losses</p>
                                 <p><span className="font-bold">PCT:</span> Win Percentage</p>
-                                <p><span className="font-bold">GB:</span> Games Back</p>
+                                <p><span className="font-bold">GB:</span> Games Behind</p>
                                 <p><span className="font-bold">HOME:</span> Home Record</p>
                             </div>
 
