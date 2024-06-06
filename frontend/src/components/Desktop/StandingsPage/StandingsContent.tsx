@@ -34,7 +34,7 @@ const StandingsContent = () => {
 
         let responseData: any
 
-        const fetchTeam = async () => {
+        const fetchStandings = async () => {
             try {
                 responseData = await sendRequest(url)
                 setData(responseData.standings)
@@ -43,7 +43,7 @@ const StandingsContent = () => {
             }
         }
 
-        fetchTeam()
+        fetchStandings()
     }, [sendRequest])
 
 
@@ -337,15 +337,6 @@ const StandingsContent = () => {
             }
         }
     ]
-
-    const expandedColumns: ColumnDef<ExpandedTeamItem>[] = [
-
-    ]
-    
-    const divisionColumns: ColumnDef<DivisionTeamItem>[] = [
-
-    ]
-
 
     return (
         <>

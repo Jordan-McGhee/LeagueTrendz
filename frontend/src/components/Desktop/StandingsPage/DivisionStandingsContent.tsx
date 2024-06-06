@@ -168,6 +168,134 @@ const DivisionStandingsContent = () => {
                 )
             }
         },
+
+        // EAST
+
+        {
+            accessorKey: "east_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">EAST</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.east_wins}-{row.original.east_losses}</p>
+                )
+            }
+        },
+
+        // ATL
+
+        {
+            accessorKey: "atlantic_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">ATL</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.atlantic_wins}-{row.original.atlantic_losses}</p>
+                )
+            }
+        },
+
+        // CEN
+
+        {
+            accessorKey: "central_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">CEN</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.central_wins}-{row.original.central_losses}</p>
+                )
+            }
+        },
+
+        // SE
+
+        {
+            accessorKey: "southeast_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">SE</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.southeast_wins}-{row.original.southeast_losses}</p>
+                )
+            }
+        },
+
+        // WEST
+
+        {
+            accessorKey: "west_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">WEST</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.west_wins}-{row.original.west_losses}</p>
+                )
+            }
+        },
+
+        // NW
+
+        {
+            accessorKey: "northwest_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">NW</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.northwest_wins}-{row.original.northwest_losses}</p>
+                )
+            }
+        },
+
+        // PAC
+
+        {
+            accessorKey: "pacific_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">PAC</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.pacific_wins}-{row.original.pacific_losses}</p>
+                )
+            }
+        },
+
+        // SW
+
+        {
+            accessorKey: "southwest_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">SW</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.southwest_wins}-{row.original.southwest_losses}</p>
+                )
+            }
+        }
     ]
 
     return (

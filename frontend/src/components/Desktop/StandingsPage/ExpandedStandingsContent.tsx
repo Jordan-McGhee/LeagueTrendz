@@ -169,21 +169,69 @@ const ExpandedStandingsContent = () => {
             }
         },
 
-        // home
+        // 3 pt games
 
-        // {
-        //     accessorKey: "home_wins",
-        //     header: () => {
-        //         return (
-        //             <p className="px-2">HOME</p>
-        //         )
-        //     },
-        //     cell: ({ row }) => {
-        //         return (
-        //             <p className="px-2">{row.original.home_wins}-{row.original.home_losses}</p>
-        //         )
-        //     }
-        // },
+        {
+            accessorKey: "three_point_game_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">3 PT GAMES</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.three_point_game_wins}-{row.original.three_point_game_losses}</p>
+                )
+            }
+        },
+
+        // 10+ pt games
+
+        {
+            accessorKey: "ten_point_game_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">10 PT GAMES</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.ten_point_game_wins}-{row.original.ten_point_game_losses}</p>
+                )
+            }
+        },
+
+        // top half
+
+        {
+            accessorKey: "top_half_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">VS. .500 & ABOVE </p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2 text-center">{row.original.top_half_wins}-{row.original.top_half_losses}</p>
+                )
+            }
+        },
+
+        // bottom half
+
+        {
+            accessorKey: "bottom_half_wins",
+            header: () => {
+                return (
+                    <p className="px-2 text-center">VS. BELOW .500</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="text-center px-2">{row.original.bottom_half_wins}-{row.original.bottom_half_losses}</p>
+                )
+            }
+        }
     ]
 
     return (
