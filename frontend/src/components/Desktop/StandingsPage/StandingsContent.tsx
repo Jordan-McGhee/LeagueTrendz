@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"
 
 // hook imports
 import { useFetch } from "../../../Hooks/useFetch";
@@ -14,6 +15,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs"
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "../../ui/DataTable"
 import { CaretSortIcon } from "@radix-ui/react-icons";
+import { Button } from "../../ui/button"
+import TeamLogo from "../../ui/TeamLogo"
 
 // component imports
 import ErrorModal from "../../ui/ErrorModal"
@@ -44,60 +47,270 @@ const StandingsContent = () => {
         fetchTeam()
     }, [sendRequest, view])
 
-    let fullLeague: StandingsTeamItem[], easternConference: StandingsTeamItem[], westernConference: StandingsTeamItem[], atlanticTeams: StandingsTeamItem[], centralTeams: StandingsTeamItem[], southeastTeams: StandingsTeamItem[], northwestTeams: StandingsTeamItem[], pacificTeams: StandingsTeamItem[], southwestTeams: StandingsTeamItem[]
-
-    if (data) {
-        // full league
-        fullLeague = data
-
-        // conferences
-        easternConference = data.filter((team: StandingsTeamItem) => team.conference === "Eastern")
-        westernConference = data.filter((team: StandingsTeamItem) => team.conference === "Western")
-
-        // divisions
-        // EASTERN CONFERENCE
-        atlanticTeams = data.filter((team: StandingsTeamItem) => team.division === "Atlantic")
-        centralTeams = data.filter((team: StandingsTeamItem) => team.division === "Central")
-        southeastTeams = data.filter((team: StandingsTeamItem) => team.division === "Southeast")
-
-        // WESTERN CONFERENCE
-        northwestTeams = data.filter((team: StandingsTeamItem) => team.division === "Northwest")
-        pacificTeams = data.filter((team: StandingsTeamItem) => team.division === "Pacific")
-        southwestTeams = data.filter((team: StandingsTeamItem) => team.division === "Southwest")
-    }
 
     // define columns for data table
-    if (view === "standings") {
-        const columns: ColumnDef<StandingsTeamItem>[] = [
+    const columns: ColumnDef<StandingsTeamItem>[] = [
 
-            // team name
+        // team name
+        {
+            accessorKey: "full_name",
+            header: "",
+            cell: ({ row }) => {
 
-            // wins --
+                return (
+                    <Link to={`/nba/teams/${row.original.abbreviation.toLowerCase()}?view=home`} className="flex gap-x-2 hover:underline hover:underline-offset-2">
+                        <TeamLogo team_id={row.original.team_id} abbreviation={row.original.abbreviation} logoClass="size-5 object-contain" />
+                        <p>{row.original.full_name}</p>
+                    </Link>
+                )
+            }
+        },
 
-            // losses --
+        // wins --
 
-            // gb --
+        {
+            accessorKey: "wins",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className={column.getIsSorted() ?
+                            column.getIsSorted() === "asc" ? "px-2 overline overline-offset-4 bg-slate-400 text-white" : "px-2 underline underline-offset-4 bg-slate-400 text-white"
 
-            // home
+                            : "px-2 underline underline-offset-4 hover:bg-slate-200"
+                        }
+                    >
+                        W
+                        {/* <CaretSortIcon className="ml-2 h-4 w-4" /> */}
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.wins}</p>
+                )
+            }
+        },
 
-            // away
+        // losses --
 
-            // conference
+        {
+            accessorKey: "losses",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className={column.getIsSorted() ?
+                            column.getIsSorted() === "asc" ? "px-2 overline overline-offset-4 bg-slate-400 text-white" : "px-2 underline underline-offset-4 bg-slate-400 text-white"
 
-            // division
+                            : "px-2 underline underline-offset-4 hover:bg-slate-200"
+                        }
+                    >
+                        L
+                        {/* <CaretSortIcon className="ml-2 h-4 w-4" /> */}
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.losses}</p>
+                )
+            }
+        },
 
-            // ppg --
+        // gb --
 
-            // opp ppg --
+        {
+            accessorKey: "gb",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className={column.getIsSorted() ?
+                            column.getIsSorted() === "asc" ? "px-2 overline overline-offset-4 bg-slate-400 text-white" : "px-2 underline underline-offset-4 bg-slate-400 text-white"
 
-            // diff --
+                            : "px-2 underline underline-offset-4 hover:bg-slate-200"
+                        }
+                    >
+                        GB
+                        {/* <CaretSortIcon className="ml-2 h-4 w-4" /> */}
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.gb}</p>
+                )
+            }
+        },
 
-            // streak --
+        // home
 
-            // l10
-            
-        ]
-    }
+        {
+            accessorKey: "home_wins",
+            header: () => {
+                return (
+                    <p className="px-2">HOME</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.home_wins}-{row.original.home_losses}</p>
+                )
+            }
+        },
+
+        // away
+
+        {
+            accessorKey: "away_wins",
+            header: () => {
+                return (
+                    <p className="px-2">AWAY</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.away_wins}-{row.original.away_losses}</p>
+                )
+            }
+        },
+
+        // conference
+
+        {
+            accessorKey: "conf_wins",
+            header: () => {
+                return (
+                    <p className="px-2">CONF</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.conf_wins}-{row.original.conf_losses}</p>
+                )
+            }
+        },
+
+        // division
+
+        {
+            accessorKey: "div_wins",
+            header: () => {
+                return (
+                    <p className="px-2">DIV</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.div_wins}-{row.original.div_losses}</p>
+                )
+            }
+        },
+
+        // ppg --
+
+        {
+            accessorKey: "ppg",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className={column.getIsSorted() ?
+                            column.getIsSorted() === "asc" ? "px-2 underline underline-offset-4 bg-slate-400 text-white" : "px-2 overline overline-offset-4 bg-slate-400 text-white"
+                            : "px-2 underline underline-offset-4 hover:bg-slate-200"
+                        }
+                    >
+                        PPG
+                        {/* <CaretSortIcon className="ml-2 h-4 w-4" /> */}
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.ppg}</p>
+                )
+            }
+        },
+
+        // opp ppg --
+
+        {
+            accessorKey: "opp_ppg",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                        className={column.getIsSorted() ?
+                            column.getIsSorted() === "asc" ? "px-2 overline overline-offset-4 bg-slate-400 text-white" : "px-2 underline underline-offset-4 bg-slate-400 text-white"
+
+                            : "px-2 underline underline-offset-4 hover:bg-slate-200"
+                        }
+                    >
+                        OPP PPG
+                        {/* <CaretSortIcon className="ml-2 h-4 w-4" /> */}
+                    </Button>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.opp_ppg}</p>
+                )
+            }
+        },
+
+        // diff --
+
+        {
+            accessorKey: "diff",
+            header: () => {
+                return (
+                    <p className="px-2">DIFF</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className={+row.original.diff > 0 ? "px-2 text-green-600" : "px-2 text-red-600"}>{+row.original.diff > 0 ? "+" : ""}{+row.original.diff}</p>
+                )
+            }
+        },
+
+        // streak 
+
+        {
+            accessorKey: "last_10",
+            header: () => {
+                return (
+                    <p className="px-2">STRK</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{countStreak(row.original.last_10)}</p>
+                )
+            }
+        },
+
+        // l10
+        {
+            accessorKey: "last_10",
+            header: () => {
+                return (
+                    <p className="px-2">L10</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{lastTenConverter(row.original.last_10)}</p>
+                )
+            }
+        }
+    ]
 
 
 
@@ -121,71 +334,45 @@ const StandingsContent = () => {
                     {/* LEAGUE CONTENT */}
                     <TabsContent value="league">
 
-                        {/* <StandingsTable
-                            teams={data}
-                            selection="league"
-                            conference="National Basketball Association"
-                        /> */}
+                        <p className="text-xl font-bold mt-6">NATIONAL BASKETBALL ASSOCIATION</p>
+                        <DataTable columns={columns} data={data} />
 
                     </TabsContent>
 
                     {/* CONFERENCE CONTENT */}
                     <TabsContent value="conference">
 
-                        {/* <StandingsTable
-                            teams={easternConference}
-                            selection="conference"
-                            conference="Eastern Conference"
-                        />
 
-                        <StandingsTable
-                            teams={westernConference}
-                            selection="conference"
-                            conference="Western Conference"
-                        /> */}
+                        {/* EASTERN */}
+                        <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
+
+                        {/* WESTERN */}
+                        <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
 
                     </TabsContent>
 
                     {/* DIVISIONS CONTENT */}
                     <TabsContent value="division">
 
-                        {/* <StandingsTable
-                            teams={atlanticTeams}
-                            selection="division"
-                            conference="Eastern Conference"
-                            division="Atlantic"
-                        />
+                        <p className="text-xl font-bold mt-6">ATLANTIC DIVISION</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.division === "Atlantic")} />
 
-                        <StandingsTable
-                            teams={centralTeams}
-                            selection="division"
-                            division="Central"
-                        />
+                        <p className="text-xl font-bold mt-4">CENTRAL DIVISION</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.division === "Central")} />
 
-                        <StandingsTable
-                            teams={southeastTeams}
-                            selection="division"
-                            division="Southeast"
-                        />
+                        <p className="text-xl font-bold mt-4">SOUTHEAST DIVISION</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.division === "Southeast")} />
 
-                        <StandingsTable
-                            teams={northwestTeams}
-                            selection="division"
-                            conference="Western Conference"
-                            division="Northwest"
-                        />
+                        <p className="text-xl font-bold mt-4">NORTHWEST DIVISION</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.division === "Northwest")} />
 
-                        <StandingsTable
-                            teams={pacificTeams}
-                            selection="division"
-                            division="Pacific"
-                        />
+                        <p className="text-xl font-bold mt-4">PACIFIC DIVISION</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.division === "Pacific")} />
 
-                        <StandingsTable
-                            teams={southwestTeams}
-                            selection="division"
-                            division="Southwest"
-                        /> */}
+                        <p className="text-xl font-bold mt-4">SOUTHWEST DIVISION</p>
+                        <DataTable columns={columns} data={data.filter((team: StandingsTeamItem) => team.division === "Southwest")} />
 
                     </TabsContent>
                 </Tabs>

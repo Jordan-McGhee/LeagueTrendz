@@ -6,6 +6,7 @@ import StandingsContent from "../components/Desktop/StandingsPage/StandingsConte
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../components/ui/select"
 
 
 // dummy imports
@@ -17,8 +18,12 @@ const StandingsPage = () => {
         <div className="h-full min-h-lvh">
             <Card>
                 <CardHeader className="">
-                    <CardTitle className="text-3xl font-bold">
+                    <CardTitle className="text-3xl font-bold flex justify-between">
                         NBA Standings 2023-24
+                        
+                        <Select>
+                            
+                        </Select>
                     </CardTitle>
                 </CardHeader>
 
