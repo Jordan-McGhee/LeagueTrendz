@@ -100,7 +100,7 @@ export interface AllTeamsState {
     southwest: Team[]
 }
 
-// // STANDiNGS PAGE
+// // STANDINGS PAGE
 
 export interface StandingsTeamItem {
     team_id: number,
@@ -126,6 +126,53 @@ export interface StandingsTeamItem {
     last_10: string
 }
 
+export interface ExpandedTeamItem {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    conference: string,
+    division: string,
+    wins: string,
+    losses: string,
+    pct: string,
+    gb: string,
+    three_point_game_wins: string,
+    three_point_game_losses: string,
+    ten_point_game_wins: string,
+    ten_point_game_losses: string,
+    top_half_wins: string,
+    top_half_losses: string,
+    bottom_half_wins: string,
+    bottom_half_losses: string
+}
+
+export interface DivisionTeamItem {
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    conference: string,
+    division: string,
+    wins: string,
+    losses: string,
+    pct: string,
+    gb: string,
+    east_wins: string,
+    east_losses: string,
+    atlantic_wins: string,
+    atlantic_losses: string,
+    central_wins: string,
+    central_losses: string,
+    southeast_wins: string,
+    southeast_losses: string,
+    west_wins: string,
+    west_losses: string,
+    northwest_wins: string,
+    northwest_losses: string,
+    pacific_wins: string,
+    pacific_losses: string,
+    southwest_wins: string,
+    southwest_losses: string
+}
 
 // // TEAM PAGE 
 

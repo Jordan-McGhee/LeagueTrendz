@@ -5,10 +5,7 @@ import { Link } from "react-router-dom"
 import { useFetch } from "../../../Hooks/useFetch";
 
 // type imports
-import { StandingsTeamItem, ExpandedTeamItem, DivisionTeamItem } from "@/types";
-
-// utils imports
-import { countStreak, lastTenConverter } from "../../../Utils/utils";
+import { DivisionTeamItem } from "@/types";
 
 // ui imports
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs"
@@ -22,19 +19,19 @@ import TeamLogo from "../../ui/TeamLogo"
 import ErrorModal from "../../ui/ErrorModal"
 import LoadingPage from "../../../pages/LoadingPage"
 
-const StandingsContent = () => {
+const DivisionStandingsContent = () => {
 
     // data
-    const [data, setData] = useState<StandingsTeamItem[] | undefined>()
+    const [data, setData] = useState<DivisionTeamItem[] | undefined>()
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/standings`
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/divisions`
 
         let responseData: any
 
-        const fetchTeam = async () => {
+        const fetchStandings = async () => {
             try {
                 responseData = await sendRequest(url)
                 setData(responseData.standings)
@@ -43,13 +40,12 @@ const StandingsContent = () => {
             }
         }
 
-        fetchTeam()
+        fetchStandings()
     }, [sendRequest])
 
+    console.log(data)
 
-    // define columns for data table
-    const standardColumns: ColumnDef<StandingsTeamItem>[] = [
-
+    const divisionColumns: ColumnDef<DivisionTeamItem>[] = [
         // team name
         {
             accessorKey: "full_name",
@@ -76,7 +72,7 @@ const StandingsContent = () => {
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         className={column.getIsSorted() ?
                             column.getIsSorted() === "asc" ? "px-2 underline underline-offset-4 bg-slate-400 text-white" : "px-2 overline overline-offset-4 bg-slate-400 text-white"
-                            
+
                             : "px-2 underline underline-offset-4 hover:bg-slate-200"
                         }
                     >
@@ -172,180 +168,7 @@ const StandingsContent = () => {
                 )
             }
         },
-
-        // home
-
-        {
-            accessorKey: "home_wins",
-            header: () => {
-                return (
-                    <p className="px-2">HOME</p>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{row.original.home_wins}-{row.original.home_losses}</p>
-                )
-            }
-        },
-
-        // away
-
-        {
-            accessorKey: "away_wins",
-            header: () => {
-                return (
-                    <p className="px-2">AWAY</p>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{row.original.away_wins}-{row.original.away_losses}</p>
-                )
-            }
-        },
-
-        // conference
-
-        {
-            accessorKey: "conf_wins",
-            header: () => {
-                return (
-                    <p className="px-2">CONF</p>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{row.original.conf_wins}-{row.original.conf_losses}</p>
-                )
-            }
-        },
-
-        // division
-
-        {
-            accessorKey: "div_wins",
-            header: () => {
-                return (
-                    <p className="px-2">DIV</p>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{row.original.div_wins}-{row.original.div_losses}</p>
-                )
-            }
-        },
-
-        // ppg --
-
-        {
-            accessorKey: "ppg",
-            header: ({ column }) => {
-                return (
-                    <Button
-                        variant="ghost"
-                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                        className={column.getIsSorted() ?
-                            column.getIsSorted() === "asc" ? "px-2 underline underline-offset-4 bg-slate-400 text-white" : "px-2 overline overline-offset-4 bg-slate-400 text-white"
-                            : "px-2 underline underline-offset-4 hover:bg-slate-200"
-                        }
-                    >
-                        PPG
-                        {/* <CaretSortIcon className="ml-2 h-4 w-4" /> */}
-                    </Button>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{row.original.ppg}</p>
-                )
-            }
-        },
-
-        // opp ppg --
-
-        {
-            accessorKey: "opp_ppg",
-            header: ({ column }) => {
-                return (
-                    <Button
-                        variant="ghost"
-                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                        className={column.getIsSorted() ?
-                            column.getIsSorted() === "asc" ? "px-2 overline overline-offset-4 bg-slate-400 text-white" : "px-2 underline underline-offset-4 bg-slate-400 text-white"
-
-                            : "px-2 underline underline-offset-4 hover:bg-slate-200"
-                        }
-                    >
-                        OPP PPG
-                        {/* <CaretSortIcon className="ml-2 h-4 w-4" /> */}
-                    </Button>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{row.original.opp_ppg}</p>
-                )
-            }
-        },
-
-        // diff --
-
-        {
-            accessorKey: "diff",
-            header: () => {
-                return (
-                    <p className="px-2">DIFF</p>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className={+row.original.diff > 0 ? "px-2 text-green-600" : "px-2 text-red-600"}>{+row.original.diff > 0 ? "+" : ""}{+row.original.diff}</p>
-                )
-            }
-        },
-
-        // streak 
-
-        {
-            accessorKey: "last_10",
-            header: () => {
-                return (
-                    <p className="px-2">STRK</p>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{countStreak(row.original.last_10)}</p>
-                )
-            }
-        },
-
-        // l10
-        {
-            accessorKey: "last_10",
-            header: () => {
-                return (
-                    <p className="px-2">L10</p>
-                )
-            },
-            cell: ({ row }) => {
-                return (
-                    <p className="px-2">{lastTenConverter(row.original.last_10)}</p>
-                )
-            }
-        }
     ]
-
-    const expandedColumns: ColumnDef<ExpandedTeamItem>[] = [
-
-    ]
-    
-    const divisionColumns: ColumnDef<DivisionTeamItem>[] = [
-
-    ]
-
 
     return (
         <>
@@ -354,7 +177,6 @@ const StandingsContent = () => {
 
             {/* loading state */}
             {isLoading && <LoadingPage />}
-
 
             {data &&
                 <Tabs defaultValue="conference">
@@ -368,7 +190,7 @@ const StandingsContent = () => {
                     <TabsContent value="league">
 
                         <p className="text-xl font-bold mt-6">NATIONAL BASKETBALL ASSOCIATION</p>
-                        <DataTable columns={standardColumns} data={data} />
+                        <DataTable columns={divisionColumns} data={data} />
 
                     </TabsContent>
 
@@ -378,11 +200,11 @@ const StandingsContent = () => {
 
                         {/* EASTERN */}
                         <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.conference === "Eastern")} />
 
                         {/* WESTERN */}
                         <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.conference === "Western")} />
 
                     </TabsContent>
 
@@ -390,22 +212,22 @@ const StandingsContent = () => {
                     <TabsContent value="division">
 
                         <p className="text-xl font-bold mt-6">ATLANTIC DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Atlantic")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.division === "Atlantic")} />
 
                         <p className="text-xl font-bold mt-4">CENTRAL DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Central")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.division === "Central")} />
 
                         <p className="text-xl font-bold mt-4">SOUTHEAST DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southeast")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.division === "Southeast")} />
 
                         <p className="text-xl font-bold mt-4">NORTHWEST DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Northwest")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.division === "Northwest")} />
 
                         <p className="text-xl font-bold mt-4">PACIFIC DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Pacific")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.division === "Pacific")} />
 
                         <p className="text-xl font-bold mt-4">SOUTHWEST DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southwest")} />
+                        <DataTable columns={divisionColumns} data={data.filter((team: DivisionTeamItem) => team.division === "Southwest")} />
 
                     </TabsContent>
                 </Tabs>
@@ -414,4 +236,4 @@ const StandingsContent = () => {
     )
 }
 
-export default StandingsContent
+export default DivisionStandingsContent

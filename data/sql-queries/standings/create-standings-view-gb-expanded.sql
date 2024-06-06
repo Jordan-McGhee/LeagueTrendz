@@ -16,7 +16,7 @@ SELECT
             (g.home_team_score - g.away_team_score BETWEEN 1 AND 3 AND g.home_team_id = sv.team_id)
             OR (g.away_team_score - g.home_team_score BETWEEN 1 AND 3 AND g.away_team_id = sv.team_id)
         ) THEN 1 ELSE 0
-    END) AS "3_point_game_wins",
+    END) AS "three_point_game_wins",
 	
 	-- 3 pt losses
     SUM(CASE
@@ -24,7 +24,7 @@ SELECT
             (g.away_team_score - g.home_team_score BETWEEN 1 AND 3 AND g.home_team_id = sv.team_id)
             OR (g.home_team_score - g.away_team_score BETWEEN 1 AND 3 AND g.away_team_id = sv.team_id)
         ) THEN 1 ELSE 0
-    END) AS "3_point_game_losses",
+    END) AS "three_point_game_losses",
 
 	-- 10+ pt wins
     SUM(CASE
@@ -32,7 +32,7 @@ SELECT
             (g.home_team_score - g.away_team_score >= 10 AND g.home_team_id = sv.team_id)
             OR (g.away_team_score - g.home_team_score  >= 10 AND g.away_team_id = sv.team_id)
         ) THEN 1 ELSE 0
-    END) AS "10_point_game_wins",
+    END) AS "ten_point_game_wins",
 
 	-- 10+ pt losses
     SUM(CASE 
@@ -40,7 +40,7 @@ SELECT
             (g.away_team_score - g.home_team_score  >= 10 AND g.home_team_id = sv.team_id)
             OR (g.home_team_score - g.away_team_score  >= 10 AND g.away_team_id = sv.team_id)
         ) THEN 1 ELSE 0
-    END) AS "10_point_game_losses",
+    END) AS "ten_point_game_losses",
 
 	-- wins vs top half of league
     SUM(CASE

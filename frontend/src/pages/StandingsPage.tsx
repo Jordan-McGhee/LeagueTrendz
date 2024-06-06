@@ -1,8 +1,9 @@
-import React from "react";
-// import { useState } from "react";
+import React, { useState } from "react";
 
 // component imports
 import StandingsContent from "../components/Desktop/StandingsPage/StandingsContent";
+import ExpandedStandingsContent from "../components/Desktop/StandingsPage/ExpandedStandingsContent"
+import DivisionStandingsContent from "../components/Desktop/StandingsPage/DivisionStandingsContent";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card"
@@ -14,6 +15,12 @@ const teams = require("../DUMMYDATA/NBA_Teams.json")
 
 const StandingsPage = () => {
 
+    const [view, setView] = useState<string>("standings")
+
+    const selectViewHandler = (value: string) => {
+        setView(value)
+    }
+
     return (
         <div className="h-full min-h-lvh">
             <Card>
@@ -21,14 +28,24 @@ const StandingsPage = () => {
                     <CardTitle className="text-3xl font-bold flex justify-between">
                         NBA Standings 2023-24
                         
-                        <Select>
-                            
+                        <Select value={view} onValueChange={(newValue) => selectViewHandler(newValue)}>
+                            <SelectTrigger className="w-[300px]">
+                                <SelectValue placeholder = "Change Standings View" />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                                <SelectItem value="standings">Standard View</SelectItem>
+                                <SelectItem value="expanded">Expanded View</SelectItem>
+                                <SelectItem value="division">Division View</SelectItem>
+                            </SelectContent>
                         </Select>
                     </CardTitle>
                 </CardHeader>
 
                 <CardContent>
-                    <StandingsContent />
+                    { view === "standings" && <StandingsContent />}
+                    { view === "expanded" && <ExpandedStandingsContent />}
+                    { view === "division" && <DivisionStandingsContent />}
                 </CardContent>
 
                 <CardFooter>
