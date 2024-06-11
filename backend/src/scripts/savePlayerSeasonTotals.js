@@ -1,16 +1,6 @@
 const { Pool } = require("pg")
 const basicData = require("../../../data/2023-24_player_basic_season_totals.json")
 
-const pool = new Pool({
-    user: 'ctqmvlqf',
-    host: 'ruby.db.elephantsql.com',
-    database: 'ctqmvlqf',
-    port: 5432,
-    password: 'pdZjkxf-n-wtvBPlpCZR4B8DY79dH996',
-    max: 150,
-    min: 0
-})
-
 
 // THINGS TO CONSIDER
 // PLAYERS THAT WERE TRADED

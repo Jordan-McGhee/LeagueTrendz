@@ -1,16 +1,6 @@
 const { Pool } = require('pg');
 const teamsData = require("../../../data/teams.json")
 
-const pool = new Pool({
-    user: 'ctqmvlqf',
-    host: 'ruby.db.elephantsql.com',
-    database: 'ctqmvlqf',
-    port: 5432,
-    password: 'pdZjkxf-n-wtvBPlpCZR4B8DY79dH996',
-    max: 150,
-    min: 0
-})
-
 async function saveTeam(team) {
     const query = `INSERT INTO teams (full_name, abbreviation, league_id, description, wins, losses, conference, division, stadium, stadium_location)
     VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)

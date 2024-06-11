@@ -1,16 +1,6 @@
 const { Pool } = require('pg')
 const playersData = require("../../../data/2023-24.NBA.Roster.json")
 
-const pool = new Pool({
-    user: 'ctqmvlqf',
-    host: 'ruby.db.elephantsql.com',
-    database: 'ctqmvlqf',
-    port: 5432,
-    password: 'pdZjkxf-n-wtvBPlpCZR4B8DY79dH996',
-    max: 150,
-    min: 0
-})
-
 async function savePlayer(player) {
 
     // things to do

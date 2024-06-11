@@ -59,6 +59,7 @@ const checkAuth = require('./middleware/check-auth')
 const userRoutes = require("./routes/user-routes")
 const teamRoutes = require("./routes/team-routes")
 const playerRoutes = require("./routes/player-routes")
+const gameRoutes = require("./routes/game-routes")
 
 const app: Express = express();
 
@@ -83,6 +84,7 @@ app.use((req, res, next) => {
 // route variables
 app.use("/nba/teams", teamRoutes)
 app.use("/nba/players", playerRoutes)
+app.use("/nba/games", gameRoutes)
 app.use("/user", userRoutes)
 // app.use("/league", leagueRoutes)
 

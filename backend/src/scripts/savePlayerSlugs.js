@@ -1,16 +1,6 @@
 const { Pool } = require("pg")
 const players = require("../../../data/with_IDs/2024_nba_players_With_ids.json")
 
-const pool = new Pool({
-    user: 'ctqmvlqf',
-    host: 'ruby.db.elephantsql.com',
-    database: 'ctqmvlqf',
-    port: 5432,
-    password: 'pdZjkxf-n-wtvBPlpCZR4B8DY79dH996',
-    max: 150,
-    min: 0
-})
-
 async function saveSlug(player) {
     const nameSplit = player.name.split(" ")
     const firstName = nameSplit[0]

@@ -1,16 +1,6 @@
 const { Pool } = require('pg');
 const historyData = require("../../../data/team-history.json")
 
-const pool = new Pool({
-    user: 'ctqmvlqf',
-    host: 'ruby.db.elephantsql.com',
-    database: 'ctqmvlqf',
-    port: 5432,
-    password: 'pdZjkxf-n-wtvBPlpCZR4B8DY79dH996',
-    max: 150,
-    min: 0
-})
-
 // HISTORY
 // retired numbers []
 // seasons
