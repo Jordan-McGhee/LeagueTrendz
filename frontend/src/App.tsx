@@ -15,7 +15,7 @@ import AllPlayersPage from "./pages/AllPlayersPage"
 import AllTeamsPage from './pages/AllTeamsPage';
 import HomePage from './pages/HomePage';
 import PlayerPage from './pages/Data-Pages/Player/PlayerPage';
-import RosterPage from './pages/RosterPage';
+import GameBoxScorePage from './pages/Data-Pages/Game/GameBoxScorePage';
 import SchedulePage from './pages/SchedulePage';
 import SingleTeamPage from './pages/Data-Pages/Team/SingleTeamPage';
 import ScoresPage from './pages/ScoresPage';
@@ -29,14 +29,25 @@ function App() {
   let routes = (
     <Routes>
       <Route path="/" element={<HomePage />} />
+
+      {/* teams */}
       <Route path="/nba/teams" element={<AllTeamsPage />} />
       <Route path="/nba/teams/:abbreviation" element={<SingleTeamPage />} />
-      <Route path='nba/players' element={<AllPlayersPage />} />
+
+      {/* players */}
+      <Route path='/nba/players' element={<AllPlayersPage />} />
       <Route path="/nba/players/id/:player_id/:player_name" element={<PlayerPage />} />
-      <Route path="/roster" element={<RosterPage />} />
+
+      {/* games */}
+      {/* <Route path='/nba/games/:date' /> */}
+      <Route path='/nba/games/game_id/:game_id' element={<GameBoxScorePage />} />
+
+      {/* general pages */}
       <Route path='/nba/scores' element={<ScoresPage />} />
       <Route path="/nba/schedule" element={<SchedulePage />} />
       <Route path='/nba/standings' element={<StandingsPage />} />
+
+      {/* user */}
       <Route path='/user' element={<UserPage />} />
     </Routes>
   )
