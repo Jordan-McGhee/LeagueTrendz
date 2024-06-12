@@ -37,5 +37,17 @@ export const getGameByID = async (req: Request, res: Response, next: NextFunctio
         return res.status(500).json({ message: `Error finding game with id #${game_id}. ${error}`})
     }
 
-    res.status(200).json({ message: `Got data for game #${game_id}`, game: gameResponse.rows[0]})
+    const standingsQuery: string = "SELECT h.team_id AS home_team_id, h.wins AS home_team_wins, h.losses AS home_team_losses, h.home_wins AS home_team_home_wins, h.home_losses AS home_team_home_losses, a.team_id AS away_team_id, a.wins AS away_team_wins, a.losses AS away_team_losses, a.away_wins AS away_team_away_wins, a.away_losses AS away_team_away_losses FROM standings_view_with_gb h JOIN standings_view_with_gb a ON h.team_id = $1 AND a.team_id = $2"
+
+    let standingsResponse: QueryResult
+
+    try {
+        standingsResponse = await pool.query(standingsQuery, [ gameResponse.rows[0].home_team_id, gameResponse.rows[0].away_team_id])
+    } catch (error) {
+        console.log(`Error querying for standings data. ${error}`)
+
+        return res.status(500).json({ message: `Error querying for standings data. ${error}`})
+    }
+
+    res.status(200).json({ message: `Got data for game #${game_id}`, game: gameResponse.rows[0], standingsData: standingsResponse.rows[0]})
 }

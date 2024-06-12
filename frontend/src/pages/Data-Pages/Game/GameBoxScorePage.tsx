@@ -36,6 +36,7 @@ const GameBoxScorePage = () => {
 
     // states
     const [game, setGame] = useState<GameBoxScoreState | undefined>()
+    const [standingsData, setStandingsData] = useState()
 
     // fetch from database
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -50,8 +51,9 @@ const GameBoxScorePage = () => {
             try {
                 responseData = await sendRequest(url)
                 setGame(responseData.game)
+                setStandingsData(responseData.standingsData)
             } catch (error) {
-                
+
             }
         }
 
@@ -71,6 +73,14 @@ const GameBoxScorePage = () => {
         }
     }, [view]);
 
+    const handleMenuClick = (option: string) => {
+        setSelectedMenuItem(option)
+        navigate(`/nba/games/game_id/${game_id}?view=${option}`);
+    }
+
+    // home team / away team variables
+
+
     return (
         <div className="h-full min-h-svh">
             {/* error */}
@@ -80,10 +90,33 @@ const GameBoxScorePage = () => {
             {isLoading && <LoadingPage />}
 
             {
-                game &&
+                game && standingsData &&
                 <Card>
                     <CardHeader>
-                        
+
+
+                        <Menubar className="w-fit">
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "gamecast" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('gamecast')}
+                                >Gamecast</MenubarTrigger>
+                            </MenubarMenu>
+
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "boxscore" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('boxscore')}
+                                >Box Score</MenubarTrigger>
+                            </MenubarMenu>
+
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "team-stats" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('team-stats')}
+                                >Team Stats</MenubarTrigger>
+                            </MenubarMenu>
+                        </Menubar>
                     </CardHeader>
                 </Card>
             }

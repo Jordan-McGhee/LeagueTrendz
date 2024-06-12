@@ -8,7 +8,6 @@ SELECT
     -- HOME TEAM
     g.home_team_id AS home_team_id,
     home.full_name AS home_team_full_name,
-    home.abbreviation AS home_team_abbreviation,
     -- total score
     SUM(CASE WHEN pbs.location = 'HOME' THEN pbs.pts ELSE 0 END) AS home_team_score,
     -- field goals
@@ -84,7 +83,6 @@ SELECT
     -- AWAY TEAM
     g.away_team_id AS away_team_id,
     away.full_name AS away_team_full_name,
-    away.abbreviation AS away_team_abbreviation,
     -- total score
     SUM(CASE WHEN pbs.location = 'AWAY' THEN pbs.pts ELSE 0 END) AS away_team_score,
     -- field goals
@@ -156,7 +154,10 @@ SELECT
         WHERE pbs_sub.game_id = g.game_id AND pbs_sub.location = 'AWAY'
         ORDER BY pbs_sub.pts DESC
         LIMIT 1
-    ) AS away_best_player_ast
+    ) AS away_best_player_ast,
+    home.abbreviation AS home_team_abbreviation,
+    away.abbreviation AS away_team_abbreviation
+
 	
 FROM
     games g
