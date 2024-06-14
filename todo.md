@@ -87,5 +87,6 @@
 - LONG PLAYER NAMES
     - Add styling for players like Shai Gilgeous-Alexander
 
-- GAME PAGE
-    - Add query to grab all details about team record from expanded standings view
+- GAMEBOXSCORE PAGE
+    <!-- - Add query to grab all details about team record from expanded standings view DONE -->
+    - make sure date/time is always centered

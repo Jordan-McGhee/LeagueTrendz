@@ -854,7 +854,7 @@ export interface GameBoxScoreState {
     game_time: string,
     in_season_tournament: boolean,
     postseason: boolean,
-    home_team_id: string,
+    home_team_id: number,
     home_team_full_name: string,
     home_team_abbreviation: string,
     home_team_score: string,
@@ -908,4 +908,17 @@ export interface GameBoxScoreState {
     away_best_player_pts: number,
     away_best_player_reb: number,
     away_best_player_ast: number,
+}
+
+export interface StandingsDataState {
+    home_team_id: number,
+    home_team_wins: string,
+    home_team_losses: string,
+    home_team_home_wins: string,
+    home_team_home_losses: string,
+    away_team_id: number,
+    away_team_wins: string,
+    away_team_losses: string,
+    away_team_away_wins: string,
+    away_team_away_losses: string
 }

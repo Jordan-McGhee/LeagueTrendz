@@ -65,15 +65,15 @@ export const convertDateGameLog = (day_of_week: string, date: string): string =>
  * @returns date converted into Schedule date format: 2/17
  */
 export const convertDateTeamSchedule = (date: string) => {
-        // Extracting month and day from the date string
-        const noTimeZone = date.split("T")[0]
-        const [year, month, day] = noTimeZone.split('-');
-    
-        // Format the date as MM/DD
-        const formattedDate = `${month[0] === "0" ? month[1] : month}/${day[0] === "0" ? day[1] : day}`;
-    
-        // Constructing the final formatted string
-        return `${formattedDate}`;
+    // Extracting month and day from the date string
+    const noTimeZone = date.split("T")[0]
+    const [year, month, day] = noTimeZone.split('-');
+
+    // Format the date as MM/DD
+    const formattedDate = `${month[0] === "0" ? month[1] : month}/${day[0] === "0" ? day[1] : day}`;
+
+    // Constructing the final formatted string
+    return `${formattedDate}`;
 }
 
 
@@ -137,10 +137,10 @@ export const lastTenConverter = (lastTen: string) => {
 
     const lastTenSplit = lastTen.split("-")
 
-    for (let i =0; i <lastTenSplit.length; i++) {
+    for (let i = 0; i < lastTenSplit.length; i++) {
         if (lastTenSplit[i] === "W") {
             winCount++
-        } else{
+        } else {
             lossCount++
         }
     }
@@ -261,3 +261,39 @@ export const teamStatLeaderFormatter = (player: string) => {
     // Return the extracted values as a PlayerStat object
     return { id, name, stat };
 }
+
+/**
+ * Takes in date and day of week and formats them for game log table
+ * @param date string - YYYY-MM-DDTZ format
+ * @returns date converted into GameBoxScore Format: Month DD, YYYY
+ */
+export const convertDateGameBoxScore = (date: string): string => {
+
+    // Mapping month number to month abbreviation
+    const monthMap: { [key: number]: string } = {
+        1: 'Jan',
+        2: 'Feb',
+        3: 'Mar',
+        4: 'Apr',
+        5: 'May',
+        6: 'June',
+        7: 'July',
+        8: 'Aug',
+        9: 'Sep',
+        10: 'Oct',
+        11: 'Nov',
+        12: 'Dec'
+    };
+
+    const dateOnly = date.split("T")[0]
+
+    // Extracting month and day from the date string
+    const [year, month, day] = dateOnly.split('-');
+
+    const monthConverted = month[0] === "0" ? month[1] : month
+
+    // format date as Month DD, YYYY
+    const formattedDate = `${monthMap[+monthConverted]} ${day[0] === "0" ? day[1] : day}, ${year}`
+
+    return formattedDate;
+};

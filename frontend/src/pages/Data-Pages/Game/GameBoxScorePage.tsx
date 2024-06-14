@@ -6,9 +6,10 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useFetch } from "../../../Hooks/useFetch"
 
 // types
-import { GameBoxScoreState } from "@/types";
+import { GameBoxScoreState, StandingsDataState } from "@/types";
 
 // utils
+import { convertDateGameBoxScore } from "../../../Utils/utils";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
@@ -36,7 +37,7 @@ const GameBoxScorePage = () => {
 
     // states
     const [game, setGame] = useState<GameBoxScoreState | undefined>()
-    const [standingsData, setStandingsData] = useState()
+    const [standingsData, setStandingsData] = useState<StandingsDataState | undefined>()
 
     // fetch from database
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -94,6 +95,45 @@ const GameBoxScorePage = () => {
                 <Card>
                     <CardHeader>
 
+                        <div className="flex mx-auto gap-x-8 items-center my-4">
+
+                            <div className="flex justify-evenly items-center gap-x-6">
+                                {/* AWAY TEAM */}
+
+                                {/* name/record */}
+                                <div className="text-right">
+                                    <p className="text-2xl font-bold">{game.away_team_full_name}</p>
+                                    <p className="text-sm font-light">{`${standingsData.away_team_wins}-${standingsData.away_team_losses}, ${standingsData.away_team_away_wins}-${standingsData.away_team_away_losses} Away`}</p>
+                                </div>
+
+                                <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="size-12 object-contain" />
+
+                                <p className={+game.away_team_score > +game.home_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.away_team_score}</p>
+                            </div>
+
+
+                            {/* DATE & OUTCOME */}
+                            <div className="text-center">
+                                <p className="text-2xl font-bold">FINAL</p>
+                                <p className="text-sm font-light">{convertDateGameBoxScore(game.game_date)}</p>
+                            </div>
+
+                            <div className="flex justify-evenly items-center gap-x-6">
+                                {/* HOME TEAM */}
+
+                                <p className={+game.home_team_score > +game.away_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.home_team_score}</p>
+
+                                <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-12 object-contain" />
+
+                                {/* name/record */}
+                                <div className="text-left">
+                                    <p className="text-2xl font-bold">{game.home_team_full_name}</p>
+                                    <p className="text-sm font-light">{`${standingsData.home_team_wins}-${standingsData.home_team_losses}, ${standingsData.home_team_home_wins}-${standingsData.home_team_home_losses} Home`}</p>
+                                </div>
+
+                            </div>
+                        </div>
+
 
                         <Menubar className="w-fit">
                             <MenubarMenu>
@@ -118,6 +158,12 @@ const GameBoxScorePage = () => {
                             </MenubarMenu>
                         </Menubar>
                     </CardHeader>
+
+                    <CardContent>
+                        {/* {selectedMenuItem === "" && < />} */}
+                        {/* {selectedMenuItem === "" && < />} */}
+                        {/* {selectedMenuItem === "" && < />} */}
+                    </CardContent>
                 </Card>
             }
         </div>
