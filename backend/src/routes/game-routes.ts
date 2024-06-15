@@ -7,6 +7,11 @@ const router = express.Router()
 
 router.get("/date/:date", gameControllers.getGamesByDate)
 
+// single game
+
 router.get("/game_id/:game_id", gameControllers.getGameByID)
+
+// box score
+router.get("/game_id/:game_id/box-score", gameControllers.getGameBoxScore)
 
 module.exports = router

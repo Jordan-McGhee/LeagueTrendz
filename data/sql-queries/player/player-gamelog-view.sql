@@ -51,7 +51,9 @@ SELECT
     pbs.stl,
     pbs.blk,
     pbs.turnovers,
-    pbs.pf
+    pbs.pf,
+
+    p.player_position AS player_position
 
     
 

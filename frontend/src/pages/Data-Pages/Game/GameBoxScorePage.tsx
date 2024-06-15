@@ -17,6 +17,9 @@ import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/men
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/select"
 
 // views imports
+import BoxScoreView from "./Views/BoxScoreView";
+import TeamStatsView from "./Views/TeamStatsView";
+import GameCastView from "./Views/GamecastView";
 
 // component imports
 import TeamLogo from "../../../components/ui/TeamLogo"
@@ -134,8 +137,54 @@ const GameBoxScorePage = () => {
                             </div>
                         </div>
 
+                        <div className="grid grid-cols-7 gap-x-4">
 
-                        <Menubar className="w-fit">
+                            {/* AWAY */}
+                            <div className="col-end-3">
+                                <div className="flex justify-evenly items-center gap-x-6">
+                                    {/* AWAY TEAM */}
+
+                                    {/* name/record */}
+                                    <div className="text-right">
+                                        <p className="text-2xl font-bold">{game.away_team_full_name}</p>
+                                        <p className="text-sm font-light">{`${standingsData.away_team_wins}-${standingsData.away_team_losses}, ${standingsData.away_team_away_wins}-${standingsData.away_team_away_losses} Away`}</p>
+                                    </div>
+
+                                    <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="size-12 object-contain" />
+
+                                    <p className={+game.away_team_score > +game.home_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.away_team_score}</p>
+                                </div>
+                            </div>
+
+                            {/* FINAL */}
+                            <div className="col-start-4 col-span-1">
+                                <div className="text-center">
+                                    <p className="text-2xl font-bold">FINAL</p>
+                                    <p className="text-sm font-light">{convertDateGameBoxScore(game.game_date)}</p>
+                                </div>
+                            </div>
+
+                            {/* HOME */}
+                            <div className="col-start-5">
+                                <div className="flex justify-evenly items-center gap-x-6">
+                                    {/* HOME TEAM */}
+
+                                    <p className={+game.home_team_score > +game.away_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.home_team_score}</p>
+
+                                    <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-12 object-contain" />
+
+                                    {/* name/record */}
+                                    <div className="text-left">
+                                        <p className="text-2xl font-bold">{game.home_team_full_name}</p>
+                                        <p className="text-sm font-light">{`${standingsData.home_team_wins}-${standingsData.home_team_losses}, ${standingsData.home_team_home_wins}-${standingsData.home_team_home_losses} Home`}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <Menubar className="w-fit m-auto">
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "gamecast" ? { backgroundColor: "black", color: "white" } : {}}
@@ -145,8 +194,8 @@ const GameBoxScorePage = () => {
 
                             <MenubarMenu>
                                 <MenubarTrigger
-                                    style={selectedMenuItem === "boxscore" ? { backgroundColor: "black", color: "white" } : {}}
-                                    onClick={() => handleMenuClick('boxscore')}
+                                    style={selectedMenuItem === "box-score" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('box-score')}
                                 >Box Score</MenubarTrigger>
                             </MenubarMenu>
 
@@ -160,9 +209,9 @@ const GameBoxScorePage = () => {
                     </CardHeader>
 
                     <CardContent>
-                        {/* {selectedMenuItem === "" && < />} */}
-                        {/* {selectedMenuItem === "" && < />} */}
-                        {/* {selectedMenuItem === "" && < />} */}
+                        {selectedMenuItem === "gamecast" && <GameCastView />}
+                        {selectedMenuItem === "box-score" && <BoxScoreView teamData={game} />}
+                        {selectedMenuItem === "team-stats" && <TeamStatsView />}
                     </CardContent>
                 </Card>
             }

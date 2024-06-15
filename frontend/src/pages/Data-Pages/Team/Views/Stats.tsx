@@ -11,13 +11,9 @@ import { convertPlayerPosition } from "../../../../Utils/utils";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../../components/ui/card"
-import { Button } from "../../../../components/ui/button"
-import { CaretSortIcon } from "@radix-ui/react-icons";
-import { ColumnDef } from "@tanstack/react-table";
 import ErrorModal from "../../../../components/ui/ErrorModal"
 
 // component imports
-import { DataTable } from "../../../../components/ui/DataTable";
 import StatsTeamLeaders from "../../../../components/Desktop/SingleTeamPage/Stats/StatsTeamLeaders"
 import LoadingPage from "../../../LoadingPage"
 import TeamAllStatsTable from "../../../../components/Desktop/SingleTeamPage/Stats/TeamAllStatsTable";
@@ -31,13 +27,13 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
-    // fetch roster from database
+    // fetch stats from database
     useEffect(() => {
         const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/stats-regular`
 
         let responseData: any
 
-        const fetchRoster = async () => {
+        const fetchStats = async () => {
             try {
                 responseData = await sendRequest(url)
                 setPlayerStats(responseData.player_stats)
@@ -47,7 +43,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
             }
         }
 
-        fetchRoster()
+        fetchStats()
     }, [team, sendRequest])
 
     return (

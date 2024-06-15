@@ -922,3 +922,35 @@ export interface StandingsDataState {
     away_team_away_wins: string,
     away_team_away_losses: string
 }
+
+// BOX SCORE VIEW
+export interface BoxScoreViewProps {
+    teamData: GameBoxScoreState
+}
+
+export interface BoxScoreViewState {
+    game_id: number,
+    player_team_id: number,
+    player_id: number,
+    player_name: string,
+    player_position: string,
+    minutes: number,
+    pts: number,
+    fgm: number,
+    fga: number,
+    fg_percentage: string,
+    tpm: number,
+    tpa: number,
+    tp_percentage: string,
+    ftm: number,
+    fta: number,
+    ft_percentage: string,
+    orb: number,
+    drb: number,
+    reb: number,
+    ast: number,
+    stl: number,
+    blk: number,
+    turnovers: number,
+    pf: number
+}
