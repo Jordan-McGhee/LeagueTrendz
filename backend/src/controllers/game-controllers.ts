@@ -52,6 +52,11 @@ export const getGameByID = async (req: Request, res: Response, next: NextFunctio
     res.status(200).json({ message: `Got data for game #${game_id}`, game: gameResponse.rows[0], standingsData: standingsResponse.rows[0] })
 }
 
+// get team stats
+export const getTeamStats = async (req: Request, res: Response, next: NextFunction) => {
+    
+}
+
 // get box score
 export const getGameBoxScore = async (req: Request, res: Response, next: NextFunction) => {
     const { game_id } = req.params

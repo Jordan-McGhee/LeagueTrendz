@@ -1,6 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
 
 // hook imports
 import { useFetch } from "../../../Hooks/useFetch"
@@ -68,7 +68,7 @@ const GameBoxScorePage = () => {
     // console.log(game)
 
     // MENUBAR
-    const [selectedMenuItem, setSelectedMenuItem] = useState<string>('home')
+    const [selectedMenuItem, setSelectedMenuItem] = useState<string>('team-stats')
 
     // update menubar state based on query param
     useEffect(() => {
@@ -98,59 +98,27 @@ const GameBoxScorePage = () => {
                 <Card>
                     <CardHeader>
 
-                        <div className="flex mx-auto gap-x-8 items-center my-4">
-
-                            <div className="flex justify-evenly items-center gap-x-6">
-                                {/* AWAY TEAM */}
-
-                                {/* name/record */}
-                                <div className="text-right">
-                                    <p className="text-2xl font-bold">{game.away_team_full_name}</p>
-                                    <p className="text-sm font-light">{`${standingsData.away_team_wins}-${standingsData.away_team_losses}, ${standingsData.away_team_away_wins}-${standingsData.away_team_away_losses} Away`}</p>
-                                </div>
-
-                                <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="size-12 object-contain" />
-
-                                <p className={+game.away_team_score > +game.home_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.away_team_score}</p>
-                            </div>
 
 
-                            {/* DATE & OUTCOME */}
-                            <div className="text-center">
-                                <p className="text-2xl font-bold">FINAL</p>
-                                <p className="text-sm font-light">{convertDateGameBoxScore(game.game_date)}</p>
-                            </div>
-
-                            <div className="flex justify-evenly items-center gap-x-6">
-                                {/* HOME TEAM */}
-
-                                <p className={+game.home_team_score > +game.away_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.home_team_score}</p>
-
-                                <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-12 object-contain" />
-
-                                {/* name/record */}
-                                <div className="text-left">
-                                    <p className="text-2xl font-bold">{game.home_team_full_name}</p>
-                                    <p className="text-sm font-light">{`${standingsData.home_team_wins}-${standingsData.home_team_losses}, ${standingsData.home_team_home_wins}-${standingsData.home_team_home_losses} Home`}</p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-7 gap-x-4">
+                        <div className="grid grid-cols-7 my-4">
 
                             {/* AWAY */}
-                            <div className="col-end-3">
+                            <div className="col-start-1 col-span-3">
                                 <div className="flex justify-evenly items-center gap-x-6">
                                     {/* AWAY TEAM */}
 
-                                    {/* name/record */}
-                                    <div className="text-right">
-                                        <p className="text-2xl font-bold">{game.away_team_full_name}</p>
-                                        <p className="text-sm font-light">{`${standingsData.away_team_wins}-${standingsData.away_team_losses}, ${standingsData.away_team_away_wins}-${standingsData.away_team_away_losses} Away`}</p>
-                                    </div>
+                                    <Link to={`/nba/teams/${game.away_team_abbreviation.toLowerCase()}?view=home`} className="hover:underline">
+                                        {/* name/record */}
+                                        <div className="text-right">
+                                            <p className="text-2xl font-bold">{game.away_team_full_name}</p>
+                                            <p className="text-sm font-light">{`${standingsData.away_team_wins}-${standingsData.away_team_losses}, ${standingsData.away_team_away_wins}-${standingsData.away_team_away_losses} Away`}</p>
+                                        </div>
+                                    </Link>
 
-                                    <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="size-12 object-contain" />
+                                    <Link to={`/nba/teams/${game.away_team_abbreviation.toLowerCase()}?view=home`} className="hover:underline">
+
+                                        <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="size-12 object-contain" />
+                                    </Link>
 
                                     <p className={+game.away_team_score > +game.home_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.away_team_score}</p>
                                 </div>
@@ -165,19 +133,25 @@ const GameBoxScorePage = () => {
                             </div>
 
                             {/* HOME */}
-                            <div className="col-start-5">
-                                <div className="flex justify-evenly items-center gap-x-6">
+                            <div className="col-start-5 col-span-3">
+                                <div className="flex justify-evenly items-center">
                                     {/* HOME TEAM */}
+
 
                                     <p className={+game.home_team_score > +game.away_team_score ? "text-5xl font-bold text-black" : "text-5xl font-bold text-gray-600"}>{game.home_team_score}</p>
 
-                                    <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-12 object-contain" />
 
-                                    {/* name/record */}
-                                    <div className="text-left">
-                                        <p className="text-2xl font-bold">{game.home_team_full_name}</p>
-                                        <p className="text-sm font-light">{`${standingsData.home_team_wins}-${standingsData.home_team_losses}, ${standingsData.home_team_home_wins}-${standingsData.home_team_home_losses} Home`}</p>
-                                    </div>
+                                    <Link to={`/nba/teams/${game.home_team_abbreviation.toLowerCase()}?view=home`} className="hover:underline">
+                                        <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-12 object-contain" />
+                                    </Link>
+
+                                    <Link to={`/nba/teams/${game.home_team_abbreviation.toLowerCase()}?view=home`} className="hover:underline">
+                                        {/* name/record */}
+                                        <div className="text-left">
+                                            <p className="text-2xl font-bold">{game.home_team_full_name}</p>
+                                            <p className="text-sm font-light">{`${standingsData.home_team_wins}-${standingsData.home_team_losses}, ${standingsData.home_team_home_wins}-${standingsData.home_team_home_losses} Home`}</p>
+                                        </div>
+                                    </Link>
 
                                 </div>
                             </div>
@@ -185,33 +159,36 @@ const GameBoxScorePage = () => {
 
 
                         <Menubar className="w-fit m-auto">
-                            <MenubarMenu>
+                            {/* <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "gamecast" ? { backgroundColor: "black", color: "white" } : {}}
                                     onClick={() => handleMenuClick('gamecast')}
+                                    className="w-[100px]"
                                 >Gamecast</MenubarTrigger>
+                            </MenubarMenu> */}
+
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "team-stats" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('team-stats')}
+                                    className="w-[200px]"
+                                >Team Stats</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "box-score" ? { backgroundColor: "black", color: "white" } : {}}
                                     onClick={() => handleMenuClick('box-score')}
+                                    className="w-[200px]"
                                 >Box Score</MenubarTrigger>
-                            </MenubarMenu>
-
-                            <MenubarMenu>
-                                <MenubarTrigger
-                                    style={selectedMenuItem === "team-stats" ? { backgroundColor: "black", color: "white" } : {}}
-                                    onClick={() => handleMenuClick('team-stats')}
-                                >Team Stats</MenubarTrigger>
                             </MenubarMenu>
                         </Menubar>
                     </CardHeader>
 
                     <CardContent>
-                        {selectedMenuItem === "gamecast" && <GameCastView />}
+                        {/* {selectedMenuItem === "gamecast" && <GameCastView />} */}
                         {selectedMenuItem === "box-score" && <BoxScoreView teamData={game} />}
-                        {selectedMenuItem === "team-stats" && <TeamStatsView />}
+                        {selectedMenuItem === "team-stats" && <TeamStatsView teamData={game}  />}
                     </CardContent>
                 </Card>
             }

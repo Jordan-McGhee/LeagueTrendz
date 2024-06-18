@@ -59,10 +59,12 @@ const BoxScoreView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
                 <Card>
                     <CardContent>
                         {/* AWAY TEAM */}
-                        <div className="flex items-center gap-x-2 mt-4">
-                            <TeamLogo team_id={teamData.away_team_id} abbreviation={teamData.away_team_abbreviation} logoClass="size-12 object-contain" />
-                            <p className="text-lg font-semibold">{teamData.away_team_full_name}</p>
-                        </div>
+                        <Link to={`/nba/teams/${teamData.away_team_abbreviation.toLowerCase()}?view=home`} className="hover:underline">
+                            <div className="flex items-center gap-x-2 mt-4">
+                                <TeamLogo team_id={teamData.away_team_id} abbreviation={teamData.away_team_abbreviation} logoClass="size-12 object-contain" />
+                                <p className="text-lg font-semibold">{teamData.away_team_full_name}</p>
+                            </div>
+                        </Link>
 
                         <Table className="text-xs">
                             <TableHeader>
@@ -135,10 +137,12 @@ const BoxScoreView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
                         </Table>
 
                         {/* HOME TEAM */}
-                        <div className="flex items-center gap-x-2 mt-4">
-                            <TeamLogo team_id={teamData.home_team_id} abbreviation={teamData.home_team_abbreviation} logoClass="size-12 object-contain" />
-                            <p className="text-lg font-semibold">{teamData.home_team_full_name}</p>
-                        </div>
+                        <Link to={`/nba/teams/${teamData.home_team_abbreviation.toLowerCase()}?view=home`} className="hover:underline">
+                            <div className="flex items-center gap-x-2 mt-4">
+                                <TeamLogo team_id={teamData.home_team_id} abbreviation={teamData.home_team_abbreviation} logoClass="size-12 object-contain" />
+                                <p className="text-lg font-semibold">{teamData.home_team_full_name}</p>
+                            </div>
+                        </Link>
 
                         <Table className="text-xs">
                             <TableHeader>
