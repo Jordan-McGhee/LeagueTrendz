@@ -15,6 +15,8 @@ import TeamLogo from "../../../../components/ui/TeamLogo"
 // component imports
 import ErrorModal from "../../../../components/ui/ErrorModal"
 import LoadingPage from "../../../../pages/LoadingPage";
+import GameLeaders from "../../../../components/Desktop/GamePage/GameLeaders"
+import GameSeries from "../../../../components/Desktop/GamePage/GameSeries";
 
 const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
 
@@ -57,9 +59,9 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
 
             {isLoading && <LoadingPage />}
 
-            <div>
+            <div className="flex gap-x-4 justify-between">
                 {/* left side */}
-                <Card className="w-[60%]">
+                <Card className="w-[65%]">
                     {/* <CardHeader>
                         <CardTitle>Team Stats</CardTitle>
                     </CardHeader> */}
@@ -192,6 +194,9 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
                 </Card>
 
                 {/* right side */}
+                <div className="w-[35%]">
+                    <GameLeaders />
+                </div>
             </div>
 
 
