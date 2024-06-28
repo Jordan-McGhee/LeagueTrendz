@@ -187,8 +187,8 @@ const GameBoxScorePage = () => {
 
                     <CardContent>
                         {/* {selectedMenuItem === "gamecast" && <GameCastView />} */}
-                        {selectedMenuItem === "box-score" && <BoxScoreView teamData={game} />}
                         {selectedMenuItem === "team-stats" && <TeamStatsView teamData={game}  />}
+                        {selectedMenuItem === "box-score" && <BoxScoreView teamData={game} />}
                     </CardContent>
                 </Card>
             }

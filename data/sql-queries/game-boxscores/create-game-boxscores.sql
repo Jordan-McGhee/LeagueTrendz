@@ -156,7 +156,9 @@ SELECT
         LIMIT 1
     ) AS away_best_player_ast,
     home.abbreviation AS home_team_abbreviation,
-    away.abbreviation AS away_team_abbreviation
+    away.abbreviation AS away_team_abbreviation,
+    home.division AS home_team_division,
+    away.division AS away_team_division
 
 	
 FROM

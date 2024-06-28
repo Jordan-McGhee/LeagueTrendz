@@ -53,7 +53,8 @@ SELECT
     pbs.turnovers,
     pbs.pf,
 
-    p.player_position AS player_position
+    p.player_position AS player_position,
+    p.photo_url AS photo_url
 
     
 

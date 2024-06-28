@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../../../../Hooks/useFetch"
 
 // type imports
-import { BoxScoreViewProps } from "@/types";
+import { BoxScoreViewProps, GameSeriesState, StandingsState, GameLeadersState } from "@/types";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
@@ -18,9 +18,36 @@ import LoadingPage from "../../../../pages/LoadingPage";
 
 const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
 
-
+    const [ gameSeries, setGameSeries ] = useState<GameSeriesState | undefined>()
+    const [ gameLeaders, setGameLeaders ] = useState<GameLeadersState | undefined>()    
+    const [ firstTeamStandings, setFirstTeamStandings ] = useState<StandingsState | undefined>()
+    const [ secondTeamStandings, setSecondTeamStandings ] = useState<StandingsState | undefined>()
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
+
+    // fetch stats from database
+    useEffect(() => {
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/games/game_id/${teamData.game_id}/home_team/${teamData.home_team_id}/away_team/${teamData.away_team_id}`
+
+        let responseData: any
+
+        const fetchTeamStats = async () => {
+            try {
+                responseData = await sendRequest(url)
+                setGameSeries(responseData.gameSeries)
+                setGameLeaders(responseData.gameLeaders)
+                setFirstTeamStandings(responseData.firstTeamStandings)
+                setSecondTeamStandings(responseData.secondTeamStandings)
+            } catch (error) {
+                
+            }
+        }
+
+        fetchTeamStats()
+
+    }, [ sendRequest, teamData.game_id])
+
+    // console.log(gameSeries, gameLeaders, firstTeamStandings, secondTeamStandings)
 
     return (
         <>

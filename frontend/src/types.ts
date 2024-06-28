@@ -857,6 +857,7 @@ export interface GameBoxScoreState {
     home_team_id: number,
     home_team_full_name: string,
     home_team_abbreviation: string,
+    home_team_division: string,
     home_team_score: string,
     home_fgm: string,
     home_fga: string,
@@ -884,6 +885,7 @@ export interface GameBoxScoreState {
     away_team_id: number,
     away_team_full_name: string,
     away_team_abbreviation: string,
+    away_team_division: string,
     away_team_score: string,
     away_fgm: string,
     away_fga: string,
@@ -912,16 +914,78 @@ export interface GameBoxScoreState {
 
 export interface StandingsDataState {
     home_team_id: number,
+    home_team_division: string,
     home_team_wins: string,
     home_team_losses: string,
     home_team_home_wins: string,
     home_team_home_losses: string,
     away_team_id: number,
+    away_team_division: string,
     away_team_wins: string,
     away_team_losses: string,
     away_team_away_wins: string,
     away_team_away_losses: string
 }
+
+// TEAM STATS VIEW
+
+export interface GameSeriesState {
+    game_id: number,
+    game_date: string,
+    postseason: boolean,
+    home_team_id: number,
+    home_team_full_name: string,
+    home_team_abbreviation: string,
+    home_team_division: string,
+    home_team_score: string,
+    away_team_id: number,
+    away_team_full_name: string,
+    away_team_abbreviation: string,
+    away_team_division: string,
+    away_team_score: string
+}
+
+export interface StandingsState {
+    division: string,
+    team_id: number,
+    full_name: string,
+    abbreviation: string,
+    wins: string,
+    losses: string,
+    pct: string,
+    last_10: string
+}
+
+export interface GameLeadersState {
+    player_team_id: number,
+    player_team_abbreviation: string,
+    player_team_full_name: string,
+    game_location: string,
+    pts_leader_id: number,
+    pts_leader_name: string,
+    pts_leader_photo: string,
+    pts_leader_position: string,
+    pts_leader_pts: number,
+    pts_leader_fgm: number,
+    pts_leader_fga: number,
+    pts_leader_ftm: number,
+    pts_leader_fta: number,
+    reb_leader_id: number,
+    reb_leader_name: string,
+    reb_leader_photo: string,
+    reb_leader_position: string,
+    reb_leader_reb: number,
+    reb_leader_drb: number,
+    reb_leader_orb: number,
+    ast_leader_id: number,
+    ast_leader_name: string,
+    ast_leader_photo: string,
+    ast_leader_position: string,
+    ast_leader_ast: number,
+    ast_leader_stl: number,
+    ast_leader_turnovers: number
+}
+
 
 // BOX SCORE VIEW
 export interface BoxScoreViewProps {
