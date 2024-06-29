@@ -986,6 +986,16 @@ export interface GameLeadersState {
     ast_leader_turnovers: number
 }
 
+export interface GameLeadersProps {
+    teamData: GameBoxScoreState,
+    players: GameLeadersState[]
+}
+
+export interface GameSeriesProps {
+    teamData: GameBoxScoreState,
+    series: GameSeriesState[]
+}
+
 
 // BOX SCORE VIEW
 export interface BoxScoreViewProps {

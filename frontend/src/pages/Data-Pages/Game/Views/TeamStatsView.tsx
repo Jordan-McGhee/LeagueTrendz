@@ -20,10 +20,10 @@ import GameSeries from "../../../../components/Desktop/GamePage/GameSeries";
 
 const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
 
-    const [ gameSeries, setGameSeries ] = useState<GameSeriesState | undefined>()
-    const [ gameLeaders, setGameLeaders ] = useState<GameLeadersState | undefined>()    
-    const [ firstTeamStandings, setFirstTeamStandings ] = useState<StandingsState | undefined>()
-    const [ secondTeamStandings, setSecondTeamStandings ] = useState<StandingsState | undefined>()
+    const [gameSeries, setGameSeries] = useState<GameSeriesState[] | undefined>()
+    const [gameLeaders, setGameLeaders] = useState<GameLeadersState[] | undefined>()
+    const [firstTeamStandings, setFirstTeamStandings] = useState<StandingsState | undefined>()
+    const [secondTeamStandings, setSecondTeamStandings] = useState<StandingsState | undefined>()
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
@@ -41,13 +41,13 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
                 setFirstTeamStandings(responseData.firstTeamStandings)
                 setSecondTeamStandings(responseData.secondTeamStandings)
             } catch (error) {
-                
+
             }
         }
 
         fetchTeamStats()
 
-    }, [ sendRequest, teamData.game_id])
+    }, [sendRequest, teamData.game_id])
 
     // console.log(gameSeries, gameLeaders, firstTeamStandings, secondTeamStandings)
 
@@ -194,8 +194,16 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
                 </Card>
 
                 {/* right side */}
-                <div className="w-[35%]">
-                    <GameLeaders />
+                <div className="w-[35%] flex flex-col gap-y-4">
+                    {
+                        gameLeaders &&
+                        <GameLeaders teamData={teamData} players={gameLeaders} />
+                    }
+
+                    {
+                        gameSeries &&
+                        <GameSeries teamData={teamData} series={gameSeries} />
+                    }
                 </div>
             </div>
 
