@@ -75,6 +75,7 @@
     - Add Link to View Game
     - Fix window size on each view
         - currently scrolls too far down without content being there
+            - this is an issue with switch player component having its own height
     - Career Highlights:
         <!-- - case if player has no awards DONE -->
         <!-- - fix length issue in career highlights DONE -->
@@ -90,3 +91,4 @@
 - GAMEBOXSCORE PAGE
     <!-- - Add query to grab all details about team record from expanded standings view DONE -->
     - make sure date/time is always centered
+    - !! BUG FOR game_id 2 - TROUBLESHOOT !!

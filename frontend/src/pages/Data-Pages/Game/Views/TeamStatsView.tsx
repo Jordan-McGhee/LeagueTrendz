@@ -61,7 +61,7 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
 
             <div className="flex gap-x-4 justify-between">
                 {/* left side */}
-                <Card className="w-[65%]">
+                <Card className="w-[65%] h-fit">
                     {/* <CardHeader>
                         <CardTitle>Team Stats</CardTitle>
                     </CardHeader> */}

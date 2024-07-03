@@ -312,8 +312,8 @@ const TeamShootingStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, te
             <TableCell className="text-center">{teamStats.avg_ftm}</TableCell>
             <TableCell className="text-center">{teamStats.avg_fta}</TableCell>
             <TableCell className="text-center">{teamStats.avg_ft_percentage}</TableCell>
-            <TableCell className="text-center">{+teamStats.avg_fgm - +teamStats.avg_tpm}</TableCell>
-            <TableCell className="text-center">{+teamStats.avg_fga - +teamStats.avg_tpa}</TableCell>
+            <TableCell className="text-center">{(+teamStats.avg_fgm - +teamStats.avg_tpm).toFixed(1)}</TableCell>
+            <TableCell className="text-center">{(+teamStats.avg_fga - +teamStats.avg_tpa).toFixed(1)}</TableCell>
             <TableCell className="text-center">{((+teamStats.avg_fgm - +teamStats.avg_tpm) / (+teamStats.avg_fga - +teamStats.avg_tpa) * 100).toFixed(1)}%</TableCell>
         </TableRow>
     )

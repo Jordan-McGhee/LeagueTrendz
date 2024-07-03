@@ -66,7 +66,7 @@ const OverviewRecentGames: React.FC<OverviewRecentGamesProps> = ({ player, games
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${item.opp_team_abbreviation.toLowerCase()}`}>
+                                            <Link to={`/nba/games/game_id/${item.game_id}?view=team-stats`} className="hover:underline">
                                                 <div className="flex items-center gap-x-1">
                                                     {item.game_result === "W" ? <span className="text-green-700">W</span> : <span className="text-red-700">L</span>}
 

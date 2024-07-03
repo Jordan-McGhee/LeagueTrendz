@@ -92,7 +92,7 @@ const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
 
 
                                             <TableCell>
-                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${game.opponent_team_abbreviation.toLowerCase()}`} className="hover:underline">
+                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/games/game_id/${game.game_id}?view=team-stats`} className="hover:underline">
                                                     <div className="flex items-center gap-x-1">
                                                         {game.result === "W" ? <span className="text-green-700">W</span> : <span className="text-red-700">L</span>}
 

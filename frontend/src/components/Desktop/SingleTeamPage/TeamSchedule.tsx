@@ -31,7 +31,7 @@ const SingleGame: React.FC<TeamGames> = ({ game_id, game_date, team_score, opp_t
             {/* vs/@ and team abbreviation */}
             <p className="my-1 font-bold">{game_location === "HOME" ? "VS" : "@"} {opp_abbreviation}</p>
 
-            <Link to={'/'} className="hover:underline">
+            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/games/game_id/${game_id}?view=team-stats`} className="hover:underline">
                 {outcome}
             </Link>
 
