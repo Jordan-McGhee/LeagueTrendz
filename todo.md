@@ -92,3 +92,12 @@
     <!-- - Add query to grab all details about team record from expanded standings view DONE -->
     - make sure date/time is always centered
     - !! BUG FOR game_id 2 - TROUBLESHOOT !!
+
+
+- FINISHING APP
+    - SCHEDULE PAGE
+    - USER PAGE
+        - FAVORITES (PLAYERS, TEAMS, GAMES)
+        - DELETE ACCOUNT OPTION
+    PLAYERS PAGE
+        - TABLE OF ALL PLAYERS WITH PAGINATION

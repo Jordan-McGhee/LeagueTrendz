@@ -23,13 +23,13 @@ const TeamHome: React.FC<TeamHomeProps> = ({ team, games, players, history }) =>
             <div className="flex gap-x-4 mt-4 w-full">
 
                 {/* left side */}
-                <div className="w-[60%] h-lvh flex flex-col gap-y-4">
+                <div className="w-[60%] h-fit flex flex-col gap-y-4">
                     <TeamStats team={team} />
                     <TeamLeaders team={team} players={players} />
                 </div>
 
                 {/* right side */}
-                <div className="w-[35%] h-lvh flex flex-col gap-y-4">
+                <div className="w-[35%] h-fit flex flex-col gap-y-4">
                     <Standings team={team} />
                     <TeamHistory team={team} history={history} />
                 </div>

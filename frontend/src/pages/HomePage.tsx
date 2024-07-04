@@ -1,5 +1,6 @@
 import React from "react";
 
+// component imports
 import HomeSchedule from "../components/Desktop/HomePage/HomeSchedule";
 import HomeStandings from "../components/Desktop/HomePage/HomeStandings";
 import HomeHeadlines from "../components/Desktop/HomePage/HomeHeadlines";
@@ -21,11 +22,13 @@ const HomePage = () => {
                 {/* standings div */}
                 <HomeStandings />
 
+
+
             </div>
 
             {/* right side */}
             <div className=" h-full w-[30%] flex flex-col justify-between gap-y-4">
-                <HomeHeadlines />
+                {/* <HomeHeadlines /> */}
 
                 <HomeFavorites />
             </div>

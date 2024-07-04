@@ -60,6 +60,7 @@ const userRoutes = require("./routes/user-routes")
 const teamRoutes = require("./routes/team-routes")
 const playerRoutes = require("./routes/player-routes")
 const gameRoutes = require("./routes/game-routes")
+const favoritesRoutes = require("./routes/favorites-routes")
 
 const app: Express = express();
 
@@ -85,6 +86,7 @@ app.use((req, res, next) => {
 app.use("/nba/teams", teamRoutes)
 app.use("/nba/players", playerRoutes)
 app.use("/nba/games", gameRoutes)
+app.use("/favorites", favoritesRoutes)
 app.use("/user", userRoutes)
 // app.use("/league", leagueRoutes)
 

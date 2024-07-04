@@ -1,6 +1,10 @@
 import React from "react";
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "../../ui/card"
+// ui imports
+import { Card, CardContent, CardHeader, CardTitle} from "../../ui/card"
+
+// component imports
+import StandingsContentHome from "./Home-Standings/StandingsContentHome";
 
 // DUMMY DATA IMPORT
 import teams from "../../../DUMMYDATA/NBA_Teams.json"
@@ -14,19 +18,11 @@ const HomeStandings = () => {
                     NBA Standings 2023-24
                 </CardTitle>
 
-                <CardDescription>
-                    League | Conference | Division
-                </CardDescription>
-
             </CardHeader>
 
-            <CardContent className="h-3/4 bg-black">
-
+            <CardContent>
+                <StandingsContentHome />
             </CardContent>
-
-            <CardFooter>
-                
-            </CardFooter>
         </Card>
     )
 }

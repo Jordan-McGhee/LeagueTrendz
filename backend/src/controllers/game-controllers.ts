@@ -1,6 +1,6 @@
 import { pool } from "../server"
 import { Request, Response, NextFunction } from "express"
-import { Query, QueryResult } from "pg";
+import { QueryResult } from "pg";
 
 // get games by date
 export const getGamesByDate = async (req: Request, res: Response, next: NextFunction) => {

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { useFetch } from "../../../Hooks/useFetch";
 
 // type imports
-import { StandingsTeamItem, ExpandedTeamItem, DivisionTeamItem } from "@/types";
+import { StandingsTeamItem } from "@/types";
 
 // utils imports
 import { countStreak, lastTenConverter } from "../../../Utils/utils";
@@ -14,7 +14,6 @@ import { countStreak, lastTenConverter } from "../../../Utils/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs"
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "../../ui/DataTable"
-import { CaretSortIcon } from "@radix-ui/react-icons";
 import { Button } from "../../ui/button"
 import TeamLogo from "../../ui/TeamLogo"
 
