@@ -15,6 +15,10 @@ import TeamLogo from "../components/ui/TeamLogo"
 import ErrorModal from "../components/ui/ErrorModal"
 import LoadingPage from "./LoadingPage"
 
+// views imports
+    // season leaders (avg & total)
+    // table
+
 const AllPlayersPage = () => {
 
     return (

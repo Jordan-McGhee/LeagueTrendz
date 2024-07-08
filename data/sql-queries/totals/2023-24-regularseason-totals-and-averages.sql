@@ -1,4 +1,4 @@
-CREATE VIEW player_2023_24_regularseason_totals_and_averages AS
+CREATE OR REPLACE VIEW player_2023_24_regularseason_totals_and_averages AS
 SELECT
     pt.player_id,
     p.name,
@@ -44,7 +44,12 @@ SELECT
     pt.stl,
     pt.blk,
     pt.turnovers,
-    pt.pf
+    pt.pf,
+    p.photo_url,
+    p.player_position,
+    t.conference,
+    t.division
+
 FROM
     player_totals_2023_24 pt
     JOIN players p ON pt.player_id = p.player_id

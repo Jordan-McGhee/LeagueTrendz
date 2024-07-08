@@ -22,7 +22,7 @@ const TeamItem = (props: { team: Team }) => {
                     <Link
                         to={`${teamPageUrl}?view=home`}
                         className="text-xl font-semibold"
-                        
+
                         onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
                             if (e.target instanceof HTMLElement) {
                                 e.target.style.color = props.team.main_color;
@@ -42,18 +42,48 @@ const TeamItem = (props: { team: Team }) => {
                         <Link
                             to={`${teamPageUrl}?view=stats`}
                             className="hover:font-semibold hover:scale-110"
+                            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                                if (e.target instanceof HTMLElement) {
+                                    e.target.style.color = props.team.main_color;
+                                }
+                            }}
+                            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                                if (e.target instanceof HTMLElement) {
+                                    e.target.style.color = 'black';
+                                }
+                            }}
                         >
                             Stats
                         </Link>
                         <Link
                             to={`${teamPageUrl}?view=schedule`}
                             className="hover:font-semibold hover:scale-110"
+                            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                                if (e.target instanceof HTMLElement) {
+                                    e.target.style.color = props.team.main_color;
+                                }
+                            }}
+                            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                                if (e.target instanceof HTMLElement) {
+                                    e.target.style.color = 'black';
+                                }
+                            }}
                         >
                             Schedule
                         </Link>
                         <Link
                             to={`${teamPageUrl}?view=roster`}
                             className="hover:font-semibold hover:scale-110"
+                            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                                if (e.target instanceof HTMLElement) {
+                                    e.target.style.color = props.team.main_color;
+                                }
+                            }}
+                            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                                if (e.target instanceof HTMLElement) {
+                                    e.target.style.color = 'black';
+                                }
+                            }}
                         >
                             Roster
                         </Link>

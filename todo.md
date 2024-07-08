@@ -100,4 +100,7 @@
         - FAVORITES (PLAYERS, TEAMS, GAMES)
         - DELETE ACCOUNT OPTION
     PLAYERS PAGE
-        - TABLE OF ALL PLAYERS WITH PAGINATION
+        - VIEWS:
+            - STAT LEADERS -- LINKS TO --> SORTABLE TABLES WITH PAGINATION
+            - SEASON HIGHS -- LINKS TO --> table of games sorted by stat (first 100)
+            - SORTABLE TABLES WITH PAGINATION
