@@ -7,6 +7,8 @@ const router = express.Router()
 
 router.get("/", playerControllers.getAllPlayers),
 
+router.get("/leaders", playerControllers.getPlayerStatLeaders)
+
 router.get("/:player_id", playerControllers.getSinglePlayer),
 
 // overview

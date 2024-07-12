@@ -48,7 +48,8 @@ SELECT
     p.photo_url,
     p.player_position,
     t.conference,
-    t.division
+    t.division,
+    p.jersey_number
 
 FROM
     player_totals_2023_24 pt

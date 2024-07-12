@@ -17,6 +17,34 @@ export const getAllPlayers = async (req: Request, res: Response, next: NextFunct
     res.status(200).json({ message: `Got all players`, players: playersResponse.rows })
 }
 
+export const getPlayerStatLeaders = async (req: Request, res: Response, next: NextFunction) => {
+    const gameStatQuery: string = "SELECT * FROM top_regularseason_game_stats"
+    const seasonStatQuery: string = "SELECT * FROM top_regularseason_stat_leaders"
+
+    let gameStatResponse: QueryResult, seasonStatResponse: QueryResult
+
+
+    // game stats request
+    try {
+        gameStatResponse = await pool.query(gameStatQuery)
+    } catch (error) {
+        console.log(`Error getting game stat: ${error}`)
+
+        return res.status(500).json({ message: `Error getting game stat: ${error}`})
+    }
+
+    // season stats request
+    try {
+        seasonStatResponse = await pool.query(seasonStatQuery)
+    } catch (error) {
+        console.log(`Error getting season stats: ${error}`)
+
+        return res.status(500).json({ message: `Error getting season stats: ${error}`})
+    }
+
+    res.status(200).json({ message: `Got game and season stats leaders!`, gameLeaders: gameStatResponse.rows[0], seasonLeaders: seasonStatResponse.rows[0]})
+}
+
 
 // SINGLE PLAYER MAIN DATA
 export const getSinglePlayer = async (req: Request, res: Response, next: NextFunction) => {

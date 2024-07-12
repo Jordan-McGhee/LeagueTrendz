@@ -82,17 +82,23 @@
 
 - TEAM PAGE
     - History:
-        - make table of history static height and scrollable
-        - make jersey numbers and names a grid to be even
+        <!-- - make table of history static height and scrollable DONE -->
+        <!-- - make jersey numbers and names a grid to be even DONE -->
 
 - LONG PLAYER NAMES
     - Add styling for players like Shai Gilgeous-Alexander
 
 - GAMEBOXSCORE PAGE
     <!-- - Add query to grab all details about team record from expanded standings view DONE -->
-    - make sure date/time is always centered
-    - !! BUG FOR game_id 2 - TROUBLESHOOT !!
+    <!-- - make sure date/time is always centered DONE -->
+    <!-- - !! BUG FOR game_id 2 - TROUBLESHOOT !! DONE -->
 
+
+- ALL PLAYERS PAGE
+    - NOTES FOR RANKING PLAYER STATS: MORE THAN 50 GP
+        - FG% RANKING: MORE THAN 200 MADE FG
+        - 3P% RANKING: MORE THAN 70
+        - FT% RANKING: MORE THAN 100 FTM 
 
 - FINISHING APP
     - SCHEDULE PAGE
