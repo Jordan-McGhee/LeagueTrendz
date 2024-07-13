@@ -5,10 +5,14 @@ const router = express.Router()
 
 // /nba/players
 
+// ALL PLAYER ROUTES
 router.get("/", playerControllers.getAllPlayers),
 
 router.get("/leaders", playerControllers.getPlayerStatLeaders)
 
+router.get("/game-highs", playerControllers.getGameHighLeaders)
+
+// SINGLE PLAYER ROUTES
 router.get("/:player_id", playerControllers.getSinglePlayer),
 
 // overview

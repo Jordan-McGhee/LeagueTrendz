@@ -18,11 +18,41 @@ export const getAllPlayers = async (req: Request, res: Response, next: NextFunct
 }
 
 export const getPlayerStatLeaders = async (req: Request, res: Response, next: NextFunction) => {
+    // averages
+    const seasonAverageStatQuery: string = "SELECT top_avg_pts, top_avg_fgm, top_avg_fg_percentage, top_avg_tpm, top_avg_tp_percentage, top_avg_ft_percentage, top_avg_reb, top_avg_ast, top_avg_stl, top_avg_blk, top_avg_pf, top_avg_turnovers FROM top_regularseason_stat_leaders"
+
+    let seasonAverageStatResponse: QueryResult
+
+    // season stats request
+    try {
+        seasonAverageStatResponse = await pool.query(seasonAverageStatQuery)
+    } catch (error) {
+        console.log(`Error getting season average stats: ${error}`)
+
+        return res.status(500).json({ message: `Error getting season average stats: ${error}`})
+    }
+
+    // totals
+    const seasonTotalStatQuery: string = "SELECT top_total_pts, top_total_fgm, top_total_tpm, top_total_reb, top_total_reb, top_total_ast, top_total_stl, top_total_blk, top_total_pf, top_total_turnovers FROM top_regularseason_stat_leaders"
+
+    let seasonTotalStatResponse: QueryResult
+
+    // season stats request
+    try {
+        seasonTotalStatResponse = await pool.query(seasonTotalStatQuery)
+    } catch (error) {
+        console.log(`Error getting season stats: ${error}`)
+
+        return res.status(500).json({ message: `Error getting season stats: ${error}`})
+    }
+
+    res.status(200).json({ message: `Got season stats leaders!`, seasonAverageLeaders: seasonAverageStatResponse.rows[0], seasonTotalLeaders: seasonTotalStatResponse.rows[0]})
+}
+
+export const getGameHighLeaders = async (req: Request, res: Response, next: NextFunction) => {
     const gameStatQuery: string = "SELECT * FROM top_regularseason_game_stats"
-    const seasonStatQuery: string = "SELECT * FROM top_regularseason_stat_leaders"
 
-    let gameStatResponse: QueryResult, seasonStatResponse: QueryResult
-
+    let gameStatResponse: QueryResult
 
     // game stats request
     try {
@@ -33,16 +63,7 @@ export const getPlayerStatLeaders = async (req: Request, res: Response, next: Ne
         return res.status(500).json({ message: `Error getting game stat: ${error}`})
     }
 
-    // season stats request
-    try {
-        seasonStatResponse = await pool.query(seasonStatQuery)
-    } catch (error) {
-        console.log(`Error getting season stats: ${error}`)
-
-        return res.status(500).json({ message: `Error getting season stats: ${error}`})
-    }
-
-    res.status(200).json({ message: `Got game and season stats leaders!`, gameLeaders: gameStatResponse.rows[0], seasonLeaders: seasonStatResponse.rows[0]})
+    res.status(200).json({ message: `Got game stats leaders!`, gameLeaders: gameStatResponse.rows[0]})
 }
 
 

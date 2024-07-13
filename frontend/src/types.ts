@@ -529,6 +529,180 @@ export interface TotalsAndAveragesObject {
 }
 
 // PLAYER TYPES
+
+// ALL PLAYERS PAGE
+
+export interface TopScoringGames {
+    pts: number,
+    name: string,
+    game_id: number,
+    game_date: string,
+    photo_url: string,
+    player_id: number,
+    game_result: string,
+    opp_team_id: number,
+    game_location: string,
+    opp_team_score: number,
+    player_team_id: number,
+    player_position: string,
+    player_team_score: number,
+    opp_team_full_name: string,
+    opp_team_abbreviation: string,
+    player_team_full_name: string,
+    player_team_abbreviation: string
+}
+
+export interface TopReboundingGames {
+    reb: number,
+    name: string,
+    game_id: number,
+    game_date: string,
+    photo_url: string,
+    player_id: number,
+    game_result: string,
+    opp_team_id: number,
+    game_location: string,
+    opp_team_score: number,
+    player_team_id: number,
+    player_position: string,
+    player_team_score: number,
+    opp_team_full_name: string,
+    opp_team_abbreviation: string,
+    player_team_full_name: string,
+    player_team_abbreviation: string
+}
+
+export interface TopAssistGames {
+    ast: number,
+    name: string,
+    game_id: number,
+    game_date: string,
+    photo_url: string,
+    player_id: number,
+    game_result: string,
+    opp_team_id: number,
+    game_location: string,
+    opp_team_score: number,
+    player_team_id: number,
+    player_position: string,
+    player_team_score: number,
+    opp_team_full_name: string,
+    opp_team_abbreviation: string,
+    player_team_full_name: string,
+    player_team_abbreviation: string
+}
+
+export interface TopStealGames {
+    stl: number,
+    name: string,
+    game_id: number,
+    game_date: string,
+    photo_url: string,
+    player_id: number,
+    game_result: string,
+    opp_team_id: number,
+    game_location: string,
+    opp_team_score: number,
+    player_team_id: number,
+    player_position: string,
+    player_team_score: number,
+    opp_team_full_name: string,
+    opp_team_abbreviation: string,
+    player_team_full_name: string,
+    player_team_abbreviation: string
+}
+
+export interface TopBlockGames {
+    pts: number,
+    name: string,
+    game_id: number,
+    game_date: string,
+    photo_url: string,
+    player_id: number,
+    game_result: string,
+    opp_team_id: number,
+    game_location: string,
+    opp_team_score: number,
+    player_team_id: number,
+    player_position: string,
+    player_team_score: number,
+    opp_team_full_name: string,
+    opp_team_abbreviation: string,
+    player_team_full_name: string,
+    player_team_abbreviation: string
+}
+
+export interface TopTPMGames {
+    tpm: number,
+    name: string,
+    game_id: number,
+    game_date: string,
+    photo_url: string,
+    player_id: number,
+    game_result: string,
+    opp_team_id: number,
+    game_location: string,
+    opp_team_score: number,
+    player_team_id: number,
+    player_position: string,
+    player_team_score: number,
+    opp_team_full_name: string,
+    opp_team_abbreviation: string,
+    player_team_full_name: string,
+    player_team_abbreviation: string
+}
+
+
+export interface GameLeadersState {
+    top_scoring_games: TopScoringGames[],
+    top_rebounding_games: TopReboundingGames[],
+    top_assist_games: TopAssistGames[],
+    top_steal_games: TopStealGames[],
+    top_block_games: TopBlockGames[],
+    top_tpm_games: TopTPMGames[]
+}
+
+export interface TopStat {
+    name: string,
+    stat: string,
+    value: number,
+    team_id: number,
+    full_name: string,
+    photo_url: string,
+    player_id: number,
+    abbreviation: string,
+    jersey_number: number,
+    player_position: string
+}
+
+export interface SeasonAverageLeadersState {
+    top_avg_pts: TopStat[],
+    top_avg_fgm: TopStat[],
+    top_avg_fg_percentage: TopStat[],
+    top_avg_tpm: TopStat[],
+    top_avg_tp_percentage: TopStat[],
+    top_avg_ft_percentage: TopStat[],
+    top_avg_reb: TopStat[],
+    top_avg_ast: TopStat[],
+    top_avg_stl: TopStat[],
+    top_avg_blk: TopStat[],
+    top_avg_pf: TopStat[],
+    top_avg_turnovers: TopStat[],
+}
+
+export interface SeasonTotalLeadersState {
+    top_total_pts: TopStat[],
+    top_total_fgm: TopStat[],
+    top_total_tpm: TopStat[],
+    top_total_reb: TopStat[],
+    top_total_ast: TopStat[],
+    top_total_stl: TopStat[],
+    top_total_blk: TopStat[],
+    top_total_pf: TopStat[],
+    top_total_turnovers: TopStat[]
+}
+
+// SINGLE PLAYER PAGE
 export interface Player {
     player_id: number,
     name: string,

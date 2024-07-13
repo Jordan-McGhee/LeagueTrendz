@@ -69,7 +69,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_pts', avg_pts
+        'stat', 'avg_pts',
+        'value', avg_pts
     ) ORDER BY avg_pts DESC) FILTER (WHERE rn_avg_pts <= 5) AS top_avg_pts,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -80,8 +81,28 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_fgm', avg_fgm
+        'stat', 'avg_fgm',
+        'value', avg_fgm
     ) ORDER BY avg_fgm DESC) FILTER (WHERE rn_avg_fgm <= 5) AS top_avg_fgm,
+(SELECT jsonb_agg(jsonb_build_object(
+    'player_id', player_id,
+    'name', name,
+    'photo_url', photo_url,
+    'player_position', player_position,
+    'jersey_number', jersey_number,
+    'team_id', team_id,
+    'full_name', full_name,
+    'abbreviation', abbreviation,
+    'stat', 'avg_fg_percentage',
+    'value', avg_fg_percentage
+) ORDER BY avg_fg_percentage DESC)
+FROM (
+    SELECT *
+    FROM ranked_stats
+    WHERE fgm >= 200
+    ORDER BY avg_fg_percentage DESC
+    LIMIT 5
+) sub) AS top_avg_fg_percentage,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
         'name', name,
@@ -91,19 +112,47 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_fg_percentage', avg_fg_percentage
-    ) ORDER BY avg_fg_percentage DESC) FILTER (WHERE fgm >= 200) AS top_avg_fg_percentage,
-    jsonb_agg(jsonb_build_object(
-        'player_id', player_id,
-        'name', name,
-        'photo_url', photo_url,
-        'player_position', player_position,
-        'jersey_number', jersey_number,
-        'team_id', team_id,
-        'full_name', full_name,
-        'abbreviation', abbreviation,
-        'avg_tpm', avg_tpm
+        'stat', 'avg_tpm',
+        'value', avg_tpm
     ) ORDER BY avg_tpm DESC) FILTER (WHERE rn_avg_tpm <= 5) AS top_avg_tpm,
+(SELECT jsonb_agg(jsonb_build_object(
+    'player_id', player_id,
+    'name', name,
+    'photo_url', photo_url,
+    'player_position', player_position,
+    'jersey_number', jersey_number,
+    'team_id', team_id,
+    'full_name', full_name,
+    'abbreviation', abbreviation,
+    'stat', 'avg_tp_percentage',
+    'value', avg_tp_percentage
+) ORDER BY avg_tp_percentage DESC)
+FROM (
+    SELECT *
+    FROM ranked_stats
+    WHERE tpm >= 70
+    ORDER BY avg_tp_percentage DESC
+    LIMIT 5
+) sub) AS top_avg_tp_percentage,
+(SELECT jsonb_agg(jsonb_build_object(
+    'player_id', player_id,
+    'name', name,
+    'photo_url', photo_url,
+    'player_position', player_position,
+    'jersey_number', jersey_number,
+    'team_id', team_id,
+    'full_name', full_name,
+    'abbreviation', abbreviation,
+    'stat', 'avg_ft_percentage',
+    'value', avg_ft_percentage
+) ORDER BY avg_ft_percentage DESC)
+FROM (
+    SELECT *
+    FROM ranked_stats
+    WHERE ftm >= 100
+    ORDER BY avg_ft_percentage DESC
+    LIMIT 5
+) sub) AS top_avg_ft_percentage,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
         'name', name,
@@ -113,29 +162,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_tp_percentage', avg_tp_percentage
-    ) ORDER BY avg_tp_percentage DESC) FILTER (WHERE tpm >= 70) AS top_avg_tp_percentage,
-    jsonb_agg(jsonb_build_object(
-        'player_id', player_id,
-        'name', name,
-        'photo_url', photo_url,
-        'player_position', player_position,
-        'jersey_number', jersey_number,
-        'team_id', team_id,
-        'full_name', full_name,
-        'abbreviation', abbreviation,
-        'avg_ft_percentage', avg_ft_percentage
-    ) ORDER BY avg_ft_percentage DESC) FILTER (WHERE ftm >= 100) AS top_avg_ft_percentage,
-    jsonb_agg(jsonb_build_object(
-        'player_id', player_id,
-        'name', name,
-        'photo_url', photo_url,
-        'player_position', player_position,
-        'jersey_number', jersey_number,
-        'team_id', team_id,
-        'full_name', full_name,
-        'abbreviation', abbreviation,
-        'avg_reb', avg_reb
+        'stat', 'avg_reb',
+        'value', avg_reb
     ) ORDER BY avg_reb DESC) FILTER (WHERE rn_avg_reb <= 5) AS top_avg_reb,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -146,7 +174,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_ast', avg_ast
+        'stat', 'avg_ast',
+        'value', avg_ast
     ) ORDER BY avg_ast DESC) FILTER (WHERE rn_avg_ast <= 5) AS top_avg_ast,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -157,7 +186,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_stl', avg_stl
+        'stat', 'avg_stl',
+        'value', avg_stl
     ) ORDER BY avg_stl DESC) FILTER (WHERE rn_avg_stl <= 5) AS top_avg_stl,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -168,7 +198,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_blk', avg_blk
+        'stat', 'avg_blk',
+        'value', avg_blk
     ) ORDER BY avg_blk DESC) FILTER (WHERE rn_avg_blk <= 5) AS top_avg_blk,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -179,7 +210,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_pf', avg_pf
+        'stat', 'avg_pf',
+        'value', avg_pf
     ) ORDER BY avg_pf DESC) FILTER (WHERE rn_avg_pf <= 5) AS top_avg_pf,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -190,7 +222,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'avg_turnovers', avg_turnovers
+        'stat', 'avg_turnovers',
+        'value', avg_turnovers
     ) ORDER BY avg_turnovers DESC) FILTER (WHERE rn_avg_turnovers <= 5) AS top_avg_turnovers,
 
     -- totals
@@ -203,7 +236,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'pts', pts
+        'stat', 'total_pts',
+        'value', pts
     ) ORDER BY pts DESC) FILTER (WHERE rn_total_pts <= 5) AS top_total_pts,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -214,7 +248,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'fgm', fgm
+        'stat', 'total_fgm',
+        'value', fgm
     ) ORDER BY fgm DESC) FILTER (WHERE rn_total_fgm <= 5) AS top_total_fgm,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -225,7 +260,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'tpm', tpm
+        'stat', 'total_tpm',
+        'value', tpm
     ) ORDER BY tpm DESC) FILTER (WHERE rn_total_tpm <= 5) AS top_total_tpm,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -236,7 +272,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'reb', reb
+        'stat', 'total_reb',
+        'value', reb
     ) ORDER BY reb DESC) FILTER (WHERE rn_total_reb <= 5) AS top_total_reb,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -247,7 +284,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'ast', ast
+        'stat', 'total_ast',
+        'value', ast
     ) ORDER BY ast DESC) FILTER (WHERE rn_total_ast <= 5) AS top_total_ast,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -258,7 +296,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'stl', stl
+        'stat', 'total_stl',
+        'value', stl
     ) ORDER BY stl DESC) FILTER (WHERE rn_total_stl <= 5) AS top_total_stl,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -269,7 +308,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'blk', blk
+        'stat', 'total_blk',
+        'value', blk
     ) ORDER BY blk DESC) FILTER (WHERE rn_total_blk <= 5) AS top_total_blk,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -280,7 +320,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'pf', pf
+        'stat', 'total_pf',
+        'value', pf
     ) ORDER BY pf DESC) FILTER (WHERE rn_total_pf <= 5) AS top_total_pf,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
@@ -291,7 +332,8 @@ SELECT
         'team_id', team_id,
         'full_name', full_name,
         'abbreviation', abbreviation,
-        'turnovers', turnovers
+        'stat', 'total_turnovers',
+        'value', turnovers
     ) ORDER BY turnovers DESC) FILTER (WHERE rn_total_turnovers <= 5) AS top_total_turnovers
 FROM
     ranked_stats;

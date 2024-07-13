@@ -11,7 +11,7 @@ import { useAuth } from "./Hooks/useAuth"
 import DesktopNav from './Nav/DesktopNav';
 
 // PAGE IMPORTS
-import AllPlayersPage from "./pages/AllPlayersPage"
+import AllPlayersPage from "./pages/Data-Pages/AllPlayers/AllPlayersPage"
 import AllTeamsPage from './pages/AllTeamsPage';
 import HomePage from './pages/HomePage';
 import PlayerPage from './pages/Data-Pages/Player/PlayerPage';
