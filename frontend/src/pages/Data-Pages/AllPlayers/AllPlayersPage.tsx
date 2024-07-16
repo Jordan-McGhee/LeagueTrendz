@@ -19,6 +19,7 @@ import LoadingPage from "../../LoadingPage"
 // views imports
 import SeasonLeadersView from "./Views/SeasonLeadersView";
 import GameLeadersView from "./Views/GameLeadersView";
+import LeadersTableView from "./Views/LeadersTableView";
 
 // season leaders (avg & total)
 // table
@@ -87,7 +88,7 @@ const AllPlayersPage = () => {
             <CardContent>
                 { selectedMenuItem === "leaders" && <SeasonLeadersView />}
                 { selectedMenuItem === "highs" && <GameLeadersView />}
-                { selectedMenuItem === "tables" && <SeasonLeadersView />}
+                { selectedMenuItem === "tables" && <LeadersTableView />}
             </CardContent>
         </Card>
     )

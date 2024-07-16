@@ -14,8 +14,6 @@ import TeamLogo from "../../ui/TeamLogo"
 
 const LeaderCard: React.FC<LeaderCardProps> = ({ cardClass, title, topStatPlayers }) => {
 
-    console.log(topStatPlayers)
-
     return (
         <>
             {
@@ -87,7 +85,7 @@ const LeaderCard: React.FC<LeaderCardProps> = ({ cardClass, title, topStatPlayer
                     </CardContent>
 
                     <CardFooter className="text-blue-600 font-semibold">
-                        See All
+                        See Top 50
                     </CardFooter>
                 </Card>
             }

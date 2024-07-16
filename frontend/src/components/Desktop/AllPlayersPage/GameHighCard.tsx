@@ -14,15 +14,13 @@ import TeamLogo from "../../ui/TeamLogo"
 
 const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeaderPlayers }) => {
 
-    console.log(gameLeaderPlayers[0].game_date)
-
     return (
         <>
             {
                 gameLeaderPlayers &&
                 <Card className={cardClass}>
                     <CardHeader>
-                        <p className="uppercase font-bold text-2xl">{title}</p>
+                        {/* <p className="uppercase font-bold text-2xl">{title}</p> */}
                         <div className="flex items-center justify-between">
                             {/* left side */}
                             <div className="flex flex-col gap-y-2">
@@ -49,7 +47,7 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                                     <p className={gameLeaderPlayers[0].player_team_score < gameLeaderPlayers[0].opp_team_score ? "font-bold" : ""}>{gameLeaderPlayers[0].opp_team_score}</p>
 
                                 </Link>
-                                <p className="font-extrabold text-4xl">{gameLeaderPlayers[0].value}</p>
+                                <p className="font-extrabold text-4xl">{gameLeaderPlayers[0].value} {title}</p>
                             </div>
 
 
@@ -73,7 +71,7 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
 
                                     <div>
                                         <Separator className="w-full mb-4" />
-                                        <div className="grid grid-cols-12 items-center text-xs">
+                                        <div className="grid grid-cols-12 items-center text-sm">
 
                                             {/* index */}
                                             {/* <p className="col-start-1 col-span-1 text-lg">{topStatPlayers.indexOf(player) + 1}.</p> */}
@@ -85,10 +83,10 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                                             <div className="col-start-1 col-span-10">
                                                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`} className="text-lg flex gap-x-1 hover:underline"><span className="font-semibold">{player.name}</span> · #{player.jersey_number} · {convertPlayerPosition(player.player_position)}</Link>
 
-                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/games/game_id/${gameLeaderPlayers[0].game_id}?view=team-stats`} className="hover:underline flex items-start gap-x-2">
+                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${player.player_team_abbreviation}?view=home`} className="hover:underline flex items-start gap-x-2">
 
                                                     {/* player team */}
-                                                    <p className={player.player_team_score > player.opp_team_score ? "font-bold" : ""}>{player.player_team_full_name}</p>
+                                                    <p className={player.player_team_score > player.opp_team_score ? "font-bold" : ""}>{shortenTeamName(player.player_team_id)}</p>
 
                                                     <p className={player.player_team_score > player.opp_team_score ? "font-bold" : ""}>{player.player_team_score}</p>
 
@@ -96,7 +94,7 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                                                     <p>{player.game_location === "HOME" ? "VS" : "@"}</p>
 
                                                     {/* opposing team */}
-                                                    <p className={player.player_team_score < player.opp_team_score ? "font-bold" : ""}>{player.opp_team_full_name}</p>
+                                                    <p className={player.player_team_score < player.opp_team_score ? "font-bold" : ""}>{shortenTeamName(player.opp_team_id)}</p>
 
                                                     <p className={player.player_team_score < player.opp_team_score ? "font-bold" : ""}>{player.opp_team_score}</p>
 
@@ -120,7 +118,7 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                     </CardContent>
 
                     <CardFooter className="text-blue-600 font-semibold">
-                        See All
+                        See Top 50
                     </CardFooter>
                 </Card>
             }
