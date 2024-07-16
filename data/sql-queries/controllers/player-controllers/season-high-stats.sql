@@ -11,6 +11,7 @@ WITH ranked_gamelogs AS (
         player_id,
         player_name,
         player_position,
+        jersey_number,
         photo_url,
 
         -- team details
@@ -53,6 +54,7 @@ SELECT
         'player_id', player_id,
         'name', player_name,
         'player_position', player_position,
+        'jersey_number', jersey_number,
         'photo_url', photo_url,
         'player_team_id', player_team_id,
         'player_team_abbreviation', player_team_abbreviation,
@@ -66,12 +68,14 @@ SELECT
         'game_date', game_date,
         'game_location', game_location,
         'game_result', game_result,
-        'pts', pts
+        'stat', 'pts',
+        'value', pts
     ) ORDER BY pts DESC) FILTER (WHERE rn_pts <= 5) AS top_scoring_games,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
         'name', player_name,
         'player_position', player_position,
+        'jersey_number', jersey_number,
         'photo_url', photo_url,
         'player_team_id', player_team_id,
         'player_team_abbreviation', player_team_abbreviation,
@@ -85,12 +89,14 @@ SELECT
         'game_date', game_date,
         'game_location', game_location,
         'game_result', game_result,
-        'reb', reb
+        'stat', 'reb',
+        'value', reb
     ) ORDER BY reb DESC) FILTER (WHERE rn_reb <= 5) AS top_rebounding_games,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
         'name', player_name,
         'player_position', player_position,
+        'jersey_number', jersey_number,
         'photo_url', photo_url,
         'player_team_id', player_team_id,
         'player_team_abbreviation', player_team_abbreviation,
@@ -104,12 +110,14 @@ SELECT
         'game_date', game_date,
         'game_location', game_location,
         'game_result', game_result,
-        'ast', ast
+        'stat', 'ast',
+        'value', ast
     ) ORDER BY ast DESC) FILTER (WHERE rn_ast <= 5) AS top_assist_games,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
         'name', player_name,
         'player_position', player_position,
+        'jersey_number', jersey_number,
         'photo_url', photo_url,
         'player_team_id', player_team_id,
         'player_team_abbreviation', player_team_abbreviation,
@@ -123,12 +131,14 @@ SELECT
         'game_date', game_date,
         'game_location', game_location,
         'game_result', game_result,
-        'stl', stl
+        'stat', 'stl',
+        'value', stl
     ) ORDER BY stl DESC) FILTER (WHERE rn_stl <= 5) AS top_steal_games,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
         'name', player_name,
         'player_position', player_position,
+        'jersey_number', jersey_number,
         'photo_url', photo_url,
         'player_team_id', player_team_id,
         'player_team_abbreviation', player_team_abbreviation,
@@ -142,12 +152,14 @@ SELECT
         'game_date', game_date,
         'game_location', game_location,
         'game_result', game_result,
-        'blk', blk
+        'stat', 'blk',
+        'value', blk
     ) ORDER BY blk DESC) FILTER (WHERE rn_blk <= 5) AS top_block_games,
     jsonb_agg(jsonb_build_object(
         'player_id', player_id,
         'name', player_name,
         'player_position', player_position,
+        'jersey_number', jersey_number,
         'photo_url', photo_url,
         'player_team_id', player_team_id,
         'player_team_abbreviation', player_team_abbreviation,
@@ -161,7 +173,8 @@ SELECT
         'game_date', game_date,
         'game_location', game_location,
         'game_result', game_result,
-        'tpm', tpm
+        'stat', 'tpm',
+        'value', tpm
     ) ORDER BY tpm DESC) FILTER (WHERE rn_tpm <= 5) AS top_tpm_games
 FROM
     ranked_gamelogs

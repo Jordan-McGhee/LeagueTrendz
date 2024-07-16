@@ -52,7 +52,7 @@ const AllPlayersPage = () => {
                     {/* select for regular season */}
                 </CardTitle>
 
-                <Menubar>
+                <Menubar className="gap-x-2">
 
                     <MenubarMenu>
                         <MenubarTrigger

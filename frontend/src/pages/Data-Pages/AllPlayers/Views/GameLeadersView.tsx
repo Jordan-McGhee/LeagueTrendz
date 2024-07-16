@@ -15,6 +15,7 @@ import TeamLogo from "../../../../components/ui/TeamLogo"
 // component imports
 import ErrorModal from "../../../../components/ui/ErrorModal"
 import LoadingPage from "../../../LoadingPage"
+import GameHighCard from "../../../../components/Desktop/AllPlayersPage/GameHighCard";
 
 const GameLeadersView = () => {
 
@@ -50,8 +51,15 @@ const GameLeadersView = () => {
             {isLoading && <LoadingPage />}
 
             {
-                gameLeaders &&
-                <p>fetched data</p>
+                !isLoading && gameLeaders &&
+                <div className="flex flex-wrap justify-between gap-y-6">
+                    <GameHighCard cardClass="w-[49%]" title="Points" gameLeaderPlayers={gameLeaders.top_scoring_games} />
+                    <GameHighCard cardClass="w-[49%]" title="Assists" gameLeaderPlayers={gameLeaders.top_assist_games} />
+                    <GameHighCard cardClass="w-[49%]" title="Rebounds" gameLeaderPlayers={gameLeaders.top_rebounding_games} />
+                    <GameHighCard cardClass="w-[49%]" title="Steals" gameLeaderPlayers={gameLeaders.top_steal_games} />
+                    <GameHighCard cardClass="w-[49%]" title="Blocks" gameLeaderPlayers={gameLeaders.top_block_games} />
+                    <GameHighCard cardClass="w-[49%]" title="Three Pointers" gameLeaderPlayers={gameLeaders.top_tpm_games} />
+                </div>
             }
         </>
     )

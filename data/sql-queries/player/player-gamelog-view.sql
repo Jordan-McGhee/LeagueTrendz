@@ -54,7 +54,8 @@ SELECT
     pbs.pf,
 
     p.player_position AS player_position,
-    p.photo_url AS photo_url
+    p.photo_url AS photo_url,
+    p.jersey_number AS jersey_number
 
     
 

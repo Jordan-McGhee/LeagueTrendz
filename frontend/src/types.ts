@@ -532,8 +532,9 @@ export interface TotalsAndAveragesObject {
 
 // ALL PLAYERS PAGE
 
-export interface TopScoringGames {
-    pts: number,
+export interface GameLeaderStat {
+    stat: string,
+    value: number,
     name: string,
     game_id: number,
     game_date: string,
@@ -545,121 +546,21 @@ export interface TopScoringGames {
     opp_team_score: number,
     player_team_id: number,
     player_position: string,
+    jersey_number: number,
     player_team_score: number,
     opp_team_full_name: string,
     opp_team_abbreviation: string,
     player_team_full_name: string,
     player_team_abbreviation: string
 }
-
-export interface TopReboundingGames {
-    reb: number,
-    name: string,
-    game_id: number,
-    game_date: string,
-    photo_url: string,
-    player_id: number,
-    game_result: string,
-    opp_team_id: number,
-    game_location: string,
-    opp_team_score: number,
-    player_team_id: number,
-    player_position: string,
-    player_team_score: number,
-    opp_team_full_name: string,
-    opp_team_abbreviation: string,
-    player_team_full_name: string,
-    player_team_abbreviation: string
-}
-
-export interface TopAssistGames {
-    ast: number,
-    name: string,
-    game_id: number,
-    game_date: string,
-    photo_url: string,
-    player_id: number,
-    game_result: string,
-    opp_team_id: number,
-    game_location: string,
-    opp_team_score: number,
-    player_team_id: number,
-    player_position: string,
-    player_team_score: number,
-    opp_team_full_name: string,
-    opp_team_abbreviation: string,
-    player_team_full_name: string,
-    player_team_abbreviation: string
-}
-
-export interface TopStealGames {
-    stl: number,
-    name: string,
-    game_id: number,
-    game_date: string,
-    photo_url: string,
-    player_id: number,
-    game_result: string,
-    opp_team_id: number,
-    game_location: string,
-    opp_team_score: number,
-    player_team_id: number,
-    player_position: string,
-    player_team_score: number,
-    opp_team_full_name: string,
-    opp_team_abbreviation: string,
-    player_team_full_name: string,
-    player_team_abbreviation: string
-}
-
-export interface TopBlockGames {
-    pts: number,
-    name: string,
-    game_id: number,
-    game_date: string,
-    photo_url: string,
-    player_id: number,
-    game_result: string,
-    opp_team_id: number,
-    game_location: string,
-    opp_team_score: number,
-    player_team_id: number,
-    player_position: string,
-    player_team_score: number,
-    opp_team_full_name: string,
-    opp_team_abbreviation: string,
-    player_team_full_name: string,
-    player_team_abbreviation: string
-}
-
-export interface TopTPMGames {
-    tpm: number,
-    name: string,
-    game_id: number,
-    game_date: string,
-    photo_url: string,
-    player_id: number,
-    game_result: string,
-    opp_team_id: number,
-    game_location: string,
-    opp_team_score: number,
-    player_team_id: number,
-    player_position: string,
-    player_team_score: number,
-    opp_team_full_name: string,
-    opp_team_abbreviation: string,
-    player_team_full_name: string,
-    player_team_abbreviation: string
-}
-
 
 export interface GameLeadersState {
-    top_scoring_games: TopScoringGames[],
-    top_rebounding_games: TopReboundingGames[],
-    top_assist_games: TopAssistGames[],
-    top_steal_games: TopStealGames[],
-    top_block_games: TopBlockGames[],
-    top_tpm_games: TopTPMGames[]
+    top_scoring_games: GameLeaderStat[],
+    top_rebounding_games: GameLeaderStat[],
+    top_assist_games: GameLeaderStat[],
+    top_steal_games: GameLeaderStat[],
+    top_block_games: GameLeaderStat[],
+    top_tpm_games: GameLeaderStat[]
 }
 
 export interface TopStat {
@@ -700,6 +601,18 @@ export interface SeasonTotalLeadersState {
     top_total_blk: TopStat[],
     top_total_pf: TopStat[],
     top_total_turnovers: TopStat[]
+}
+
+export interface LeaderCardProps {
+    title: string,
+    cardClass?: string,
+    topStatPlayers: TopStat[]
+}
+
+export interface GameHighCardProps {
+    title: string,
+    cardClass?: string,
+    gameLeaderPlayers: GameLeaderStat[]
 }
 
 // SINGLE PLAYER PAGE

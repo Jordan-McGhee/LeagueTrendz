@@ -191,6 +191,22 @@ export const shortenTeamName = (team_id: number) => {
     return mascot_dict[team_id]
 }
 
+/**
+ * Takes in a player's name and returns first inital and last name
+ * @param name Player name
+ * @returns Player's first initial and last name
+ * @returns If player's name is R.J. Barret, will return R.J. Barret since it's already got first initial
+ */
+export const shortenPlayerName = (name: string) => {
+    const nameSplit = name.split(" ")
+    const firstName = nameSplit[0]
+    const firstInitial = firstName[1] === "." ? firstName : firstName[0]
+
+    const restOfName = nameSplit.slice(1)
+
+    return `${firstInitial.length > 1 ? firstInitial : `${firstInitial}.`} ${restOfName}`
+}
+
 
 /**
  * Generates a string representation of a range of years based on an array of years.
