@@ -10,7 +10,12 @@ router.get("/", playerControllers.getAllPlayers),
 
 router.get("/leaders", playerControllers.getPlayerStatLeaders)
 
+// leaders table
+router.get("/leaders/table/:seasonType/:perMode/:statCategory", playerControllers.getPlayerStatLeadersTable)
+
+// game highs
 router.get("/game-highs", playerControllers.getGameHighLeaders)
+
 
 // SINGLE PLAYER ROUTES
 router.get("/:player_id", playerControllers.getSinglePlayer),

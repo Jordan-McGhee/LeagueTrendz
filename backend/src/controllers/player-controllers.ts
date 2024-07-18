@@ -17,6 +17,7 @@ export const getAllPlayers = async (req: Request, res: Response, next: NextFunct
     res.status(200).json({ message: `Got all players`, players: playersResponse.rows })
 }
 
+// Stat Leaders
 export const getPlayerStatLeaders = async (req: Request, res: Response, next: NextFunction) => {
     // averages
     const seasonAverageStatQuery: string = "SELECT top_avg_pts, top_avg_fgm, top_avg_fg_percentage, top_avg_tpm, top_avg_tp_percentage, top_avg_ft_percentage, top_avg_reb, top_avg_ast, top_avg_stl, top_avg_blk, top_avg_pf, top_avg_turnovers FROM top_regularseason_stat_leaders"
@@ -49,6 +50,37 @@ export const getPlayerStatLeaders = async (req: Request, res: Response, next: Ne
     res.status(200).json({ message: `Got season stats leaders!`, seasonAverageLeaders: seasonAverageStatResponse.rows[0], seasonTotalLeaders: seasonTotalStatResponse.rows[0]})
 }
 
+export const getPlayerStatLeadersTable = async (req: Request, res: Response, next: NextFunction) => {
+
+    // variables
+    const { seasonType, perMode, statCategory } = req.params
+
+    let statLeaderResponse: QueryResult
+
+    // regular season
+    if (seasonType === 'regular-season') {
+
+        const orderBy = perMode === "average" ? `avg_${statCategory}` : statCategory
+
+        const regularSeasonQuery: string = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE gp >= 50 ORDER BY ${orderBy} DESC LIMIT 50`
+
+        try {
+            statLeaderResponse = await pool.query(regularSeasonQuery)
+        } catch (error) {
+            console.log(`Error getting season stats for table: ${error}`)
+
+            return res.status(500).json({ message: `Error getting season stats for table: ${error}`})
+        }
+
+        return res.status(200).json({ message: "Got leader stats for table!", stats: statLeaderResponse.rows})
+    } else {
+        // playoffs
+
+    }
+}
+
+
+// Game High Leaders and BoxScores
 export const getGameHighLeaders = async (req: Request, res: Response, next: NextFunction) => {
     const gameStatQuery: string = "SELECT * FROM top_regularseason_game_stats"
 

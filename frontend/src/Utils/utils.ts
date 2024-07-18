@@ -204,7 +204,7 @@ export const shortenPlayerName = (name: string) => {
 
     const restOfName = nameSplit.slice(1)
 
-    return `${firstInitial.length > 1 ? firstInitial : `${firstInitial}.`} ${restOfName}`
+    return `${firstInitial.length > 1 ? firstInitial : `${firstInitial}.`} ${restOfName.join(" ")}`
 }
 
 

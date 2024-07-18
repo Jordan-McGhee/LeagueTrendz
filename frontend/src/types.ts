@@ -477,11 +477,21 @@ export interface StatObject {
 }
 
 export interface TotalsAndAveragesObject {
+    // player info
     player_id: number,
     name: string,
+    photo_url: string,
+    player_position: string,
+    jersey_number: number,
+    
+    // team info
     team_id: number,
     full_name: string,
     abbreviation: string,
+    conference: string,
+    division: string,
+
+    // stats
     gp: number,
     gs: number,
 
