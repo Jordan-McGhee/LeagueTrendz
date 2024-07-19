@@ -60,9 +60,19 @@ export const getPlayerStatLeadersTable = async (req: Request, res: Response, nex
     // regular season
     if (seasonType === 'regular-season') {
 
-        const orderBy = perMode === "average" ? `avg_${statCategory}` : statCategory
-
-        const regularSeasonQuery: string = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE gp >= 50 ORDER BY ${orderBy} DESC LIMIT 50`
+        let regularSeasonQuery: string = ''
+        
+        if (statCategory === "fg_percentage") {
+            regularSeasonQuery = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE fgm >= 200 ORDER BY ${statCategory} DESC LIMIT 50`
+        } else if (statCategory === "tp_percentage") {
+            regularSeasonQuery = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE tpm >= 70 ORDER BY ${statCategory} DESC LIMIT 50`
+        } else if (statCategory === "ft_percentage") {
+            regularSeasonQuery = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE ftm >= 100 ORDER BY ${statCategory} DESC LIMIT 50`
+        } else {
+            const orderBy = perMode === "average" && !statCategory.includes("avg_") ? `avg_${statCategory}` : statCategory
+    
+            regularSeasonQuery = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE gp >= 50 ORDER BY ${orderBy} DESC LIMIT 50`
+        }
 
         try {
             statLeaderResponse = await pool.query(regularSeasonQuery)

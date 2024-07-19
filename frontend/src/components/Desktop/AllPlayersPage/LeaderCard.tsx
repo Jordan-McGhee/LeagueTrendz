@@ -12,7 +12,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter }
 import { Separator } from "../../ui/separator"
 import TeamLogo from "../../ui/TeamLogo"
 
-const LeaderCard: React.FC<LeaderCardProps> = ({ cardClass, title, topStatPlayers }) => {
+const LeaderCard: React.FC<LeaderCardProps> = ({ cardClass, title, averages, topStatPlayers }) => {
 
     return (
         <>
@@ -26,12 +26,13 @@ const LeaderCard: React.FC<LeaderCardProps> = ({ cardClass, title, topStatPlayer
                             <div className="flex flex-col gap-y-2">
 
                                 {/* player */}
-                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${topStatPlayers[0].player_id}/${topStatPlayers[0].name.toLowerCase().replace(" ", "-")}`}className="font-light text-xl hover:underline"><span className="font-bold text-ellipsis">{shortenPlayerName(topStatPlayers[0].name)}</span> #{topStatPlayers[0].jersey_number}</Link>
+                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${topStatPlayers[0].player_id}/${topStatPlayers[0].name.toLowerCase().replace(" ", "-")}`} className="font-light text-xl hover:underline"><span className="font-bold text-ellipsis">{shortenPlayerName(topStatPlayers[0].name)}</span></Link>
 
                                 {/* team */}
                                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${topStatPlayers[0].abbreviation}?view=home`} className="flex gap-x-2 items-center hover:underline">
                                     <TeamLogo team_id={topStatPlayers[0].team_id} abbreviation={topStatPlayers[0].abbreviation} logoClass="size-7 object-contain" />
                                     <p>{shortenTeamName(topStatPlayers[0].team_id)}</p>
+                                    <p>#{topStatPlayers[0].jersey_number}</p>
                                 </Link>
                                 <p className="font-extrabold text-4xl">{topStatPlayers[0].value}</p>
                             </div>
@@ -85,7 +86,9 @@ const LeaderCard: React.FC<LeaderCardProps> = ({ cardClass, title, topStatPlayer
                     </CardContent>
 
                     <CardFooter className="text-blue-600 font-semibold">
-                        See Top 50
+                        <Link to={averages ? `${process.env.REACT_APP_FRONTEND_URL}/nba/players?view=tables&perMode=average&statCategory=${topStatPlayers[0].stat.split('_').slice(1).join('_')}` : `${process.env.REACT_APP_FRONTEND_URL}/nba/players?view=tables&perMode=total&statCategory=${topStatPlayers[0].stat.split('_').slice(1).join('_')}`}>
+                            See Top 50
+                        </Link>
                     </CardFooter>
                 </Card>
             }

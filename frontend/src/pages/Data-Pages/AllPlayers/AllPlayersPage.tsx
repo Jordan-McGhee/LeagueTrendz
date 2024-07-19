@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom"
+import { useLocation, Link, useNavigate } from "react-router-dom"
 
 // hook imports
 import { useFetch } from "../../../Hooks/useFetch";
@@ -20,18 +20,33 @@ import LoadingPage from "../../LoadingPage"
 import SeasonLeadersView from "./Views/SeasonLeadersView";
 import GameLeadersView from "./Views/GameLeadersView";
 import LeadersTableView from "./Views/LeadersTableView";
+import BoxScoresTableView from "./Views/BoxScoresTableView";
 
 // season leaders (avg & total)
 // table
 
 const AllPlayersPage = () => {
 
+    // grab query params from url if any
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const view = queryParams.get('view');
+    const navigate = useNavigate()
+
     // menubar item 
     const [isRegularSeason, setIsRegularSeason] = useState<boolean>(true)
-    const [selectedMenuItem, setSelectedMenuItem] = useState<'leaders' | 'highs' | 'tables'>('leaders')
+    const [selectedMenuItem, setSelectedMenuItem] = useState<string>('leaders')
 
-    const handleMenuClick = (option: 'leaders' | 'highs' | 'tables') => {
+    // update menubar state based on query param
+    useEffect(() => {
+        if (view) {
+            setSelectedMenuItem(view);
+        }
+    }, [view]);
+
+    const handleMenuClick = (option: string) => {
         setSelectedMenuItem(option)
+        navigate(`/nba/players?view=${option}`)
     }
 
     let cardTitle: string
@@ -47,20 +62,30 @@ const AllPlayersPage = () => {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="mb-4">
-                    <p className="text-2xl">{cardTitle}</p>
+                {/* <CardTitle className="mb-4"> */}
+                {/* <p className="text-2xl">{cardTitle}</p> */}
 
-                    {/* select for regular season */}
-                </CardTitle>
+                {/* select for regular season */}
+                {/* </CardTitle> */}
 
-                <Menubar className="gap-x-2">
+                <Menubar className="">
 
                     <MenubarMenu>
                         <MenubarTrigger
                             style={selectedMenuItem === "leaders" ? { backgroundColor: "black", color: "white" } : {}}
                             onClick={() => handleMenuClick('leaders')}
-                            className="w-1/3">
+                            className="w-1/4">
                             Leaders
+                        </MenubarTrigger>
+                    </MenubarMenu>
+
+
+                    <MenubarMenu>
+                        <MenubarTrigger
+                            style={selectedMenuItem === "tables" ? { backgroundColor: "black", color: "white" } : {}}
+                            onClick={() => handleMenuClick('tables')}
+                            className="w-1/4">
+                            Stats Table
                         </MenubarTrigger>
                     </MenubarMenu>
 
@@ -68,17 +93,17 @@ const AllPlayersPage = () => {
                         <MenubarTrigger
                             style={selectedMenuItem === "highs" ? { backgroundColor: "black", color: "white" } : {}}
                             onClick={() => handleMenuClick('highs')}
-                            className="w-1/3">
+                            className="w-1/4">
                             Game Highs
                         </MenubarTrigger>
                     </MenubarMenu>
 
                     <MenubarMenu>
                         <MenubarTrigger
-                            style={selectedMenuItem === "tables" ? { backgroundColor: "black", color: "white" } : {}}
-                            onClick={() => handleMenuClick('tables')}
-                            className="w-1/3">
-                            All Stats
+                            style={selectedMenuItem === "box" ? { backgroundColor: "black", color: "white" } : {}}
+                            onClick={() => handleMenuClick('box')}
+                            className="w-1/4">
+                            Box Scores Table
                         </MenubarTrigger>
                     </MenubarMenu>
 
@@ -86,9 +111,10 @@ const AllPlayersPage = () => {
 
             </CardHeader>
             <CardContent>
-                { selectedMenuItem === "leaders" && <SeasonLeadersView />}
-                { selectedMenuItem === "highs" && <GameLeadersView />}
-                { selectedMenuItem === "tables" && <LeadersTableView />}
+                {selectedMenuItem === "leaders" && <SeasonLeadersView />}
+                {selectedMenuItem === "tables" && <LeadersTableView />}
+                {selectedMenuItem === "highs" && <GameLeadersView />}
+                {selectedMenuItem === "box" && <BoxScoresTableView />}
             </CardContent>
         </Card>
     )

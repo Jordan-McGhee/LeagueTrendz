@@ -616,6 +616,7 @@ export interface SeasonTotalLeadersState {
 export interface LeaderCardProps {
     title: string,
     cardClass?: string,
+    averages: boolean,
     topStatPlayers: TopStat[]
 }
 
