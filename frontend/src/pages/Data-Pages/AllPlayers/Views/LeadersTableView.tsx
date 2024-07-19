@@ -190,13 +190,13 @@ const LeadersTableView = () => {
                     {/* bottom section */}
                     <Card>
                         <CardContent>
-                            <Table className="text-sm">
+                            <Table className="">
                                 <TableHeader>
                                     <TableRow className="uppercase">
                                         <TableHead className="w-[175px]">PLAYER</TableHead>
                                         <TableHead className="">TEAM</TableHead>
-                                        {/* <TableHead className="text-center">GP</TableHead>
-                                        <TableHead className="text-center">Min</TableHead> */}
+                                        <TableHead className="text-center">GP</TableHead>
+                                        <TableHead className="text-center">Min</TableHead>
                                         <TableHead className={statCategory === "pts" ? "bg-slate-100 text-center" : "text-center"}>PTS</TableHead>
                                         <TableHead className={statCategory === "fgm" ? "bg-slate-100 text-center" : "text-center"}>FGM-FGA</TableHead>
                                         <TableHead className={statCategory === "fg_percentage" ? "bg-slate-100 text-center" : "text-center"}>FG%</TableHead>
@@ -227,8 +227,8 @@ const LeadersTableView = () => {
                                                         <p>{player.abbreviation}</p>
                                                     </Link>
                                                 </TableCell>
-                                                {/* <TableCell>{player.gp}</TableCell>
-                                                <TableCell>{player.avg_min}</TableCell> */}
+                                                <TableCell className="text-center">{player.gp}</TableCell>
+                                                <TableCell className="text-center">{player.avg_min}</TableCell>
                                                 <TableCell className={statCategory === "pts" ? "bg-slate-100 text-center" : "text-center"}>{perMode === "average" ? player.avg_pts : player.pts}</TableCell>
                                                 <TableCell className={statCategory === "fgm" ? "bg-slate-100 text-center" : "text-center"}>{perMode === "average" ? `${player.avg_fgm}-${player.avg_fga}` : `${player.fgm}-${player.fga}`}</TableCell>
                                                 <TableCell className={statCategory === "fg_percentage" ? "bg-slate-100 text-center" : "text-center"}>{player.avg_fg_percentage}%</TableCell>

@@ -16,6 +16,7 @@ router.get("/leaders/table/:seasonType/:perMode/:statCategory", playerController
 // game highs
 router.get("/game-highs", playerControllers.getGameHighLeaders)
 
+router.get("/game-highs/box-scores/:seasonType/:statCategory", playerControllers.getGameHighBoxScoresTable)
 
 // SINGLE PLAYER ROUTES
 router.get("/:player_id", playerControllers.getSinglePlayer),

@@ -483,7 +483,7 @@ export interface TotalsAndAveragesObject {
     photo_url: string,
     player_position: string,
     jersey_number: number,
-    
+
     // team info
     team_id: number,
     full_name: string,
@@ -624,6 +624,48 @@ export interface GameHighCardProps {
     title: string,
     cardClass?: string,
     gameLeaderPlayers: GameLeaderStat[]
+}
+
+// GAME BOX SCORES TABLE
+export interface GameHighBoxScoreStat {
+    game_id: number,
+    in_season_tournament: boolean,
+    postseason: boolean,
+    game_date: string,
+    game_location: string,
+    game_result: string,
+    player_team_score: string,
+    player_team_id: number,
+    player_team_abbreviation: string,
+    player_team_full_name: string,
+    opp_team_score: string,
+    opp_team_id: number,
+    opp_team_abbreviation: string,
+    opp_team_full_name: string,
+    player_id: number,
+    player_name: string,
+    minutes: number,
+    pts: number,
+    fgm: number,
+    fga: number,
+    fg_percentage: string,
+    tpm: number,
+    tpa: number,
+    tp_percentage: string,
+    ftm: number,
+    fta: number,
+    ft_percentage: string,
+    orb: number,
+    drb: number,
+    reb: number,
+    ast: number,
+    stl: number,
+    blk: number,
+    turnovers: number,
+    pf: number,
+    player_position: string,
+    photo_url: string,
+    jersey_number: number
 }
 
 // SINGLE PLAYER PAGE

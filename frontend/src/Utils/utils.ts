@@ -63,8 +63,9 @@ export const convertDateGameLog = (day_of_week: string, date: string): string =>
  * Takes in date and day of week and formats them for game log table
  * @param date string - YYYY-MM-DD format
  * @returns date converted into Schedule date format: 2/17
+ * @returns option to include year in return as well: 2/17/24
  */
-export const convertDateTeamSchedule = (date: string) => {
+export const convertDateTeamSchedule = (date: string, includeYear?: boolean) => {
     // Extracting month and day from the date string
     const noTimeZone = date.split("T")[0]
     const [year, month, day] = noTimeZone.split('-');
@@ -72,6 +73,9 @@ export const convertDateTeamSchedule = (date: string) => {
     // Format the date as MM/DD
     const formattedDate = `${month[0] === "0" ? month[1] : month}/${day[0] === "0" ? day[1] : day}`;
 
+    if (includeYear) {
+        return `${month[0] === "0" ? month[1] : month}/${day[0] === "0" ? day[1] : day}/${year}`
+    }
     // Constructing the final formatted string
     return `${formattedDate}`;
 }

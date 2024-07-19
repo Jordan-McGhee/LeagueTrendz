@@ -118,7 +118,9 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                     </CardContent>
 
                     <CardFooter className="text-blue-600 font-semibold">
-                        See Top 50
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players?view=box&statCategory=${gameLeaderPlayers[0].stat}`}>
+                            See Top 50
+                        </Link>
                     </CardFooter>
                 </Card>
             }

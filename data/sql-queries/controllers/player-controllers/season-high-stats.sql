@@ -1,7 +1,7 @@
 -- GET ALL GAMES ORDERED BY STAT
 SELECT * FROM public.player_gamelog_view
 ORDER BY pts DESC
-LIMIT 100
+LIMIT 50
 
 -- TOP 5 GAMES FOR EACH MAJOR STAT
 CREATE OR REPLACE VIEW top_regularseason_game_stats AS

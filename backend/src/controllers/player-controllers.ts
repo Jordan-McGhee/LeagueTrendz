@@ -70,7 +70,7 @@ export const getPlayerStatLeadersTable = async (req: Request, res: Response, nex
             regularSeasonQuery = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE ftm >= 100 ORDER BY ${statCategory} DESC LIMIT 50`
         } else {
             const orderBy = perMode === "average" && !statCategory.includes("avg_") ? `avg_${statCategory}` : statCategory
-    
+
             regularSeasonQuery = `SELECT * FROM player_2023_24_regularseason_totals_and_averages WHERE gp >= 50 ORDER BY ${orderBy} DESC LIMIT 50`
         }
 
@@ -106,6 +106,30 @@ export const getGameHighLeaders = async (req: Request, res: Response, next: Next
     }
 
     res.status(200).json({ message: `Got game stats leaders!`, gameLeaders: gameStatResponse.rows[0]})
+}
+
+export const getGameHighBoxScoresTable = async (req: Request, res: Response, next: NextFunction) => {
+    const { seasonType, statCategory } = req.params
+
+    let boxScoreResponse: QueryResult
+
+    // regular season
+    if (seasonType === 'regular-season') {
+        const regularSeasonQuery: string = `SELECT * FROM player_gamelog_view WHERE postseason = FALSE ORDER BY ${statCategory} DESC LIMIT 50`
+
+        try {
+            boxScoreResponse = await pool.query(regularSeasonQuery)
+        } catch (error) {
+            console.log(`Error getting box scores for table: ${error}`)
+
+            return res.status(500).json({ message: `Error getting box scores for table: ${error}`})
+        }
+
+        return res.status(200).json({ message: `Got game box scores ordered by ${statCategory}`, games: boxScoreResponse.rows})
+        
+    } else {
+        // playoffs
+    }
 }
 
 

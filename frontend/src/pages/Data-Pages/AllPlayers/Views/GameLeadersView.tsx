@@ -36,7 +36,6 @@ const GameLeadersView = () => {
             } catch (error) {
 
             }
-            console.log(responseData)
         }
 
         fetchGameHighs()
