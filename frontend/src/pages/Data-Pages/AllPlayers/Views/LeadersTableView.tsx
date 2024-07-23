@@ -103,18 +103,6 @@ const LeadersTableView = () => {
 
             <div className="flex gap-x-2 mb-4">
 
-                {/* table type */}
-                {/* <Select>
-            <SelectTrigger className="w-[250px]">
-                <SelectValue placeholder="" />
-            </SelectTrigger>
-
-            <SelectContent>
-                <SelectItem value=""></SelectItem>
-                <SelectItem value=""></SelectItem>
-            </SelectContent>
-        </Select> */}
-
                 {/* season type */}
                 <div>
                     <p className="text-xs font-semibold mb-1">SEASON TYPE</p>

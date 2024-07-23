@@ -5,7 +5,7 @@ const router = express.Router()
 
 // /nba/games
 
-router.get("/date/:date", gameControllers.getGamesByDate)
+router.get("/date/:date", gameControllers.getGamesByDateRange)
 
 // single game
 router.get("/game_id/:game_id", gameControllers.getGameByID)

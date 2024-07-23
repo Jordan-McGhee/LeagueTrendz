@@ -100,6 +100,12 @@ export interface AllTeamsState {
     southwest: Team[]
 }
 
+// // SCHEDULE PAGE
+export interface DatePaginationProps {
+    selectedDate: Date,
+    onDateChange: (date: Date) => void
+}
+
 // // STANDINGS PAGE
 
 export interface StandingsTeamItem {

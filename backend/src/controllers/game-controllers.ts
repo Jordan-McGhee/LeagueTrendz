@@ -2,23 +2,53 @@ import { pool } from "../server"
 import { Request, Response, NextFunction } from "express"
 import { QueryResult } from "pg";
 
-// get games by date
-export const getGamesByDate = async (req: Request, res: Response, next: NextFunction) => {
+// get games by date range (7 days), grouped by date
+export const getGamesByDateRange = async (req: Request, res: Response, next: NextFunction) => {
     const { date } = req.params
 
-    const gameQuery: string = "SELECT * FROM game_box_scores WHERE game_date = $1"
+    // Parse the input date
+    const startDate = new Date(date);
+    
+    // Calculate the end date (6 days after the start date)
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + 6);
 
-    let gameResponse: QueryResult
+    const gameQuery: string = `
+        SELECT * FROM game_box_scores 
+        WHERE game_date >= $1 AND game_date <= $2
+        ORDER BY game_date ASC
+    `;
+
+    let gameResponse: QueryResult;
 
     try {
-        gameResponse = await pool.query(gameQuery, [date])
+        gameResponse = await pool.query(gameQuery, [startDate.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
     } catch (error) {
-        console.log(`Error finding games from ${date}. ${error}.`)
-
-        return res.status(500).json({ message: `Error finding games from ${date}. ${error}.` })
+        console.log(`Error finding games from ${date} to ${endDate.toISOString().split('T')[0]}. ${error}.`);
+        return res.status(500).json({ message: `Error finding games from ${date} to ${endDate.toISOString().split('T')[0]}. ${error}.` });
     }
 
-    res.status(200).json({ message: `Got all games for ${date}`, game: gameResponse.rows })
+    // Create an object with all dates in the range
+    const gamesByDate: { [key: string]: any[] | string } = {};
+    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0];
+        gamesByDate[dateStr] = `No games found for ${dateStr}`;
+    }
+
+    // Group games by date
+    gameResponse.rows.forEach(game => {
+        const gameDate = game.game_date.toISOString().split('T')[0];
+        if (typeof gamesByDate[gameDate] === 'string') {
+            gamesByDate[gameDate] = [game];
+        } else {
+            (gamesByDate[gameDate] as any[]).push(game);
+        }
+    });
+
+    res.status(200).json({ 
+        message: `Got all games from ${date} to ${endDate.toISOString().split('T')[0]}`, 
+        gamesByDate: gamesByDate
+    });
 }
 
 // get single game
@@ -109,11 +139,11 @@ export const getTeamStats = async (req: Request, res: Response, next: NextFuncti
     } catch (error) {
         console.log(`Error querying for game leaders for game #${game_id}. ${error}`)
 
-        return res.status(500).json({ message: `Error querying for game leaders for game #${game_id}. ${error}`})
+        return res.status(500).json({ message: `Error querying for game leaders for game #${game_id}. ${error}` })
     }
 
 
-    res.status(200).json({ message: `Got team stats for game #${game_id}`, gameSeries: gameSeriesResponse.rows, gameLeaders: gameLeadersResponse.rows  })
+    res.status(200).json({ message: `Got team stats for game #${game_id}`, gameSeries: gameSeriesResponse.rows, gameLeaders: gameLeadersResponse.rows })
 }
 
 // get box score

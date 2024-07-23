@@ -15,7 +15,6 @@ import ErrorModal from "../../../../components/ui/ErrorModal"
 import LoadingPage from "../../../LoadingPage"
 import LeaderCard from "../../../../components/Desktop/AllPlayersPage/LeaderCard"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select"
-import { CaretDownIcon, CaretUpIcon } from "@radix-ui/react-icons";
 
 
 const SeasonLeadersView = () => {

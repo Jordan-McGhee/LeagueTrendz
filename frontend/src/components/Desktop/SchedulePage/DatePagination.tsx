@@ -1,8 +1,36 @@
 import React from "react";
 
+// type import
+import { DatePaginationProps } from "@/types";
+
+// utils import
+
+// component import
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "../../ui/pagination";
 
-const DatePagination = () => {
+// date function import
+import { format, addDays, subDays, isSameDay } from 'date-fns';
+
+
+
+
+const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateChange }) => {
+
+    const getDaysArray = () => {
+        const daysArray = [];
+        for (let i = -3; i <= 3; i++) {
+            daysArray.push(addDays(selectedDate, i));
+        }
+        return daysArray;
+    };
+
+    const weekDates = getDaysArray();
+
+    const changeWeek = (direction: 'prev' | 'next') => {
+        const newDate = direction === 'next' ? addDays(selectedDate, 7) : subDays(selectedDate, 7);
+        onDateChange(newDate);
+    };
+
     return (
         <div className="">
             <Pagination>
@@ -10,69 +38,27 @@ const DatePagination = () => {
                 <PaginationContent className="w-full flex justify-between">
 
                     {/* back */}
-                    <PaginationItem className="">
-                        <PaginationPrevious href="#" />
+                    <PaginationItem className="hover:cursor-pointer">
+                        <PaginationPrevious onClick={() => changeWeek('prev')} />
                     </PaginationItem>
 
-                    {/* sunday */}
-                    <PaginationItem className="">
-                        <PaginationLink href="" className="flex flex-col p-6">
-                            <p className="font-bold">SUN</p>
-                            <p className="text-xs">FEB 4</p>
-                        </PaginationLink>
-                    </PaginationItem>
+                    {weekDates.map((date, index) => (
+                        <PaginationItem key={date.toString()} className="hover:cursor-pointer">
+                            <PaginationLink
+                                onClick={() => onDateChange(date)}
+                                isActive={isSameDay(date, selectedDate)}
+                                className="flex flex-col px-12 py-6 items-center uppercase"
+                            >
+                                <div className="font-bold">{format(date, 'EEE')}</div>
+                                <div className="">{format(date, 'MMM dd')}</div>
 
-                    {/* monday */}
-                    <PaginationItem className="">
-                        <PaginationLink href="" className="flex flex-col p-6">
-                            <p className="font-bold">MON</p>
-                            <p className="text-xs">FEB 5</p>
-                        </PaginationLink>
-                    </PaginationItem>
-
-                    {/* tuesday */}
-                    <PaginationItem className="">
-                        <PaginationLink href="" className="flex flex-col p-6">
-                            <p className="font-bold">TUE</p>
-                            <p className="text-xs">FEB 6</p>
-                        </PaginationLink>
-                    </PaginationItem>
-
-                    {/* wednesday */}
-                    <PaginationItem className="">
-                        <PaginationLink href="" className="flex flex-col p-6" isActive>
-                            <p className="font-bold">WED</p>
-                            <p className="text-xs">FEB 7</p>
-                        </PaginationLink>
-                    </PaginationItem>
-
-                    {/* thursday */}
-                    <PaginationItem className="">
-                        <PaginationLink href="" className="flex flex-col p-6">
-                            <p className="font-bold">THU</p>
-                            <p className="text-xs">FEB 8</p>
-                        </PaginationLink>
-                    </PaginationItem>
-
-                    {/* friday */}
-                    <PaginationItem className="">
-                        <PaginationLink href="" className="flex flex-col p-6">
-                            <p className="font-bold">FRI</p>
-                            <p className="text-xs">FEB 9</p>
-                        </PaginationLink>
-                    </PaginationItem>
-
-                    {/* saturday */}
-                    <PaginationItem className="">
-                        <PaginationLink href="" className="flex flex-col p-6">
-                            <p className="font-bold">SAT</p>
-                            <p className="text-xs">FEB 10</p>
-                        </PaginationLink>
-                    </PaginationItem>
+                            </PaginationLink>
+                        </PaginationItem>
+                    ))}
 
                     {/* forward */}
-                    <PaginationItem>
-                        <PaginationNext href="#" />
+                    <PaginationItem className="hover:cursor-pointer">
+                        <PaginationNext onClick={() => changeWeek('next')} />
                     </PaginationItem>
 
                     <PaginationItem>

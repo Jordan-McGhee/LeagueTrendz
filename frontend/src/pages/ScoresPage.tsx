@@ -81,7 +81,7 @@ const ScoresPage = () => {
                             NBA SCOREBOARD
                         </CardTitle>
 
-                        <DatePagination />
+                        {/* <DatePagination /> */}
                     </CardHeader>
                 </Card>
 

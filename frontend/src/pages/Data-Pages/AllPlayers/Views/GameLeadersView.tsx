@@ -9,8 +9,7 @@ import { GameLeadersState } from "@/types";
 // utils imports
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
-import TeamLogo from "../../../../components/ui/TeamLogo"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select"
 
 // component imports
 import ErrorModal from "../../../../components/ui/ErrorModal"
@@ -19,7 +18,9 @@ import GameHighCard from "../../../../components/Desktop/AllPlayersPage/GameHigh
 
 const GameLeadersView = () => {
 
-    const [ gameLeaders, setGameLeaders ] = useState<GameLeadersState | undefined>()
+    const [gameLeaders, setGameLeaders] = useState<GameLeadersState | undefined>()
+
+    const [seasonType, setSeasonType] = useState<string>('regular-season');
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
@@ -44,6 +45,28 @@ const GameLeadersView = () => {
 
     return (
         <>
+
+            {/* top section */}
+
+            <div className="flex gap-x-2 mb-4">
+
+                {/* season type */}
+                <div>
+                    <p className="text-xs font-semibold mb-1">SEASON TYPE</p>
+                    <Select value={seasonType} onValueChange={(newValue) => setSeasonType(newValue)}>
+                        <SelectTrigger className="w-[200px]">
+                            <SelectValue placeholder="Regular Season" />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                            <SelectItem value="regular-season">Regular Season</SelectItem>
+                            <SelectItem value="playoffs">Playoffs</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+            </div>
+
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
@@ -11,6 +11,8 @@ import GameDayTable from "../components/Desktop/SchedulePage/GameDayTable";
 const games = require("../DUMMYDATA/NBA_Games.json")
 
 const SchedulePage = () => {
+
+    const [ selectedDate, setSelectedDate ] = useState<Date>(new Date())
 
     // typing JSON DATA
     type Game = {
@@ -40,10 +42,13 @@ const SchedulePage = () => {
                     </CardTitle>
 
                     {/* div for date change placeholder */}
-                    <DatePagination />
+                    <DatePagination selectedDate={selectedDate} onDateChange={(newDate) => setSelectedDate(newDate)} />
                 </CardHeader>
 
                 <CardContent>
+
+                    <p>Selected Date: {selectedDate.toDateString()}</p>
+
                     {schedule.games.map((dateObject, index) => (
                         <GameDayTable key={index} dateObject={dateObject} />
                     ))}
