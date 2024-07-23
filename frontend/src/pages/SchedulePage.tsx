@@ -1,40 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+// hook imports
+import { useFetch } from "../Hooks/useFetch";
+
+// type imports
+import { GamesDataState, GameData } from "@/types";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
+import { Separator } from "../components/ui/separator"
 
 // component imports
 import DatePagination from "../components/Desktop/SchedulePage/DatePagination";
 import GameDayTable from "../components/Desktop/SchedulePage/GameDayTable";
+import LoadingPage from "./LoadingPage"
+import ErrorModal from "../components/ui/ErrorModal"
 
-// DUMMY IMPORT
-const games = require("../DUMMYDATA/NBA_Games.json")
 
 const SchedulePage = () => {
 
-    const [ selectedDate, setSelectedDate ] = useState<Date>(new Date())
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+    // console.log(selectedDate.toISOString()) // yyyy-mm-dd
 
-    // typing JSON DATA
-    type Game = {
-        home_team: string,
-        away_team: string,
-        time: string
+    const [gamesData, setGamesData] = useState<GamesDataState | undefined>()
+
+
+    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
+
+    useEffect(() => {
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/games/date/${selectedDate.toISOString().split('T')[0]}`
+
+        let responseData: any
+
+        const fetchGames = async () => {
+            try {
+                responseData = await sendRequest(url)
+                setGamesData(responseData.gamesByDate)
+                console.log(responseData.gamesByDate)
+            } catch (error) {
+
+            }
+        }
+
+        fetchGames()
+
+    }, [sendRequest, selectedDate])
+
+    function formatDate(dateString: string): string {
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }).format(date);
     }
-
-    type DateObject = {
-        date: string,
-        gamesOfDay: Game[]
-    }
-
-    type Schedule = {
-        games: DateObject[]
-    }
-
-    // getting overall object of schedule from json
-    const schedule: Schedule = games
 
     return (
         <div>
+
+            {/* error */}
+            <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
+
             <Card className="">
                 <CardHeader>
                     <CardTitle className="text-2xl">
@@ -47,11 +74,26 @@ const SchedulePage = () => {
 
                 <CardContent>
 
-                    <p>Selected Date: {selectedDate.toDateString()}</p>
+                    {/* <p>Selected Date: {selectedDate.toDateString()}</p> */}
 
-                    {schedule.games.map((dateObject, index) => (
-                        <GameDayTable key={index} dateObject={dateObject} />
-                    ))}
+                    {/* loading state */}
+                    {isLoading && <LoadingPage />}
+
+                    {
+                        gamesData && Object.entries(gamesData).map(([date, games]) => (
+                            <div key={date}>
+                                <p className="text-lg font-semibold my-2">{formatDate(date)}</p>
+                                <Separator />
+
+
+                                {typeof games === 'string' ? (
+                                    <p className="font-light text-sm my-2">No games scheduled.</p>
+                                ) : (
+                                    <GameDayTable games={games} />
+                                )}
+                            </div>
+                        ))
+                    }
                 </CardContent>
             </Card>
         </div>

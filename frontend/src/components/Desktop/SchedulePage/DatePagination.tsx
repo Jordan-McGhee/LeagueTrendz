@@ -7,11 +7,13 @@ import { DatePaginationProps } from "@/types";
 
 // component import
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "../../ui/pagination";
+import { Calendar } from "../../ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover"
+import { Button } from "../../ui/button"
+import { CalendarIcon } from "@radix-ui/react-icons";
 
 // date function import
 import { format, addDays, subDays, isSameDay } from 'date-fns';
-
-
 
 
 const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateChange }) => {
@@ -61,9 +63,22 @@ const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateCha
                         <PaginationNext onClick={() => changeWeek('next')} />
                     </PaginationItem>
 
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button variant="ghost" className="">
+                                <CalendarIcon className="size-6" />
+                                {/* {format(selectedDate, "PPP")} */}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="end">
+                            <Calendar
+                                mode="single"
+                                selected={selectedDate}
+                                onSelect={(date) => date && onDateChange(date)}
+                                initialFocus
+                            />
+                        </PopoverContent>
+                    </Popover>
 
                 </PaginationContent>
 

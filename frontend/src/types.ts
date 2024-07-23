@@ -106,6 +106,44 @@ export interface DatePaginationProps {
     onDateChange: (date: Date) => void
 }
 
+export interface GameData {
+    game_id: number,
+    game_date: string, 
+    game_time: string, 
+    in_season_tournament: boolean,
+    postseason: boolean,
+    home_team_id: number,
+    home_team_full_name: string, 
+    home_team_abbreviation: string, 
+    home_team_score: string, 
+    home_best_player_id: number,
+    home_best_player_name: string, 
+    home_best_player_photo: string,
+    home_best_player_pts: number,
+    home_best_player_reb: number,
+    home_best_player_ast: number,
+    away_team_id: number,
+    away_team_full_name: string, 
+    away_team_abbreviation: string, 
+    away_team_score:string, 
+    away_best_player_id: number,
+    away_best_player_name: string, 
+    away_best_player_photo: string,
+    away_best_player_pts: number,
+    away_best_player_reb: number,
+    away_best_player_ast: number
+}
+
+type GameOrNoGames = GameData[] | string
+
+export interface GamesDataState {
+    [date: string]: GameOrNoGames
+}
+
+export interface GameDayTableProps {
+    games: GameData[]
+}
+
 // // STANDINGS PAGE
 
 export interface StandingsTeamItem {

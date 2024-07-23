@@ -14,7 +14,7 @@ export const getGamesByDateRange = async (req: Request, res: Response, next: Nex
     endDate.setDate(endDate.getDate() + 6);
 
     const gameQuery: string = `
-        SELECT * FROM game_box_scores 
+        SELECT game_id, game_date, game_time, in_season_tournament, postseason, home_team_id, home_team_full_name, home_team_abbreviation, home_team_score, home_best_player_id, home_best_player_name, home_best_player_photo, home_best_player_pts, home_best_player_reb, home_best_player_ast, away_team_id, away_team_full_name, away_team_abbreviation, away_team_score, away_best_player_id, away_best_player_name, away_best_player_photo, away_best_player_pts, away_best_player_reb, away_best_player_ast FROM game_box_scores 
         WHERE game_date >= $1 AND game_date <= $2
         ORDER BY game_date ASC
     `;
