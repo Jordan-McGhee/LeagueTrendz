@@ -1,0 +1,620 @@
+{
+    "games": [
+        {
+            "away_team": "LOS ANGELES LAKERS",
+            "away_team_score": 110,
+            "home_team": "NEW ORLEANS PELICANS",
+            "home_team_score": 106,
+            "start_time": "2024-04-16T23:30:00+00:00"
+        },
+        {
+            "away_team": "GOLDEN STATE WARRIORS",
+            "away_team_score": 94,
+            "home_team": "SACRAMENTO KINGS",
+            "home_team_score": 118,
+            "start_time": "2024-04-17T02:00:00+00:00"
+        },
+        {
+            "away_team": "MIAMI HEAT",
+            "away_team_score": 104,
+            "home_team": "PHILADELPHIA 76ERS",
+            "home_team_score": 105,
+            "start_time": "2024-04-17T23:00:00+00:00"
+        },
+        {
+            "away_team": "ATLANTA HAWKS",
+            "away_team_score": 116,
+            "home_team": "CHICAGO BULLS",
+            "home_team_score": 131,
+            "start_time": "2024-04-18T01:30:00+00:00"
+        },
+        {
+            "away_team": "CHICAGO BULLS",
+            "away_team_score": 91,
+            "home_team": "MIAMI HEAT",
+            "home_team_score": 112,
+            "start_time": "2024-04-19T23:00:00+00:00"
+        },
+        {
+            "away_team": "SACRAMENTO KINGS",
+            "away_team_score": 98,
+            "home_team": "NEW ORLEANS PELICANS",
+            "home_team_score": 105,
+            "start_time": "2024-04-20T01:30:00+00:00"
+        },
+        {
+            "away_team": "ORLANDO MAGIC",
+            "away_team_score": 83,
+            "home_team": "CLEVELAND CAVALIERS",
+            "home_team_score": 97,
+            "start_time": "2024-04-20T17:00:00+00:00"
+        },
+        {
+            "away_team": "PHOENIX SUNS",
+            "away_team_score": 95,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 120,
+            "start_time": "2024-04-20T19:30:00+00:00"
+        },
+        {
+            "away_team": "PHILADELPHIA 76ERS",
+            "away_team_score": 104,
+            "home_team": "NEW YORK KNICKS",
+            "home_team_score": 111,
+            "start_time": "2024-04-20T22:00:00+00:00"
+        },
+        {
+            "away_team": "LOS ANGELES LAKERS",
+            "away_team_score": 103,
+            "home_team": "DENVER NUGGETS",
+            "home_team_score": 114,
+            "start_time": "2024-04-21T00:30:00+00:00"
+        },
+        {
+            "away_team": "MIAMI HEAT",
+            "away_team_score": 94,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 114,
+            "start_time": "2024-04-21T17:00:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 97,
+            "home_team": "LOS ANGELES CLIPPERS",
+            "home_team_score": 109,
+            "start_time": "2024-04-21T19:30:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 94,
+            "home_team": "MILWAUKEE BUCKS",
+            "home_team_score": 109,
+            "start_time": "2024-04-21T23:00:00+00:00"
+        },
+        {
+            "away_team": "NEW ORLEANS PELICANS",
+            "away_team_score": 92,
+            "home_team": "OKLAHOMA CITY THUNDER",
+            "home_team_score": 94,
+            "start_time": "2024-04-22T01:30:00+00:00"
+        },
+        {
+            "away_team": "ORLANDO MAGIC",
+            "away_team_score": 86,
+            "home_team": "CLEVELAND CAVALIERS",
+            "home_team_score": 96,
+            "start_time": "2024-04-22T23:00:00+00:00"
+        },
+        {
+            "away_team": "PHILADELPHIA 76ERS",
+            "away_team_score": 101,
+            "home_team": "NEW YORK KNICKS",
+            "home_team_score": 104,
+            "start_time": "2024-04-22T23:30:00+00:00"
+        },
+        {
+            "away_team": "LOS ANGELES LAKERS",
+            "away_team_score": 99,
+            "home_team": "DENVER NUGGETS",
+            "home_team_score": 101,
+            "start_time": "2024-04-23T02:00:00+00:00"
+        },
+        {
+            "away_team": "PHOENIX SUNS",
+            "away_team_score": 93,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 105,
+            "start_time": "2024-04-23T23:30:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 125,
+            "home_team": "MILWAUKEE BUCKS",
+            "home_team_score": 108,
+            "start_time": "2024-04-24T00:30:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 96,
+            "home_team": "LOS ANGELES CLIPPERS",
+            "home_team_score": 93,
+            "start_time": "2024-04-24T02:00:00+00:00"
+        },
+        {
+            "away_team": "MIAMI HEAT",
+            "away_team_score": 111,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 101,
+            "start_time": "2024-04-24T23:00:00+00:00"
+        },
+        {
+            "away_team": "NEW ORLEANS PELICANS",
+            "away_team_score": 92,
+            "home_team": "OKLAHOMA CITY THUNDER",
+            "home_team_score": 124,
+            "start_time": "2024-04-25T01:30:00+00:00"
+        },
+        {
+            "away_team": "CLEVELAND CAVALIERS",
+            "away_team_score": 83,
+            "home_team": "ORLANDO MAGIC",
+            "home_team_score": 121,
+            "start_time": "2024-04-25T23:00:00+00:00"
+        },
+        {
+            "away_team": "NEW YORK KNICKS",
+            "away_team_score": 114,
+            "home_team": "PHILADELPHIA 76ERS",
+            "home_team_score": 125,
+            "start_time": "2024-04-25T23:30:00+00:00"
+        },
+        {
+            "away_team": "DENVER NUGGETS",
+            "away_team_score": 112,
+            "home_team": "LOS ANGELES LAKERS",
+            "home_team_score": 105,
+            "start_time": "2024-04-26T02:00:00+00:00"
+        },
+        {
+            "away_team": "MILWAUKEE BUCKS",
+            "away_team_score": 118,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 121,
+            "start_time": "2024-04-26T21:30:00+00:00"
+        },
+        {
+            "away_team": "LOS ANGELES CLIPPERS",
+            "away_team_score": 90,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 101,
+            "start_time": "2024-04-27T00:00:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 126,
+            "home_team": "PHOENIX SUNS",
+            "home_team_score": 109,
+            "start_time": "2024-04-27T02:30:00+00:00"
+        },
+        {
+            "away_team": "CLEVELAND CAVALIERS",
+            "away_team_score": 89,
+            "home_team": "ORLANDO MAGIC",
+            "home_team_score": 112,
+            "start_time": "2024-04-27T17:00:00+00:00"
+        },
+        {
+            "away_team": "OKLAHOMA CITY THUNDER",
+            "away_team_score": 106,
+            "home_team": "NEW ORLEANS PELICANS",
+            "home_team_score": 85,
+            "start_time": "2024-04-27T19:30:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 104,
+            "home_team": "MIAMI HEAT",
+            "home_team_score": 84,
+            "start_time": "2024-04-27T22:00:00+00:00"
+        },
+        {
+            "away_team": "DENVER NUGGETS",
+            "away_team_score": 108,
+            "home_team": "LOS ANGELES LAKERS",
+            "home_team_score": 119,
+            "start_time": "2024-04-28T00:30:00+00:00"
+        },
+        {
+            "away_team": "NEW YORK KNICKS",
+            "away_team_score": 97,
+            "home_team": "PHILADELPHIA 76ERS",
+            "home_team_score": 92,
+            "start_time": "2024-04-28T17:00:00+00:00"
+        },
+        {
+            "away_team": "LOS ANGELES CLIPPERS",
+            "away_team_score": 116,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 111,
+            "start_time": "2024-04-28T19:30:00+00:00"
+        },
+        {
+            "away_team": "MILWAUKEE BUCKS",
+            "away_team_score": 113,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 126,
+            "start_time": "2024-04-28T23:00:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 122,
+            "home_team": "PHOENIX SUNS",
+            "home_team_score": 116,
+            "start_time": "2024-04-29T01:30:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 102,
+            "home_team": "MIAMI HEAT",
+            "home_team_score": 88,
+            "start_time": "2024-04-29T23:30:00+00:00"
+        },
+        {
+            "away_team": "OKLAHOMA CITY THUNDER",
+            "away_team_score": 97,
+            "home_team": "NEW ORLEANS PELICANS",
+            "home_team_score": 89,
+            "start_time": "2024-04-30T00:30:00+00:00"
+        },
+        {
+            "away_team": "LOS ANGELES LAKERS",
+            "away_team_score": 106,
+            "home_team": "DENVER NUGGETS",
+            "home_team_score": 108,
+            "start_time": "2024-04-30T02:00:00+00:00"
+        },
+        {
+            "away_team": "PHILADELPHIA 76ERS",
+            "away_team_score": 112,
+            "home_team": "NEW YORK KNICKS",
+            "home_team_score": 106,
+            "start_time": "2024-04-30T23:00:00+00:00"
+        },
+        {
+            "away_team": "ORLANDO MAGIC",
+            "away_team_score": 103,
+            "home_team": "CLEVELAND CAVALIERS",
+            "home_team_score": 104,
+            "start_time": "2024-05-01T00:00:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 92,
+            "home_team": "MILWAUKEE BUCKS",
+            "home_team_score": 115,
+            "start_time": "2024-05-01T01:30:00+00:00"
+        },
+        {
+            "away_team": "MIAMI HEAT",
+            "away_team_score": 84,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 118,
+            "start_time": "2024-05-01T23:30:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 123,
+            "home_team": "LOS ANGELES CLIPPERS",
+            "home_team_score": 93,
+            "start_time": "2024-05-02T02:00:00+00:00"
+        },
+        {
+            "away_team": "MILWAUKEE BUCKS",
+            "away_team_score": 98,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 120,
+            "start_time": "2024-05-02T22:30:00+00:00"
+        },
+        {
+            "away_team": "NEW YORK KNICKS",
+            "away_team_score": 118,
+            "home_team": "PHILADELPHIA 76ERS",
+            "home_team_score": 115,
+            "start_time": "2024-05-03T01:00:00+00:00"
+        },
+        {
+            "away_team": "CLEVELAND CAVALIERS",
+            "away_team_score": 96,
+            "home_team": "ORLANDO MAGIC",
+            "home_team_score": 103,
+            "start_time": "2024-05-03T23:00:00+00:00"
+        },
+        {
+            "away_team": "LOS ANGELES CLIPPERS",
+            "away_team_score": 101,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 114,
+            "start_time": "2024-05-04T01:30:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 106,
+            "home_team": "DENVER NUGGETS",
+            "home_team_score": 99,
+            "start_time": "2024-05-04T23:00:00+00:00"
+        },
+        {
+            "away_team": "ORLANDO MAGIC",
+            "away_team_score": 94,
+            "home_team": "CLEVELAND CAVALIERS",
+            "home_team_score": 106,
+            "start_time": "2024-05-05T17:00:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 117,
+            "home_team": "NEW YORK KNICKS",
+            "home_team_score": 121,
+            "start_time": "2024-05-06T23:30:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 106,
+            "home_team": "DENVER NUGGETS",
+            "home_team_score": 80,
+            "start_time": "2024-05-07T02:00:00+00:00"
+        },
+        {
+            "away_team": "CLEVELAND CAVALIERS",
+            "away_team_score": 95,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 120,
+            "start_time": "2024-05-07T23:00:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 95,
+            "home_team": "OKLAHOMA CITY THUNDER",
+            "home_team_score": 117,
+            "start_time": "2024-05-08T01:30:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 121,
+            "home_team": "NEW YORK KNICKS",
+            "home_team_score": 130,
+            "start_time": "2024-05-09T00:00:00+00:00"
+        },
+        {
+            "away_team": "CLEVELAND CAVALIERS",
+            "away_team_score": 118,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 94,
+            "start_time": "2024-05-09T23:00:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 119,
+            "home_team": "OKLAHOMA CITY THUNDER",
+            "home_team_score": 110,
+            "start_time": "2024-05-10T01:30:00+00:00"
+        },
+        {
+            "away_team": "NEW YORK KNICKS",
+            "away_team_score": 106,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 111,
+            "start_time": "2024-05-10T23:00:00+00:00"
+        },
+        {
+            "away_team": "DENVER NUGGETS",
+            "away_team_score": 117,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 90,
+            "start_time": "2024-05-11T01:30:00+00:00"
+        },
+        {
+            "away_team": "OKLAHOMA CITY THUNDER",
+            "away_team_score": 101,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 105,
+            "start_time": "2024-05-11T19:30:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 106,
+            "home_team": "CLEVELAND CAVALIERS",
+            "home_team_score": 93,
+            "start_time": "2024-05-12T00:30:00+00:00"
+        },
+        {
+            "away_team": "NEW YORK KNICKS",
+            "away_team_score": 89,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 121,
+            "start_time": "2024-05-12T19:30:00+00:00"
+        },
+        {
+            "away_team": "DENVER NUGGETS",
+            "away_team_score": 115,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 107,
+            "start_time": "2024-05-13T00:00:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 109,
+            "home_team": "CLEVELAND CAVALIERS",
+            "home_team_score": 102,
+            "start_time": "2024-05-13T23:00:00+00:00"
+        },
+        {
+            "away_team": "OKLAHOMA CITY THUNDER",
+            "away_team_score": 100,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 96,
+            "start_time": "2024-05-14T01:30:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 91,
+            "home_team": "NEW YORK KNICKS",
+            "home_team_score": 121,
+            "start_time": "2024-05-15T00:00:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 97,
+            "home_team": "DENVER NUGGETS",
+            "home_team_score": 112,
+            "start_time": "2024-05-15T02:30:00+00:00"
+        },
+        {
+            "away_team": "CLEVELAND CAVALIERS",
+            "away_team_score": 98,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 113,
+            "start_time": "2024-05-15T23:00:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 104,
+            "home_team": "OKLAHOMA CITY THUNDER",
+            "home_team_score": 92,
+            "start_time": "2024-05-16T01:30:00+00:00"
+        },
+        {
+            "away_team": "DENVER NUGGETS",
+            "away_team_score": 70,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 115,
+            "start_time": "2024-05-17T00:30:00+00:00"
+        },
+        {
+            "away_team": "NEW YORK KNICKS",
+            "away_team_score": 103,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 116,
+            "start_time": "2024-05-18T00:30:00+00:00"
+        },
+        {
+            "away_team": "OKLAHOMA CITY THUNDER",
+            "away_team_score": 116,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 117,
+            "start_time": "2024-05-19T00:00:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 130,
+            "home_team": "NEW YORK KNICKS",
+            "home_team_score": 109,
+            "start_time": "2024-05-19T19:30:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 98,
+            "home_team": "DENVER NUGGETS",
+            "home_team_score": 90,
+            "start_time": "2024-05-20T00:00:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 128,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 133,
+            "start_time": "2024-05-22T00:00:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 108,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 105,
+            "start_time": "2024-05-23T00:30:00+00:00"
+        },
+        {
+            "away_team": "INDIANA PACERS",
+            "away_team_score": 110,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 126,
+            "start_time": "2024-05-24T00:00:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 109,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 108,
+            "start_time": "2024-05-25T00:30:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 114,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 111,
+            "start_time": "2024-05-26T00:30:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 107,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 116,
+            "start_time": "2024-05-27T00:00:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 105,
+            "home_team": "INDIANA PACERS",
+            "home_team_score": 102,
+            "start_time": "2024-05-28T00:00:00+00:00"
+        },
+        {
+            "away_team": "MINNESOTA TIMBERWOLVES",
+            "away_team_score": 105,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 100,
+            "start_time": "2024-05-29T00:30:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 124,
+            "home_team": "MINNESOTA TIMBERWOLVES",
+            "home_team_score": 103,
+            "start_time": "2024-05-31T00:30:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 89,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 107,
+            "start_time": "2024-06-07T00:30:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 98,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 105,
+            "start_time": "2024-06-10T00:00:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 106,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 99,
+            "start_time": "2024-06-13T00:30:00+00:00"
+        },
+        {
+            "away_team": "BOSTON CELTICS",
+            "away_team_score": 84,
+            "home_team": "DALLAS MAVERICKS",
+            "home_team_score": 122,
+            "start_time": "2024-06-15T00:30:00+00:00"
+        },
+        {
+            "away_team": "DALLAS MAVERICKS",
+            "away_team_score": 88,
+            "home_team": "BOSTON CELTICS",
+            "home_team_score": 106,
+            "start_time": "2024-06-18T00:30:00+00:00"
+        }
+    ]
+}

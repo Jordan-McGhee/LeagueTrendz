@@ -60,10 +60,10 @@ const GameDayTable: React.FC<GameDayTableProps> = ({ games }) => {
 
                                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/games/game_id/${game.game_id}?view=team-stats`} className="flex items-center gap-x-1 text-blue-500 hover:underline">
                                     {/* away score */}
-                                    <p className={game.away_team_score > game.home_team_score ? "font-bold" : ""}>{game.away_team_score} {game.away_team_abbreviation},</p>
+                                    <p className={+game.away_team_score > +game.home_team_score ? "font-bold" : ""}>{game.away_team_score} {game.away_team_abbreviation},</p>
 
                                     {/* home score */}
-                                    <p className={game.away_team_score < game.home_team_score ? "font-bold" : ""}>{game.home_team_score} {game.home_team_abbreviation}</p>
+                                    <p className={+game.away_team_score < +game.home_team_score ? "font-bold" : ""}>{game.home_team_score} {game.home_team_abbreviation}</p>
                                 </Link>
 
                             </TableCell>

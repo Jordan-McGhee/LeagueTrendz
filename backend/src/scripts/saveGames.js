@@ -1,5 +1,5 @@
 const { Pool } = require("pg")
-const gamesData = require("../../../data/2023-24_NBA_season_games.json")
+const gamesData = require("../../../data/2023-24_NBA_playoff_games.json")
 const teams = require("../../../data/teams.json")
 
 
@@ -24,7 +24,7 @@ async function saveGame(game) {
 
 
     // default values
-    const season = 2024, status = "FINAL", period = 4, postseason = false, time_left = ""
+    const season = 2024, status = "FINAL", period = 4, postseason = true, time_left = ""
 
     // things to do
 

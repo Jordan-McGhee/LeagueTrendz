@@ -20,7 +20,7 @@ import ErrorModal from "../components/ui/ErrorModal"
 const SchedulePage = () => {
 
     const [selectedDate, setSelectedDate] = useState<Date>(new Date())
-    // console.log(selectedDate.toISOString()) // yyyy-mm-dd
+    console.log(selectedDate.toISOString().split('T')[0]) // yyyy-mm-dd
 
     const [gamesData, setGamesData] = useState<GamesDataState | undefined>()
 
@@ -36,7 +36,6 @@ const SchedulePage = () => {
             try {
                 responseData = await sendRequest(url)
                 setGamesData(responseData.gamesByDate)
-                console.log(responseData.gamesByDate)
             } catch (error) {
 
             }
@@ -47,7 +46,10 @@ const SchedulePage = () => {
     }, [sendRequest, selectedDate])
 
     function formatDate(dateString: string): string {
-        const date = new Date(dateString);
+        console.log('Input dateString:', dateString);
+        const [year, month, day] = dateString.split('-').map(Number);
+        const date = new Date(year, month - 1, day);
+    
         return new Intl.DateTimeFormat('en-US', {
             weekday: 'long',
             year: 'numeric',
