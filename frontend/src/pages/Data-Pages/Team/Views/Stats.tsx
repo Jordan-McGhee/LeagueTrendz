@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useFetch } from "../../../../Hooks/useFetch";
 
 // type imports
-import { TeamPlayersProps, PlayerStatsObject, TeamStatsObject } from "../../../../types";
+import { TeamPlayersProps, TeamPlayersState, PlayerStatsObject, TeamStatsObject } from "../../../../types";
 
 // utils imports
 import { convertPlayerPosition } from "../../../../Utils/utils";
@@ -12,6 +12,7 @@ import { convertPlayerPosition } from "../../../../Utils/utils";
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../../components/ui/card"
 import ErrorModal from "../../../../components/ui/ErrorModal"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select"
 
 // component imports
 import StatsTeamLeaders from "../../../../components/Desktop/SingleTeamPage/Stats/StatsTeamLeaders"
@@ -21,7 +22,10 @@ import TeamShootingStatsTable from "../../../../components/Desktop/SingleTeamPag
 
 const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
+    const teamsMissedPlayoffs = [2, 3, 8, 10, 14, 24, 26, 27, 28, 29]
+
     const [showPlayoffs, setShowPlayoffs] = useState<boolean>(false)
+    const [playoffLeaders, setPlayoffLeaders] = useState<TeamPlayersState | undefined>()
     const [playerStats, setPlayerStats] = useState<PlayerStatsObject[] | undefined>()
     const [teamStats, setTeamStats] = useState<TeamStatsObject | undefined>()
 
@@ -29,7 +33,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
     // fetch stats from database
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/stats-regular`
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/stats-${showPlayoffs ? "playoffs" : "regular"}`
 
         let responseData: any
 
@@ -38,13 +42,22 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                 responseData = await sendRequest(url)
                 setPlayerStats(responseData.player_stats)
                 setTeamStats(responseData.team_stats)
+                showPlayoffs && setPlayoffLeaders(responseData.team_leaders)
             } catch (error) {
 
             }
         }
 
         fetchStats()
-    }, [team, sendRequest])
+    }, [team, showPlayoffs, sendRequest])
+
+    const selectHandler = ( value: string ) => {
+        if (value === "playoffs") {
+            setShowPlayoffs(true)
+        } else {
+            setShowPlayoffs(false)
+        }
+    }
 
     return (
         <>
@@ -61,18 +74,36 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                         <CardTitle className="flex justify-between">
                             2023-24 Stats and Leaders
 
-                            {/* drop down place holder for playoff/regular season */}
-                            <div className="h-8 w-36 bg-red-500 rounded-full" />
+
+                            {/* drop down for playoff/regular season — check if team made playoffs */}
+                            {
+                                !teamsMissedPlayoffs.includes(team.team_id) &&
+                                <Select value={showPlayoffs ? "playoffs" : "regular-season"} onValueChange={(newValue) => selectHandler(newValue)}>
+                                    <SelectTrigger className="w-[300px]">
+                                        <SelectValue placeholder="Choose Season Type" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="regular-season">Regular Season</SelectItem>
+                                        <SelectItem value="playoffs">Playoffs</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            }
                         </CardTitle>
                     </CardHeader>
 
                     <CardContent>
 
-                        <StatsTeamLeaders team={team} players={players} />
+                        {/* playoff or regular season leaders */}
+                        {
+                            showPlayoffs && playoffLeaders ?
+                            <StatsTeamLeaders team={team} players={playoffLeaders} />
+                            :
+                            <StatsTeamLeaders team={team} players={players} />
+                        }
 
                         {/* all stats table */}
                         <p className="my-4 font-semibold text-lg">Player Stats</p>
-                        <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} />
+                        <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} playoffs = { showPlayoffs } />
 
                         {/* Shooting stats table */}
                         <p className="my-4 font-semibold text-lg">Shooting Stats</p>

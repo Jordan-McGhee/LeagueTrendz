@@ -419,7 +419,8 @@ export interface TeamStatsObject {
 
 export interface TeamStatsTableProps {
     playerStats: PlayerStatsObject[],
-    teamStats: TeamStatsObject
+    teamStats: TeamStatsObject,
+    playoffs?: boolean
 }
 
 // TEAM SCHEDULE

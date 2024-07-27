@@ -109,3 +109,13 @@
 !!NEW DATA!!
 - Add playoff data to database
 - NEED TO ADD PLAYOFF QUERYING FOR PLAYERS PAGE (ALL VIEWS)
+- UPDATE SEASON REWARDS AND NBA CHAMPION
+
+- DB VIEWS TO MAKE:
+    - SINGLE TEAM PAGE:
+        - team playoff totals and averages DONE
+        - player playoff totals and averages DONE
+        - playoff team stat leaders DONE
+        - Playoff schedule (in team-controllers)
+    - ALL PLAYERS PAGE:
+        - playoff game highs and points leaders
