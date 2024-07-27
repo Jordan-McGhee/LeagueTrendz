@@ -212,7 +212,7 @@ export const getSingleTeam = async (req: Request, res: Response, next: NextFunct
     res.status(200).json({ message: `Got data for the ${teamResponse.rows[0].full_name}`, team: teamResponse.rows[0], games: lastTenResponse.rows, players: topPlayersResponse.rows[0], history: historyResponse.rows[0] })
 }
 
-// get status
+// get stats
 export const getTeamStatsRegularSeason = async (req: Request, res: Response, next: NextFunction) => {
     const { team_id } = req.params
 
@@ -241,6 +241,48 @@ export const getTeamStatsRegularSeason = async (req: Request, res: Response, nex
     }
 
     res.status(200).json({ message: `Got stats for team #${team_id}`, player_stats: statsResponse.rows, team_stats: teamStatsResponse.rows[0] })
+}
+
+export const getTeamStatsPlayoffs = async (req: Request, res: Response, next: NextFunction) => {
+    const { team_id } = req.params
+
+    const statsQuery: string = "SELECT p.player_id, p.name, player.player_position, player.jersey_number, p.gp, p.avg_min, p.avg_pts, p.avg_orb, p.avg_drb, p.avg_reb, p.avg_ast, p.avg_stl, p.avg_blk, p.avg_pf, p.avg_turnovers, CASE WHEN p.avg_turnovers = 0 THEN '0' ELSE ROUND(((p.avg_ast * 1.0) / p.avg_turnovers), 1) END AS ast_to_ratio, p.avg_fgm, p.avg_fga, p.avg_fg_percentage, p.avg_tpm, p.avg_tpa, p.avg_tp_percentage, p.avg_ftm, p.avg_fta, p.avg_ft_percentage, (p.avg_fgm - p.avg_tpm) AS player_avg_two_m, (p.avg_fga - p.avg_tpa) AS player_avg_two_a, ROUND(((p.avg_fgm - p.avg_tpm) * 100.0)/(p.avg_fga - p.avg_tpa), 1) AS player_avg_two_percentage FROM player_2023_24_playoffs_totals_and_averages p JOIN players player ON player.player_id = p.player_id WHERE p.team_id = $1;"
+
+    let statsResponse: QueryResult
+
+    try {
+        statsResponse = await pool.query(statsQuery, [team_id])
+    } catch (error) {
+        console.log(`Error getting player stats for team: ${team_id}. ${error}`)
+
+        return res.status(500).json(`Error getting player stats for team: ${team_id}. ${error}`)
+    }
+
+    const teamStatsQuery: string = "SELECT * FROM team_2023_24_playoffs_totals_and_averages WHERE team_id = $1"
+
+    let teamStatsResponse: QueryResult
+
+    try {
+        teamStatsResponse = await pool.query(teamStatsQuery, [team_id])
+    } catch (error) {
+        console.log(`Error getting stats for team: ${team_id}. ${error}`)
+
+        return res.status(500).json(`Error getting stats for team: ${team_id}. ${error}`)
+    }
+
+    const teamLeadersQuery: string = "SELECT * FROM team_playoff_stat_leaders WHERE team_id = $1"
+
+    let teamLeadersResponse: QueryResult
+
+    try {
+        teamLeadersResponse = await pool.query(teamLeadersQuery, [team_id])
+    } catch (error) {
+        console.log(`Error getting playoff team leaders: ${error}`)
+
+        return res.status(500).json(`Error getting playoff team leaders: ${error}`)
+    }
+
+    res.status(200).json({ message: `Got stats for team #${team_id}`, player_stats: statsResponse.rows, team_stats: teamStatsResponse.rows[0], team_leaders: teamLeadersResponse.rows[0] })
 }
 
 // get schedule

@@ -26,6 +26,7 @@ router.get("/:abbreviation", teamControllers.getSingleTeam)
 
 // stats
 router.get("/:team_id/stats-regular", teamControllers.getTeamStatsRegularSeason)
+router.get("/:team_id/stats-playoffs", teamControllers.getTeamStatsPlayoffs)
 
 // schedule
 router.get("/:team_id/schedule-regular", teamControllers.getTeamScheduleRegularSeason)
