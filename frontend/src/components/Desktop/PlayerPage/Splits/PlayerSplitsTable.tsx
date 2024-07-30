@@ -32,7 +32,7 @@ const PlayerSplitsTable: React.FC<SplitsTableProps> = ({ data }) => {
 
                 {/* overall */}
                 <TableRow key='split_overall'>
-                    <TableCell>All Splits</TableCell>
+                    <TableCell>2023-24 Season</TableCell>
                     <TableCell>{data?.overall_averages.gp}</TableCell>
                     <TableCell className="text-center">{data?.overall_averages.avg_minutes}</TableCell>
                     <TableCell className="text-center">{data?.overall_averages.avg_pts}</TableCell>
@@ -49,6 +49,51 @@ const PlayerSplitsTable: React.FC<SplitsTableProps> = ({ data }) => {
                     <TableCell className="text-center">{data?.overall_averages.avg_pf}</TableCell>
                     <TableCell className="text-center">{data?.overall_averages.avg_turnovers}</TableCell>
                 </TableRow>
+
+                {/* regular season */}
+                <TableRow key='split_overall'>
+                    <TableCell>Regular Season</TableCell>
+                    <TableCell>{data?.regular_season_averages.gp}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_minutes}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_pts}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_fgm}-{data?.overall_averages.avg_fga}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_fg_percentage}%</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_tpm}-{data?.overall_averages.avg_tpa}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_tp_percentage}%</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_ftm}-{data?.overall_averages.avg_fta}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_ft_percentage}%</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_reb}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_ast}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_blk}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_stl}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_pf}</TableCell>
+                    <TableCell className="text-center">{data?.regular_season_averages.avg_turnovers}</TableCell>
+                </TableRow>
+
+                {/* playoffs - check if they have more than 0 playoff gp */}
+                {
+                    (data?.postseason_averages.gp && data?.postseason_averages.gp > 0) ?
+                    <TableRow key='split_overall'>
+                        <TableCell>Playoffs</TableCell>
+                        <TableCell>{data?.postseason_averages.gp}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_minutes}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_pts}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_fgm}-{data?.overall_averages.avg_fga}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_fg_percentage}%</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_tpm}-{data?.overall_averages.avg_tpa}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_tp_percentage}%</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_ftm}-{data?.overall_averages.avg_fta}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_ft_percentage}%</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_reb}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_ast}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_blk}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_stl}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_pf}</TableCell>
+                        <TableCell className="text-center">{data?.postseason_averages.avg_turnovers}</TableCell>
+                    </TableRow> 
+                    :
+                    null
+                }
 
                 {/* home */}
                 <TableRow key='split_overall'>

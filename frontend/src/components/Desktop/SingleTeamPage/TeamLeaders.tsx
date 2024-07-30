@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { TeamPlayersProps } from "../../../types"
 
 // utils imports
-import { convertPlayerPosition } from "../../../Utils/utils"
+import { convertPlayerPosition, shortenPlayerName } from "../../../Utils/utils"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card"
@@ -41,7 +41,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     <img src={players.pts_leader_photo_url} alt={players.pts_leader_name} className="h-12 object-contain mr-2" />
                                     {/* player info div */}
                                     <div>
-                                        <p className="font-bold">{players.pts_leader_name} <span className="font-light">{convertPlayerPosition(players.pts_leader_position)} #{players.pts_leader_number}</span></p>
+                                        <p className="font-bold">{shortenPlayerName(players.pts_leader_name)} <span className="font-light">{convertPlayerPosition(players.pts_leader_position)} #{players.pts_leader_number}</span></p>
                                         <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.pts_leader_stat}</p>
                                     </div>
 
@@ -61,7 +61,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     <img src={players.ast_leader_photo_url} alt={players.ast_leader_name} className="h-12 object-contain mr-2" />
                                     {/* player info div */}
                                     <div>
-                                        <p className="font-bold">{players.ast_leader_name} <span className="font-light">{convertPlayerPosition(players.ast_leader_position)} #{players.ast_leader_number}</span></p>
+                                        <p className="font-bold">{shortenPlayerName(players.ast_leader_name)} <span className="font-light">{convertPlayerPosition(players.ast_leader_position)} #{players.ast_leader_number}</span></p>
                                         <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.ast_leader_stat}</p>
                                     </div>
 
@@ -81,7 +81,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     <img src={players.fg_percentage_leader_photo_url} alt={players.fg_percentage_leader_name} className="h-12 object-contain mr-2" />
                                     {/* player info div */}
                                     <div>
-                                        <p className="font-bold">{players.fg_percentage_leader_name} <span className="font-light">{convertPlayerPosition(players.fg_percentage_leader_position)} #{players.fg_percentage_leader_number}</span></p>
+                                        <p className="font-bold">{shortenPlayerName(players.fg_percentage_leader_name)} <span className="font-light">{convertPlayerPosition(players.fg_percentage_leader_position)} #{players.fg_percentage_leader_number}</span></p>
                                         <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.fg_percentage_leader_stat}%</p>
                                     </div>
 
@@ -107,7 +107,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     <img src={players.stl_leader_photo_url} alt={players.stl_leader_name} className="h-12 object-contain mr-2" />
                                     {/* player info div */}
                                     <div>
-                                        <p className="font-bold">{players.stl_leader_name} <span className="font-light">{convertPlayerPosition(players.stl_leader_position)} #{players.stl_leader_number}</span></p>
+                                        <p className="font-bold">{shortenPlayerName(players.stl_leader_name)} <span className="font-light">{convertPlayerPosition(players.stl_leader_position)} #{players.stl_leader_number}</span></p>
                                         <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.stl_leader_stat}</p>
                                     </div>
 
@@ -127,7 +127,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     <img src={players.blk_leader_photo_url} alt={players.blk_leader_name} className="h-12 object-contain mr-2" />
                                     {/* player info div */}
                                     <div>
-                                        <p className="font-bold">{players.blk_leader_name} <span className="font-light">{convertPlayerPosition(players.blk_leader_position)} #{players.blk_leader_number}</span></p>
+                                        <p className="font-bold">{shortenPlayerName(players.blk_leader_name)} <span className="font-light">{convertPlayerPosition(players.blk_leader_position)} #{players.blk_leader_number}</span></p>
                                         <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.blk_leader_stat}</p>
                                     </div>
 
@@ -147,7 +147,7 @@ const TeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     <img src={players.reb_leader_photo_url} alt={players.reb_leader_name} className="h-12 object-contain mr-2" />
                                     {/* player info div */}
                                     <div>
-                                        <p className="font-bold">{players.reb_leader_name} <span className="font-light">{convertPlayerPosition(players.reb_leader_position)} #{players.reb_leader_number}</span></p>
+                                        <p className="font-bold">{shortenPlayerName(players.reb_leader_name)} <span className="font-light">{convertPlayerPosition(players.reb_leader_position)} #{players.reb_leader_number}</span></p>
                                         <p className="text-2xl font-bold" style={{ color: team.main_color }}>{players.reb_leader_stat}</p>
                                     </div>
 

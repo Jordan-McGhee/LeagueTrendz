@@ -41,13 +41,16 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
     let showConference = lastGame.conference_game
     let showDivision = lastGame.division_game
 
+    // playoff game
+    let playoffGame
+
     return (
         <Card className="w-full">
             <CardHeader>
                 <CardTitle>
                     <div className="flex justify-between">
                         <p>Last Game</p>
-                        <Link to={`/nba/players/id/${splits.player_id}/${splits.player_name.toLowerCase().replace(" ", "-")}?view=${splits}`} className="text-blue-600">
+                        <Link to={`/nba/players/id/${splits.player_id}/${splits.player_name.toLowerCase().replace(" ", "-")}?view=splits`} className="text-blue-600">
                             See Full Splits
                         </Link>
                     </div>
@@ -58,11 +61,44 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
 
                 <div>
 
+                    <div className="grid grid-cols-11 items-center">
+                        {/* home team */}
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${homeTeamAbbreviation.toLowerCase()}`} className="col-start-1 col-span-3 justify-self-end flex items-center gap-x-4 hover:underline">
+                            <div className="text-right">
+                                <p className="text-lg font-semibold">{homeTeamName}</p>
+                                <p className="text-xs">
+                                    {homeTeamRecord}
+                                </p>
+                            </div>
+
+                            <TeamLogo abbreviation={homeTeamAbbreviation} team_id={homeTeamId} logoClass="size-12 object-contain" />
+                        </Link>
+                        <p className={+homeTeamScore > +awayTeamScore ? "text-4xl font-bold col-start-4 text-center col-span-2" : "text-4xl col-start-4 text-center col-span-2"}>{homeTeamScore}</p>
+
+                        {/* date/time */}
+                        <div className="text-center text-sm col-span-1 col-start-6">
+                            <p>{convertDateGameLog(lastGame.day_of_week, lastGame.game_date.split("T")[0])}</p>
+                            <p className="font-bold">FINAL</p>
+                        </div>
+
+                        {/* away team */}
+                        <p className={+awayTeamScore > +homeTeamScore ? "text-4xl font-bold col-start-7 col-span-2 text-center" : "text-4xl col-start-7 col-span-2 text-center"}>{awayTeamScore}</p>
+
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${awayTeamAbbreviation.toLowerCase()}`} className="col-start-9 col-span-3 justify-self-start flex items-center gap-x-4 hover:underline">
+                            <TeamLogo abbreviation={awayTeamAbbreviation} team_id={awayTeamId} logoClass="size-12 object-contain" />
+                            <div className="text-left">
+                                <p className="text-lg font-semibold">{awayTeamName}</p>
+                                <p className="text-xs">{awayTeamRecord}</p>
+                            </div>
+                        </Link>
+                    </div>
+
                     {/* next team data/time div */}
-                    <div className="flex items-center justify-around mx-auto mb-2">
+                    {/* <div className="flex items-center justify-around mx-auto mb-2"> */}
+
 
                         {/* home team */}
-                        <div className="flex items-center gap-x-4">
+                        {/* <div className="flex items-center gap-x-4">
                             <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${homeTeamAbbreviation.toLowerCase()}`} className="flex items-center gap-x-4 hover:underline">
                                 <div className="text-right">
                                     <p className="text-lg font-semibold">{homeTeamName}</p>
@@ -73,18 +109,18 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
 
                                 <TeamLogo abbreviation={homeTeamAbbreviation} team_id={homeTeamId} logoClass="size-12 object-contain" />
                             </Link>
-                            <p className={homeTeamScore > awayTeamScore ? "text-4xl font-bold" : "text-4xl"}>{homeTeamScore}</p>
-                        </div>
+                            <p className={+homeTeamScore > +awayTeamScore ? "text-4xl font-bold" : "text-4xl"}>{homeTeamScore}</p>
+                        </div> */}
 
                         {/* date/time */}
-                        <div className="text-center text-sm">
+                        {/* <div className="text-center text-sm">
                             <p>{convertDateGameLog(lastGame.day_of_week, lastGame.game_date.split("T")[0])}</p>
                             <p className="font-bold">FINAL</p>
-                        </div>
+                        </div> */}
 
                         {/* away team */}
-                        <div className="flex items-center gap-x-4">
-                            <p className={awayTeamScore > homeTeamScore ? "text-4xl font-bold" : "text-4xl"}>{awayTeamScore}</p>
+                        {/* <div className="flex items-center gap-x-4">
+                            <p className={+awayTeamScore > +homeTeamScore ? "text-4xl font-bold" : "text-4xl"}>{awayTeamScore}</p>
 
                             <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${awayTeamAbbreviation.toLowerCase()}`} className="flex items-center gap-x-4 hover:underline">
                                 <TeamLogo abbreviation={awayTeamAbbreviation} team_id={awayTeamId} logoClass="size-12 object-contain" />
@@ -95,7 +131,7 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                             </Link>
                         </div>
 
-                    </div>
+                    </div> */}
 
                     {/* stats vs that team div */}
 

@@ -631,7 +631,7 @@ export interface TopStat {
     player_position: string
 }
 
-export interface SeasonAverageLeadersState {
+export interface AverageLeadersState {
     top_avg_pts: TopStat[],
     top_avg_fgm: TopStat[],
     top_avg_fg_percentage: TopStat[],
@@ -646,7 +646,7 @@ export interface SeasonAverageLeadersState {
     top_avg_turnovers: TopStat[],
 }
 
-export interface SeasonTotalLeadersState {
+export interface TotalLeadersState {
     top_total_pts: TopStat[],
     top_total_fgm: TopStat[],
     top_total_tpm: TopStat[],
@@ -871,6 +871,8 @@ export interface SplitsData {
     player_id: number,
     player_name: string,
     overall_averages: SplitAverages,
+    regular_season_averages: SplitAverages,
+    postseason_averages: SplitAverages,
     home_averages: SplitAverages,
     away_averages: SplitAverages,
     conference_averages: SplitAverages,

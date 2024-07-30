@@ -246,7 +246,7 @@ export const getTeamStatsRegularSeason = async (req: Request, res: Response, nex
 export const getTeamStatsPlayoffs = async (req: Request, res: Response, next: NextFunction) => {
     const { team_id } = req.params
 
-    const statsQuery: string = "SELECT p.player_id, p.name, player.player_position, player.jersey_number, p.gp, p.avg_min, p.avg_pts, p.avg_orb, p.avg_drb, p.avg_reb, p.avg_ast, p.avg_stl, p.avg_blk, p.avg_pf, p.avg_turnovers, CASE WHEN p.avg_turnovers = 0 THEN '0' ELSE ROUND(((p.avg_ast * 1.0) / p.avg_turnovers), 1) END AS ast_to_ratio, p.avg_fgm, p.avg_fga, p.avg_fg_percentage, p.avg_tpm, p.avg_tpa, p.avg_tp_percentage, p.avg_ftm, p.avg_fta, p.avg_ft_percentage, (p.avg_fgm - p.avg_tpm) AS player_avg_two_m, (p.avg_fga - p.avg_tpa) AS player_avg_two_a, ROUND(((p.avg_fgm - p.avg_tpm) * 100.0)/(p.avg_fga - p.avg_tpa), 1) AS player_avg_two_percentage FROM player_2023_24_playoffs_totals_and_averages p JOIN players player ON player.player_id = p.player_id WHERE p.team_id = $1;"
+    const statsQuery: string = "SELECT p.player_id, p.name, player.player_position, player.jersey_number, p.gp, p.avg_min, p.avg_pts, p.avg_orb, p.avg_drb, p.avg_reb, p.avg_ast, p.avg_stl, p.avg_blk, p.avg_pf, p.avg_turnovers, CASE WHEN p.avg_turnovers = 0 THEN NULL ELSE ROUND((p.avg_ast * 1.0) / p.avg_turnovers, 1) END AS ast_to_ratio, p.avg_fgm, p.avg_fga, p.avg_fg_percentage, p.avg_tpm, p.avg_tpa, p.avg_tp_percentage, p.avg_ftm, p.avg_fta, p.avg_ft_percentage, (p.avg_fgm - p.avg_tpm) AS player_avg_two_m, (p.avg_fga - p.avg_tpa) AS player_avg_two_a, CASE WHEN (p.avg_fga - p.avg_tpa) = 0 THEN NULL ELSE ROUND(((p.avg_fgm - p.avg_tpm) * 100.0) / (p.avg_fga - p.avg_tpa), 1) END AS player_avg_two_percentage FROM player_2023_24_playoffs_totals_and_averages p JOIN players player ON player.player_id = p.player_id WHERE p.team_id = $1;"
 
     let statsResponse: QueryResult
 
@@ -304,24 +304,43 @@ export const getTeamScheduleRegularSeason = async (req: Request, res: Response, 
     res.status(200).json({ message: `Retrieved schedule for team ${team_id}`, schedule: scheduleResponse.rows })
 }
 
-// get roster
-export const getTeamRoster = async (req: Request, res: Response, next: NextFunction) => {
+// get schedule playoffs
+export const getTeamSchedulePlayoffs = async (req: Request, res: Response, next: NextFunction) => {
     const { team_id } = req.params
 
-    const rosterQuery: string = "SELECT * FROM players WHERE team_id = $1"
+    const scheduleQuery: string = "SELECT g.game_id, g.game_date, TO_CHAR(g.game_date, 'Day') AS day_of_week, team.team_id AS team_id, team.full_name AS team_full_name, team.abbreviation AS team_abbreviation, CASE WHEN t.team_id = g.home_team_id THEN 'HOME' ELSE 'AWAY' END AS game_location, opponent.team_id AS opponent_team_id, opponent.full_name AS opponent_team_full_name, opponent.abbreviation AS opponent_team_abbreviation, CASE WHEN t.team_id = g.home_team_id THEN CASE WHEN g.home_team_score > g.away_team_score THEN 'W' ELSE 'L' END ELSE CASE WHEN g.home_team_score < g.away_team_score THEN 'W' ELSE 'L' END END AS result, CASE WHEN t.team_id = g.home_team_id THEN g.home_team_score ELSE g.away_team_score END AS team_score, CASE WHEN t.team_id = g.home_team_id THEN g.away_team_score ELSE g.home_team_score END AS opponent_score, SUM( CASE WHEN t.team_id = g.home_team_id THEN CASE WHEN g.home_team_score > g.away_team_score THEN 1 ELSE 0 END ELSE CASE WHEN g.home_team_score < g.away_team_score THEN 1 ELSE 0 END END ) OVER ( ORDER BY g.game_date ROWS UNBOUNDED PRECEDING ) AS wins, SUM( CASE WHEN t.team_id = g.home_team_id THEN CASE WHEN g.home_team_score < g.away_team_score THEN 1 ELSE 0 END ELSE CASE WHEN g.home_team_score > g.away_team_score THEN 1 ELSE 0 END END ) OVER ( ORDER BY g.game_date ROWS UNBOUNDED PRECEDING ) AS losses, ( SELECT CONCAT(player_id, ' - ', player_name, ' (', pts, ')') AS pts_leader FROM player_gamelog_view pgl WHERE pgl.game_id = g.game_id AND pgl.player_team_id = team.team_id ORDER BY pts DESC LIMIT 1 ), ( SELECT CONCAT(player_id, ' - ', player_name, ' (', reb, ')') AS reb_leader FROM player_gamelog_view pgl WHERE pgl.game_id = g.game_id AND pgl.player_team_id = team.team_id ORDER BY reb DESC LIMIT 1 ), ( SELECT CONCAT(player_id, ' - ', player_name, ' (', ast, ')') AS ast_leader FROM player_gamelog_view pgl WHERE pgl.game_id = g.game_id AND pgl.player_team_id = team.team_id ORDER BY ast DESC LIMIT 1 ) FROM game_box_scores g INNER JOIN ( SELECT team_id FROM teams WHERE team_id = $1 ) t ON g.home_team_id = t.team_id OR g.away_team_id = t.team_id INNER JOIN teams team ON t.team_id = team.team_id INNER JOIN teams opponent ON CASE WHEN t.team_id = g.home_team_id THEN g.away_team_id ELSE g.home_team_id END = opponent.team_id WHERE g.postseason = TRUE ORDER BY g.game_date;"
 
-    let rosterResponse: QueryResult
+    let scheduleResponse: QueryResult
 
     try {
-        rosterResponse = await pool.query(rosterQuery, [team_id])
+        scheduleResponse = await pool.query(scheduleQuery, [team_id])
     } catch (error) {
-        console.log(`Error getting roster for team: ${team_id}. ${error}`)
+        console.log(`Error getting schedule for team: ${team_id}. ${error}`)
 
-        return res.status(500).json(`Error getting roster for team: ${team_id}. ${error}`)
+        return res.status(500).json(`Error getting schedule for team: ${team_id}. ${error}`)
     }
 
-    res.status(200).json({ message: `Retrieved roster for team ${team_id}`, roster: rosterResponse.rows })
+    res.status(200).json({ message: `Retrieved schedule for team ${team_id}`, schedule: scheduleResponse.rows })
 }
+
+// get roster
+export default async (req: Request, res: Response, next: NextFunction) => {
+    const { team_id } = req.params;
+
+    const rosterQuery: string = "SELECT * FROM players WHERE team_id = $1";
+
+    let rosterResponse: QueryResult;
+
+    try {
+        rosterResponse = await pool.query(rosterQuery, [team_id]);
+    } catch (error) {
+        console.log(`Error getting roster for team: ${team_id}. ${error}`);
+
+        return res.status(500).json(`Error getting roster for team: ${team_id}. ${error}`);
+    }
+
+    res.status(200).json({ message: `Retrieved roster for team ${team_id}`, roster: rosterResponse.rows });
+};
 
 // get history
 export const getTeamHistory = async (req: Request, res: Response, next: NextFunction) => {

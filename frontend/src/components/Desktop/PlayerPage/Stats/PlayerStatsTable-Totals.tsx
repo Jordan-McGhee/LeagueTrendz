@@ -16,20 +16,20 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
         // "gp": currentData?.gp || 0,
         // "gs": currentData?.gs || 0,
         // "min": currentData?.min || 0,
-        "pts": currentData?.pts || 0,
-        "fgm": currentData?.fgm || 0,
-        "fga": currentData?.fga || 0,
-        "tpm": currentData?.tpm || 0,
-        "tpa": currentData?.tpa || 0,
-        "ftm": currentData?.ftm || 0,
-        "fta": currentData?.fta || 0,
-        "orb": currentData?.orb || 0,
-        "drb": currentData?.drb || 0,
-        "ast": currentData?.ast || 0,
-        "blk": currentData?.blk || 0,
-        "stl": currentData?.stl || 0,
-        "pf": currentData?.pf || 0,
-        "turnovers": currentData?.turnovers || 0
+        "pts": currentData?.pts ? +currentData.pts : 0,
+        "fgm": currentData?.fgm ? +currentData.fgm : 0,
+        "fga": currentData?.fga ? +currentData.fga : 0,
+        "tpm": currentData?.tpm ? +currentData.tpm : 0,
+        "tpa": currentData?.tpa ? +currentData.tpa : 0,
+        "ftm": currentData?.ftm ? +currentData.ftm : 0,
+        "fta": currentData?.fta ? +currentData.fta : 0,
+        "orb": currentData?.orb ? +currentData.orb : 0,
+        "drb": currentData?.drb ? +currentData.drb : 0,
+        "ast": currentData?.ast ? +currentData.ast : 0,
+        "blk": currentData?.blk ? +currentData.blk : 0,
+        "stl": currentData?.stl ? +currentData.stl : 0,
+        "pf": currentData?.pf ? +currentData.pf : 0,
+        "turnovers": currentData?.turnovers ? +currentData.turnovers : 0
     }
 
     return (
@@ -71,20 +71,20 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
                             } 
 
                             // update totals
-                            dataTotals['pts'] += season.pts
-                            dataTotals['fgm'] += season.fg
-                            dataTotals['fga'] += season.fga
-                            dataTotals['tpm'] += season.tp
-                            dataTotals['tpa'] += season.tpa
-                            dataTotals['ftm'] += season.ft
-                            dataTotals['fta'] += season.fta
-                            dataTotals['orb'] += season.orb
-                            dataTotals['drb'] += season.drb
-                            dataTotals['ast'] += season.ast
-                            dataTotals['blk'] += season.blk
-                            dataTotals['stl'] += season.stl
-                            dataTotals['pf'] += season.pf
-                            dataTotals['turnovers'] += season.tov
+                            dataTotals['pts'] += +season.pts
+                            dataTotals['fgm'] += +season.fg
+                            dataTotals['fga'] += +season.fga
+                            dataTotals['tpm'] += +season.tp
+                            dataTotals['tpa'] += +season.tpa
+                            dataTotals['ftm'] += +season.ft
+                            dataTotals['fta'] += +season.fta
+                            dataTotals['orb'] += +season.orb
+                            dataTotals['drb'] += +season.drb
+                            dataTotals['ast'] += +season.ast
+                            dataTotals['blk'] += +season.blk
+                            dataTotals['stl'] += +season.stl
+                            dataTotals['pf'] += +season.pf
+                            dataTotals['turnovers'] += +season.tov
 
                             // season cell: get season, subtract one for year season started (ex: turn 2017 into 2016-17)
                             let seasonStart = season.season - 1
@@ -98,9 +98,9 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
                                     <p>{seasonTeam.abbreviation}</p>
                                 </div>
                             )
-                            const fgPercentage = season.fg / season.fga || 0
-                            const tpPercentage = season.tp / season.tpa || 0
-                            const ftPercentage = season.ft / season.fta || 0
+                            const fgPercentage = +season.fg / +season.fga || 0
+                            const tpPercentage = +season.tp / +season.tpa || 0
+                            const ftPercentage = +season.ft / +season.fta || 0
 
                             return (
                                 <TableRow>
@@ -143,11 +143,11 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
                             {/* <TableCell className="text-center">{currentData.min}</TableCell> */}
                             <TableCell className="text-center">{currentData.pts}</TableCell>
                             <TableCell className="text-center">{currentData.fgm}-{currentData.fga}</TableCell>
-                            <TableCell className="text-center">{currentData.fg_percentage}%</TableCell>
+                            <TableCell className="text-center">{currentData.avg_fg_percentage}%</TableCell>
                             <TableCell className="text-center">{currentData.tpm}-{currentData.tpa}</TableCell>
-                            <TableCell className="text-center">{currentData.tp_percentage}%</TableCell>
+                            <TableCell className="text-center">{currentData.avg_tp_percentage}%</TableCell>
                             <TableCell className="text-center">{currentData.ftm}-{currentData.fta}</TableCell>
-                            <TableCell className="text-center">{currentData.ft_percentage}%</TableCell>
+                            <TableCell className="text-center">{currentData.avg_ft_percentage}%</TableCell>
                             <TableCell className="text-center">{currentData.orb}</TableCell>
                             <TableCell className="text-center">{currentData.drb}</TableCell>
                             <TableCell className="text-center">{currentData.reb}</TableCell>

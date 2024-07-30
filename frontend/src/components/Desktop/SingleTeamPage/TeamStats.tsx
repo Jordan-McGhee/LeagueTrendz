@@ -15,7 +15,7 @@ const TeamStats: React.FC<TeamPageProps> = ({ team }) => {
                 <CardTitle className="flex justify-between">
                     2023-24 Team Stats
 
-                    <Link to={"/standings"} className="font-semibold text-blue-700">
+                    <Link to={`/nba/teams/${team.abbreviation.toLowerCase()}?view=stats`} className="font-semibold text-blue-700">
                         See All Team Stats
                     </Link>
                 </CardTitle>

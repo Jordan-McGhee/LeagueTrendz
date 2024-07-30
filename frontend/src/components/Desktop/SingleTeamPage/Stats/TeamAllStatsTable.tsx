@@ -28,7 +28,7 @@ const TeamAllStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, teamSta
                 const urlName: string = name.toLowerCase().replace(" ", "-")
 
                 return (
-                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player_id}/${urlName}`} className="hover:underline text-xs" key={player_id}>
+                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player_id}/${urlName}`} className="hover:underline text-xs max-w-32 truncate" key={player_id}>
                         {name} <span className="font-thin">{convertPlayerPosition(position)}</span>
                     </Link>
                 )

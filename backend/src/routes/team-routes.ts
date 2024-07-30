@@ -30,9 +30,10 @@ router.get("/:team_id/stats-playoffs", teamControllers.getTeamStatsPlayoffs)
 
 // schedule
 router.get("/:team_id/schedule-regular", teamControllers.getTeamScheduleRegularSeason)
+router.get("/:team_id/schedule-playoffs", teamControllers.getTeamSchedulePlayoffs)
 
 // roster
-router.get("/:team_id/roster", teamControllers.getTeamRoster)
+router.get("/:team_id/roster", teamControllers.default)
 
 // history
 router.get("/:team_id/history", teamControllers.getTeamHistory)

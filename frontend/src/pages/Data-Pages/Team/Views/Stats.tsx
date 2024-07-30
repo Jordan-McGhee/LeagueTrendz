@@ -33,7 +33,15 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
     // fetch stats from database
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/stats-${showPlayoffs ? "playoffs" : "regular"}`
+
+        let url: string
+
+        // check if team missed playoffs and change url if there is no possible playoff data
+        if (teamsMissedPlayoffs.includes(team.team_id)) {
+            url = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/stats-regular`
+        } else {
+            url = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/stats-${showPlayoffs ? "playoffs" : "regular"}`
+        }
 
         let responseData: any
 
@@ -71,7 +79,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                 playerStats && teamStats &&
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex justify-between">
+                        <CardTitle className="flex items-center justify-between">
                             2023-24 Stats and Leaders
 
 

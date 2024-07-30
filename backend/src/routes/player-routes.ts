@@ -8,15 +8,16 @@ const router = express.Router()
 // ALL PLAYER ROUTES
 router.get("/", playerControllers.getAllPlayers),
 
-router.get("/leaders", playerControllers.getPlayerStatLeaders)
+router.get("/leaders/:seasonType", playerControllers.getPlayerStatLeaders)
 
 // leaders table
 router.get("/leaders/table/:seasonType/:perMode/:statCategory", playerControllers.getPlayerStatLeadersTable)
 
 // game highs
-router.get("/game-highs", playerControllers.getGameHighLeaders)
+router.get("/game-highs/:seasonType", playerControllers.getGameHighLeaders)
 
 router.get("/game-highs/box-scores/:seasonType/:statCategory", playerControllers.getGameHighBoxScoresTable)
+
 
 // SINGLE PLAYER ROUTES
 router.get("/:player_id", playerControllers.getSinglePlayer),

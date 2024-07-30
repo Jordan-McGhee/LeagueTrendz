@@ -57,7 +57,7 @@ const OverviewTeamStandings: React.FC<OverviewStandingsProps> = ({ currentTeam, 
             </CardContent>
 
             <CardFooter className="text-sm font-semibold text-blue-700 pb-4">
-                <Link to="/standings">
+                <Link to="/nba/standings">
                     See Full Standings
                 </Link>
             </CardFooter>

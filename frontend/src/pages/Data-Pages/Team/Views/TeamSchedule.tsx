@@ -13,6 +13,7 @@ import { convertDateGameLog, teamStatLeaderFormatter } from "../../../../Utils/u
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "../../../../components/ui/table"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select"
 import TeamLogo from "../../../../components/ui/TeamLogo"
 
 // component imports
@@ -21,13 +22,24 @@ import ErrorModal from "../../../../components/ui/ErrorModal"
 
 const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
 
+    const teamsMissedPlayoffs = [2, 3, 8, 10, 14, 24, 26, 27, 28, 29]
+
     const [schedule, setSchedule] = useState<TeamScheduleObject[] | undefined>()
+    const [showPlayoffs, setShowPlayoffs] = useState<boolean>(false)
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
-    // fetch roster from database
+    // fetch schedule from database
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/schedule-regular`
+
+        let url: string
+
+        // check if team missed playoffs and change url if there is no possible playoff data
+        if (teamsMissedPlayoffs.includes(team.team_id)) {
+            url = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/schedule-regular`
+        } else {
+            url = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/schedule-${showPlayoffs ? "playoffs" : "regular"}`
+        }
 
         let responseData: any
 
@@ -41,7 +53,15 @@ const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
         }
 
         fetchSchedule()
-    }, [team, sendRequest])
+    }, [team, showPlayoffs, sendRequest])
+
+    const selectHandler = (value: string) => {
+        if (value === "playoffs") {
+            setShowPlayoffs(true)
+        } else {
+            setShowPlayoffs(false)
+        }
+    }
 
     return (
         <>
@@ -53,8 +73,22 @@ const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
             {schedule &&
                 <Card>
                     <CardHeader>
-                        <CardTitle>
+                        <CardTitle className="flex items-center justify-between">
                             2023-24 Schedule
+
+                            {/* drop down for playoff/regular season — check if team made playoffs */}
+                            {
+                                !teamsMissedPlayoffs.includes(team.team_id) &&
+                                <Select value={showPlayoffs ? "playoffs" : "regular-season"} onValueChange={(newValue) => selectHandler(newValue)}>
+                                    <SelectTrigger className="w-[300px]">
+                                        <SelectValue placeholder="Choose Season Type" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="regular-season">Regular Season</SelectItem>
+                                        <SelectItem value="playoffs">Playoffs</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            }
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -107,7 +141,7 @@ const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
 
                                             <TableCell>
                                                 <div className="flex items-center gap-x-1">
-                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${ptsLeader?.id}/${ptsLeader?.name.toLowerCase().replace(" ", "-")}`} className="hover:underline" style={{color: team.main_color}}>
+                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${ptsLeader?.id}/${ptsLeader?.name.toLowerCase().replace(" ", "-")}`} className="hover:underline" style={{ color: team.main_color }}>
                                                         {ptsLeader?.name}
                                                     </Link>
                                                     <p className="font-bold">{ptsLeader?.stat}</p>
@@ -116,7 +150,7 @@ const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
 
                                             <TableCell>
                                                 <div className="flex items-center gap-x-1">
-                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${rebLeader?.id}/${rebLeader?.name.toLowerCase().replace(" ", "-")}`} className="hover:underline" style={{color: team.main_color}}>
+                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${rebLeader?.id}/${rebLeader?.name.toLowerCase().replace(" ", "-")}`} className="hover:underline" style={{ color: team.main_color }}>
                                                         {rebLeader?.name}
                                                     </Link>
                                                     <p className="font-bold">{rebLeader?.stat}</p>
@@ -125,7 +159,7 @@ const TeamSchedule: React.FC<TeamPageProps> = ({ team }) => {
 
                                             <TableCell>
                                                 <div className="flex items-center gap-x-1">
-                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${astLeader?.id}/${astLeader?.name.toLowerCase().replace(" ", "-")}`} className="hover:underline" style={{color: team.main_color}}>
+                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${astLeader?.id}/${astLeader?.name.toLowerCase().replace(" ", "-")}`} className="hover:underline" style={{ color: team.main_color }}>
                                                         {astLeader?.name}
                                                     </Link>
                                                     <p className="font-bold">{astLeader?.stat}</p>

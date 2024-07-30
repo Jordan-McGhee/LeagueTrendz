@@ -84,7 +84,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
 
                 {/* season stats & fav div */}
                 <div className="flex flex-col justify-center border px-4 py-2 rounded-lg w-1/3 items-center">
-                    <p className="text-xs mb-1">2023-24 SEASON STATS</p>
+                    <p className="text-xs mb-1">2023-24 REGULAR SEASON STATS</p>
 
                     <div className="flex justify-around w-full text-sm font-light">
 

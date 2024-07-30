@@ -22,6 +22,8 @@ const PlayerStatsView: React.FC<PlayerStatsProps> = ({ player, currentTeam }) =>
 
     // data state
     const [currentSeasonData, setCurrentSeasonData] = useState<TotalsAndAveragesObject | undefined>()
+    const [ currentSeasonPlayoffData, setCurrentSeasonPlayoffData ] = useState<TotalsAndAveragesObject | undefined> ()
+    const [showPlayoffs, setShowPlayoffs] = useState<boolean>(false)
 
     // fetch hook
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -35,7 +37,8 @@ const PlayerStatsView: React.FC<PlayerStatsProps> = ({ player, currentTeam }) =>
         const fetchPlayer = async () => {
             try {
                 responseData = await sendRequest(url)
-                setCurrentSeasonData(responseData.stats)
+                setCurrentSeasonData(responseData.regular_season_stats)
+                responseData.playoff_stats !== undefined && setCurrentSeasonPlayoffData(responseData.playoff_stats)
             } catch (error) {
 
             }
@@ -44,7 +47,7 @@ const PlayerStatsView: React.FC<PlayerStatsProps> = ({ player, currentTeam }) =>
         fetchPlayer()
     }, [sendRequest])
 
-    const [showPlayoffs, setShowPlayoffs] = useState<boolean>(false)
+
 
     const changePlayoffViewHandler = () => {
         setShowPlayoffs(!showPlayoffs)
@@ -62,9 +65,9 @@ const PlayerStatsView: React.FC<PlayerStatsProps> = ({ player, currentTeam }) =>
     const playoffTables = (
         <CardContent className="flex flex-col gap-y-4">
             {/* playoff season avg */}
-            <PlayerStatsTableAverages title={"Playoff Averages"} data={player.playoff_stats} />
+            <PlayerStatsTableAverages title={"Playoff Averages"} data={player.playoff_stats} currentData={currentSeasonPlayoffData || undefined} />
             {/* playoff season totals */}
-            <PlayerStatsTableTotals title={"Playoff Totals"} data={player.playoff_stats} />
+            <PlayerStatsTableTotals title={"Playoff Totals"} data={player.playoff_stats} currentData={currentSeasonPlayoffData || undefined} />
         </CardContent>
     )
 

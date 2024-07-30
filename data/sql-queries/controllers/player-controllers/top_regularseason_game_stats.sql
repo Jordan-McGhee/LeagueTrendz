@@ -48,6 +48,8 @@ WITH ranked_gamelogs AS (
         ROW_NUMBER() OVER (ORDER BY tpm DESC, game_id) AS rn_tpm
     FROM
         player_gamelog_view
+    WHERE
+        postseason = false
 )
 SELECT
     jsonb_agg(jsonb_build_object(

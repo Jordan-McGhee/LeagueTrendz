@@ -14,18 +14,18 @@ const OverviewSplitsTable: React.FC<OverviewSplitsTableProps> = ({ splits, showH
                 <TableHeader>
                     <TableRow>
                         <TableHead>SPLITS</TableHead>
-                        <TableHead>GP</TableHead>
-                        <TableHead>PTS</TableHead>
-                        <TableHead>MIN</TableHead>
-                        <TableHead>FG%</TableHead>
-                        <TableHead>3P%</TableHead>
-                        <TableHead>FT%</TableHead>
-                        <TableHead>REB</TableHead>
-                        <TableHead>AST</TableHead>
-                        <TableHead>BLK</TableHead>
-                        <TableHead>STL</TableHead>
-                        <TableHead>PF</TableHead>
-                        <TableHead>TO</TableHead>
+                        <TableHead className="text-center">GP</TableHead>
+                        <TableHead className="text-center">PTS</TableHead>
+                        <TableHead className="text-center">MIN</TableHead>
+                        <TableHead className="text-center">FG%</TableHead>
+                        <TableHead className="text-center">3P%</TableHead>
+                        <TableHead className="text-center">FT%</TableHead>
+                        <TableHead className="text-center">REB</TableHead>
+                        <TableHead className="text-center">AST</TableHead>
+                        <TableHead className="text-center">BLK</TableHead>
+                        <TableHead className="text-center">STL</TableHead>
+                        <TableHead className="text-center">PF</TableHead>
+                        <TableHead className="text-center">TO</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -35,34 +35,34 @@ const OverviewSplitsTable: React.FC<OverviewSplitsTableProps> = ({ splits, showH
                         showHome ?
                             (<TableRow>
                                 <TableCell>HOME</TableCell>
-                                <TableCell>{splits.home_averages.gp}</TableCell>
-                                <TableCell>{splits.home_averages.avg_pts}</TableCell>
-                                <TableCell>{splits.home_averages.avg_minutes}</TableCell>
-                                <TableCell>{splits.home_averages.avg_fg_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.home_averages.avg_tp_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.home_averages.avg_ft_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.home_averages.avg_reb}</TableCell>
-                                <TableCell>{splits.home_averages.avg_ast}</TableCell>
-                                <TableCell>{splits.home_averages.avg_blk}</TableCell>
-                                <TableCell>{splits.home_averages.avg_stl}</TableCell>
-                                <TableCell>{splits.home_averages.avg_pf}</TableCell>
-                                <TableCell>{splits.home_averages.avg_turnovers}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.gp}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_pts}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_minutes}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_fg_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_tp_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_ft_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_reb}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_ast}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_blk}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_stl}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_pf}</TableCell>
+                                <TableCell className="text-center">{splits.home_averages.avg_turnovers}</TableCell>
                             </TableRow>)
                             :
                             (<TableRow>
                                 <TableCell>ROAD</TableCell>
-                                <TableCell>{splits.away_averages.gp}</TableCell>
-                                <TableCell>{splits.away_averages.avg_pts}</TableCell>
-                                <TableCell>{splits.away_averages.avg_minutes}</TableCell>
-                                <TableCell>{splits.away_averages.avg_fg_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.away_averages.avg_tp_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.away_averages.avg_ft_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.away_averages.avg_reb}</TableCell>
-                                <TableCell>{splits.away_averages.avg_ast}</TableCell>
-                                <TableCell>{splits.away_averages.avg_blk}</TableCell>
-                                <TableCell>{splits.away_averages.avg_stl}</TableCell>
-                                <TableCell>{splits.away_averages.avg_pf}</TableCell>
-                                <TableCell>{splits.away_averages.avg_turnovers}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.gp}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_pts}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_minutes}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_fg_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_tp_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_ft_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_reb}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_ast}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_blk}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_stl}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_pf}</TableCell>
+                                <TableCell className="text-center">{splits.away_averages.avg_turnovers}</TableCell>
                             </TableRow>)
                     }
 
@@ -71,34 +71,34 @@ const OverviewSplitsTable: React.FC<OverviewSplitsTableProps> = ({ splits, showH
                         showWins ?
                             (<TableRow>
                                 <TableCell>WINS</TableCell>
-                                <TableCell>{splits.win_averages.gp}</TableCell>
-                                <TableCell>{splits.win_averages.avg_pts}</TableCell>
-                                <TableCell>{splits.win_averages.avg_minutes}</TableCell>
-                                <TableCell>{splits.win_averages.avg_fg_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.win_averages.avg_tp_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.win_averages.avg_ft_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.win_averages.avg_reb}</TableCell>
-                                <TableCell>{splits.win_averages.avg_ast}</TableCell>
-                                <TableCell>{splits.win_averages.avg_blk}</TableCell>
-                                <TableCell>{splits.win_averages.avg_stl}</TableCell>
-                                <TableCell>{splits.win_averages.avg_pf}</TableCell>
-                                <TableCell>{splits.win_averages.avg_turnovers}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.gp}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_pts}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_minutes}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_fg_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_tp_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_ft_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_reb}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_ast}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_blk}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_stl}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_pf}</TableCell>
+                                <TableCell className="text-center">{splits.win_averages.avg_turnovers}</TableCell>
                             </TableRow>)
                             :
                             (<TableRow>
                                 <TableCell>LOSSES</TableCell>
-                                <TableCell>{splits.loss_averages.gp}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_pts}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_minutes}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_fg_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.loss_averages.avg_tp_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.loss_averages.avg_ft_percentage || '00.0'}%</TableCell>
-                                <TableCell>{splits.loss_averages.avg_reb}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_ast}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_blk}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_stl}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_pf}</TableCell>
-                                <TableCell>{splits.loss_averages.avg_turnovers}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.gp}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_pts}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_minutes}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_fg_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_tp_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_ft_percentage || '00.0'}%</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_reb}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_ast}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_blk}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_stl}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_pf}</TableCell>
+                                <TableCell className="text-center">{splits.loss_averages.avg_turnovers}</TableCell>
                             </TableRow>)
                     }
 
@@ -106,18 +106,18 @@ const OverviewSplitsTable: React.FC<OverviewSplitsTableProps> = ({ splits, showH
                         showConference &&
                         (<TableRow>
                             <TableCell>CONFERENCE</TableCell>
-                            <TableCell>{splits.conference_averages.gp}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_pts}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_minutes}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_fg_percentage || '00.0'}%</TableCell>
-                            <TableCell>{splits.conference_averages.avg_tp_percentage || '00.0'}%</TableCell>
-                            <TableCell>{splits.conference_averages.avg_ft_percentage || '00.0'}%</TableCell>
-                            <TableCell>{splits.conference_averages.avg_reb}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_ast}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_blk}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_stl}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_pf}</TableCell>
-                            <TableCell>{splits.conference_averages.avg_turnovers}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.gp}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_pts}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_minutes}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_fg_percentage || '00.0'}%</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_tp_percentage || '00.0'}%</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_ft_percentage || '00.0'}%</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_reb}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_ast}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_blk}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_stl}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_pf}</TableCell>
+                            <TableCell className="text-center">{splits.conference_averages.avg_turnovers}</TableCell>
                         </TableRow>)
                     }
 
@@ -125,36 +125,36 @@ const OverviewSplitsTable: React.FC<OverviewSplitsTableProps> = ({ splits, showH
                         showDivision &&
                         (<TableRow>
                             <TableCell>DIVISION</TableCell>
-                            <TableCell>{splits.division_averages.gp}</TableCell>
-                            <TableCell>{splits.division_averages.avg_pts}</TableCell>
-                            <TableCell>{splits.division_averages.avg_minutes}</TableCell>
-                            <TableCell>{splits.division_averages.avg_fg_percentage || '00.0'}%</TableCell>
-                            <TableCell>{splits.division_averages.avg_tp_percentage || '00.0'}%</TableCell>
-                            <TableCell>{splits.division_averages.avg_ft_percentage || '00.0'}%</TableCell>
-                            <TableCell>{splits.division_averages.avg_reb}</TableCell>
-                            <TableCell>{splits.division_averages.avg_ast}</TableCell>
-                            <TableCell>{splits.division_averages.avg_blk}</TableCell>
-                            <TableCell>{splits.division_averages.avg_stl}</TableCell>
-                            <TableCell>{splits.division_averages.avg_pf}</TableCell>
-                            <TableCell>{splits.division_averages.avg_turnovers}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.gp}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_pts}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_minutes}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_fg_percentage || '00.0'}%</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_tp_percentage || '00.0'}%</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_ft_percentage || '00.0'}%</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_reb}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_ast}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_blk}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_stl}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_pf}</TableCell>
+                            <TableCell className="text-center">{splits.division_averages.avg_turnovers}</TableCell>
                         </TableRow>)
                     }
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TableCell>REGULAR SEASON</TableCell>
-                        <TableCell>{splits.overall_averages.gp}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_pts}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_minutes}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_fg_percentage || '00.0'}%</TableCell>
-                        <TableCell>{splits.overall_averages.avg_tp_percentage || '00.0'}%</TableCell>
-                        <TableCell>{splits.overall_averages.avg_ft_percentage || '00.0'}%</TableCell>
-                        <TableCell>{splits.overall_averages.avg_reb}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_ast}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_blk}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_stl}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_pf}</TableCell>
-                        <TableCell>{splits.overall_averages.avg_turnovers}</TableCell>
+                        <TableCell>2023-24 SEASON</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.gp}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_pts}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_minutes}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_fg_percentage || '00.0'}%</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_tp_percentage || '00.0'}%</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_ft_percentage || '00.0'}%</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_reb}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_ast}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_blk}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_stl}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_pf}</TableCell>
+                        <TableCell className="text-center">{splits.overall_averages.avg_turnovers}</TableCell>
                     </TableRow>
                 </TableFooter>
             </Table>

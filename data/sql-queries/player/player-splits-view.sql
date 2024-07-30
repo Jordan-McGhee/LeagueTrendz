@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW player_stats_splits AS
+CREATE OR REPLACE VIEW player_stats_splits_view AS
 SELECT
     player_id,
     player_name,
@@ -31,6 +31,65 @@ SELECT
         WHERE player_id = p.player_id
 		AND NOT in_season_tournament
     ) AS overall_averages,
+
+    -- regular season
+    (
+        SELECT JSON_BUILD_OBJECT(
+            'gp', COUNT(*),
+            'avg_minutes', ROUND(((SUM(minutes) * 1.0) / COUNT(*)), 1),
+            'avg_pts', ROUND(AVG(pts), 1),
+            'avg_fgm', ROUND(AVG(fgm), 1),
+            'avg_fga', ROUND(AVG(fga), 1),
+            'avg_fg_percentage', ROUND((SUM(fgm) * 100.0 / NULLIF(SUM(fga), 0)), 1),
+            'avg_tpm', ROUND(AVG(tpm), 1),
+            'avg_tpa', ROUND(AVG(tpa), 1),
+            'avg_tp_percentage', ROUND((SUM(tpm) * 100.0 / NULLIF(SUM(tpa), 0)), 1),
+            'avg_ftm', ROUND(AVG(ftm), 1),
+            'avg_fta', ROUND(AVG(fta), 1),
+            'avg_ft_percentage', ROUND((SUM(ftm) * 100.0 / NULLIF(SUM(fta), 0)), 1),
+            'avg_orb', ROUND(AVG(orb), 1),
+            'avg_drb', ROUND(AVG(drb), 1),
+            'avg_reb', ROUND(AVG(reb), 1),
+            'avg_ast', ROUND(AVG(ast), 1),
+            'avg_stl', ROUND(AVG(stl), 1),
+            'avg_blk', ROUND(AVG(blk), 1),
+            'avg_turnovers', ROUND(AVG(turnovers), 1),
+            'avg_pf', ROUND(AVG(pf), 1)
+        )
+        FROM player_gamelog_view
+        WHERE player_id = p.player_id
+		AND NOT in_season_tournament
+        AND NOT postseason
+    ) AS regular_season_averages,
+
+    -- playoffs
+    (
+        SELECT JSON_BUILD_OBJECT(
+            'gp', COUNT(*),
+            'avg_minutes', ROUND(((SUM(minutes) * 1.0) / COUNT(*)), 1),
+            'avg_pts', ROUND(AVG(pts), 1),
+            'avg_fgm', ROUND(AVG(fgm), 1),
+            'avg_fga', ROUND(AVG(fga), 1),
+            'avg_fg_percentage', ROUND((SUM(fgm) * 100.0 / NULLIF(SUM(fga), 0)), 1),
+            'avg_tpm', ROUND(AVG(tpm), 1),
+            'avg_tpa', ROUND(AVG(tpa), 1),
+            'avg_tp_percentage', ROUND((SUM(tpm) * 100.0 / NULLIF(SUM(tpa), 0)), 1),
+            'avg_ftm', ROUND(AVG(ftm), 1),
+            'avg_fta', ROUND(AVG(fta), 1),
+            'avg_ft_percentage', ROUND((SUM(ftm) * 100.0 / NULLIF(SUM(fta), 0)), 1),
+            'avg_orb', ROUND(AVG(orb), 1),
+            'avg_drb', ROUND(AVG(drb), 1),
+            'avg_reb', ROUND(AVG(reb), 1),
+            'avg_ast', ROUND(AVG(ast), 1),
+            'avg_stl', ROUND(AVG(stl), 1),
+            'avg_blk', ROUND(AVG(blk), 1),
+            'avg_turnovers', ROUND(AVG(turnovers), 1),
+            'avg_pf', ROUND(AVG(pf), 1)
+        )
+        FROM player_gamelog_view
+        WHERE player_id = p.player_id
+		AND postseason
+    ) AS postseason_averages,
 
     -- home
     (

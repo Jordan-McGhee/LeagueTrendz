@@ -26,7 +26,7 @@ const GameLeadersView = () => {
 
     // fetch game highs from database
     useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/players/game-highs`
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/players/game-highs/${seasonType === 'playoffs' ? 'playoffs' : 'regular-season'}`
 
         let responseData: any
 
@@ -40,7 +40,7 @@ const GameLeadersView = () => {
         }
 
         fetchGameHighs()
-    }, [sendRequest])
+    }, [sendRequest, seasonType])
 
 
     return (

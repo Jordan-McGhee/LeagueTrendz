@@ -59,7 +59,7 @@ const Standings: React.FC<TeamPageProps> = ({ team }) => {
             </CardContent>
 
             <CardFooter className="text-sm font-semibold text-blue-700 pb-4">
-                <Link to="/standings">
+                <Link to="/nba/standings">
                     See Full Standings
                 </Link>
             </CardFooter>

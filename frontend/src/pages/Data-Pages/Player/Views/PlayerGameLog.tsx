@@ -17,7 +17,8 @@ import PlayerGameLogTable from "../../../../components/Desktop/PlayerPage/GameLo
 
 const PlayerGameLog: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
-    const [data, setData] = useState<GameLogData[] | undefined>()
+    const [regularSeasonData, setRegularSeasonData] = useState<GameLogData[] | undefined>()
+    const [playoffData, setPlayoffData] = useState<GameLogData[] | undefined>()
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
@@ -30,7 +31,8 @@ const PlayerGameLog: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
         const fetchPlayer = async () => {
             try {
                 responseData = await sendRequest(url)
-                setData(responseData.log)
+                setRegularSeasonData(responseData.regular_season_log)
+                responseData.playoff_log != undefined && setPlayoffData(responseData.playoff_log)
             } catch (error) {
 
             }
@@ -56,11 +58,23 @@ const PlayerGameLog: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                 </CardHeader>
 
                 <CardContent className="flex flex-col gap-y-2">
-                    <p>2023-24 Regular Season</p>
 
                     {
-                        data?.map((gameSet) => (
-                            <PlayerGameLogTable month={gameSet.month} games={gameSet.games} avg_stats={gameSet.avg_stats}  />
+                        playoffData &&
+                        <div>
+                            <p>2023-24 Playoffs</p>
+                            {
+                                playoffData.map((gameSet) => (
+                                    <PlayerGameLogTable month={gameSet.month} games={gameSet.games} avg_stats={gameSet.avg_stats} />
+                                ))
+                            }
+                        </div>
+                    }
+
+                    <p>2023-24 Regular Season</p>
+                    {
+                        regularSeasonData?.map((gameSet) => (
+                            <PlayerGameLogTable month={gameSet.month} games={gameSet.games} avg_stats={gameSet.avg_stats} />
                         ))
                     }
 
