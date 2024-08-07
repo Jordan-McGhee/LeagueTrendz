@@ -4,10 +4,10 @@
     - Add protected routes and pass token through to backend from frontend forms
 
 - Teams
-    - Add team colors to db
+    <!-- - Add team colors to db DONE -->
     - routes/controllers for single team page
         <!-- - get roster DONE -->
-        - get stats
+        <!-- - get stats DONE -->
 
     - view for season standings
     <!-- - Add Coach field DONE -->
@@ -93,13 +93,6 @@
     <!-- - make sure date/time is always centered DONE -->
     <!-- - !! BUG FOR game_id 2 - TROUBLESHOOT !! DONE -->
 
-
-- ALL PLAYERS PAGE
-    - NOTES FOR RANKING PLAYER STATS: MORE THAN 50 GP
-        - FG% RANKING: MORE THAN 200 MADE FG
-        - 3P% RANKING: MORE THAN 70
-        - FT% RANKING: MORE THAN 100 FTM 
-
 - FINISHING APP
     - USER PAGE
         - FAVORITES (PLAYERS, TEAMS, GAMES)
@@ -107,15 +100,23 @@
 
 
 !!NEW DATA!!
-- Add playoff data to database
-- NEED TO ADD PLAYOFF QUERYING FOR PLAYERS PAGE (ALL VIEWS)
+<!-- - Add playoff data to database DONE -->
+<!-- - NEED TO ADD PLAYOFF QUERYING FOR PLAYERS PAGE (ALL VIEWS) DONE -->
 - UPDATE SEASON REWARDS AND NBA CHAMPION
+- ALL PLAYERS PAGE
+    - NOTES FOR RANKING PLAYER STATS: MORE THAN 50 GP
+        - FG% RANKING: MORE THAN 200 MADE FG
+        - 3P% RANKING: MORE THAN 70
+        - FT% RANKING: MORE THAN 100 FTM 
+
+- Team Schedule and Player Gamelog:
+    - differentiate between playoff series and add series outcome?
 
 - DB VIEWS TO MAKE:
     - SINGLE TEAM PAGE:
-        - team playoff totals and averages DONE
-        - player playoff totals and averages DONE
-        - playoff team stat leaders DONE
-        - Playoff schedule (in team-controllers)
+        <!-- - team playoff totals and averages DONE -->
+        <!-- - player playoff totals and averages DONE -->
+        <!-- - playoff team stat leaders DONE -->
+        <!-- - Playoff schedule (in team-controllers) DONE -->
     - ALL PLAYERS PAGE:
-        - playoff game highs and points leaders
+        <!-- - playoff game highs and points leaders DONE -->

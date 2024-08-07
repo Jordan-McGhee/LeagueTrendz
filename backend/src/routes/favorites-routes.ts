@@ -6,15 +6,12 @@ const router = express.Router()
 // /favorites
 
 // create favorite
-router.post("/user/:user_id", favoritesControllers.createFavorite)
+router.post("/", favoritesControllers.createFavorite)
 
 // remove favorite
-router.delete("/user/:user_id", favoritesControllers.removeFavorite)
+router.delete("/:favorite_id", favoritesControllers.removeFavorite)
 
 // get all favorites
-router.get("/user/:user_id", favoritesControllers.getAllFavorites)
-
-// get favorites home page
-router.get("/user/:user_id/home", favoritesControllers.getFavoritesHome)
+router.get("/:user_id", favoritesControllers.getAllFavorites)
 
 module.exports = router

@@ -7,7 +7,7 @@ import { useFetch } from "../Hooks/useFetch";
 import { GamesDataState, GameData } from "@/types";
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card"
 import { Separator } from "../components/ui/separator"
 
 // component imports
@@ -97,6 +97,7 @@ const SchedulePage = () => {
                         ))
                     }
                 </CardContent>
+                <CardFooter className="italic text-xs">The 2023 NBA season started on October 24th. Playoffs started April 16th and ended June 17th.</CardFooter>
             </Card>
         </div>
     )
