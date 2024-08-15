@@ -120,16 +120,16 @@ const PlayerCareerHighlights: React.FC<PlayerPageProps> = ({ player, currentTeam
                 case 'League Scoring Leader':
                     awards.scoringLeader.push(season);
                     break;
-                case 'League Assist Leader':
+                case 'League Assists Leader':
                     awards.assistLeader.push(season);
                     break;
-                case 'League Rebound Leader':
+                case 'League Rebounding Leader':
                     awards.reboundLeader.push(season);
                     break;
-                case 'League Steal Leader':
+                case 'League Steals Leader':
                     awards.stealLeader.push(season);
                     break;
-                case 'League Block Leader':
+                case 'League Blocks Leader':
                     awards.blockLeader.push(season);
                     break;
 
@@ -159,6 +159,7 @@ const PlayerCareerHighlights: React.FC<PlayerPageProps> = ({ player, currentTeam
     }
 
     console.log(awards)
+    console.log(player.awards)
 
     return (
         <Card>
