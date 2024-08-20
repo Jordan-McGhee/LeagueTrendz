@@ -10,7 +10,7 @@ export interface ContextType {
 }
 
 // auth popup
-export interface AuthPopupProps {
+export interface PopupProps {
     changeDialogSetting: () => void
 }
 
@@ -45,6 +45,26 @@ export interface AuthInputProps {
     entered_password?: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     changeFormErrors: (input: string, remove: boolean, newError?: string) => void
+}
+
+// // SEARCH PAGE
+export interface PlayerSearchResult {
+    player_id: number,
+    team_id: number,
+    name: string,
+    photo_url: string,
+    player_position: string,
+    jersey_number: number,
+    data: Player,
+    url: string
+}
+
+export interface TeamSearchResult {
+    team_id: number,
+    full_name: string,
+    data: Team,
+    abbreviation: string
+    url: string,
 }
 
 // // USER PAGE

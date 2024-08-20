@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { DialogContent, DialogTitle, DialogHeader, DialogDescription, DialogFooter } from "../../ui/dialog"
 
 // type imports
-import { AuthPopupProps } from "../../../types";
+import { PopupProps } from "../../../types";
 
 
 // component imports
 import AuthForm from "../Auth/AuthForm"
 
-const AuthPopup: React.FC<AuthPopupProps> = ({ changeDialogSetting }) => {
+const AuthPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
 
     // states
     const [showLogin, setShowLogin] = useState(true)

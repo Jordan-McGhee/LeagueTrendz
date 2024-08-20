@@ -6,16 +6,24 @@ import { AuthContext } from "../context/auth-context";
 
 // ui imports
 import { Dialog, DialogTrigger } from "../components/ui/dialog"
+
+// component imports
 import AuthPopup from "../components/Desktop/Auth/AuthPopup";
+import SearchPopup from "../components/Desktop/Search/SearchPopup";
 
 const DesktopNav = () => {
 
     const auth = useContext(AuthContext)
 
-    const [open, setOpen] = useState(false)
+    const [openAuth, setOpenAuth] = useState(false)
+    const [openSearch, setOpenSearch] = useState(false)
 
-    const changeDialogStateHandler = () => {
-        setOpen(!open)
+    const changeAuthDialogStateHandler = () => {
+        setOpenAuth(!openAuth)
+    }
+
+    const changeSearchDialogStateHandler = () => {
+        setOpenSearch(!openSearch)
     }
 
 
@@ -33,7 +41,7 @@ const DesktopNav = () => {
                         </NavLink>
                     </li>
 
-                    
+
                     {/* <li>
                         <NavLink to="/" className="flex">
                             <p className="mr-2">I</p>
@@ -86,10 +94,23 @@ const DesktopNav = () => {
                 {/* user nav options profile/favorites/notifications */}
                 <div className="gap-y-10 flex flex-col">
 
+                    <li>
+                        <Dialog open={openSearch} onOpenChange={setOpenSearch}>
+                            <DialogTrigger asChild>
+                                <div className="flex">
+                                    {/* icon placeholder */}
+                                    <p className="mr-2">I</p>
+                                    <p>Search</p>
+                                </div>
+                            </DialogTrigger>
+                            <SearchPopup changeDialogSetting = {changeSearchDialogStateHandler} />
+                        </Dialog>
+                    </li>
+
                     {/* NOT SIGNED IN */}
                     {!auth.isLoggedIn &&
                         <li className="hover:text-[#ffa023]">
-                            <Dialog open={open} onOpenChange={setOpen}>
+                            <Dialog open={openAuth} onOpenChange={setOpenAuth}>
                                 <DialogTrigger>
                                     <div className="flex">
                                         {/* icon placeholder */}
@@ -97,7 +118,7 @@ const DesktopNav = () => {
                                         <p>Sign Up/Login</p>
                                     </div>
                                 </DialogTrigger >
-                                <AuthPopup changeDialogSetting={changeDialogStateHandler} />
+                                <AuthPopup changeDialogSetting={changeAuthDialogStateHandler} />
                             </Dialog>
                         </li>
                     }
