@@ -52,7 +52,17 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
                         <p className="text-2xl uppercase">{player.name.split(' ')[0]}</p>
                         <p className="text-2xl uppercase font-bold">{player.name.split(' ').slice(1).join(" ")}</p>
                         <p className="flex gap-x-1 items-center">
-                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline"><TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{currentTeam.full_name}</Link>• #{player.jersey_number} • {convertPlayerPosition(player.player_position)}</p>
+                            {
+                                currentTeam.team_id >= 0 ?
+                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline">
+                                        <TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{currentTeam.full_name}
+                                    </Link>
+
+                                    :
+
+                                    'Retired/Waived'
+                            }
+                            • #{player.jersey_number} • {convertPlayerPosition(player.player_position)}</p>
                         {/* <Button className="w-fit">Add to Favorites</Button> */}
                     </div>
                 </div>
@@ -83,48 +93,61 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
 
 
                 {/* season stats & fav div */}
-                <div className="flex flex-col justify-center border px-4 py-2 rounded-lg w-1/3 items-center">
-                    <p className="text-xs mb-1">2023-24 REGULAR SEASON STATS</p>
 
-                    <div className="flex justify-around w-full text-sm font-light">
+                {
+                    mainStats ?
+                        <div className="flex flex-col justify-center border px-4 py-2 rounded-lg w-1/3 items-center">
+                            <p className="text-xs mb-1">2023-24 REGULAR SEASON STATS</p>
 
-                        {/* points */}
-                        <div className="flex flex-col items-center">
-                            <p>PTS</p>
-                            <p className="text-2xl font-bold"
-                                style={{color: currentTeam.main_color}}
-                            >{mainStats.avg_pts}</p>
-                            <p>{`${mainStats.pts_rank}${determineSuffix(mainStats.pts_rank)}`}</p>
+                            <div className="flex justify-around w-full text-sm font-light">
+
+                                {/* points */}
+                                <div className="flex flex-col items-center">
+                                    <p>PTS</p>
+                                    <p className="text-2xl font-bold"
+                                        style={{ color: currentTeam.main_color }}
+                                    >{mainStats.avg_pts}</p>
+                                    <p>{`${mainStats.pts_rank}${determineSuffix(mainStats.pts_rank)}`}</p>
+                                </div>
+
+                                {/* rebounds */}
+                                <div className="flex flex-col items-center">
+                                    <p>REB</p>
+                                    <p className="text-2xl font-bold"
+                                        style={{ color: currentTeam.main_color }}
+                                    >{mainStats.avg_reb}</p>
+                                    <p>{`${mainStats.reb_rank}${determineSuffix(mainStats.reb_rank)}`}</p>
+                                </div>
+
+                                {/* assist */}
+                                <div className="flex flex-col items-center">
+                                    <p>AST</p>
+                                    <p className="text-2xl font-bold"
+                                        style={{ color: currentTeam.main_color }}
+                                    >{mainStats.avg_ast}</p>
+                                    <p>{`${mainStats.ast_rank}${determineSuffix(mainStats.ast_rank)}`}</p>
+                                </div>
+
+                                {/* fg% */}
+                                <div className="flex flex-col items-center">
+                                    <p>FG%</p>
+                                    <p className="text-2xl font-bold"
+                                        style={{ color: currentTeam.main_color }}
+                                    >{mainStats.avg_fg_percentage}</p>
+                                    <p>{`${mainStats.fg_rank}${determineSuffix(mainStats.fg_rank)}`}</p>
+                                </div>
+                            </div>
                         </div>
 
-                        {/* rebounds */}
-                        <div className="flex flex-col items-center">
-                            <p>REB</p>
-                            <p className="text-2xl font-bold"
-                                style={{color: currentTeam.main_color}}
-                            >{mainStats.avg_reb}</p>
-                            <p>{`${mainStats.reb_rank}${determineSuffix(mainStats.reb_rank)}`}</p>
+
+                        :
+
+                        <div className="border px-4 py-2 rounded-lg w-1/3 h-24 flex font-semibold">
+                            <p className="mx-auto self-center text-lg">No 2023-24 stats to display</p>
                         </div>
 
-                        {/* assist */}
-                        <div className="flex flex-col items-center">
-                            <p>AST</p>
-                            <p className="text-2xl font-bold"
-                                style={{color: currentTeam.main_color}}
-                            >{mainStats.avg_ast}</p>
-                            <p>{`${mainStats.ast_rank}${determineSuffix(mainStats.ast_rank)}`}</p>
-                        </div>
+                }
 
-                        {/* fg% */}
-                        <div className="flex flex-col items-center">
-                            <p>FG%</p>
-                            <p className="text-2xl font-bold"
-                                style={{color: currentTeam.main_color}}
-                            >{mainStats.avg_fg_percentage}</p>
-                            <p>{`${mainStats.fg_rank}${determineSuffix(mainStats.fg_rank)}`}</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     )

@@ -47,7 +47,7 @@ const PlayerSplits: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
             {/* loading state */}
             {isLoading && <LoadingPage />}
 
-            {data &&
+            {!isLoading &&
                 <Card className="mt-4">
                     <CardHeader>
                         <CardTitle>
@@ -56,7 +56,13 @@ const PlayerSplits: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                     </CardHeader>
 
                     <CardContent className="flex flex-col gap-y-2">
-                        <PlayerSplitsTable data={data} />
+
+                        {
+                            data ?
+                                <PlayerSplitsTable data={data} />
+                                :
+                                "No splits from 2023-24 season"
+                        }
                     </CardContent>
 
                     <CardFooter>

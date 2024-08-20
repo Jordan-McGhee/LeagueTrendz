@@ -19,7 +19,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 // views imports
 import BoxScoreView from "./Views/BoxScoreView";
 import TeamStatsView from "./Views/TeamStatsView";
-import GameCastView from "./Views/GamecastView";
 
 // component imports
 import TeamLogo from "../../../components/ui/TeamLogo"

@@ -356,7 +356,7 @@ export const getSinglePlayerSplitsView = async (req: Request, res: Response, nex
         return res.status(500).json({ message: `Error getting splits for player #${player_id}. ${error}` })
     }
 
-    res.status(200).json({ message: `Got splits for player #${player_id}`, splits: playerSplitsResponse.rows[0] })
+    res.status(200).json({ message: `Got splits for player #${player_id}`, splits: playerSplitsResponse.rows[0] || null })
 }
 
 

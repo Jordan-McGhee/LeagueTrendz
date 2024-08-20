@@ -29,10 +29,10 @@ const DesktopNav = () => {
 
     return (
         <nav className="text-white fixed h-full w-[20%] max-w-xs bg-black">
-            <ul className="flex flex-col justify-between py-8 items-center h-full text-lg">
+            <ul className="flex flex-col justify-between py-8 items-center h-full text-lg w-1/2 mx-auto">
 
                 {/* regular nav options */}
-                <div className="h-1/3 flex flex-col gap-y-10">
+                <div className="flex flex-col gap-y-10 w-full">
                     <li className="hover:text-[#ffa023]">
                         <NavLink to="/" className="flex">
                             {/* icon placeholder */}
@@ -40,22 +40,6 @@ const DesktopNav = () => {
                             <p>LeagueTrendz</p>
                         </NavLink>
                     </li>
-
-
-                    {/* <li>
-                        <NavLink to="/" className="flex">
-                            <p className="mr-2">I</p>
-                            <p>Metrics</p>
-                        </NavLink>
-                    </li> */}
-
-                    {/* <li className="hover:text-[#ffa023]">
-                        <NavLink to="/nba/scores" className="flex">
-                            
-                            <p className="mr-2">I</p>
-                            <p>Scores</p>
-                        </NavLink>
-                    </li> */}
 
                     <li className="hover:text-[#ffa023]">
                         <NavLink to="/nba/schedule" className="flex">
@@ -91,10 +75,10 @@ const DesktopNav = () => {
 
                 </div>
 
-                {/* user nav options profile/favorites/notifications */}
-                <div className="gap-y-10 flex flex-col">
+                {/* search function */}
+                <div className="flex flex-col gap-y-8 w-full">
 
-                    <li>
+                    <li className="hover:cursor-pointer hover:text-[#ffa023]">
                         <Dialog open={openSearch} onOpenChange={setOpenSearch}>
                             <DialogTrigger asChild>
                                 <div className="flex">
@@ -113,7 +97,6 @@ const DesktopNav = () => {
                             <Dialog open={openAuth} onOpenChange={setOpenAuth}>
                                 <DialogTrigger>
                                     <div className="flex">
-                                        {/* icon placeholder */}
                                         <p className="mr-2">I</p>
                                         <p>Sign Up/Login</p>
                                     </div>
@@ -128,7 +111,6 @@ const DesktopNav = () => {
                     {auth.isLoggedIn &&
                         <li className="hover:text-[#ffa023]">
                             <NavLink to="/" className="flex">
-                                {/* icon placeholder */}
                                 <p className="mr-2">I</p>
                                 <p>Notifications</p>
                             </NavLink>
@@ -138,7 +120,6 @@ const DesktopNav = () => {
                     {auth.isLoggedIn &&
                         <li className="hover:text-[#ffa023]">
                             <NavLink to="/user" className="flex">
-                                {/* icon placeholder */}
                                 <p className="mr-2">I</p>
                                 <p>Profile</p>
                             </NavLink>

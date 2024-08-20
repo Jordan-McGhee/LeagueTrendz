@@ -13,24 +13,24 @@
     <!-- - Add Coach field DONE -->
 
 - SAVING PLAYERS
-    - UPDATETEAM IDs IN DRAFT/TRANSACTION OBJECTS!!!!
+    <!-- - UPDATETEAM IDs IN DRAFT/TRANSACTION OBJECTS!!!! DONE -->
     - get age correct
 
 - VIEWS
     <!-- TEAM -->
-    - STANDINGS (LEAGUE/DIVISION/CONFERENCE)
-    - TEAM STATS
+    <!-- - STANDINGS (LEAGUE/DIVISION/CONFERENCE) DONE  -->
+    <!-- - TEAM STATS DONE -->
 
     <!-- PLAYER -->
-    - PLAYER SEASON AVERAGES
-    - PLAYER CAREER TOTALS/AVERAGES
-    - PLAYER SPLITS
+    <!-- - PLAYER SEASON AVERAGES DONE -->
+    <!-- - PLAYER CAREER TOTALS/AVERAGES DONE -->
+    <!-- - PLAYER SPLITS DONE  -->
 
 
 
 <!-- FRONTEND -->
 - 404 not found page
-- Error Modal
+<!-- - Error Modal DONE  -->
 
 - USER AUTH
     <!-- - password & Confirm password: pass entered password into confirm password input and verify they match DONE -->
@@ -72,7 +72,7 @@
     <!-- - Player Game Logs DONE -->
     - Fix last game styling
         - date and outcome should always be in direct center. Use grid?
-    - Add Link to View Game
+    <!-- - Add Link to View Game DONE -->
     - Fix window size on each view
         - currently scrolls too far down without content being there
             - this is an issue with switch player component having its own height
@@ -86,7 +86,7 @@
         <!-- - make jersey numbers and names a grid to be even DONE -->
 
 - LONG PLAYER NAMES
-    - Add styling for players like Shai Gilgeous-Alexander
+    <!-- - Add styling for players like Shai Gilgeous-Alexander DONE -->
 
 - GAMEBOXSCORE PAGE
     <!-- - Add query to grab all details about team record from expanded standings view DONE -->
@@ -122,3 +122,4 @@
         <!-- - playoff game highs and points leaders DONE -->
 
 BUG WITH WAIVED PLAYERS (SEARCH AUSTIN RIVERS)
+<!-- HAVE SEARCH CLOSE/RESET WHEN SELECTING AN OPTION DONE -->

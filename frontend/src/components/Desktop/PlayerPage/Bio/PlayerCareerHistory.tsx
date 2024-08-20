@@ -80,11 +80,16 @@ const PlayerCareerHistory: React.FC<PlayerPageProps> = ({ player, currentTeam })
                 <CardTitle>Career History</CardTitle>
             </CardHeader>
 
-            <CardContent className="flex flex-wrap gap-y-4">
+            <CardContent className="flex flex-wrap gap-y-6">
                 {
-                    Array.from(teamSet).map((team_id) => (
-                        <CareerHistoryItem key={team_id} team_id={team_id} years={careerHistory[team_id]} />
-                    ))
+                    Array.from(teamSet).map((team_id) => {
+
+                        if (team_id < 0) {
+                            return null
+                        }
+
+                        return <CareerHistoryItem key={team_id} team_id={team_id} years={careerHistory[team_id]} />
+                    })
                 }
             </CardContent>
         </Card>
