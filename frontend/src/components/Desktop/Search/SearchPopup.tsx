@@ -58,7 +58,7 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
                     full_name: team.full_name,
                     data: team,
                     abbreviation: team.abbreviation,
-                    url: `${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${team.abbreviation.toLowerCase()}`
+                    url: `${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${team.abbreviation.toLowerCase()}?view=home`
                 }))
             ]
 
@@ -71,7 +71,7 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
                     player_position: player.player_position,
                     jersey_number: player.jersey_number,
                     data: player,
-                    url: `${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`
+                    url: `${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}?view=overview`
                 }))
             ]
 
