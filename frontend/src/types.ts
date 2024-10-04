@@ -128,26 +128,26 @@ export interface DatePaginationProps {
 
 export interface GameData {
     game_id: number,
-    game_date: string, 
-    game_time: string, 
+    game_date: string,
+    game_time: string,
     in_season_tournament: boolean,
     postseason: boolean,
     home_team_id: number,
-    home_team_full_name: string, 
-    home_team_abbreviation: string, 
-    home_team_score: string, 
+    home_team_full_name: string,
+    home_team_abbreviation: string,
+    home_team_score: string,
     home_best_player_id: number,
-    home_best_player_name: string, 
+    home_best_player_name: string,
     home_best_player_photo: string,
     home_best_player_pts: number,
     home_best_player_reb: number,
     home_best_player_ast: number,
     away_team_id: number,
-    away_team_full_name: string, 
-    away_team_abbreviation: string, 
-    away_team_score:string, 
+    away_team_full_name: string,
+    away_team_abbreviation: string,
+    away_team_score: string,
     away_best_player_id: number,
-    away_best_player_name: string, 
+    away_best_player_name: string,
     away_best_player_photo: string,
     away_best_player_pts: number,
     away_best_player_reb: number,
@@ -604,6 +604,18 @@ export interface TotalsAndAveragesObject {
 }
 
 // PLAYER TYPES
+
+// HOME - POPULAR PLAYERS
+export interface PopularPlayer {
+    player_id: number,
+    name: string,
+    player_position: string,
+    jersey_number: number,
+    photo_url: string,
+    team_id: number,
+    team_full_name: string,
+    team_abbreviation: string
+}
 
 // ALL PLAYERS PAGE
 

@@ -3,8 +3,7 @@ import React from "react";
 // component imports
 import HomeSchedule from "../components/Desktop/HomePage/HomeSchedule";
 import HomeStandings from "../components/Desktop/HomePage/HomeStandings";
-import HomeHeadlines from "../components/Desktop/HomePage/HomeHeadlines";
-import HomeFavorites from "../components/Desktop/HomePage/HomeFavorites";
+import HomePlayers from "../components/Desktop/HomePage/HomePlayers";
 
 const HomePage = () => {
 
@@ -28,9 +27,7 @@ const HomePage = () => {
 
             {/* right side */}
             <div className=" h-full w-[30%] flex flex-col justify-between gap-y-4">
-                {/* <HomeHeadlines /> */}
-
-                <HomeFavorites />
+                <HomePlayers />
             </div>
 
         </div>

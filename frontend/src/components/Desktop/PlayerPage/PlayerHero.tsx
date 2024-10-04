@@ -46,7 +46,16 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
 
                 {/* player image and details div */}
                 <div className="flex items-center gap-x-4">
-                    {player.photo_url ? <img src={player.photo_url} alt="player img" className="h-24" /> : <PersonIcon className="h-24 w-24" />}
+                    {player.photo_url ?
+
+                        <div className="flex -space-x-24 items-center overflow-hidden">
+                            <TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-24 object-contain opacity-40 z-0 relative" />
+                            <img src={player.photo_url} alt={player.name} className="h-24 z-0 relative" />
+                        </div>
+
+                        :
+
+                        <PersonIcon className="size-24 object-contain" />}
 
                     <div className="flex flex-col gap-y-1">
                         <p className="text-2xl uppercase">{player.name.split(' ')[0]}</p>

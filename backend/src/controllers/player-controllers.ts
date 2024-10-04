@@ -17,6 +17,21 @@ export const getAllPlayers = async (req: Request, res: Response, next: NextFunct
     res.status(200).json({ message: `Got all players`, players: playersResponse.rows })
 }
 
+export const getPopularPlayers = async (req: Request, res: Response, next: NextFunction) => {
+    const playersQuery: string = "SELECT p.player_id, p.name, p.player_position, p.jersey_number, p.photo_url, p.team_id, t.full_name AS team_full_name, t.abbreviation AS team_abbreviation FROM players p INNER JOIN teams t ON p.team_id = t.team_id WHERE p.player_id = ANY(ARRAY[45,23,10,52,33]) ORDER BY array_position(ARRAY[45,23,10,52,33], p.player_id)"
+    let playersResponse: QueryResult
+
+    try {
+        playersResponse = await pool.query(playersQuery)
+    } catch (error) {
+        console.log(`Error getting popular players: ${error}`)
+
+        return res.status(500).json({ message: `Error getting popular players: ${error}`})
+    }
+
+    res.status(200).json({ message: `Got popular players`, players: playersResponse.rows})
+}
+
 // Stat Leaders
 export const getPlayerStatLeaders = async (req: Request, res: Response, next: NextFunction) => {
 
