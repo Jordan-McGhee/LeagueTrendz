@@ -65,11 +65,11 @@ function App() {
       }}>
       <div className="bg-[#e2dfe2] overflow-y-scroll">
 
-        <div className=' max-w-screen-2xl h-lvh flex m-auto'>
+        <div className=' max-w-screen-2xl h-lvh flex flex-col m-auto'>
           <DesktopNav />
 
           {/* content div */}
-          <div className='ml-[20%] w-4/5 h-fit min-h-full bg-[#e2dfe2] p-4'>
+          <div className='m-auto w-4/5 h-fit min-h-full bg-[#e2dfe2] p-4'>
             {routes}
           </div>
         </div>

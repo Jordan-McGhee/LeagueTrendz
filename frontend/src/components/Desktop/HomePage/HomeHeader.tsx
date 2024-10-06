@@ -17,11 +17,15 @@ const HomeHeader: React.FC<HomePlayersProps> = ({ players }) => {
 
             <CardContent className="flex items-center justify-between py-2">
                 <div className="flex gap-x-4 items-center">
-                    <TeamLogo logoClass="size-28 object-contain" team_id={1} abbreviation="BOS" />
+                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/bos?view=home`}>
+                        <TeamLogo logoClass="size-28 object-contain" team_id={1} abbreviation="BOS" />
+                    </Link>
 
                     <div>
                         <p className="text-lg font-semibold">2023-24 NBA Champions</p>
-                        <p className="text-4xl font-bold text-[#007a33]">Boston Celtics</p>
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/bos?view=home`}>
+                            <p className="text-4xl font-bold text-[#007a33]">Boston Celtics</p>
+                        </Link>
                         {/* <p className="mt-1 mb-2">Defeat Dallas Mavericks 4-1</p> */}
 
                         {/* link div */}
