@@ -11,7 +11,7 @@ router.get("/", playerControllers.getAllPlayers),
 router.get("/leaders/:seasonType", playerControllers.getPlayerStatLeaders)
 
 // home page
-router.get("/popular", playerControllers.getPopularPlayers)
+router.get("/home", playerControllers.getHomePlayers)
 
 // leaders table
 router.get("/leaders/table/:seasonType/:perMode/:statCategory", playerControllers.getPlayerStatLeadersTable)

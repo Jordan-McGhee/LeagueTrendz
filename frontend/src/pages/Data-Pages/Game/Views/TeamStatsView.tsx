@@ -22,8 +22,6 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
 
     const [gameSeries, setGameSeries] = useState<GameSeriesState[] | undefined>()
     const [gameLeaders, setGameLeaders] = useState<GameLeadersState[] | undefined>()
-    const [firstTeamStandings, setFirstTeamStandings] = useState<StandingsState | undefined>()
-    const [secondTeamStandings, setSecondTeamStandings] = useState<StandingsState | undefined>()
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
@@ -38,8 +36,6 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
                 responseData = await sendRequest(url)
                 setGameSeries(responseData.gameSeries)
                 setGameLeaders(responseData.gameLeaders)
-                setFirstTeamStandings(responseData.firstTeamStandings)
-                setSecondTeamStandings(responseData.secondTeamStandings)
             } catch (error) {
 
             }
@@ -53,7 +49,6 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
 
     return (
         <>
-
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
@@ -206,9 +201,6 @@ const TeamStatsView: React.FC<BoxScoreViewProps> = ({ teamData }) => {
                     }
                 </div>
             </div>
-
-
-
         </>
     )
 }

@@ -17,19 +17,31 @@ export const getAllPlayers = async (req: Request, res: Response, next: NextFunct
     res.status(200).json({ message: `Got all players`, players: playersResponse.rows })
 }
 
-export const getPopularPlayers = async (req: Request, res: Response, next: NextFunction) => {
-    const playersQuery: string = "SELECT p.player_id, p.name, p.player_position, p.jersey_number, p.photo_url, p.team_id, t.full_name AS team_full_name, t.abbreviation AS team_abbreviation FROM players p INNER JOIN teams t ON p.team_id = t.team_id WHERE p.player_id = ANY(ARRAY[45,23,10,52,33]) ORDER BY array_position(ARRAY[45,23,10,52,33], p.player_id)"
-    let playersResponse: QueryResult
+export const getHomePlayers = async (req: Request, res: Response, next: NextFunction) => {
+
+    const awardWinnersQuery: string = "SELECT p.player_id, p.name, p.player_position, p.jersey_number, p.photo_url, p.team_id, t.full_name AS team_full_name, t.abbreviation AS team_abbreviation FROM players p INNER JOIN teams t ON p.team_id = t.team_id WHERE p.player_id = ANY(ARRAY[52,3,23,21,65,245,84]) ORDER BY array_position(ARRAY[52,3,23,21,65,245,84], p.player_id)"
+    let awardWinnersResponse: QueryResult
 
     try {
-        playersResponse = await pool.query(playersQuery)
+        awardWinnersResponse = await pool.query(awardWinnersQuery)
+    } catch (error) {
+        console.log(`Error getting award winners: ${error}`)
+
+        return res.status(500).json({ message: `Error getting award winners: ${error}`})
+    }
+
+    const popularPlayersQuery: string = "SELECT p.player_id, p.name, p.player_position, p.jersey_number, p.photo_url, p.team_id, t.full_name AS team_full_name, t.abbreviation AS team_abbreviation FROM players p INNER JOIN teams t ON p.team_id = t.team_id WHERE p.player_id = ANY(ARRAY[45,23,10,52,33]) ORDER BY array_position(ARRAY[45,23,10,52,33], p.player_id)"
+    let popularPlayersResponse: QueryResult
+
+    try {
+        popularPlayersResponse = await pool.query(popularPlayersQuery)
     } catch (error) {
         console.log(`Error getting popular players: ${error}`)
 
         return res.status(500).json({ message: `Error getting popular players: ${error}`})
     }
 
-    res.status(200).json({ message: `Got popular players`, players: playersResponse.rows})
+    res.status(200).json({ message: `Got players`, awardWinners: awardWinnersResponse.rows, popularPlayers: popularPlayersResponse.rows})
 }
 
 // Stat Leaders

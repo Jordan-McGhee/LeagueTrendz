@@ -605,8 +605,8 @@ export interface TotalsAndAveragesObject {
 
 // PLAYER TYPES
 
-// HOME - POPULAR PLAYERS
-export interface PopularPlayer {
+// HOME PLAYERS
+export interface HomePlayer {
     player_id: number,
     name: string,
     player_position: string,
@@ -615,6 +615,10 @@ export interface PopularPlayer {
     team_id: number,
     team_full_name: string,
     team_abbreviation: string
+}
+
+export interface HomePlayersProps {
+    players: HomePlayer[] | undefined
 }
 
 // ALL PLAYERS PAGE

@@ -110,7 +110,7 @@
         - FT% RANKING: MORE THAN 100 FTM 
 
 - Team Schedule and Player Gamelog:
-    - differentiate between playoff series and add series outcome?
+    <!-- - differentiate between playoff series and add series outcome? DONE -->
 
 - DB VIEWS TO MAKE:
     - SINGLE TEAM PAGE:
@@ -121,5 +121,9 @@
     - ALL PLAYERS PAGE:
         <!-- - playoff game highs and points leaders DONE -->
 
-BUG WITH WAIVED PLAYERS (SEARCH AUSTIN RIVERS)
+<!-- BUG WITH WAIVED PLAYERS (SEARCH AUSTIN RIVERS) DONE -->
 <!-- HAVE SEARCH CLOSE/RESET WHEN SELECTING AN OPTION DONE -->
+
+
+BELLS & WHISTLES
+- ROTATING HEADER ON HOME PAGE SHOWCASING 2024 CHAMPS, NBA TEAMS

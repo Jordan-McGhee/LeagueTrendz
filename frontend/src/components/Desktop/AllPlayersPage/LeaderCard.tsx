@@ -39,8 +39,9 @@ const LeaderCard: React.FC<LeaderCardProps> = ({ cardClass, title, averages, top
 
 
                             {/* right side */}
-                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${topStatPlayers[0].player_id}/${topStatPlayers[0].name.toLowerCase().replace(" ", "-")}`}>
-                                <img src={topStatPlayers[0].photo_url} alt={topStatPlayers[0].name} className="size-32 object-contain" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${topStatPlayers[0].player_id}/${topStatPlayers[0].name.toLowerCase().replace(" ", "-")}`} className="flex -space-x-20  items-center">
+                                <img src={topStatPlayers[0].photo_url} alt={topStatPlayers[0].name} className="h-24 object-contain z-10 relative" />
+                                <TeamLogo logoClass="object-contain opacity-40 size-24 z-0 relative" team_id={topStatPlayers[0].team_id} abbreviation={topStatPlayers[0].abbreviation} />
                             </Link>
                         </div>
                     </CardHeader>

@@ -47,13 +47,14 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                                     <p className={gameLeaderPlayers[0].player_team_score < gameLeaderPlayers[0].opp_team_score ? "font-bold" : ""}>{gameLeaderPlayers[0].opp_team_score}</p>
 
                                 </Link>
-                                <p className="font-extrabold text-4xl">{gameLeaderPlayers[0].value} {title}</p>
+                                <p className="font-extrabold text-3xl">{gameLeaderPlayers[0].value} {title}</p>
                             </div>
 
 
                             {/* right side */}
-                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${gameLeaderPlayers[0].player_id}/${gameLeaderPlayers[0].name.toLowerCase().replace(" ", "-")}`}>
-                                <img src={gameLeaderPlayers[0].photo_url} alt={gameLeaderPlayers[0].name} className="size-32 object-contain" />
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${gameLeaderPlayers[0].player_id}/${gameLeaderPlayers[0].name.toLowerCase().replace(" ", "-")}`} className="flex -space-x-24  items-center">
+                                <img src={gameLeaderPlayers[0].photo_url} alt={gameLeaderPlayers[0].name} className="h-28 z-10 relative object-contain" />
+                                <TeamLogo logoClass="object-contain opacity-40 size-28 z-0 relative" team_id={gameLeaderPlayers[0].player_team_id} abbreviation={gameLeaderPlayers[0].player_team_abbreviation} />
                             </Link>
                         </div>
                     </CardHeader>

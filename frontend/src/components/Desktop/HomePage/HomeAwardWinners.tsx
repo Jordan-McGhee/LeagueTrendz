@@ -13,38 +13,54 @@ import { Separator } from "../../ui/separator"
 import TeamLogo from "../../ui/TeamLogo"
 
 
-const HomePlayers: React.FC<HomePlayersProps> = ({ players }) => {
+const HomeAwardWinners: React.FC<HomePlayersProps> = ({ players }) => {
+
+    // awards in order of players queried in database [ mvp, dpoy, clutch, roty, most improved, 6th man ]
+    const awardList = ["League MVP", "Defensive POTY", "Clutch POTY", "Rookie of the Year", "Most Improved", "Sixth Man of the Year"]
+    // img src of trophies
+    const awardSrc = [require('../../../nba-trophies/michael-jordan-mvp.png'), require('../../../nba-trophies/hakeem-olajuwon-defensive.png'), require('../../../nba-trophies/jerry-west-clutch-player.png'), require('../../../nba-trophies/wilt-chamberlain-rookie.png'), require('../../../nba-trophies/george-mikan-most-improved.png'), require('../../../nba-trophies/john-havlicek-sixth-man.png')]
 
     return (
         <Card>
             <CardHeader>
                 <CardTitle>
-                    Popular Players
+                    2023-24 Award Winners
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                {
-                    players && players.map((player) => (
-                        <div>
-                            <div className="grid grid-cols-8 gap-x-2 items-center w-full">
-                                <div className="col-span-6">
-                                    <p className=" flex gap-x-1 items-center font-light">
+                {players && players.map((player, index) => {
+                    if (index === 6) {
+                        return null
+                    }
+
+                    return (
+                        <div key={player.name}>
+
+                            <div className="grid grid-cols-8 gap-x-3 items-center w-full">
+                                <img
+                                    src={awardSrc[index]}
+                                    alt={awardList[index]}
+                                    className="col-span-1 w-full h-14 object-contain"
+                                />
+
+                                <div className="col-span-5">
+                                    <p className="font-semibold">
+                                        {awardList[index]}
+                                    </p>
+                                    <div className="flex gap-x-1 items-center text-xs">
                                         <Link
                                             to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`}
                                             className="font-semibold hover:underline"
                                         >
-                                            {player.name}
+                                            {shortenPlayerName(player.name)}
                                         </Link>
-                                        <p>#{player.jersey_number}</p>
-                                    </p>
-                                    <div className="flex gap-x-1 items-center text-xs">
+                                        <p>·</p>
                                         <Link
                                             to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${player.team_abbreviation}?view=home`}
                                             className="hover:underline"
                                         >
-                                            {player.team_full_name}
+                                            {shortenTeamName(player.team_id)}
                                         </Link>
-                                        <p>· {convertPlayerPosition(player.player_position)}</p>
                                     </div>
                                 </div>
 
@@ -66,13 +82,14 @@ const HomePlayers: React.FC<HomePlayersProps> = ({ players }) => {
                                     </Link>
                                 </div>
                             </div>
-                            {players.indexOf(player) !== 4 && <Separator className="w-full my-1.5" />}
+
+                            {index !== 5 && <Separator className="w-full my-1.5" />}
                         </div>
-                    ))
-                }
+                    );
+                })}
             </CardContent>
         </Card>
     )
 }
 
-export default HomePlayers
+export default HomeAwardWinners

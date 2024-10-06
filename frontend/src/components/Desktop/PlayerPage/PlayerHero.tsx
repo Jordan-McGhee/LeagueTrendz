@@ -49,7 +49,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
                     {player.photo_url ?
 
                         <div className="flex -space-x-24 items-center overflow-hidden">
-                            <TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-24 object-contain opacity-40 z-0 relative" />
+                            { player.team_id !== -1 && <TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-24 object-contain opacity-40 z-0 relative" />}
                             <img src={player.photo_url} alt={player.name} className="h-24 z-0 relative" />
                         </div>
 

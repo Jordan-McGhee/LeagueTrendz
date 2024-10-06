@@ -1,36 +1,81 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+// type imports
+import { HomePlayer } from "@/types";
+
+// utils imports
+
+// ui imports
+
+// hook imports
+import { useFetch } from "../Hooks/useFetch";
 
 // component imports
-import HomeSchedule from "../components/Desktop/HomePage/HomeSchedule";
+import HomeHeader from "../components/Desktop/HomePage/HomeHeader";
 import HomeStandings from "../components/Desktop/HomePage/HomeStandings";
 import HomePlayers from "../components/Desktop/HomePage/HomePlayers";
+import HomeAwardWinners from "../components/Desktop/HomePage/HomeAwardWinners";
+import LoadingPage from "./LoadingPage";
 
 const HomePage = () => {
 
+    const [popularPlayers, setPopularPlayers] = useState<HomePlayer[] | undefined>()
+    const [awardWinners, setAwardWinners] = useState<HomePlayer[] | undefined>()
+
+    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
+
+    // fetch popular players from database
+    useEffect(() => {
+
+        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/players/home`
+
+        let responseData: any
+
+        const fetchPopularPlayers = async () => {
+            try {
+                responseData = await sendRequest(url)
+                console.log(responseData)
+                setPopularPlayers(responseData.popularPlayers)
+                setAwardWinners(responseData.awardWinners)
+            } catch (error) {
+
+            }
+        }
+
+        fetchPopularPlayers()
+
+    }, [sendRequest])
+
     return (
+        <>
+            {isLoading && <LoadingPage />}
 
-        // full content div
-        <div className="flex p-4 gap-x-4 h-full">
+            {!isLoading &&
+                <div className="flex p-4 gap-x-4 h-full">
 
-            {/* left side */}
-            <div className="h-full w-[70%] flex flex-col justify-between gap-y-4">
+                    {/* left side */}
+                    <div className="h-full w-[70%] flex flex-col justify-between gap-y-4">
 
-                {/* games/sched div */}
-                <HomeSchedule />
+                        {/* games/sched div */}
+                        <HomeHeader players={awardWinners} />
 
-                {/* standings div */}
-                <HomeStandings />
+                        {/* standings div */}
+                        <HomeStandings />
 
 
 
-            </div>
+                    </div>
 
-            {/* right side */}
-            <div className=" h-full w-[30%] flex flex-col justify-between gap-y-4">
-                <HomePlayers />
-            </div>
+                    {/* right side */}
+                    <div className=" h-full w-[30%] flex flex-col justify-between gap-y-4">
+                        <HomePlayers players={popularPlayers} />
 
-        </div>
+                        <HomeAwardWinners players={awardWinners} />
+                    </div>
+
+                </div>
+            }
+        </>
     )
 }
 
