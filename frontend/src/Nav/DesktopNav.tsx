@@ -132,7 +132,7 @@ const DesktopNav = () => {
         // </nav>
 
         <nav className="text-white sticky top-0 w-full bg-black z-50">
-            <ul className="flex justify-between items-center w-4/5 m-auto py-4 px-6 text-lg">
+            <ul className="flex justify-between items-center max-w-screen-2xl w-4/5 m-auto p-4 text-lg">
                 {/* regular nav options */}
                 <div className="flex items-center space-x-6">
                     <li className="hover:text-[#ffa023]">

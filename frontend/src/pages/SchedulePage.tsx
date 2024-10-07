@@ -21,6 +21,7 @@ const SchedulePage = () => {
 
     const [selectedDate, setSelectedDate] = useState<Date>(new Date())
     console.log(selectedDate.toISOString().split('T')[0]) // yyyy-mm-dd
+    console.log(selectedDate)
 
     const [gamesData, setGamesData] = useState<GamesDataState | undefined>()
 
@@ -49,7 +50,7 @@ const SchedulePage = () => {
         console.log('Input dateString:', dateString);
         const [year, month, day] = dateString.split('-').map(Number);
         const date = new Date(year, month - 1, day);
-    
+
         return new Intl.DateTimeFormat('en-US', {
             weekday: 'long',
             year: 'numeric',
@@ -97,7 +98,14 @@ const SchedulePage = () => {
                         ))
                     }
                 </CardContent>
-                <CardFooter className="italic text-xs">The 2023 NBA season started on October 24th. Playoffs started April 16th and ended June 17th.</CardFooter>
+                <CardFooter className="italic text-xs">
+                    The 2023 NBA regular season started on
+                    <span className="ml-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2023-10-24T00:00:00"))}>October 24th</span>.
+                    The playoffs started
+                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-04-16T00:00:00"))}>April 16th</span>
+                    and ended
+                    <span className="ml-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-06-17T00:00:00"))}>June 17th.</span>
+                </CardFooter>
             </Card>
         </div>
     )

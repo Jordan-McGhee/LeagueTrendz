@@ -51,10 +51,10 @@ const HomePage = () => {
             {isLoading && <LoadingPage />}
 
             {!isLoading &&
-                <div className="flex p-4 gap-x-4 h-full">
+                <div className="flex gap-x-4 h-full">
 
                     {/* left side */}
-                    <div className="h-full w-[70%] flex flex-col justify-between gap-y-4">
+                    <div className="h-full w-[70%] flex flex-col gap-y-4">
 
                         {/* games/sched div */}
                         <HomeHeader players={awardWinners} />
@@ -67,7 +67,7 @@ const HomePage = () => {
                     </div>
 
                     {/* right side */}
-                    <div className=" h-full w-[30%] flex flex-col justify-between gap-y-4">
+                    <div className=" h-full w-[30%] flex flex-col gap-y-4">
                         <HomePlayers players={popularPlayers} />
 
                         <HomeAwardWinners players={awardWinners} />
