@@ -1251,3 +1251,8 @@ export interface BoxScoreViewState {
     turnovers: number,
     pf: number
 }
+
+// ICONS
+export interface IconProps {
+    iconClass?: string
+}

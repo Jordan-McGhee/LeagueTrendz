@@ -34,7 +34,7 @@ const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateCha
     };
 
     return (
-        <div className="">
+        <div className="pt-4">
             <Pagination>
 
                 <PaginationContent className="w-full flex justify-between">

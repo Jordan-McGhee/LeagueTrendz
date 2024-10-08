@@ -12,7 +12,7 @@ import teams from "../../../DUMMYDATA/NBA_Teams.json"
 const HomeStandings = () => {
 
     return (
-        <Card className="h-2/3">
+        <Card className="h-fit">
             <CardHeader>
                 <CardTitle>
                     NBA Regular Season Standings 2023-24
