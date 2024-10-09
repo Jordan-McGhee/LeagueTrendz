@@ -11,11 +11,11 @@ export const ScheduleIcon: React.FC<IconProps> = ({ iconClass }) => (
 )
 
 export const StandingsIcon: React.FC<IconProps> = ({ iconClass }) => (
-    <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24" id="podium" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" className="icon line-color"><polygon id="secondary" points="11.54 3.94 10.5 4.09 11.25 4.82 11.07 5.85 12 5.37 12.93 5.85 12.75 4.82 13.5 4.09 12.46 3.94 12 3 11.54 3.94" fill="currentColor" stroke="#ffa023" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}></polygon><path id="primary" d="M9,21H3V16H9Zm6-11H9V21h6Zm6,4H15v7h6Z" fill="currentColor" stroke="rgb(0,0,0)" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}></path></svg>
+    <svg className={iconClass} fill="currentColor" width="24" height="24" viewBox="0 0 24 24" id="podium" data-name="Line Color" xmlns="http://www.w3.org/2000/svg"><polygon id="secondary" points="11.54 3.94 10.5 4.09 11.25 4.82 11.07 5.85 12 5.37 12.93 5.85 12.75 4.82 13.5 4.09 12.46 3.94 12 3 11.54 3.94" fill="currentColor" stroke="#ffa023" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}></polygon><path id="primary" d="M9,21H3V16H9Zm6-11H9V21h6Zm6,4H15v7h6Z" fill="currentColor" stroke="rgb(0,0,0)" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}></path></svg>
 )
 
 export const TeamIcon: React.FC<IconProps> = ({ iconClass }) => (
-    <svg fill="currentColor" height="20" width="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+    <svg className={iconClass} fill="currentColor" height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 372.483 372.483">
         <g id="XMLID_10_">
             <g>
@@ -164,7 +164,7 @@ export const TeamIcon: React.FC<IconProps> = ({ iconClass }) => (
 )
 
 export const PlayerIcon: React.FC<IconProps> = ({ iconClass }) => (
-    <svg height="20" width="20" fill="currentColor" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <svg className={iconClass} height="24" width="24" fill="currentColor" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <path className="st0" stroke="currentColor" strokeWidth={1} d="M477.012,184.442c-62.672-41.598-59.041-157.114-59-158.27l0.992-26.14L392.853,0h-56.32h-25.18v25.18v49.853
 		c0,30.524-24.832,55.352-55.352,55.352c-30.521,0-55.353-24.828-55.353-55.352V25.18V0h-25.18h-56.319h-26.23l1.069,26.205
 		c0.041,1.123,3.672,116.64-59,158.237l-11.254,7.475v13.508V486.82V512h25.18h414.172h25.18v-25.18V205.426v-13.508

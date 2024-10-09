@@ -51,28 +51,39 @@ const HomePage = () => {
             {isLoading && <LoadingPage />}
 
             {!isLoading &&
-                <div className="flex gap-x-4 h-full">
 
-                    {/* left side */}
-                    <div className="h-full w-[70%] flex flex-col gap-y-4">
+                <div>
 
-                        {/* games/sched div */}
+
+                    {/* desktop */}
+                    <div className="hidden md:flex gap-x-4 h-full">
+
+                        {/* left side */}
+                        <div className="h-full w-[70%] flex flex-col gap-y-4">
+
+                            {/* games/sched div */}
+                            <HomeHeader players={awardWinners} />
+
+                            {/* standings div */}
+                            <HomeStandings />
+
+
+
+                        </div>
+
+                        {/* right side */}
+                        <div className=" h-full w-[30%] flex flex-col gap-y-4">
+                            <HomePlayers players={popularPlayers} />
+
+                            <HomeAwardWinners players={awardWinners} />
+                        </div>
+
+                    </div>
+
+                    {/* mobile */}
+                    <div className="md:hidden flex flex-col gap-y-4 w-full">
                         <HomeHeader players={awardWinners} />
-
-                        {/* standings div */}
-                        <HomeStandings />
-
-
-
                     </div>
-
-                    {/* right side */}
-                    <div className=" h-full w-[30%] flex flex-col gap-y-4">
-                        <HomePlayers players={popularPlayers} />
-
-                        <HomeAwardWinners players={awardWinners} />
-                    </div>
-
                 </div>
             }
         </>

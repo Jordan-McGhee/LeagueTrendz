@@ -16,6 +16,7 @@ import AllTeamsPage from './pages/AllTeamsPage';
 import HomePage from './pages/HomePage';
 import PlayerPage from './pages/Data-Pages/Player/PlayerPage';
 import GameBoxScorePage from './pages/Data-Pages/Game/GameBoxScorePage';
+import NotFoundPage from './pages/NotFoundPage';
 import SchedulePage from './pages/SchedulePage';
 import SingleTeamPage from './pages/Data-Pages/Team/SingleTeamPage';
 import ScoresPage from './pages/ScoresPage';
@@ -49,6 +50,8 @@ function App() {
 
       {/* user */}
       <Route path='/user' element={<UserPage />} />
+
+      <Route path='*' element = {<NotFoundPage />} />
     </Routes>
   )
 
@@ -69,7 +72,7 @@ function App() {
           <DesktopNav />
 
           {/* content div */}
-          <div className='m-auto w-4/5 max-w-screen-2xl h-fit min-h-full bg-[#e2dfe2] p-4'>
+          <div className='w-4/5 m-auto max-w-screen-2xl h-fit min-h-full bg-[#e2dfe2] p-4'>
             {routes}
           </div>
         </div>
