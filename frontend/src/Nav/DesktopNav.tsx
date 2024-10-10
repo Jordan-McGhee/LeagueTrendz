@@ -41,10 +41,10 @@ const DesktopNav = () => {
 
         <nav className="text-white sticky top-0 w-full bg-black z-50">
 
-            <div className="max-w-screen-2xl m-auto px-4">
+            <div className="">
 
                 {/* desktop nav */}
-                <ul className="hidden md:flex w-4/5 m-auto justify-between items-center">
+                <ul className="hidden md:flex max-w-screen-2xl px-4 w-4/5 m-auto justify-between items-center">
                     {/* regular nav options */}
                     <div className="flex items-center space-x-6">
                         <li className="hover:text-[#ffa023] py-4 text-xl">
@@ -132,7 +132,7 @@ const DesktopNav = () => {
                     {/* Animated Mobile Menu */}
                     <div className={`fixed inset-0 bg-black bg-opacity-95 z-50 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                         <div className="absolute inset-x-0 bottom-0 pb-12">
-                            <ul className="flex flex-col px-8 gap-y-8 max-w-xs text-white text-2xl mb-8">
+                            <ul className="flex flex-col px-6 gap-y-8 max-w-xs text-white text-xl mb-8">
                                 <li className="hover:cursor-pointer hover:text-[#ffa023 flex items-center gap-x-4 w-full">
                                     <CalendarIcon className="size-6" />
                                     <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/schedule" className="hover:text-[#ffa023] w-full">
@@ -176,7 +176,7 @@ const DesktopNav = () => {
 
                     {/* Bottom Navigation Bar */}
                     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-black text-white z-50">
-                        <div className="flex items-center justify-between px-8 py-6">
+                        <div className="flex items-center justify-between px-6 py-6">
                             <button onClick={toggleMobileMenuHandler} className="text-white">
                                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                             </button>

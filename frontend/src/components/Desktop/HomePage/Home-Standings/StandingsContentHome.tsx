@@ -45,7 +45,7 @@ const StandingsContentHome = () => {
     }, [sendRequest])
 
 
-    // define columns for data table
+    // define columns for data table - DESKTOP
     const standardColumns: ColumnDef<StandingsTeamItem>[] = [
 
         // team name
@@ -175,6 +175,89 @@ const StandingsContentHome = () => {
         }
     ]
 
+    // define columns for data table - MOBILE
+    const mobileColumns: ColumnDef<StandingsTeamItem>[] = [
+
+        // team name
+        {
+            accessorKey: "full_name",
+            header: "",
+            cell: ({ row }) => {
+
+                return (
+                    <Link to={`/nba/teams/${row.original.abbreviation.toLowerCase()}?view=home`} className="flex gap-x-2 hover:underline hover:underline-offset-2">
+                        <TeamLogo team_id={row.original.team_id} abbreviation={row.original.abbreviation} logoClass="size-5 object-contain" />
+                        <p>{row.original.abbreviation}</p>
+                    </Link>
+                )
+            }
+        },
+
+        // wins --
+
+        {
+            accessorKey: "wins",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">W</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.wins}</p>
+                )
+            }
+        },
+
+        // losses --
+
+        {
+            accessorKey: "losses",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">L</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.losses}</p>
+                )
+            }
+        },
+
+        // PCT --
+
+        {
+            accessorKey: "pct",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">PCT</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.pct}</p>
+                )
+            }
+        },
+
+        // gb --
+
+        {
+            accessorKey: "gb",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">GB</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.gb}</p>
+                )
+            }
+        }
+    ]
+
     return (
         <>
             {/* error */}
@@ -185,30 +268,60 @@ const StandingsContentHome = () => {
 
 
             {data &&
-                <Tabs defaultValue="eastern">
-                    <TabsList>
-                        <TabsTrigger value="eastern">Eastern Conference</TabsTrigger>
-                        <TabsTrigger value="western">Western Conference</TabsTrigger>
-                    </TabsList>
 
-                    {/* LEAGUE CONTENT */}
-                    <TabsContent value="eastern">
+                <div>
+                    {/* DESKTOP */}
+                    <Tabs defaultValue="eastern" className="hidden md:block">
+                        <TabsList>
+                            <TabsTrigger value="eastern">Eastern Conference</TabsTrigger>
+                            <TabsTrigger value="western">Western Conference</TabsTrigger>
+                        </TabsList>
 
-                        {/* EASTERN */}
-                        {/* <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p> */}
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
+                        {/* LEAGUE CONTENT */}
+                        <TabsContent value="eastern">
 
-                    </TabsContent>
+                            {/* EASTERN */}
+                            {/* <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p> */}
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
 
-                    {/* CONFERENCE CONTENT */}
-                    <TabsContent value="western">
+                        </TabsContent>
 
-                        {/* WESTERN */}
-                        {/* <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p> */}
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
+                        {/* CONFERENCE CONTENT */}
+                        <TabsContent value="western">
 
-                    </TabsContent>
-                </Tabs>
+                            {/* WESTERN */}
+                            {/* <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p> */}
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
+
+                        </TabsContent>
+                    </Tabs>
+
+                    {/* MOBILE */}
+                    <Tabs defaultValue="eastern" className="md:hidden">
+                        <TabsList className="flex items-center w-fit">
+                            <TabsTrigger value="eastern">Eastern</TabsTrigger>
+                            <TabsTrigger value="western">Western</TabsTrigger>
+                        </TabsList>
+
+                        {/* LEAGUE CONTENT */}
+                        <TabsContent value="eastern">
+
+                            {/* EASTERN */}
+                            {/* <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p> */}
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
+
+                        </TabsContent>
+
+                        {/* CONFERENCE CONTENT */}
+                        <TabsContent value="western">
+
+                            {/* WESTERN */}
+                            {/* <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p> */}
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
+
+                        </TabsContent>
+                    </Tabs>
+                </div>
             }
         </>
     )

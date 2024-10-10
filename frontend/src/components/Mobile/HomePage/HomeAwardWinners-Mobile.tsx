@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 // type imports
@@ -11,31 +11,39 @@ import { convertPlayerPosition, shortenPlayerName, shortenTeamName } from "../..
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card"
 import { Separator } from "../../ui/separator"
 import TeamLogo from "../../ui/TeamLogo"
-
-// mobile import
-import HomeAwardWinnersMobile from "../../Mobile/HomePage/HomeAwardWinners-Mobile"
+import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 
 
-const HomeAwardWinners: React.FC<HomePlayersProps> = ({ players }) => {
+const HomeAwardWinnersMobile: React.FC<HomePlayersProps> = ({ players }) => {
+
+    const [showContent, setShowContent] = useState<Boolean>(true)
+
+    const toggleShowContent = () => {
+        setShowContent(!showContent)
+    }
 
     // awards in order of players queried in database [ mvp, dpoy, clutch, roty, most improved, 6th man ]
-    const awardList = ["League MVP", "Defensive POTY", "Clutch POTY", "Rookie of the Year", "Most Improved", "Sixth Man of the Year"]
+    const awardList = ["League MVP", "Defensive POTY", "Clutch POTY", "Rookie OTY", "Most Improved", "Sixth MOTY"]
     // img src of trophies
     const awardSrc = [require('../../../nba-trophies/michael-jordan-mvp.png'), require('../../../nba-trophies/hakeem-olajuwon-defensive.png'), require('../../../nba-trophies/jerry-west-clutch-player.png'), require('../../../nba-trophies/wilt-chamberlain-rookie.png'), require('../../../nba-trophies/george-mikan-most-improved.png'), require('../../../nba-trophies/john-havlicek-sixth-man.png')]
 
     return (
-        <>
-            <div className="md:hidden">
-                {/* mobile */}
-                <HomeAwardWinnersMobile players={players} />
-            </div>
+        <Card>
+            <CardHeader>
+                <CardTitle>
+                    <div className="flex justify-between items-center">
+                        <p className="text-xl">2023-24 Award Winners</p>
 
-            <Card className="hidden md:block">
-                <CardHeader>
-                    <CardTitle>
-                        2023-24 Award Winners
-                    </CardTitle>
-                </CardHeader>
+                        <div onClick={() => toggleShowContent()} className="flex gap-x-2 items-center">
+                            <p className="text-sm">{showContent ? "Hide" : "Show"}</p>
+                            {showContent ? <ChevronUpIcon className="size-4" /> : <ChevronDownIcon className="size-4" />}
+                        </div>
+                    </div>
+                </CardTitle>
+            </CardHeader>
+
+            {
+                showContent &&
                 <CardContent>
                     {players && players.map((player, index) => {
 
@@ -45,7 +53,7 @@ const HomeAwardWinners: React.FC<HomePlayersProps> = ({ players }) => {
                         }
 
                         return (
-                            <div key={player.name}>
+                            <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`} key={player.name}>
 
                                 <div className="grid grid-cols-8 gap-x-3 items-center w-full">
                                     <img
@@ -59,27 +67,14 @@ const HomeAwardWinners: React.FC<HomePlayersProps> = ({ players }) => {
                                             {awardList[index]}
                                         </p>
                                         <div className="flex gap-x-1 items-center text-xs">
-                                            <Link
-                                                to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`}
-                                                className="font-semibold hover:underline"
-                                            >
-                                                {shortenPlayerName(player.name)}
-                                            </Link>
+                                            <p className="font-semibold">{shortenPlayerName(player.name)}</p>
                                             <p>·</p>
-                                            <Link
-                                                to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${player.team_abbreviation}?view=home`}
-                                                className="hover:underline"
-                                            >
-                                                {shortenTeamName(player.team_id)}
-                                            </Link>
+                                            <p className="hover:underline">{shortenTeamName(player.team_id)}</p>
                                         </div>
                                     </div>
 
                                     <div className="col-span-2 flex justify-end">
-                                        <Link
-                                            to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`}
-                                            className="flex -space-x-7 items-center"
-                                        >
+                                        <div className="flex -space-x-7 items-center">
                                             <img
                                                 src={player.photo_url}
                                                 alt={player.name}
@@ -90,18 +85,18 @@ const HomeAwardWinners: React.FC<HomePlayersProps> = ({ players }) => {
                                                 team_id={player.team_id}
                                                 abbreviation={player.team_abbreviation}
                                             />
-                                        </Link>
+                                        </div>
                                     </div>
                                 </div>
 
                                 {index !== 5 && <Separator className="w-full my-1.5" />}
-                            </div>
+                            </Link>
                         );
                     })}
                 </CardContent>
-            </Card>
-        </>
+            }
+        </Card>
     )
 }
 
-export default HomeAwardWinners
+export default HomeAwardWinnersMobile

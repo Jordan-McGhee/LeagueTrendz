@@ -15,7 +15,7 @@ const HomeStandings = () => {
         <Card className="h-fit">
             <CardHeader>
                 <CardTitle>
-                    NBA Regular Season Standings 2023-24
+                '23-24 Regular Season Standings
                 </CardTitle>
 
             </CardHeader>

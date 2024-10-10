@@ -72,7 +72,7 @@ function App() {
           <DesktopNav />
 
           {/* content div */}
-          <div className='w-4/5 m-auto max-w-screen-2xl h-fit min-h-full bg-[#e2dfe2] p-4'>
+          <div className='m-auto max-w-sm md:w-4/5 md:max-w-screen-2xl h-fit min-h-full bg-[#e2dfe2] p-4'>
             {routes}
           </div>
         </div>
