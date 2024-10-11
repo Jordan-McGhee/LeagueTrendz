@@ -16,12 +16,12 @@ const TeamItem = (props: { team: Team }) => {
         <Link to={teamPageUrl}>
             <Card className="flex items-center mb-4 p-4 min-h-18 min-w-48 hover:scale-105">
 
-                <TeamLogo team_id={props.team.team_id} abbreviation={props.team.abbreviation} logoClass="w-12 h-12 object-contain mr-4" />
+                <TeamLogo team_id={props.team.team_id} abbreviation={props.team.abbreviation} logoClass="size-9 md:w-12 md:h-12 object-contain mr-4" />
 
                 <div className="w-full">
                     <Link
                         to={`${teamPageUrl}?view=home`}
-                        className="text-xl font-semibold"
+                        className="text-lg md:text-xl font-semibold truncate"
 
                         onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
                             if (e.target instanceof HTMLElement) {
@@ -38,7 +38,7 @@ const TeamItem = (props: { team: Team }) => {
                     </Link>
 
                     {/* link div */}
-                    <div className="flex justify-between w-2/3 max-w-36 text-xs gap-x-2">
+                    <div className="flex items-center justify-between w-2/3 max-w-36 md:text-xs gap-x-2">
                         <Link
                             to={`${teamPageUrl}?view=stats`}
                             className="hover:font-semibold hover:scale-110"

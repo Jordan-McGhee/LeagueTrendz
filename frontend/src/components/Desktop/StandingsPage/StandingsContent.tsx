@@ -75,7 +75,7 @@ const StandingsContent = () => {
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         className={column.getIsSorted() ?
                             column.getIsSorted() === "asc" ? "px-2 underline underline-offset-4 bg-slate-400 text-white" : "px-2 overline overline-offset-4 bg-slate-400 text-white"
-                            
+
                             : "px-2 underline underline-offset-4 hover:bg-slate-200"
                         }
                     >
@@ -337,6 +337,103 @@ const StandingsContent = () => {
         }
     ]
 
+    const mobileColumns: ColumnDef<StandingsTeamItem>[] = [
+
+        // team name
+        {
+            accessorKey: "full_name",
+            header: "",
+            cell: ({ row }) => {
+
+                return (
+                    <Link to={`/nba/teams/${row.original.abbreviation.toLowerCase()}?view=home`} className="flex gap-x-2 hover:underline hover:underline-offset-2">
+                        <TeamLogo team_id={row.original.team_id} abbreviation={row.original.abbreviation} logoClass="size-5 object-contain" />
+                        <p>{row.original.abbreviation}</p>
+                    </Link>
+                )
+            }
+        },
+
+        // wins --
+
+        {
+            accessorKey: "wins",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">W</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.wins}</p>
+                )
+            }
+        },
+
+        // losses --
+
+        {
+            accessorKey: "losses",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">L</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.losses}</p>
+                )
+            }
+        },
+
+        // PCT --
+
+        {
+            accessorKey: "pct",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">PCT</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.pct}</p>
+                )
+            }
+        },
+
+        // gb --
+
+        {
+            accessorKey: "gb",
+            header: ({ column }) => {
+                return (
+                    <p className="px-2">GB</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{row.original.gb}</p>
+                )
+            }
+        },
+
+        // l10
+        {
+            accessorKey: "last_10",
+            header: () => {
+                return (
+                    <p className="px-2">L10</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{lastTenConverter(row.original.last_10)}</p>
+                )
+            }
+        }
+    ]
+
     return (
         <>
             {/* error */}
@@ -347,58 +444,117 @@ const StandingsContent = () => {
 
 
             {data &&
-                <Tabs defaultValue="conference">
-                    <TabsList>
-                        <TabsTrigger value="league">League</TabsTrigger>
-                        <TabsTrigger value="conference">Conference</TabsTrigger>
-                        <TabsTrigger value="division">Division</TabsTrigger>
-                    </TabsList>
 
-                    {/* LEAGUE CONTENT */}
-                    <TabsContent value="league">
+                <div>
 
-                        <p className="text-xl font-bold mt-6">NATIONAL BASKETBALL ASSOCIATION</p>
-                        <DataTable columns={standardColumns} data={data} />
+                    {/* DESKTOP */}
+                    <Tabs defaultValue="conference" className="hidden md:block">
+                        <TabsList>
+                            <TabsTrigger value="league">League</TabsTrigger>
+                            <TabsTrigger value="conference">Conference</TabsTrigger>
+                            <TabsTrigger value="division">Division</TabsTrigger>
+                        </TabsList>
 
-                    </TabsContent>
+                        {/* LEAGUE CONTENT */}
+                        <TabsContent value="league">
 
-                    {/* CONFERENCE CONTENT */}
-                    <TabsContent value="conference">
+                            <p className="text-xl font-bold mt-6">NBA</p>
+                            <DataTable columns={standardColumns} data={data} />
+
+                        </TabsContent>
+
+                        {/* CONFERENCE CONTENT */}
+                        <TabsContent value="conference">
 
 
-                        {/* EASTERN */}
-                        <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
+                            {/* EASTERN */}
+                            <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
 
-                        {/* WESTERN */}
-                        <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
+                            {/* WESTERN */}
+                            <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
 
-                    </TabsContent>
+                        </TabsContent>
 
-                    {/* DIVISIONS CONTENT */}
-                    <TabsContent value="division">
+                        {/* DIVISIONS CONTENT */}
+                        <TabsContent value="division">
 
-                        <p className="text-xl font-bold mt-6">ATLANTIC DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Atlantic")} />
+                            <p className="text-xl font-bold mt-6">ATLANTIC DIVISION</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Atlantic")} />
 
-                        <p className="text-xl font-bold mt-4">CENTRAL DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Central")} />
+                            <p className="text-xl font-bold mt-4">CENTRAL DIVISION</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Central")} />
 
-                        <p className="text-xl font-bold mt-4">SOUTHEAST DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southeast")} />
+                            <p className="text-xl font-bold mt-4">SOUTHEAST DIVISION</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southeast")} />
 
-                        <p className="text-xl font-bold mt-4">NORTHWEST DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Northwest")} />
+                            <p className="text-xl font-bold mt-4">NORTHWEST DIVISION</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Northwest")} />
 
-                        <p className="text-xl font-bold mt-4">PACIFIC DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Pacific")} />
+                            <p className="text-xl font-bold mt-4">PACIFIC DIVISION</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Pacific")} />
 
-                        <p className="text-xl font-bold mt-4">SOUTHWEST DIVISION</p>
-                        <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southwest")} />
+                            <p className="text-xl font-bold mt-4">SOUTHWEST DIVISION</p>
+                            <DataTable columns={standardColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southwest")} />
 
-                    </TabsContent>
-                </Tabs>
+                        </TabsContent>
+                    </Tabs>
+
+                    {/* DESKTOP */}
+                    <Tabs defaultValue="conference" className="md:hidden">
+                        <TabsList>
+                            <TabsTrigger value="league">League</TabsTrigger>
+                            <TabsTrigger value="conference">Conference</TabsTrigger>
+                            <TabsTrigger value="division">Division</TabsTrigger>
+                        </TabsList>
+
+                        {/* LEAGUE CONTENT */}
+                        <TabsContent value="league">
+
+                            <p className="text-xl font-bold mt-6">NBA</p>
+                            <DataTable columns={mobileColumns} data={data} />
+
+                        </TabsContent>
+
+                        {/* CONFERENCE CONTENT */} 
+                        <TabsContent value="conference">
+
+
+                            {/* EASTERN */}
+                            <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
+
+                            {/* WESTERN */}
+                            <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
+
+                        </TabsContent>
+
+                        {/* DIVISIONS CONTENT */}
+                        <TabsContent value="division">
+
+                            <p className="text-xl font-bold mt-6">ATLANTIC DIVISION</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Atlantic")} />
+
+                            <p className="text-xl font-bold mt-4">CENTRAL DIVISION</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Central")} />
+
+                            <p className="text-xl font-bold mt-4">SOUTHEAST DIVISION</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southeast")} />
+
+                            <p className="text-xl font-bold mt-4">NORTHWEST DIVISION</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Northwest")} />
+
+                            <p className="text-xl font-bold mt-4">PACIFIC DIVISION</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Pacific")} />
+
+                            <p className="text-xl font-bold mt-4">SOUTHWEST DIVISION</p>
+                            <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.division === "Southwest")} />
+
+                        </TabsContent>
+                    </Tabs>
+                </div>
             }
         </>
     )

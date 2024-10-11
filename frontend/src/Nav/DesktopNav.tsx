@@ -15,6 +15,7 @@ import { BasketballIcon, ScheduleIcon, StandingsIcon, TeamIcon, PlayerIcon } fro
 // component imports
 import AuthPopup from "../components/Desktop/Auth/AuthPopup";
 import SearchPopup from "../components/Desktop/Search/SearchPopup";
+import SearchPopupMobile from "../components/Mobile/Search/SearchPopup-Mobile";
 
 const DesktopNav = () => {
 
@@ -22,6 +23,7 @@ const DesktopNav = () => {
 
     const [openAuth, setOpenAuth] = useState(false)
     const [openSearch, setOpenSearch] = useState(false)
+    const [openMobileSearch, setOpenMobileSearch] = useState(false)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     const changeAuthDialogStateHandler = () => {
@@ -30,6 +32,10 @@ const DesktopNav = () => {
 
     const changeSearchDialogStateHandler = () => {
         setOpenSearch(!openSearch)
+    }
+
+    const changeMobileSearchDialogStateHandler = () => {
+        setOpenMobileSearch(!openMobileSearch)
     }
 
     const toggleMobileMenuHandler = () => {
@@ -161,15 +167,31 @@ const DesktopNav = () => {
                                     </NavLink>
                                 </li>
 
-                                <Dialog open={openSearch} onOpenChange={setOpenSearch}>
-                                    <DialogTrigger asChild>
-                                        <div className="flex items-center gap-x-4 hover:text-[#ffa023] hover:cursor-pointer w-full">
-                                            <SearchIcon className="size-5" />
-                                            <p className="">Search</p>
-                                        </div>
-                                    </DialogTrigger>
-                                    <SearchPopup changeDialogSetting={changeSearchDialogStateHandler} />
-                                </Dialog>
+                                {/* mobile search */}
+                                <div className="md:hidden">
+                                    <Dialog open={openMobileSearch} onOpenChange={setOpenMobileSearch}>
+                                        <DialogTrigger asChild>
+                                            <div className="flex items-center gap-x-4 hover:text-[#ffa023] hover:cursor-pointer w-full">
+                                                <SearchIcon className="size-5" />
+                                                <p className="">Search</p>
+                                            </div>
+                                        </DialogTrigger>
+                                        <SearchPopupMobile changeDialogSetting={changeSearchDialogStateHandler} />
+                                    </Dialog>
+                                </div>
+
+                                {/* desktop search */}
+                                <div className="hidden md:block">
+                                    <Dialog open={openSearch} onOpenChange={setOpenSearch}>
+                                        <DialogTrigger asChild>
+                                            <div className="flex items-center gap-x-4 hover:text-[#ffa023] hover:cursor-pointer w-full">
+                                                <SearchIcon className="size-5" />
+                                                <p className="">Search</p>
+                                            </div>
+                                        </DialogTrigger>
+                                        <SearchPopup changeDialogSetting={changeSearchDialogStateHandler} />
+                                    </Dialog>
+                                </div>
                             </ul>
                         </div>
                     </div>

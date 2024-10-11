@@ -46,7 +46,7 @@ const AllTeamsPage = () => {
     }, [])
 
     return (
-        <div className="">
+        <div className="pb-24 md:pb-8">
 
             {/* error modal */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
@@ -66,26 +66,51 @@ const AllTeamsPage = () => {
                         </CardTitle>
                     </CardHeader>
 
-                    <CardContent className="px-0">
+                    <CardContent className="">
 
-                        {/* EASTERN CONFERENCE */}
-                        <div className="w-full flex justify-between px-4 mb-4">
+                        {/* mobile */}
+                        <div className="flex flex-col md:hidden gap-y-2">
+
+                            <p className="font-black">EASTERN CONFERENCE</p>
+
+                            {/* EASTERN CONFERENCE */}
                             <DivisionList division="Atlantic" teams={data.atlantic} />
 
                             <DivisionList division="Central" teams={data.central} />
 
                             <DivisionList division="Southeast" teams={data.southeast} />
-                        </div>
 
+                            <p className="font-black">WESTERN CONFERENCE</p>
 
-                        {/* WESTERN CONFERENCE */}
-
-                        <div className="w-full flex justify-between px-4">
+                            {/* WESTERN CONFERENCE */}
                             <DivisionList division="Northwest" teams={data.northwest} />
 
                             <DivisionList division="Pacific" teams={data.pacific} />
 
                             <DivisionList division="Southwest" teams={data.southwest} />
+                        </div>
+
+                        {/* desktop */}
+                        <div className="hidden md:block">
+                            {/* EASTERN CONFERENCE */}
+                            <div className="w-full flex justify-between px-4 mb-4">
+                                <DivisionList division="Atlantic" teams={data.atlantic} />
+
+                                <DivisionList division="Central" teams={data.central} />
+
+                                <DivisionList division="Southeast" teams={data.southeast} />
+                            </div>
+
+
+                            {/* WESTERN CONFERENCE */}
+
+                            <div className="w-full flex justify-between px-4">
+                                <DivisionList division="Northwest" teams={data.northwest} />
+
+                                <DivisionList division="Pacific" teams={data.pacific} />
+
+                                <DivisionList division="Southwest" teams={data.southwest} />
+                            </div>
                         </div>
 
 

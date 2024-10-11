@@ -255,6 +255,21 @@ const StandingsContentHome = () => {
                     <p className="px-2">{row.original.gb}</p>
                 )
             }
+        },
+
+        // l10
+        {
+            accessorKey: "last_10",
+            header: () => {
+                return (
+                    <p className="px-2">L10</p>
+                )
+            },
+            cell: ({ row }) => {
+                return (
+                    <p className="px-2">{lastTenConverter(row.original.last_10)}</p>
+                )
+            }
         }
     ]
 

@@ -10,8 +10,8 @@ const DivisionList = (props: { division: string, teams: Team[] | undefined }) =>
     const sortedTeams = props.teams ? [...props.teams].sort((a, b) => a.full_name.localeCompare(b.full_name)) : [];
 
     return (
-        <div className="w-full mx-2">
-            <p className="mb-2 text-xl font-bold">{props.division}</p>
+        <div className="w-full md:mx-2">
+            <p className="mb-4 md:mb-2 text-xl font-bold">{props.division}</p>
 
             {/* teams div */}
             <div>

@@ -16,8 +16,9 @@ import { Input } from "../../ui/input"
 import { Skeleton } from "../../ui/skeleton";
 import ErrorModal from "../../ui/ErrorModal";
 import TeamLogo from "../../ui/TeamLogo";
+import { ScrollArea, ScrollBar } from "../../ui/scroll-area";
 
-const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
+const SearchPopupMobile: React.FC<PopupProps> = ({ changeDialogSetting }) => {
 
     // states for search term and results
     const [searchTerm, setSearchTerm] = useState<string>("")
@@ -25,8 +26,8 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
     const [playerSearchResults, setPlayerSearchResults] = useState<PlayerSearchResult[]>([])
 
     const closeDialogHandler = () => {
-        setSearchTerm("")
         changeDialogSetting()
+        setSearchTerm("")
     }
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
@@ -84,7 +85,7 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
     }
 
     return (
-        <DialogContent className="h-[90vh] content-start transition-transform">
+        <DialogContent className="h-[85vh] w-11/12 overflow-hidden content-start transition-transform flex flex-col rounded-lg">
 
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
@@ -93,7 +94,7 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
                 placeholder="Search for players or teams..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className=""
+                className="w-full"
             />
 
             {/* loading state */}
@@ -137,7 +138,7 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
 
                 <div className="flex flex-col gap-y-2 items-center">
                     <p className="italic text-lg font-semibold">No results</p>
-                    <p className="text-xs hover:underline hover:underline-offset-2 hover:cursor-pointer" onClick={() => setSearchTerm("")}>Clear Search Bar</p>
+                    <p className="text-xs underline underline-offset-2" onClick={() => setSearchTerm("")}>Clear Search Bar</p>
                 </div>
             }
 
@@ -150,46 +151,51 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
                     <p className="bg-slate-100 rounded-md p-2 font-semibold text-sm">TEAMS</p>
 
                     {/* teams div */}
-                    <div className="flex w-fit justify-between gap-x-4 mt-2">
-                        {teamSearchResults.map((team: TeamSearchResult) => (
+                    <div className="w-full overflow-x-scroll my-2 border p-2 rounded-md">
+                        <div className="flex w-full gap-x-4">
 
-                            // case for LA teams, and long named teams ?
+                            {teamSearchResults.map((team: TeamSearchResult) => (
 
-                            <Link
-                                to={team.url}
-                                className="max-w-[80px] border border-slate-200 p-4 flex flex-col gap-y-2 items-center justify-center hover:cursor-pointer hover:scale-105 hover:border-[#ffa023]"
-                                onClick={() => closeDialogHandler()}
-                            >
-                                <TeamLogo team_id={team.data.team_id} abbreviation={team.data.abbreviation} logoClass="size-12 object-contain" />
-                                <p className="text-xs font-semi text-center">{team.full_name}</p>
-                            </Link>
-                        ))}
+
+                                <Link
+                                    to={team.url}
+                                    className="w-[80px] border border-slate-200 p-4 flex flex-col gap-y-2 items-center justify-center hover:cursor-pointer hover:scale-105 hover:border-[#ffa023]"
+                                    onClick={() => closeDialogHandler()}
+                                >
+                                    <TeamLogo team_id={team.data.team_id} abbreviation={team.data.abbreviation} logoClass="size-12 object-contain" />
+                                    <p className="text-xs font-semi text-center">{team.full_name}</p>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
+
             }
 
             {
                 !isLoading && playerSearchResults.length > 0 &&
 
-                <div className="max-h-[400px]">
+                <div className="h-[400px] flex flex-col">
                     <p className="bg-slate-100 p-2 rounded-md font-semibold text-sm">PLAYERS</p>
 
                     {/* players div */}
-                    <div className="flex justify-between gap-y-2 flex-wrap mt-2">
-                        {playerSearchResults.map((player: PlayerSearchResult) => (
-                            <Link
-                                to={player.url}
-                                className="flex p-2 gap-x-2 w-[48%] items-center border border-slate-200 rounded-md hover:cursor-pointer hover:scale-105 hover:border-[#ffa023]"
-                                onClick={() => closeDialogHandler()}
-                            >
-                                <img src={player.photo_url} className="size-12 object-contain" alt={player.name} />
+                    <div className="mt-2 overflow-scroll p-2 border rounded-md">
+                        <div className="flex flex-col gap-y-2">
+                            {playerSearchResults.map((player: PlayerSearchResult) => (
+                                <Link
+                                    to={player.url}
+                                    className="flex p-2 gap-x-2 items-center border border-slate-200 rounded-md hover:cursor-pointer hover:scale-105 hover:border-[#ffa023]"
+                                    onClick={() => closeDialogHandler()}
+                                >
+                                    <img src={player.photo_url} className="size-12 object-contain" alt={player.name} />
 
-                                <div>
-                                    <p className="font-semibold text-xs">{player.name}</p>
-                                    <p className="text-xs">{player.team_id >= 0 ? shortenTeamName(player.team_id) : "Retired/Waived"} · #{player.jersey_number} · {convertPlayerPosition(player.player_position)}</p>
-                                </div>
-                            </Link>
-                        ))}
+                                    <div>
+                                        <p className="font-semibold">{player.name}</p>
+                                        <p className="text-sm">{player.team_id >= 0 ? shortenTeamName(player.team_id) : "Retired/Waived"} · #{player.jersey_number} · {convertPlayerPosition(player.player_position)}</p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
             }
@@ -199,4 +205,4 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
     )
 }
 
-export default SearchPopup
+export default SearchPopupMobile
