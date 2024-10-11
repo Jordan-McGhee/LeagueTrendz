@@ -12,18 +12,15 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover"
 import { Button } from "../../ui/button"
 import { CalendarIcon } from "@radix-ui/react-icons";
 
-// mobile
-import DatePaginationMobile from "../../Mobile/SchedulePage/DatePagination-Mobile"
-
 // date function import
 import { format, addDays, subDays, isSameDay } from 'date-fns';
 
 
-const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateChange }) => {
+const DatePaginationMobile: React.FC<DatePaginationProps> = ({ selectedDate, onDateChange }) => {
 
     const getDaysArray = () => {
         const daysArray = [];
-        for (let i = -3; i <= 3; i++) {
+        for (let i = -1; i <= 1; i++) {
             daysArray.push(addDays(selectedDate, i));
         }
         return daysArray;
@@ -32,26 +29,19 @@ const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateCha
     const weekDates = getDaysArray();
 
     const changeWeek = (direction: 'prev' | 'next') => {
-        const newDate = direction === 'next' ? addDays(selectedDate, 7) : subDays(selectedDate, 7);
+        const newDate = direction === 'next' ? addDays(selectedDate, 3) : subDays(selectedDate, 3);
         onDateChange(newDate);
     };
 
     return (
-        <div className="pt-4">
+        <div className="mx-auto">
+            <Pagination>
 
-            {/* MOBILE */}
-            <div className="md:hidden">
-                <DatePaginationMobile selectedDate={selectedDate} onDateChange={onDateChange} />
-            </div>
-
-            {/* DESKTOP */}
-            <Pagination className="hidden md:block">
-
-                <PaginationContent className="w-full flex justify-between">
+                <PaginationContent className=" w-full flex justify-between">
 
                     {/* back */}
                     <PaginationItem className="hover:cursor-pointer">
-                        <PaginationPrevious onClick={() => changeWeek('prev')} />
+                        <PaginationPrevious onClick={() => changeWeek('prev')} className="p-1" />
                     </PaginationItem>
 
                     {weekDates.map((date, index) => (
@@ -59,10 +49,10 @@ const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateCha
                             <PaginationLink
                                 onClick={() => onDateChange(date)}
                                 isActive={isSameDay(date, selectedDate)}
-                                className="flex flex-col px-12 py-6 items-center uppercase"
+                                className="text-xs flex flex-col px-8 py-6 items-center uppercase"
                             >
                                 <div className="font-bold">{format(date, 'EEE')}</div>
-                                <div className="">{format(date, 'MMM dd')}</div>
+                                <div className="text-xs">{format(date, 'MMM dd')}</div>
 
                             </PaginationLink>
                         </PaginationItem>
@@ -70,14 +60,13 @@ const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateCha
 
                     {/* forward */}
                     <PaginationItem className="hover:cursor-pointer">
-                        <PaginationNext onClick={() => changeWeek('next')} />
+                        <PaginationNext onClick={() => changeWeek('next')} className="p-1" />
                     </PaginationItem>
 
                     <Popover>
                         <PopoverTrigger asChild>
-                            <Button variant="ghost" className="">
-                                <CalendarIcon className="size-6" />
-                                {/* {format(selectedDate, "PPP")} */}
+                            <Button variant="ghost" className="px-2 py-1">
+                                <CalendarIcon className="size-5" />
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="end">
@@ -97,4 +86,4 @@ const DatePagination: React.FC<DatePaginationProps> = ({ selectedDate, onDateCha
     )
 }
 
-export default DatePagination
+export default DatePaginationMobile

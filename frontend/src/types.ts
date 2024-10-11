@@ -160,6 +160,10 @@ export interface GamesDataState {
     [date: string]: GameOrNoGames
 }
 
+export interface GameDayTableRowProps {
+    game: GameData
+}
+
 export interface GameDayTableProps {
     games: GameData[]
 }

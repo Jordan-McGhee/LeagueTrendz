@@ -60,7 +60,7 @@ const SchedulePage = () => {
     }
 
     return (
-        <div>
+        <div className="pb-24 md:pb-8">
 
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
@@ -85,7 +85,7 @@ const SchedulePage = () => {
                     {
                         gamesData && Object.entries(gamesData).map(([date, games]) => (
                             <div key={date}>
-                                <p className="text-lg font-semibold my-2">{formatDate(date)}</p>
+                                <p className="md:text-lg font-semibold my-2">{formatDate(date)}</p>
                                 <Separator />
 
 
@@ -98,13 +98,13 @@ const SchedulePage = () => {
                         ))
                     }
                 </CardContent>
-                <CardFooter className="italic text-xs">
-                    The 2023 NBA regular season started on
-                    <span className="ml-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2023-10-24T00:00:00"))}>October 24th</span>.
+                <CardFooter className="italic text-sm md:text-xs">
+                    <p>The 2023 NBA regular season started on
+                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2023-10-24T00:00:00"))}>October 24th.</span>
                     The playoffs started
                     <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-04-16T00:00:00"))}>April 16th</span>
                     and ended
-                    <span className="ml-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-06-17T00:00:00"))}>June 17th.</span>
+                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-06-17T00:00:00"))}>June 17th.</span></p>
                 </CardFooter>
             </Card>
         </div>
