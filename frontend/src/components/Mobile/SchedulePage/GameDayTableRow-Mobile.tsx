@@ -72,7 +72,7 @@ const GameDayTableRowMobile: React.FC<GameDayTableRowProps> = ({ game }) => {
                                             <TeamLogo logoClass="size-6 object-contain" team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} />
                                             <img src={game.away_best_player_photo} alt={game.away_best_player_name} className="size-8 object-contain" />
                                         </div>
-                                        <p className=" font-bold">{shortenPlayerName(game.away_best_player_name)}</p>
+                                        <p className="max-w-24 truncate font-bold">{shortenPlayerName(game.away_best_player_name)}</p>
                                         <p>{game.away_best_player_pts} PTS, {game.away_best_player_reb} REB, {game.away_best_player_ast} AST</p>
                                     </div>
                                 </Link>
@@ -89,7 +89,7 @@ const GameDayTableRowMobile: React.FC<GameDayTableRowProps> = ({ game }) => {
                                             <TeamLogo logoClass="size-6 object-contain" team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} />
                                             <img src={game.home_best_player_photo} alt={game.home_best_player_name} className="size-8 object-contain" />
                                         </div>
-                                        <p className=" font-bold">{shortenPlayerName(game.home_best_player_name)}</p>
+                                        <p className="max-w-24 truncate font-bold">{shortenPlayerName(game.home_best_player_name)}</p>
                                         <p>{game.home_best_player_pts} PTS, {game.home_best_player_reb} REB, {game.home_best_player_ast} AST</p>
                                     </div>
                                 </Link>
