@@ -1262,6 +1262,12 @@ export interface BoxScoreViewState {
     pf: number
 }
 
+export interface BoxScoreTableProps {
+    boxScore: BoxScoreViewState[],
+    teamData: GameBoxScoreState,
+    tableClass?: string
+}
+
 // ICONS
 export interface IconProps {
     iconClass?: string

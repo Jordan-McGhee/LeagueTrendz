@@ -85,7 +85,7 @@ const GameBoxScorePage = () => {
 
 
     return (
-        <div className="pb-24 md:pb-8 h-full min-h-svh">
+        <div className="pb-24 md:pb-8 h-fit min-h-svh">
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
@@ -132,7 +132,6 @@ const GameBoxScorePage = () => {
                     </CardHeader>
 
                     <CardContent>
-                        {/* {selectedMenuItem === "gamecast" && <GameCastView />} */}
                         {selectedMenuItem === "team-stats" && <TeamStatsView teamData={game}  />}
                         {selectedMenuItem === "box-score" && <BoxScoreView teamData={game} />}
                     </CardContent>

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom"
 import { GameSeriesProps } from "@/types"
 
 // utils imports
-import { shortenTeamName, convertDateTeamSchedule } from "../../../Utils/utils"
+import { shortenTeamName, convertDateTeamSchedule } from "../../../../Utils/utils"
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card"
-import { Menubar, MenubarMenu, MenubarTrigger } from "../../ui/menubar"
-import { Separator } from "../../ui/separator"
-import TeamLogo from "../../ui/TeamLogo"
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../ui/card"
+import { Menubar, MenubarMenu, MenubarTrigger } from "../../../ui/menubar"
+import { Separator } from "../../../ui/separator"
+import TeamLogo from "../../../ui/TeamLogo"
 
 const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
 
@@ -114,7 +114,7 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                                         <MenubarTrigger style={!showPlayoffs ? { backgroundColor: "black", color: "white" } : {}}
                                             onClick={() => setShowPlayoffs(false)}
                                             className="w-1/2"
-                                        >Regular Season</MenubarTrigger> 
+                                        >Season</MenubarTrigger> 
                                     </MenubarMenu>
 
                                     <MenubarMenu>
@@ -128,20 +128,20 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                             :
                             'Regular Season Series'
                     }
-                    <p className="text-sm font-semibold text-center mt-6 ">{seriesResult}</p>
+                    <p className="text-sm font-semibold mt-4 -mb-3">{seriesResult}</p>
                 </CardTitle>
             </CardHeader>
             <CardContent>
                 {
                     showPlayoffs ?
                     playoffGames.map((game: any) => (
-                        <div className="flex flex-col w-full first:my-0 my-2">
+                        <div className="flex flex-col w-full first:my-0 my-2 last:my-0">
                             <Separator />
 
                             <Link to={`/nba/games/game_id/${game.game_id}?view=team-stats`} className="w-full gap-x-4 flex justify-between items-center p-2 rounded-lg hover:bg-slate-50 hover:cursor-pointer">
 
                                 {/* left side */}
-                                <div className="w-4/5 flex flex-col gap-2 mr-2">
+                                <div className="w-3/4 md:w-4/5 flex flex-col gap-2 mr-2">
 
                                     {/* away team */}
                                     <div className={+game.away_team_score > +game.home_team_score ? "grid grid-cols-4 gap-2 items-center font-bold text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 text-lg"}>
@@ -160,7 +160,7 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                                 </div>
 
                                 {/* right side */}
-                                <div className="w-1/5 flex flex-col gap-y-1 text-xs  font-bold">
+                                <div className="w-1/4 md:w-1/5 flex flex-col gap-y-1 text-xs  font-bold">
                                     <p className="text-gray-500">Game {playoffGames.indexOf(game) + 1}</p>
                                     <p>{convertDateTeamSchedule(game.game_date)}</p>
                                     <p>FINAL</p>
@@ -176,7 +176,7 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                             <Link to={`/nba/games/game_id/${game.game_id}?view=team-stats`} className="w-full gap-x-4 flex justify-between items-center p-2 rounded-lg hover:bg-slate-50 hover:cursor-pointer">
 
                                 {/* left side */}
-                                <div className="w-4/5 flex flex-col gap-2 mr-2">
+                                <div className="w-3/4 md:w-4/5 flex flex-col gap-2 mr-2">
 
                                     {/* away team */}
                                     <div className={+game.away_team_score > +game.home_team_score ? "grid grid-cols-4 gap-2 items-center font-bold text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 text-lg"}>
@@ -195,7 +195,7 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                                 </div>
 
                                 {/* right side */}
-                                <div className="w-1/5 flex flex-col gap-y-1 text-xs  font-bold">
+                                <div className="w-1/4 md:w-1/5 flex flex-col gap-y-1 text-xs  font-bold">
                                     <p className="text-gray-500">Game {regularSeasonGames.indexOf(game) + 1}</p>
                                     <p>{convertDateTeamSchedule(game.game_date)}</p>
                                     <p>FINAL</p>
