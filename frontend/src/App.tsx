@@ -18,7 +18,7 @@ import PlayerPage from './pages/Data-Pages/Player/PlayerPage';
 import GameBoxScorePage from './pages/Data-Pages/Game/GameBoxScorePage';
 import NotFoundPage from './pages/NotFoundPage';
 import SchedulePage from './pages/SchedulePage';
-import SingleTeamPage from './pages/Data-Pages/Team/SingleTeamPage';
+import SingleTeamPage from './pages/Data-Pages/Team/TeamPage';
 import ScoresPage from './pages/ScoresPage';
 import StandingsPage from './pages/StandingsPage';
 import UserPage from './pages/UserPage';

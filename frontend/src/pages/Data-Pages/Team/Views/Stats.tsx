@@ -15,10 +15,10 @@ import ErrorModal from "../../../../components/ui/ErrorModal"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select"
 
 // component imports
-import StatsTeamLeaders from "../../../../components/Desktop/SingleTeamPage/Stats/StatsTeamLeaders"
+import StatsTeamLeaders from "../../../../components/Desktop/TeamPage/Stats/StatsTeamLeaders"
 import LoadingPage from "../../../LoadingPage"
-import TeamAllStatsTable from "../../../../components/Desktop/SingleTeamPage/Stats/TeamAllStatsTable";
-import TeamShootingStatsTable from "../../../../components/Desktop/SingleTeamPage/Stats/TeamShootingStatsTable";
+import TeamAllStatsTable from "../../../../components/Desktop/TeamPage/Stats/TeamAllStatsTable";
+import TeamShootingStatsTable from "../../../../components/Desktop/TeamPage/Stats/TeamShootingStatsTable";
 
 const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 

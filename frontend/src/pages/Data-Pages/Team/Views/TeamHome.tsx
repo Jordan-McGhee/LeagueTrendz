@@ -7,11 +7,11 @@ import { Separator } from "../../../../components/ui/separator";
 import { TeamHomeProps } from "../../../../types"
 
 // component imports
-import TeamSchedule from "../../../../components/Desktop/SingleTeamPage/TeamSchedule";
-import Standings from "../../../../components/Desktop/SingleTeamPage/Standings"
-import TeamHistory from "../../../../components/Desktop/SingleTeamPage/TeamHistory"
-import TeamStats from "../../../../components/Desktop/SingleTeamPage/TeamStats";
-import TeamLeaders from "../../../../components/Desktop/SingleTeamPage/TeamLeaders";
+import TeamSchedule from "../../../../components/Desktop/TeamPage/TeamSchedule";
+import Standings from "../../../../components/Desktop/TeamPage/Standings"
+import TeamHistory from "../../../../components/Desktop/TeamPage/TeamHistory"
+import TeamStats from "../../../../components/Desktop/TeamPage/TeamStats";
+import TeamLeaders from "../../../../components/Desktop/TeamPage/TeamLeaders";
 
 const TeamHome: React.FC<TeamHomeProps> = ({ team, games, players, history }) => {
 
