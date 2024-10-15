@@ -1154,6 +1154,12 @@ export interface StandingsDataState {
     away_team_away_losses: string
 }
 
+export interface GameBoxScoreHeaderProps {
+    game: GameBoxScoreState,
+    standingsData: StandingsDataState,
+    headerClass?: string
+}
+
 // TEAM STATS VIEW
 
 export interface GameSeriesState {
