@@ -57,7 +57,7 @@ const BoxScoreTableMobile: React.FC<BoxScoreTableProps> = ({ boxScore, teamData,
                             <Table className="text-xs relative">
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead className="text-left sticky left-0 z-10 bg-white w-28">Player</TableHead>
+                                        <TableHead className="text-left sticky left-0 z-10 bg-white">Player</TableHead>
                                         <TableHead className="text-center px-2">MIN</TableHead>
                                         <TableHead className="text-center px-2">PTS</TableHead>
                                         <TableHead className="text-center px-2">FG</TableHead>
@@ -78,7 +78,7 @@ const BoxScoreTableMobile: React.FC<BoxScoreTableProps> = ({ boxScore, teamData,
                                         if (player.player_team_id === teamData.away_team_id) {
                                             return (
                                                 <TableRow key={player.player_id}>
-                                                    <TableCell className="text-left flex items-center gap-x-2 w-28 pr-2 mr-4 border-r-2 sticky left-0 z-10 bg-white">
+                                                    <TableCell className="text-left flex items-center gap-x-2 w-28 pr-2 border-r-2 sticky left-0 z-10 bg-white">
                                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-700 w-3/4 truncate hover:underline">
                                                             {shortenPlayerName(player.player_name)}
                                                         </Link>
@@ -181,7 +181,7 @@ const BoxScoreTableMobile: React.FC<BoxScoreTableProps> = ({ boxScore, teamData,
                                     if (player.player_team_id === teamData.home_team_id) {
                                         return (
                                             <TableRow key={player.player_id}>
-                                                <TableCell className="text-left flex items-center gap-x-2 w-28 pr-2 mr-4 border-r-2 sticky left-0 z-10 bg-white">
+                                                <TableCell className="text-left flex items-center gap-x-2 w-28 pr-2 border-r-2 sticky left-0 z-10 bg-white">
                                                     <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-700 w-3/4 truncate hover:underline">
                                                         {shortenPlayerName(player.player_name)}
                                                     </Link>

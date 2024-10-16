@@ -6,6 +6,7 @@ import { AuthContext } from "../context/auth-context";
 
 // ui imports
 import { Dialog, DialogTrigger } from "../components/ui/dialog"
+import { Accordion, AccordionContent, AccordionTrigger, AccordionItem } from "../components/ui/accordion"
 
 // icon imports
 import { SearchIcon, Menu, X } from "lucide-react";
@@ -52,6 +53,8 @@ const DesktopNav = () => {
                 {/* desktop nav */}
                 <ul className="hidden md:flex max-w-screen-2xl px-4 w-4/5 m-auto justify-between items-center">
                     {/* regular nav options */}
+
+                    {/* home */}
                     <div className="flex items-center space-x-6">
                         <li className="hover:text-[#ffa023] py-4 text-xl">
                             <NavLink to="/" className="flex items-center gap-x-2">
@@ -62,6 +65,8 @@ const DesktopNav = () => {
                     </div>
 
                     <div className="flex items-center space-x-6">
+
+                        {/* schedule */}
                         <li className="hover:text-[#ffa023] ">
                             <NavLink to="/nba/schedule" className="flex items-center gap-x-1.5">
                                 <CalendarIcon className="size-5 hidden lg:block" />
@@ -69,6 +74,7 @@ const DesktopNav = () => {
                             </NavLink>
                         </li>
 
+                        {/* standings */}
                         <li className="hover:text-[#ffa023] ">
                             <NavLink to="/nba/standings" className="flex items-center gap-x-1.5">
                                 <StandingsIcon iconClass="hidden lg:block size-6" />
@@ -76,6 +82,7 @@ const DesktopNav = () => {
                             </NavLink>
                         </li>
 
+                        {/* teams */}
                         <li className="hover:text-[#ffa023]">
                             <NavLink to="/nba/teams" className="flex items-center gap-x-1.5">
                                 <TeamIcon iconClass="hidden lg:block size-5" />
@@ -83,12 +90,16 @@ const DesktopNav = () => {
                             </NavLink>
                         </li>
 
+
+                        {/* players */}
                         <li className="hover:text-[#ffa023] ">
                             <NavLink to="/nba/players?view=leaders" className="flex items-center gap-x-1.5">
                                 <PlayerIcon iconClass="hidden lg:block size-5" />
                                 <p>Players</p>
                             </NavLink>
                         </li>
+
+                        {/* search */}
                         <li className="hover:cursor-pointer hover:text-[#ffa023] ">
                             <Dialog open={openSearch} onOpenChange={setOpenSearch}>
                                 <DialogTrigger asChild>
@@ -139,32 +150,58 @@ const DesktopNav = () => {
                     <div className={`fixed inset-0 bg-black bg-opacity-95 z-50 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                         <div className="absolute inset-x-0 bottom-0 pb-12">
                             <ul className="flex flex-col px-6 gap-y-8 max-w-xs text-white text-xl mb-8">
+
+                                {/* schedule */}
                                 <li className="hover:cursor-pointer hover:text-[#ffa023 flex items-center gap-x-4 w-full">
-                                    <CalendarIcon className="size-6" />
+                                    <CalendarIcon className="size-7" />
                                     <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/schedule" className="hover:text-[#ffa023] w-full">
                                         <p>Schedule</p>
                                     </NavLink>
                                 </li>
 
+                                {/* standings */}
                                 <li className="hover:cursor-pointer hover:text-[#ffa023] flex items-center gap-x-4 w-full">
-                                    <StandingsIcon iconClass="size-6" />
+                                    <StandingsIcon iconClass="size-7" />
                                     <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/standings" className="hover:text-[#ffa023] w-full">
                                         <p>Standings</p>
                                     </NavLink>
                                 </li>
 
+
+                                {/* teams */}
                                 <li className="hover:cursor-pointer hover:text-[#ffa023] flex items-center gap-x-4 w-full">
-                                    <TeamIcon iconClass="size-6" />
+                                    <TeamIcon iconClass="size-7" />
                                     <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/teams" className="hover:text-[#ffa023] w-full">
                                         <p>Teams</p>
                                     </NavLink>
                                 </li>
 
-                                <li className="hover:cursor-pointer hover:text-[#ffa023] flex items-center gap-x-4 w-full">
-                                    <PlayerIcon iconClass="size-6" />
-                                    <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/players?view=leaders" className="hover:text-[#ffa023] w-full">
-                                        <p>Players</p>
-                                    </NavLink>
+
+                                {/* players */}
+
+                                <li className="flex items-center gap-x-4 w-full">
+                                    <Accordion type="single" collapsible className="-my-4 w-full">
+                                        <AccordionItem value="players">
+                                            <AccordionTrigger className="text-xl">
+                                                <PlayerIcon iconClass="size-6" />
+                                                Players
+                                            </AccordionTrigger>
+                                            <AccordionContent className="ml-10 flex flex-col gap-y-2">
+
+                                                {/* league leaders */}
+                                                <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/players?view=leaders" className="hover:text-[#ffa023] w-full text-lg">
+                                                    <p>League Leaders</p>
+                                                </NavLink>
+
+                                                {/* game highs */}
+
+                                                <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/players?view=highs" className="hover:text-[#ffa023] w-full text-lg">
+                                                    <p>Game Highs</p>
+                                                </NavLink>
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    </Accordion>
+
                                 </li>
 
                                 {/* mobile search */}
@@ -172,11 +209,11 @@ const DesktopNav = () => {
                                     <Dialog open={openMobileSearch} onOpenChange={setOpenMobileSearch}>
                                         <DialogTrigger asChild>
                                             <div className="flex items-center gap-x-4 hover:text-[#ffa023] hover:cursor-pointer w-full">
-                                                <SearchIcon className="size-5" />
+                                                <SearchIcon className="size-7" />
                                                 <p className="">Search</p>
                                             </div>
                                         </DialogTrigger>
-                                        <SearchPopupMobile changeDialogSetting={changeSearchDialogStateHandler} />
+                                        <SearchPopupMobile changeDialogSetting={changeMobileSearchDialogStateHandler} />
                                     </Dialog>
                                 </div>
 

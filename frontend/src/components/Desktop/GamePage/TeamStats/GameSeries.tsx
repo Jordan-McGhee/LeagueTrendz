@@ -135,7 +135,7 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                 {
                     showPlayoffs ?
                     playoffGames.map((game: any) => (
-                        <div className="flex flex-col w-full first:my-0 my-2 last:my-0">
+                        <div className="flex flex-col w-full first:my-0 my-2 last:my-0" key={game.game_id}>
                             <Separator />
 
                             <Link to={`/nba/games/game_id/${game.game_id}?view=team-stats`} className="w-full gap-x-4 flex justify-between items-center p-2 rounded-lg hover:bg-slate-50 hover:cursor-pointer">
@@ -170,7 +170,7 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                     ))
                     :
                     regularSeasonGames.map((game: any) => (
-                        <div className="flex flex-col w-full">
+                        <div className="flex flex-col w-full" key={game.game_id}>
                             <Separator className="my-2" />
 
                             <Link to={`/nba/games/game_id/${game.game_id}?view=team-stats`} className="w-full gap-x-4 flex justify-between items-center p-2 rounded-lg hover:bg-slate-50 hover:cursor-pointer">
