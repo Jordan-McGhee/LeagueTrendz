@@ -62,12 +62,7 @@ const AllPlayersPage = () => {
     return (
         <Card>
             <CardHeader>
-                {/* <CardTitle className="mb-4"> */}
-                {/* <p className="text-2xl">{cardTitle}</p> */}
-
-                {/* select for regular season */}
-                {/* </CardTitle> */}
-
+                
                 <Menubar className="">
 
                     <MenubarMenu>

@@ -43,7 +43,7 @@ const SearchPopup: React.FC<PopupProps> = ({ changeDialogSetting }) => {
     const fetchSearchResults = async (term: string) => {
         const url: string = `${process.env.REACT_APP_BACKEND_URL}/search/${term}`
 
-        console.log(term)
+        // console.log(term)
 
         let responseData: any
 

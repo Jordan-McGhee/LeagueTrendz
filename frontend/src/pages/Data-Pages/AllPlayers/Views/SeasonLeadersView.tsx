@@ -41,7 +41,7 @@ const SeasonLeadersView = () => {
             } catch (error) {
 
             }
-            console.log(responseData)
+            // console.log(responseData)
         }
 
         fetchLeaders()

@@ -29,7 +29,7 @@ const BoxScoresTableView = () => {
     const [seasonType, setSeasonType] = useState<string>('regular-season');
     const [statCategory, setStatCategory] = useState<string>('pts');
 
-    console.log(`stat category: ${statCategory}`)
+    // console.log(`stat category: ${statCategory}`)
 
     const [tableData, setTableData] = useState<GameHighBoxScoreStat[] | undefined>()
 
@@ -73,7 +73,7 @@ const BoxScoresTableView = () => {
                 responseData = await sendRequest(url)
                 setTableData(responseData.games)
 
-                console.log(responseData.games)
+                // console.log(responseData.games)
             } catch (error) {
 
             }

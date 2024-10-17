@@ -147,7 +147,7 @@ const DesktopNav = () => {
                 {/* mobile nav */}
                 <>
                     {/* Animated Mobile Menu */}
-                    <div className={`fixed inset-0 bg-black bg-opacity-95 z-50 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+                    <div className={`fixed inset-0 bg-gradient-to-b from-black/90 to-black z-50 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                         <div className="absolute inset-x-0 bottom-0 pb-12">
                             <ul className="flex flex-col px-6 gap-y-8 max-w-xs text-white text-xl mb-8">
 
@@ -190,7 +190,7 @@ const DesktopNav = () => {
 
                                                 {/* league leaders */}
                                                 <NavLink onClick={() => setMobileMenuOpen(false)} to="/nba/players?view=leaders" className="hover:text-[#ffa023] w-full text-lg">
-                                                    <p>League Leaders</p>
+                                                    <p>Season Leaders</p>
                                                 </NavLink>
 
                                                 {/* game highs */}
