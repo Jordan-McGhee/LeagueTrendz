@@ -34,7 +34,6 @@ const AllPlayersPage = () => {
     const navigate = useNavigate()
 
     // menubar item 
-    const [isRegularSeason, setIsRegularSeason] = useState<boolean>(true)
     const [selectedMenuItem, setSelectedMenuItem] = useState<string>('leaders')
 
     // update menubar state based on query param
@@ -49,69 +48,120 @@ const AllPlayersPage = () => {
         navigate(`/nba/players?view=${option}`)
     }
 
-    let cardTitle: string
-
-    if (selectedMenuItem === 'leaders') {
-        cardTitle = `${isRegularSeason ? "Regular Season" : "Playoffs"} Leaders`
-    } else if (selectedMenuItem === 'highs') {
-        cardTitle = `${isRegularSeason ? "Regular Season" : "Playoffs"} Highs`
-    } else {
-        cardTitle = `${isRegularSeason ? "Regular Season" : "Playoffs"} Stats`
-    }
-
     return (
-        <Card>
-            <CardHeader>
-                
-                <Menubar className="">
-
-                    <MenubarMenu>
-                        <MenubarTrigger
-                            style={selectedMenuItem === "leaders" ? { backgroundColor: "black", color: "white" } : {}}
-                            onClick={() => handleMenuClick('leaders')}
-                            className="w-1/4">
-                            Leaders
-                        </MenubarTrigger>
-                    </MenubarMenu>
+        <div className="pb-24 md:pb-6">
+            <Card className="">
+                <CardHeader>
 
 
-                    <MenubarMenu>
-                        <MenubarTrigger
-                            style={selectedMenuItem === "tables" ? { backgroundColor: "black", color: "white" } : {}}
-                            onClick={() => handleMenuClick('tables')}
-                            className="w-1/4">
-                            Stats Table
-                        </MenubarTrigger>
-                    </MenubarMenu>
+                    {/* mobile */}
 
-                    <MenubarMenu>
-                        <MenubarTrigger
-                            style={selectedMenuItem === "highs" ? { backgroundColor: "black", color: "white" } : {}}
-                            onClick={() => handleMenuClick('highs')}
-                            className="w-1/4">
-                            Game Highs
-                        </MenubarTrigger>
-                    </MenubarMenu>
+                    {selectedMenuItem === "leaders" || selectedMenuItem === "tables" ?
 
-                    <MenubarMenu>
-                        <MenubarTrigger
-                            style={selectedMenuItem === "box" ? { backgroundColor: "black", color: "white" } : {}}
-                            onClick={() => handleMenuClick('box')}
-                            className="w-1/4">
-                            Box Scores Table
-                        </MenubarTrigger>
-                    </MenubarMenu>
+                        // case for season leaders/tables view
+                        (
+                            <Menubar className="md:hidden">
+                                <MenubarMenu>
+                                    <MenubarTrigger
+                                        style={selectedMenuItem === "leaders" ? { backgroundColor: "black", color: "white" } : {}}
+                                        onClick={() => handleMenuClick('leaders')}
+                                        className="w-1/2">
+                                        Leaders
+                                    </MenubarTrigger>
+                                </MenubarMenu>
 
-                </Menubar>
 
-            </CardHeader>
-            <CardContent>
-                {selectedMenuItem === "leaders" && <SeasonLeadersView />}
-                {selectedMenuItem === "tables" && <LeadersTableView />}
-                {selectedMenuItem === "highs" && <GameLeadersView />}
-                {selectedMenuItem === "box" && <BoxScoresTableView />}
-            </CardContent>
-        </Card>
+                                <MenubarMenu>
+                                    <MenubarTrigger
+                                        style={selectedMenuItem === "tables" ? { backgroundColor: "black", color: "white" } : {}}
+                                        onClick={() => handleMenuClick('tables')}
+                                        className="w-1/2">
+                                        Stats Table
+                                    </MenubarTrigger>
+                                </MenubarMenu>
+                            </Menubar>
+                        ) : (
+
+                            // case for season highs/box scores view
+                            <Menubar className="md:hidden">
+
+                                <MenubarMenu>
+                                    <MenubarTrigger
+                                        style={selectedMenuItem === "highs" ? { backgroundColor: "black", color: "white" } : {}}
+                                        onClick={() => handleMenuClick('highs')}
+                                        className="w-1/2">
+                                        Game Highs
+                                    </MenubarTrigger>
+                                </MenubarMenu>
+
+                                <MenubarMenu>
+                                    <MenubarTrigger
+                                        style={selectedMenuItem === "box" ? { backgroundColor: "black", color: "white" } : {}}
+                                        onClick={() => handleMenuClick('box')}
+                                        className="w-1/2">
+                                        Box Scores Table
+                                    </MenubarTrigger>
+                                </MenubarMenu>
+
+
+                            </Menubar>
+                        )
+
+                    }
+
+
+                    {/* desktop */}
+
+                    <Menubar className="hidden md:flex">
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                                style={selectedMenuItem === "leaders" ? { backgroundColor: "black", color: "white" } : {}}
+                                onClick={() => handleMenuClick('leaders')}
+                                className="w-1/4">
+                                Leaders
+                            </MenubarTrigger>
+                        </MenubarMenu>
+
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                                style={selectedMenuItem === "tables" ? { backgroundColor: "black", color: "white" } : {}}
+                                onClick={() => handleMenuClick('tables')}
+                                className="w-1/4">
+                                Stats Table
+                            </MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                                style={selectedMenuItem === "highs" ? { backgroundColor: "black", color: "white" } : {}}
+                                onClick={() => handleMenuClick('highs')}
+                                className="w-1/4">
+                                Game Highs
+                            </MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                                style={selectedMenuItem === "box" ? { backgroundColor: "black", color: "white" } : {}}
+                                onClick={() => handleMenuClick('box')}
+                                className="w-1/4">
+                                Box Scores Table
+                            </MenubarTrigger>
+                        </MenubarMenu>
+
+                    </Menubar>
+
+                </CardHeader>
+                <CardContent>
+                    {selectedMenuItem === "leaders" && <SeasonLeadersView />}
+                    {selectedMenuItem === "tables" && <LeadersTableView />}
+                    {selectedMenuItem === "highs" && <GameLeadersView />}
+                    {selectedMenuItem === "box" && <BoxScoresTableView />}
+                </CardContent>
+            </Card>
+        </div>
     )
 }
 

@@ -15,6 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import ErrorModal from "../../../../components/ui/ErrorModal"
 import LoadingPage from "../../../LoadingPage"
 import GameHighCard from "../../../../components/Desktop/AllPlayersPage/GameHighCard";
+import GameHighs from "../../../../components/Desktop/AllPlayersPage/Views/GameHighs"
 
 const GameLeadersView = () => {
 
@@ -74,14 +75,7 @@ const GameLeadersView = () => {
 
             {
                 !isLoading && gameLeaders &&
-                <div className="flex flex-wrap justify-between gap-y-6">
-                    <GameHighCard cardClass="w-[49%]" title="Points" gameLeaderPlayers={gameLeaders.top_scoring_games} />
-                    <GameHighCard cardClass="w-[49%]" title="Assists" gameLeaderPlayers={gameLeaders.top_assist_games} />
-                    <GameHighCard cardClass="w-[49%]" title="Rebounds" gameLeaderPlayers={gameLeaders.top_rebounding_games} />
-                    <GameHighCard cardClass="w-[49%]" title="Steals" gameLeaderPlayers={gameLeaders.top_steal_games} />
-                    <GameHighCard cardClass="w-[49%]" title="Blocks" gameLeaderPlayers={gameLeaders.top_block_games} />
-                    <GameHighCard cardClass="w-[49%]" title="Three Pointers" gameLeaderPlayers={gameLeaders.top_tpm_games} />
-                </div>
+                <GameHighs gameLeaders={gameLeaders} styleClass="hidden md:flex md:flex-wrap justify-between gap-y-6" />
             }
         </>
     )

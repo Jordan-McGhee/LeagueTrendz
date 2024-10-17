@@ -698,6 +698,18 @@ export interface TotalLeadersState {
     top_total_turnovers: TopStat[]
 }
 
+export interface SeasonLeadersViewProps {
+    averageLeaders: AverageLeadersState,
+    totalLeaders: TotalLeadersState,
+    perMode: string,
+    styleClass?: string
+}
+
+export interface GameHighViewProps {
+    gameLeaders: GameLeadersState,
+    styleClass: string
+}
+
 export interface LeaderCardProps {
     title: string,
     cardClass?: string,
