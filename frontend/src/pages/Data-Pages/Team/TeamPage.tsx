@@ -9,9 +9,8 @@ import { useFetch } from "../../../Hooks/useFetch"
 import { TeamExpanded, TeamGames, TeamHistoryState, TeamPlayersState } from "../../../types"
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../components/ui/card"
+import { Card, CardHeader, CardContent } from "../../../components/ui/card"
 import { Menubar, MenubarMenu, MenubarTrigger } from "../../../components/ui/menubar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/select"
 
 // views imports
 import TeamHome from "./Views/TeamHome";
@@ -21,9 +20,12 @@ import TeamSchedule from "./Views/TeamSchedule";
 import History from "./Views/History";
 
 // component imports
-import TeamLogo from "../../../components/ui/TeamLogo"
+import TeamHeader from "../../../components/Desktop/TeamPage/TeamHeader"
 import ErrorModal from "../../../components/ui/ErrorModal"
 import LoadingPage from "../../LoadingPage"
+
+// mobile component imports
+import TeamHeaderMobile from "../../../components/Mobile/TeamPage/TeamHeader-Mobile"
 
 // team dummy data imports
 const teams = require("../../../DUMMYDATA/NBA_Teams.json")
@@ -84,31 +86,6 @@ const SingleTeamPage = () => {
     }
 
 
-
-    // team name consts
-    let teamNameFirst: string | undefined, teamNameLast: string | undefined
-
-    // assigning these variables for displying the team name up top
-    // special cases for golden state, LAC, LAL, NYK, NOP, OKC, SAS and portland because their team names are 3 words long
-
-    // golden state, NY, NOP, SAS, LAL, OKC cases
-    if (team?.team_id === 9 || team?.team_id === 12 || team?.team_id === 13 || team?.team_id === 18 || team?.team_id === 19 || team?.team_id === 20 || team?.team_id === 26) {
-        teamNameFirst = [team.full_name.split(' ')[0], team.full_name.split(' ')[1]].join(' ')
-        teamNameLast = team.full_name.split(' ')[2]
-    } else if (team?.team_id === 24) {
-        // portland case
-        teamNameFirst = team.full_name.split(' ')[0]
-        teamNameLast = [team.full_name.split(' ')[1], team.full_name.split(' ')[2]].join(' ')
-    } else {
-        teamNameFirst = team?.full_name.split(' ')[0]
-        teamNameLast = team?.full_name.split(' ')[1]
-    }
-
-
-    const teamSelectHandler = (value: string) => {
-        navigate(`/nba/teams/${value.toLowerCase()}?view=${selectedMenuItem}`)
-    }
-
     return (
         <div className="h-full min-h-svh">
             {/* error */}
@@ -122,67 +99,54 @@ const SingleTeamPage = () => {
                 <Card>
                     <CardHeader>
 
-                        <div className="flex justify-between items-start">
-                            <div className="flex items-center gap-x-4 mb-4">
+                        {/* mobile header */}
+                        <TeamHeaderMobile team={team} abbreviation={abbreviation} selectedMenuItem={selectedMenuItem} className="flex flex-col gap-y-3 md:hidden" />
+                        
 
-                                {/* logo placeholder */}
-                                <TeamLogo team_id={team.team_id} abbreviation={team.abbreviation} logoClass="size-24 object-contain" />
+                        {/* desktop header */}
+                        <TeamHeader team={team} abbreviation={abbreviation} selectedMenuItem={selectedMenuItem} className="hidden md:flex justify-between items-start" />
 
-                                <div className="flex flex-col gap-y-2">
-                                    <div>
-                                        <CardTitle className="text-4xl font-light uppercase">{teamNameFirst} <span style={{ color: team.main_color }} className="font-bold">{teamNameLast}</span></CardTitle>
-                                    </div>
+                        {/* mobile menubar */}
+                        <Menubar className="flex w-fit md:hidden">
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "home" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    className="text-xs px-1.5"
+                                    onClick={() => handleMenuClick('home')}>Home</MenubarTrigger>
+                            </MenubarMenu>
 
-                                    {/* team info div */}
-                                    <div className="flex items-center justify-between uppercase w-72">
-                                        {/* <Button style={{ backgroundColor: team.main_color }}>Add to Favorites</Button> */}
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "stats" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    className="text-xs px-1.5"
+                                    onClick={() => handleMenuClick('stats')}>Stats</MenubarTrigger>
+                            </MenubarMenu>
 
-                                        <div className="text-center">
-                                            <p className="font-light text-sm">Conference</p>
-                                            <p className="font-bold" style={{ color: team.main_color }}>{team.conference}</p>
-                                        </div>
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "schedule" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    className="text-xs px-1.5"
+                                    onClick={() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
+                            </MenubarMenu>
 
-                                        <div className="text-center">
-                                            <p className="font-light text-sm">Division</p>
-                                            <p className="font-bold" style={{ color: team.main_color }}>{team.division}</p>
-                                        </div>
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "roster" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    className="text-xs px-1.5"
+                                    onClick={() => handleMenuClick('roster')}>Roster</MenubarTrigger>
+                            </MenubarMenu>
 
-                                        <div className="text-center">
-                                            <p className="font-light text-sm">RECORD</p>
-                                            <p className="font-bold" style={{ color: team.main_color }}>{team.wins}-{team.losses}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={selectedMenuItem === "history" ? { backgroundColor: team.main_color, color: "white" } : {}}
+                                    className="text-xs px-1.5"
+                                    onClick={() => handleMenuClick('history')}>History</MenubarTrigger>
+                            </MenubarMenu>
 
-                            </div>
+                        </Menubar>
 
-                            {/* SELECT A DIFFERENT TEAM */}
-                            <Select value={abbreviation} onValueChange={(newValue) => teamSelectHandler(newValue)}>
-                                <SelectTrigger className="w-[300px]">
-                                    <SelectValue placeholder='Change NBA Teams' />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {
-                                        teams.teams.map((team: any) => {
-
-                                            if (team.team_id >= 0) {
-
-                                                return (
-                                                    <SelectItem value={team.abbreviation.toLowerCase()}>{team.name}</SelectItem>
-                                                )
-                                            }
-
-                                            return null
-
-                                        })
-                                    }
-                                </SelectContent>
-                            </Select>
-                        </div>
-
-
-                        {/* menubar */}
-                        <Menubar className="w-fit">
+                        {/* desktop menubar */}
+                        <Menubar className="hidden md:flex w-fit">
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "home" ? { backgroundColor: team.main_color, color: "white" } : {}}

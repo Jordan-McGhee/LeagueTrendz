@@ -313,16 +313,15 @@ const StandingsContentHome = () => {
 
                     {/* MOBILE */}
                     <Tabs defaultValue="eastern" className="md:hidden">
-                        <TabsList className="flex items-center w-fit">
-                            <TabsTrigger value="eastern">Eastern</TabsTrigger>
-                            <TabsTrigger value="western">Western</TabsTrigger>
+                        <TabsList className="flex items-center w-full mx-auto -mt-2">
+                            <TabsTrigger className="w-1/2" value="eastern">Eastern</TabsTrigger>
+                            <TabsTrigger className="w-1/2" value="western">Western</TabsTrigger>
                         </TabsList>
 
                         {/* LEAGUE CONTENT */}
                         <TabsContent value="eastern">
 
                             {/* EASTERN */}
-                            {/* <p className="text-xl font-bold mt-6">EASTERN CONFERENCE</p> */}
                             <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Eastern")} />
 
                         </TabsContent>
@@ -331,7 +330,6 @@ const StandingsContentHome = () => {
                         <TabsContent value="western">
 
                             {/* WESTERN */}
-                            {/* <p className="text-xl font-bold mt-6">WESTERN CONFERENCE</p> */}
                             <DataTable columns={mobileColumns} data={data.filter((team: StandingsTeamItem) => team.conference === "Western")} />
 
                         </TabsContent>
