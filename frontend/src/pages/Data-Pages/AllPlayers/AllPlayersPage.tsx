@@ -99,7 +99,7 @@ const AllPlayersPage = () => {
                                         style={selectedMenuItem === "box" ? { backgroundColor: "black", color: "white" } : {}}
                                         onClick={() => handleMenuClick('box')}
                                         className="w-1/2">
-                                        Box Scores Table
+                                        Box Scores
                                     </MenubarTrigger>
                                 </MenubarMenu>
 

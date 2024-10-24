@@ -17,7 +17,7 @@ const SeasonLeadersMobile: React.FC<SeasonLeadersViewProps> = ({ averageLeaders,
 
             {
                 perMode === "average" &&
-                <div className="w-full flex flex-wrap gap-y-6">
+                <div className="w-full flex flex-wrap gap-y-4">
                     <LeaderCardMobile averages={true} title="Points" topStatPlayers={averageLeaders.top_avg_pts} cardClass="w-full" />
                     <LeaderCardMobile averages={true} title="Assists" topStatPlayers={averageLeaders.top_avg_ast} cardClass="w-full" />
                     <LeaderCardMobile averages={true} title="Rebounds" topStatPlayers={averageLeaders.top_avg_reb} cardClass="w-full" />
@@ -35,7 +35,7 @@ const SeasonLeadersMobile: React.FC<SeasonLeadersViewProps> = ({ averageLeaders,
 
             {
                 perMode !== 'average' &&
-                <div className="w-full flex flex-wrap gap-y-6">
+                <div className="w-full flex flex-wrap gap-y-4">
                     <LeaderCardMobile averages={false} title="Points" topStatPlayers={totalLeaders.top_total_pts} cardClass="w-full" />
                     <LeaderCardMobile averages={false} title="Assists" topStatPlayers={totalLeaders.top_total_ast} cardClass="w-full" />
                     <LeaderCardMobile averages={false} title="Rebounds" topStatPlayers={totalLeaders.top_total_reb} cardClass="w-full" />

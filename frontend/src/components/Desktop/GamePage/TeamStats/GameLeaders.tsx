@@ -33,7 +33,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
 
     return (
         <Card>
-            <CardHeader>
+            <CardHeader className="-mb-3">
                 <div className="flex justify-between items-center">
                     <CardTitle>Game Leaders</CardTitle>
                     <div onClick={() => toggleShowContent()} className="flex gap-x-2 items-center md:hidden">
@@ -45,38 +45,77 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
 
                 {
                     showContent &&
-                    <Menubar className="w-full mx-auto">
 
-                        <MenubarMenu>
-                            <MenubarTrigger
-                                style={statShown === "points" ? { backgroundColor: "black", color: "white" } : {}}
-                                onClick={() => handleMenuClick('points')}
-                                className="w-1/3"
-                            >
-                                Points
-                            </MenubarTrigger>
-                        </MenubarMenu>
+                    <div className="">
+                        {/* MOBILE */}
+                        <Menubar className="w-full mx-auto md:hidden">
 
-                        <MenubarMenu>
-                            <MenubarTrigger
-                                style={statShown === "rebounds" ? { backgroundColor: "black", color: "white" } : {}}
-                                onClick={() => handleMenuClick('rebounds')}
-                                className="w-1/3"
-                            >
-                                Rebounds
-                            </MenubarTrigger>
-                        </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={statShown === "points" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('points')}
+                                    className="w-1/3"
+                                >
+                                    PTS
+                                </MenubarTrigger>
+                            </MenubarMenu>
 
-                        <MenubarMenu>
-                            <MenubarTrigger
-                                style={statShown === "assists" ? { backgroundColor: "black", color: "white" } : {}}
-                                onClick={() => handleMenuClick('assists')}
-                                className="w-1/3"
-                            >
-                                Assists
-                            </MenubarTrigger>
-                        </MenubarMenu>
-                    </Menubar>
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={statShown === "rebounds" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('rebounds')}
+                                    className="w-1/3"
+                                >
+                                    REB
+                                </MenubarTrigger>
+                            </MenubarMenu>
+
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={statShown === "assists" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('assists')}
+                                    className="w-1/3"
+                                >
+                                    AST
+                                </MenubarTrigger>
+                            </MenubarMenu>
+                        </Menubar>
+
+                        {/* DESKTOP */}
+                        <Menubar className="hidden md:flex w-full mx-auto">
+
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={statShown === "points" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('points')}
+                                    className="w-1/3"
+                                >
+                                    Points
+                                </MenubarTrigger>
+                            </MenubarMenu>
+
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={statShown === "rebounds" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('rebounds')}
+                                    className="w-1/3"
+                                >
+                                    Rebounds
+                                </MenubarTrigger>
+                            </MenubarMenu>
+
+                            <MenubarMenu>
+                                <MenubarTrigger
+                                    style={statShown === "assists" ? { backgroundColor: "black", color: "white" } : {}}
+                                    onClick={() => handleMenuClick('assists')}
+                                    className="w-1/3"
+                                >
+                                    Assists
+                                </MenubarTrigger>
+                            </MenubarMenu>
+                        </Menubar>
+
+                    </div>
                 }
 
             </CardHeader>
@@ -88,7 +127,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
 
                         {
                             statShown === "points" &&
-                            <div className="flex flex-col gap-y-4">
+                            <div className="w-full flex flex-col gap-y-2 md:gap-y-4">
 
                                 {/*  away leader */}
                                 <div className="flex gap-x-4 items-center">
@@ -97,11 +136,11 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                                         <img src={awayPlayers.pts_leader_photo} alt={awayPlayers.pts_leader_name} className="size-12 object-contain" />
                                     </Link>
 
-                                    <div className="text-sm">
+                                    <div className="text-xs md:text-sm">
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${awayPlayers.pts_leader_id}/${awayPlayers.pts_leader_name.toLowerCase().replace(" ", "-")}`} className="hover:underline">
-                                            <p className="text-xs md:text-sm">{shortenPlayerName(awayPlayers.pts_leader_name)}, {convertPlayerPosition(awayPlayers.pts_leader_position)} - {teamData.away_team_abbreviation}</p>
+                                            <p className="">{shortenPlayerName(awayPlayers.pts_leader_name)}, {convertPlayerPosition(awayPlayers.pts_leader_position)} - {teamData.away_team_abbreviation}</p>
                                         </Link>
-                                        <div className="flex gap-x-4">
+                                        <div className="flex gap-x-2 md:gap-x-4">
                                             {/* stat one */}
                                             <div className="flex gap-x-1">
                                                 <p className="font-bold">{awayPlayers.pts_leader_pts}</p>
@@ -125,7 +164,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
 
                                 </div>
 
-                                <Separator className="w-3/4" />
+                                <Separator className="" />
 
                                 {/* home leader */}
                                 <div className="flex gap-x-4 items-center">
@@ -134,11 +173,11 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                                         <img src={homePlayers.pts_leader_photo} alt={homePlayers.pts_leader_name} className="size-12 object-contain" />
                                     </Link>
 
-                                    <div className="text-sm">
+                                    <div className="text-xs md:text-sm">
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${homePlayers.pts_leader_id}/${homePlayers.pts_leader_name.toLowerCase().replace(" ", "-")}`} className="hover:underline">
-                                            <p className="text-xs md:text-sm">{shortenPlayerName(homePlayers.pts_leader_name)}, {convertPlayerPosition(homePlayers.pts_leader_position)} - {teamData.home_team_abbreviation}</p>
+                                            <p className="">{shortenPlayerName(homePlayers.pts_leader_name)}, {convertPlayerPosition(homePlayers.pts_leader_position)} - {teamData.home_team_abbreviation}</p>
                                         </Link>
-                                        <div className="flex gap-x-4">
+                                        <div className="flex gap-x-2 md:gap-x-4">
                                             {/* stat one */}
                                             <div className="flex gap-x-1">
                                                 <p className="font-bold">{homePlayers.pts_leader_pts}</p>
@@ -169,7 +208,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                         {/* REBOUNDS */}
                         {
                             statShown === "rebounds" &&
-                            <div className="flex flex-col gap-y-4">
+                            <div className="flex flex-col gap-y-2 md:gap-y-4">
 
                                 {/*  away leader */}
                                 <div className="flex gap-x-4 items-center">
@@ -178,11 +217,11 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                                         <img src={awayPlayers.reb_leader_photo} alt={awayPlayers.reb_leader_name} className="size-12 object-contain" />
                                     </Link>
 
-                                    <div className="text-sm">
+                                    <div className="text-xs md:text-sm">
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${awayPlayers.reb_leader_id}/${awayPlayers.reb_leader_name.toLowerCase().replace(" ", "-")}`} className="hover:underline">
-                                            <p className="text-xs md:text-sm">{shortenPlayerName(awayPlayers.reb_leader_name)}, {convertPlayerPosition(awayPlayers.reb_leader_position)} - {teamData.away_team_abbreviation}</p>
+                                            <p className="">{shortenPlayerName(awayPlayers.reb_leader_name)}, {convertPlayerPosition(awayPlayers.reb_leader_position)} - {teamData.away_team_abbreviation}</p>
                                         </Link>
-                                        <div className="flex gap-x-4">
+                                        <div className="flex gap-x-2 md:gap-x-4">
                                             {/* stat one */}
                                             <div className="flex gap-x-1">
                                                 <p className="font-bold">{awayPlayers.reb_leader_reb}</p>
@@ -206,7 +245,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
 
                                 </div>
 
-                                <Separator className="w-3/4" />
+                                <Separator className="" />
 
                                 {/* home leader */}
                                 <div className="flex gap-x-4 items-center">
@@ -215,12 +254,12 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                                         <img src={homePlayers.reb_leader_photo} alt={homePlayers.reb_leader_name} className="size-12 object-contain" />
                                     </Link>
 
-                                    <div className="text-sm">
+                                    <div className="text-xs md:text-sm">
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${homePlayers.reb_leader_id}/${homePlayers.reb_leader_name.toLowerCase().replace(" ", "-")}`} className="hover:underline">
-                                            <p className="text-xs md:text-sm">{shortenPlayerName(homePlayers.reb_leader_name)}, {convertPlayerPosition(homePlayers.reb_leader_position)} - {teamData.home_team_abbreviation}</p>
+                                            <p className="">{shortenPlayerName(homePlayers.reb_leader_name)}, {convertPlayerPosition(homePlayers.reb_leader_position)} - {teamData.home_team_abbreviation}</p>
                                         </Link>
 
-                                        <div className="flex gap-x-4">
+                                        <div className="flex gap-x-2 md:gap-x-4">
                                             {/* stat one */}
                                             <div className="flex gap-x-1">
                                                 <p className="font-bold">{homePlayers.reb_leader_reb}</p>
@@ -251,7 +290,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                         {/* ASSISTS */}
                         {
                             statShown === "assists" &&
-                            <div className="flex flex-col gap-y-4">
+                            <div className="flex flex-col gap-y-2 md:gap-y-4">
 
                                 {/*  away leader */}
                                 <div className="flex gap-x-4 items-center">
@@ -260,11 +299,11 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                                         <img src={awayPlayers.ast_leader_photo} alt={awayPlayers.ast_leader_name} className="size-12 object-contain" />
                                     </Link>
 
-                                    <div className="text-sm">
+                                    <div className="text-xs md:text-sm">
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${awayPlayers.ast_leader_id}/${awayPlayers.ast_leader_name.toLowerCase().replace(" ", "-")}`} className="hover:underline">
-                                            <p className="text-xs md:text-sm">{shortenPlayerName(awayPlayers.ast_leader_name)}, {convertPlayerPosition(awayPlayers.ast_leader_position)} - {teamData.away_team_abbreviation}</p>
+                                            <p className="">{shortenPlayerName(awayPlayers.ast_leader_name)}, {convertPlayerPosition(awayPlayers.ast_leader_position)} - {teamData.away_team_abbreviation}</p>
                                         </Link>
-                                        <div className="flex gap-x-4">
+                                        <div className="flex gap-x-2 md:gap-x-4">
                                             {/* stat one */}
                                             <div className="flex gap-x-1">
                                                 <p className="font-bold">{awayPlayers.ast_leader_ast}</p>
@@ -288,7 +327,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
 
                                 </div>
 
-                                <Separator className="w-3/4" />
+                                <Separator className="" />
 
                                 {/* home leader */}
                                 <div className="flex gap-x-4 items-center">
@@ -297,11 +336,11 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                                         <img src={homePlayers.ast_leader_photo} alt={homePlayers.ast_leader_name} className="size-12 object-contain" />
                                     </Link>
 
-                                    <div className="text-sm">
+                                    <div className="text-xs md:text-sm">
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${homePlayers.ast_leader_id}/${homePlayers.ast_leader_name.toLowerCase().replace(" ", "-")}`} className="hover:underline">
-                                            <p className="text-xs md:text-sm">{shortenPlayerName(homePlayers.ast_leader_name)}, {convertPlayerPosition(homePlayers.ast_leader_position)} - {teamData.home_team_abbreviation}</p>
+                                            <p className="">{shortenPlayerName(homePlayers.ast_leader_name)}, {convertPlayerPosition(homePlayers.ast_leader_position)} - {teamData.home_team_abbreviation}</p>
                                         </Link>
-                                        <div className="flex gap-x-4">
+                                        <div className="flex gap-x-2 md:gap-x-4">
                                             {/* stat one */}
                                             <div className="flex gap-x-1">
                                                 <p className="font-bold">{homePlayers.ast_leader_ast}</p>

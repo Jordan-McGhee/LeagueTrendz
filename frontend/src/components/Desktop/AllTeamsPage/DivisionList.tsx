@@ -22,7 +22,7 @@ const DivisionList = (props: { division: string, teams: Team[] | undefined }) =>
         <div className="w-full md:mx-2">
 
             <div className="flex items-center justify-between">
-                <p className="mb-4 md:mb-2 text-xl font-bold">{props.division}</p>
+                <p className=" md:mb-2 text-xl font-bold">{props.division}</p>
 
                 <div onClick={() => toggleShowContent()} className="md:hidden flex gap-x-2 items-center">
                     <p className="text-sm">{showContent ? "Hide" : "Show"}</p>

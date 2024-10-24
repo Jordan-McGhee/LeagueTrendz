@@ -14,8 +14,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 // component imports
 import ErrorModal from "../../../../components/ui/ErrorModal"
 import LoadingPage from "../../../LoadingPage"
-import GameHighCard from "../../../../components/Desktop/AllPlayersPage/GameHighCard";
 import GameHighs from "../../../../components/Desktop/AllPlayersPage/Views/GameHighs"
+
+// mobile component
+import GameHighsMobile from "../../../../components/Mobile/AllPlayersPage/Views/GameHighs-Mobile"
 
 const GameLeadersView = () => {
 
@@ -55,7 +57,7 @@ const GameLeadersView = () => {
                 <div>
                     <p className="text-xs font-semibold mb-1">SEASON TYPE</p>
                     <Select value={seasonType} onValueChange={(newValue) => setSeasonType(newValue)}>
-                        <SelectTrigger className="w-[200px]">
+                        <SelectTrigger className="w-[150px] md:w-[200px]">
                             <SelectValue placeholder="Regular Season" />
                         </SelectTrigger>
 
@@ -75,7 +77,14 @@ const GameLeadersView = () => {
 
             {
                 !isLoading && gameLeaders &&
-                <GameHighs gameLeaders={gameLeaders} styleClass="hidden md:flex md:flex-wrap justify-between gap-y-6" />
+
+                <>
+                    {/* MOBILE */}
+                    <GameHighsMobile gameLeaders={gameLeaders} styleClass="flex flex-col gap-y-4 md:hidden" />
+
+                    {/* DESKTOP */}
+                    <GameHighs gameLeaders={gameLeaders} styleClass="hidden md:flex md:flex-wrap justify-between gap-y-6" />
+                </>
             }
         </>
     )

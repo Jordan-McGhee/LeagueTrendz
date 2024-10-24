@@ -10,7 +10,7 @@ import { GameHighViewProps } from "@/types";
 // component imports
 import GameHighCardMobile from "../GameHighCard-Mobile";
 
-const GameHighs: React.FC<GameHighViewProps> = ({ gameLeaders, styleClass }) => {
+const GameHighsMobile: React.FC<GameHighViewProps> = ({ gameLeaders, styleClass }) => {
 
     return (
         <div className={styleClass}>
@@ -24,4 +24,4 @@ const GameHighs: React.FC<GameHighViewProps> = ({ gameLeaders, styleClass }) => 
     )
 }
 
-export default GameHighs
+export default GameHighsMobile

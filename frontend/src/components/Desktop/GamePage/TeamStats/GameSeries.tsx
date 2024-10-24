@@ -144,15 +144,15 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                                 <div className="w-3/4 md:w-4/5 flex flex-col gap-2 mr-2">
 
                                     {/* away team */}
-                                    <div className={+game.away_team_score > +game.home_team_score ? "grid grid-cols-4 gap-2 items-center font-bold text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 text-lg"}>
-                                        <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="col-span-1 size-8 object-contain" />
+                                    <div className={+game.away_team_score > +game.home_team_score ? "grid grid-cols-4 gap-2 items-center font-bold md:text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 md:text-lg"}>
+                                        <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="col-span-1 size-7 md:size-8 object-contain" />
                                         <p className="col-span-2">{shortenTeamName(game.away_team_id)}</p>
                                         <p className="col-span-1 justify-self-end">{game.away_team_score}</p>
                                     </div>
 
                                     {/* home team */}
-                                    <div className={+game.home_team_score > +game.away_team_score ? "grid grid-cols-4 gap-2 items-center font-bold text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 text-lg"}>
-                                        <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-8 object-contain col-span-1" />
+                                    <div className={+game.home_team_score > +game.away_team_score ? "grid grid-cols-4 gap-2 items-center font-bold md:text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 md:text-lg"}>
+                                        <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-7 md:size-8 object-contain col-span-1" />
                                         <p className="col-span-2">{shortenTeamName(game.home_team_id)}</p>
                                         <p className="col-span-1 justify-self-end">{game.home_team_score}</p>
                                     </div>
@@ -179,15 +179,15 @@ const GameSeries: React.FC<GameSeriesProps> = ({ teamData, series }) => {
                                 <div className="w-3/4 md:w-4/5 flex flex-col gap-2 mr-2">
 
                                     {/* away team */}
-                                    <div className={+game.away_team_score > +game.home_team_score ? "grid grid-cols-4 gap-2 items-center font-bold text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 text-lg"}>
-                                        <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="col-span-1 size-8 object-contain" />
+                                    <div className={+game.away_team_score > +game.home_team_score ? "grid grid-cols-4 gap-2 items-center font-bold md:text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 md:text-lg"}>
+                                        <TeamLogo team_id={game.away_team_id} abbreviation={game.away_team_abbreviation} logoClass="col-span-1 size-7 md:size-8 object-contain" />
                                         <p className="col-span-2">{shortenTeamName(game.away_team_id)}</p>
                                         <p className="col-span-1 justify-self-end">{game.away_team_score}</p>
                                     </div>
 
                                     {/* home team */}
-                                    <div className={+game.home_team_score > +game.away_team_score ? "grid grid-cols-4 gap-2 items-center font-bold text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 text-lg"}>
-                                        <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-8 object-contain col-span-1" />
+                                    <div className={+game.home_team_score > +game.away_team_score ? "grid grid-cols-4 gap-2 items-center font-bold md:text-lg" : "grid grid-cols-4 gap-2 items-center font-bold text-gray-500 md:text-lg"}>
+                                        <TeamLogo team_id={game.home_team_id} abbreviation={game.home_team_abbreviation} logoClass="size-7 md:size-8 object-contain col-span-1" />
                                         <p className="col-span-2">{shortenTeamName(game.home_team_id)}</p>
                                         <p className="col-span-1 justify-self-end">{game.home_team_score}</p>
                                     </div>

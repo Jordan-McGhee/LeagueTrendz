@@ -89,13 +89,13 @@ const LeaderCardMobile: React.FC<LeaderCardProps> = ({ cardClass, title, average
                                                     {/* <img src={player.photo_url} alt={player.name} className="size-12 object-contain col-start-1 col-span-2" /> */}
 
                                                     {/* name, position, number, team */}
-                                                    <div className="col-start-1 col-span-10">
-                                                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`} className="text-base w-full flex gap-x-1 hover:underline"><span className="font-semibold">{shortenPlayerName(player.name)}</span></Link>
+                                                    <div className="col-start-1 col-span-9">
+                                                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`} className="text-base w-full flex gap-x-1 hover:underline"><span className="font-semibold">{player.name.length > 18 ? shortenPlayerName(player.name) : player.name}</span></Link>
                                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${player.abbreviation}?view=home`} className="hover:underline">{player.full_name}</Link>
                                                     </div>
 
                                                     {/* value */}
-                                                    <p className="col-start-11 col-span-2 font-bold text-lg text-right">{player.value}</p>
+                                                    <p className="col-start-10 col-span-3 font-bold text-2xl text-right">{player.value}</p>
 
                                                 </div>
                                             </div>

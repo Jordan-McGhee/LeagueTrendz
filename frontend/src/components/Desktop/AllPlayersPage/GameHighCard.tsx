@@ -62,9 +62,9 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                     <CardContent>
 
                         <div className="grid gap-y-4">
-                            {gameLeaderPlayers.map((player) => {
+                            {gameLeaderPlayers.map((player, index) => {
 
-                                if (gameLeaderPlayers.indexOf(player) === 0) {
+                                if (index === 0) {
                                     return
                                 }
 
@@ -84,7 +84,7 @@ const GameHighCard: React.FC<GameHighCardProps> = ({ title, cardClass, gameLeade
                                             <div className="col-start-1 col-span-10">
                                                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.name.toLowerCase().replace(" ", "-")}`} className="text-lg flex gap-x-1 hover:underline"><span className="font-semibold">{player.name}</span> · #{player.jersey_number} · {convertPlayerPosition(player.player_position)}</Link>
 
-                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${player.player_team_abbreviation}?view=home`} className="hover:underline flex items-start gap-x-2">
+                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/games/game_id/${gameLeaderPlayers[index].game_id}?view=team-stats`} className="hover:underline flex items-start gap-x-2">
 
                                                     {/* player team */}
                                                     <p className={player.player_team_score > player.opp_team_score ? "font-bold" : ""}>{shortenTeamName(player.player_team_id)}</p>

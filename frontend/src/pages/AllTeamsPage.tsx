@@ -69,7 +69,7 @@ const AllTeamsPage = () => {
                     <CardContent className="">
 
                         {/* mobile */}
-                        <div className="flex flex-col md:hidden gap-y-2">
+                        <div className="flex flex-col md:hidden gap-y-8 md:gap-y-2">
 
                             <p className="font-black">EASTERN CONFERENCE</p>
 

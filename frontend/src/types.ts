@@ -765,6 +765,21 @@ export interface GameHighBoxScoreStat {
     jersey_number: number
 }
 
+// GAME HIGH BOX SCORE TABLE PROPS
+export interface GameHighBoxScoreTableProps {
+    tableData: GameHighBoxScoreStat[],
+    statCategory: string,
+    tableClass?: string
+}
+
+// SEASON LEADER TABLE PROPS
+export interface SeasonLeaderTableProps {
+    tableData: TotalsAndAveragesObject[],
+    statCategory: string,
+    perMode: string,
+    tableClass?: string
+}
+
 // SINGLE PLAYER PAGE
 export interface Player {
     player_id: number,

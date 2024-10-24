@@ -62,7 +62,7 @@ const SeasonLeadersView = () => {
                 <div>
                     <p className="text-xs font-semibold mb-1">SEASON TYPE</p>
                     <Select value={seasonType} onValueChange={(newValue) => setSeasonType(newValue)}>
-                        <SelectTrigger className="w-[125px] md:w-[200px]">
+                        <SelectTrigger className="md:w-[200px]">
                             <SelectValue placeholder="Regular Season" />
                         </SelectTrigger>
 
@@ -77,7 +77,7 @@ const SeasonLeadersView = () => {
                 <div>
                     <p className="text-xs font-semibold mb-1">PER MODE</p>
                     <Select value={perMode} onValueChange={(newValue) => setPerMode(newValue)}>
-                        <SelectTrigger className="w-[125px] md:w-[200px]">
+                        <SelectTrigger className="md:w-[200px]">
                             <SelectValue placeholder="Per Game" />
                         </SelectTrigger>
 
