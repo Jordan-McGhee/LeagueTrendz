@@ -56,7 +56,7 @@ const OverviewTeamStandings: React.FC<OverviewStandingsProps> = ({ currentTeam, 
                 </Table>
             </CardContent>
 
-            <CardFooter className="text-sm font-semibold text-blue-700 pb-4">
+            <CardFooter className="text-sm font-semibold text-blue-500 pb-4">
                 <Link to="/nba/standings">
                     See Full Standings
                 </Link>

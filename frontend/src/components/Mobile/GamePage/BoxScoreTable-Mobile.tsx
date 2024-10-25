@@ -79,7 +79,7 @@ const BoxScoreTableMobile: React.FC<BoxScoreTableProps> = ({ boxScore, teamData,
                                             return (
                                                 <TableRow key={player.player_id}>
                                                     <TableCell className="text-left flex items-center gap-x-2 w-28 pr-2 border-r-2 sticky left-0 z-10 bg-white">
-                                                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-700 w-3/4 truncate hover:underline">
+                                                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-500 w-3/4 truncate hover:underline">
                                                             {shortenPlayerName(player.player_name)}
                                                         </Link>
                                                         <p className="text-gray-500">{convertPlayerPosition(player.player_position)}</p>
@@ -182,7 +182,7 @@ const BoxScoreTableMobile: React.FC<BoxScoreTableProps> = ({ boxScore, teamData,
                                         return (
                                             <TableRow key={player.player_id}>
                                                 <TableCell className="text-left flex items-center gap-x-2 w-28 pr-2 border-r-2 sticky left-0 z-10 bg-white">
-                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-700 w-3/4 truncate hover:underline">
+                                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-500 w-3/4 truncate hover:underline">
                                                         {shortenPlayerName(player.player_name)}
                                                     </Link>
                                                     <p className="text-gray-500">{convertPlayerPosition(player.player_position)}</p>

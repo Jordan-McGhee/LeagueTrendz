@@ -56,7 +56,7 @@ const BoxScoreTable: React.FC<BoxScoreTableProps> = ({ boxScore, teamData, table
                                     return (
                                         <TableRow key={player.player_id}>
                                             <TableCell className="text-left flex items-center gap-x-2">
-                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-700 hover:underline">
+                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-500 hover:underline">
                                                     {player.player_name}
                                                 </Link>
                                                 <p className="text-gray-500">{convertPlayerPosition(player.player_position)}</p>
@@ -144,7 +144,7 @@ const BoxScoreTable: React.FC<BoxScoreTableProps> = ({ boxScore, teamData, table
                                     return (
                                         <TableRow key={player.player_id}>
                                             <TableCell className="text-left flex items-center gap-x-2">
-                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-700 hover:underline">
+                                                <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player.player_id}/${player.player_name.toLowerCase().replace(" ", "-")}`} className="text-blue-500 hover:underline">
                                                     {player.player_name}
                                                 </Link>
                                                 <p className="text-gray-500">{convertPlayerPosition(player.player_position)}</p>

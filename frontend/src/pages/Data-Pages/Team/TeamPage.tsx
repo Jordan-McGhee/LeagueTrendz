@@ -87,7 +87,7 @@ const SingleTeamPage = () => {
 
 
     return (
-        <div className="h-full min-h-svh">
+        <div className="md:pb-8 pb-24">
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
@@ -107,39 +107,39 @@ const SingleTeamPage = () => {
                         <TeamHeader team={team} abbreviation={abbreviation} selectedMenuItem={selectedMenuItem} className="hidden md:flex justify-between items-start" />
 
                         {/* mobile menubar */}
-                        <Menubar className="flex w-fit md:hidden">
+                        <Menubar className="flex w-full md:hidden z-0">
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "home" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-1.5"
+                                    className="text-xs px-2"
                                     onClick={() => handleMenuClick('home')}>Home</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "stats" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-1.5"
+                                    className="text-xs px-2"
                                     onClick={() => handleMenuClick('stats')}>Stats</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "schedule" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-1.5"
+                                    className="text-xs px-2"
                                     onClick={() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "roster" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-1.5"
+                                    className="text-xs px-2"
                                     onClick={() => handleMenuClick('roster')}>Roster</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "history" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-1.5"
+                                    className="text-xs px-2"
                                     onClick={() => handleMenuClick('history')}>History</MenubarTrigger>
                             </MenubarMenu>
 
@@ -182,7 +182,7 @@ const SingleTeamPage = () => {
 
                     </CardHeader>
 
-                    <CardContent>
+                    <CardContent className="z-0">
                         {selectedMenuItem === "home" && <TeamHome team={team} games={games} players={players} history={history} />}
                         {selectedMenuItem === "stats" && <Stats team={team} players={players} />}
                         {selectedMenuItem === "schedule" && <TeamSchedule team={team} />}

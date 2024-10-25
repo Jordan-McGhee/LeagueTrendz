@@ -4,18 +4,18 @@ import { Link } from "react-router-dom"
 import { TeamPageProps } from "@/types"
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card"
-import { Separator } from "../../ui/separator"
+import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
+import React from "react"
 
-const TeamStats: React.FC<TeamPageProps> = ({ team }) => {
+const TeamStatsContent: React.FC<TeamPageProps> = ({ team }) => {
 
     return (
-        <Card>
+        <Card className="hidden md:block">
             <CardHeader>
                 <CardTitle className="flex justify-between">
                     2023-24 Team Stats
 
-                    <Link to={`/nba/teams/${team.abbreviation.toLowerCase()}?view=stats`} className="font-semibold text-blue-700">
+                    <Link to={`/nba/teams/${team.abbreviation.toLowerCase()}?view=stats`} className="font-semibold text-blue-500">
                         See All Team Stats
                     </Link>
                 </CardTitle>
@@ -54,4 +54,4 @@ const TeamStats: React.FC<TeamPageProps> = ({ team }) => {
     )
 }
 
-export default TeamStats
+export default TeamStatsContent

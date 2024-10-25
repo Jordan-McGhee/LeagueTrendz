@@ -2,19 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // type imports
-import { TeamPageProps } from "../../../types"
+import { TeamPageProps } from "../../../../types"
 
 // utils imports
-import { countStreak } from "../../../Utils/utils"
+import { countStreak } from "../../../../Utils/utils"
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
-import TeamLogo from "../../ui/TeamLogo"
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../ui/table"
+import TeamLogo from "../../../ui/TeamLogo"
 
 const Standings: React.FC<TeamPageProps> = ({ team }) => {
 
     const currentTeam = team.team_id
+    const mainColor = team.main_color
 
     return (
         <Card>
@@ -25,7 +26,7 @@ const Standings: React.FC<TeamPageProps> = ({ team }) => {
             </CardHeader>
 
             <CardContent>
-                <Table className="text-xs">
+                <Table className="text-sm md:text-base">
                     <TableHeader>
                         <TableRow>
                             <TableHead className="text-left">Team</TableHead>
@@ -39,10 +40,10 @@ const Standings: React.FC<TeamPageProps> = ({ team }) => {
 
                     <TableBody>
                         {team.team_standings.map((team) =>
-                            <TableRow key={team.full_name} className={team.team_id === currentTeam ? "font-bold" : ""}>
+                            <TableRow key={team.full_name} className={team.team_id === currentTeam ? "font-bold md:font-black bg-slate-50" : ""} style={team.team_id === currentTeam ? { color: mainColor } : {}}>
                                 <TableCell className="text-left">
                                     <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${team.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline">
-                                        <TeamLogo abbreviation={team.abbreviation} team_id={team.team_id} logoClass="size-4 object-contain" />
+                                        <TeamLogo abbreviation={team.abbreviation} team_id={team.team_id} logoClass="size-6 md:size-7 object-contain" />
                                         {team.abbreviation}
                                     </Link>
                                 </TableCell>
@@ -58,7 +59,7 @@ const Standings: React.FC<TeamPageProps> = ({ team }) => {
                 </Table>
             </CardContent>
 
-            <CardFooter className="text-sm font-semibold text-blue-700 pb-4">
+            <CardFooter className="justify-center md:justify-start font-semibold text-blue-500 pb-4">
                 <Link to="/nba/standings">
                     See Full Standings
                 </Link>

@@ -101,7 +101,7 @@ const GameBoxScorePage = () => {
                         <GameHeaderMobile game={game} standingsData={standingsData} headerClass="grid grid-cols-7 items-center md:hidden"/>
 
                         {/* DESKTOP */}
-                        <GameHeader game={game} standingsData={standingsData} headerClass="hidden md:grid grid-cols-7" />
+                        <GameHeader game={game} standingsData={standingsData} headerClass="hidden md:grid grid-cols-7 items-center" />
 
 
                         <Menubar className="w-full md:w-fit mx-auto">

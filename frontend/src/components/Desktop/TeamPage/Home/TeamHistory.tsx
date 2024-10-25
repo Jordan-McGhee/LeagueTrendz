@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { TeamHistoryProps } from "@/types";
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../ui/card";
 
 
 const TeamHistory: React.FC<TeamHistoryProps> = ({ team, history }) => {
@@ -37,7 +37,7 @@ const TeamHistory: React.FC<TeamHistoryProps> = ({ team, history }) => {
                     {/* championships */}
                     {championCount.length > 0 &&
                         <div className="grid grid-cols-8 gap-x-4">
-                            <img src={require("../../../nba-trophies/larry-obrien-champion.png")} className="size-16 object-contain col-span-2 place-self-center" alt="champ trophy" />
+                            <img src={require("../../../../nba-trophies/larry-obrien-champion.png")} className="size-16 object-contain col-span-2 place-self-center" alt="champ trophy" />
                             <div className="col-span-6">
                                 <p className="text-lg font-bold">{championCount.length}x NBA Champion</p>
                                 <p className="text-sm font-light">{championCount.join(", ")}</p>
@@ -57,7 +57,7 @@ const TeamHistory: React.FC<TeamHistoryProps> = ({ team, history }) => {
 
             </CardContent>
 
-            <CardFooter className="text-sm font-semibold text-blue-700 pb-4">
+            <CardFooter className="font-semibold text-blue-500 pb-4 justify-center md:justify-start">
                 <Link to={`/nba/teams/${team.abbreviation.toLowerCase()}?view=history`}>
                     See Full History
                 </Link>
