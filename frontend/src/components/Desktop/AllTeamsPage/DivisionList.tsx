@@ -21,8 +21,8 @@ const DivisionList = (props: { division: string, teams: Team[] | undefined }) =>
     return (
         <div className="w-full md:mx-2">
 
-            <div className="flex items-center justify-between">
-                <p className=" md:mb-2 text-xl font-bold">{props.division}</p>
+            <div className="flex items-center justify-between" style={showContent ? {marginBottom: '0.5rem'} : {}}>
+                <p className="text-xl font-bold">{props.division}</p>
 
                 <div onClick={() => toggleShowContent()} className="md:hidden flex gap-x-2 items-center">
                     <p className="text-sm">{showContent ? "Hide" : "Show"}</p>

@@ -469,6 +469,13 @@ export interface TeamScheduleObject {
     ast_leader: string
 }
 
+// TEAM STAT LEADER OBJECT
+export interface TeamStatLeaderObject {
+    id: number,
+    name: string,
+    stat: number
+}
+
 // TEAM HISTORY
 export interface TeamHistoryState {
     history_id: number,

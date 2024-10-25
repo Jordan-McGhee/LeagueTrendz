@@ -61,7 +61,7 @@ const GameHighBoxScoreTableMobile: React.FC<GameHighBoxScoreTableProps> = ({ tab
                                             <p>{player.player_team_abbreviation}</p> */}
 
                                             {/* game location */}
-                                            <p>{player.game_location === "HOME" ? "VS" : "@"}</p>
+                                            <p>{player.game_location === "HOME" ? "vs" : "@"}</p>
 
                                             {/* player team */}
                                             <TeamLogo team_id={player.opp_team_id} abbreviation={player.opp_team_abbreviation} logoClass="size-4 object-contain" />

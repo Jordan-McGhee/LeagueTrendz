@@ -254,10 +254,10 @@ export const shortenYears = (years: number[]) => {
 };
 
 /**
- * Generates a string representation of a range of years based on an array of years.
- * If the range ends with 2024, the end year is labeled as "Current".
- * @param years An array of years to be shortened into ranges.
- * @returns A string representing the shortened years along with the number of seasons.
+ * Generates a Player stat object from string given from database
+ * 
+ * @param player A string with player id, name, and the stat in question.
+ * @returns Stat object featuring player's id, name, and stat amount (pts, reb, or ast)
  */
 export const teamStatLeaderFormatter = (player: string) => {
     // string comes formatted like: 13 - Jayson Tatum (34)
