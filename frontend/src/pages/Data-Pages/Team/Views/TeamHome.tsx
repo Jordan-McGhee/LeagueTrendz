@@ -22,8 +22,8 @@ const TeamHome: React.FC<TeamHomeProps> = ({ team, games, players, history }) =>
             {/* mobile div */}
             <div className="flex flex-col gap-y-4 mt-2 md:hidden">
                 <TeamStats team={team} />
-                <Standings team={team} />
                 <TeamLeaders team={team} players={players} />
+                <Standings team={team} />
                 <TeamHistory team={team} history={history} />
             </div>
 

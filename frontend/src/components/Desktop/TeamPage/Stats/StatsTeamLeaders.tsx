@@ -9,10 +9,10 @@ import { convertPlayerPosition, shortenPlayerName } from "../../../../Utils/util
 
 // component imports
 
-const StatsTeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
+const StatsTeamLeaders: React.FC<TeamPlayersProps> = ({ team, players, className }) => {
 
     return (
-        <div>
+        <div className={className}>
 
             {/* team leaders div */}
             <div className="w-full flex grow justify-between text-sm">
@@ -26,7 +26,7 @@ const StatsTeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                         <div className="flex items-center justify-between gap-x-2 border p-4 rounded-md hover:scale-105">
 
                             <div className="">
-                                <p className="text-sm font-bold max-w-28 truncate">{shortenPlayerName(players.pts_leader_name)}</p>
+                                <p className="text-sm font-bold max-w-28 truncate">{players.pts_leader_name.length > 18 ? shortenPlayerName(players.pts_leader_name) : players.pts_leader_name}</p>
                                 <p className="text-xs font-light">{convertPlayerPosition(players.pts_leader_position)} ⋅ #{players.pts_leader_number}</p>
                                 <p className="text-3xl font-bold" style={{ color: team.main_color }}>{players.pts_leader_stat}</p>
                             </div>
@@ -45,7 +45,7 @@ const StatsTeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                         <div className="flex items-center justify-between gap-x-2 border p-4 rounded-md hover:scale-105">
 
                             <div className="">
-                                <p className="text-sm font-bold max-w-28 truncate">{shortenPlayerName(players.ast_leader_name)}</p>
+                                <p className="text-sm font-bold max-w-28 truncate">{players.ast_leader_name.length > 18 ? shortenPlayerName(players.ast_leader_name) : players.ast_leader_name}</p>
                                 <p className="text-xs font-light">{convertPlayerPosition(players.ast_leader_position)} ⋅ #{players.ast_leader_number}</p>
                                 <p className="text-3xl font-bold" style={{ color: team.main_color }}>{players.ast_leader_stat}</p>
                             </div>
@@ -64,7 +64,7 @@ const StatsTeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                         <div className="flex items-center justify-between gap-x-2 border p-4 rounded-md hover:scale-105">
 
                             <div className="">
-                                <p className="text-sm font-bold max-w-28 truncate">{shortenPlayerName(players.reb_leader_name)}</p>
+                                <p className="text-sm font-bold max-w-28 truncate">{players.reb_leader_name.length > 18 ? shortenPlayerName(players.reb_leader_name) : players.reb_leader_name}</p>
                                 <p className="text-xs font-light">{convertPlayerPosition(players.reb_leader_position)} ⋅ #{players.reb_leader_number}</p>
                                 <p className="text-3xl font-bold" style={{ color: team.main_color }}>{players.reb_leader_stat}</p>
                             </div>
@@ -83,7 +83,7 @@ const StatsTeamLeaders: React.FC<TeamPlayersProps> = ({ team, players }) => {
                         <div className="flex items-center justify-between gap-x-2 border p-4 rounded-md hover:scale-105">
 
                             <div className="">
-                                <p className="text-sm font-bold max-w-28 truncate">{shortenPlayerName(players.stl_leader_name)}</p>
+                                <p className="text-sm font-bold max-w-28 truncate">{players.stl_leader_name.length > 18 ? shortenPlayerName(players.stl_leader_name) : players.stl_leader_name}</p>
                                 <p className="text-xs font-light">{convertPlayerPosition(players.stl_leader_position)} ⋅ #{players.stl_leader_number}</p>
                                 <p className="text-3xl font-bold" style={{ color: team.main_color }}>{players.stl_leader_stat}</p>
                             </div>

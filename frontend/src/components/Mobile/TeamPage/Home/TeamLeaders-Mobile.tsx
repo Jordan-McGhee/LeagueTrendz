@@ -24,7 +24,7 @@ const TeamLeadersContentMobile: React.FC<TeamPlayersProps> = ({ team, players })
         <Card className="block md:hidden">
             <CardHeader>
                 <CardTitle className="flex justify-between">
-                    23-24 Team Leaders
+                    '23-24 Team Leaders
 
                     <div onClick={() => toggleShowContent()} className="flex gap-x-2 items-center md:hidden">
                         <p className="text-sm">{showContent ? "Hide" : "Show"}</p>
@@ -52,7 +52,7 @@ const TeamLeadersContentMobile: React.FC<TeamPlayersProps> = ({ team, players })
 
                                     {/* points */}
                                     <div className="">
-                                        <p className="mb-2 font-bold text-center">Points Per Game</p>
+                                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Points Per Game</p>
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.pts_leader_id}/${players.pts_leader_name.toLowerCase().replace(" ", "-")}`} className="flex items-center">
                                             <img src={players.pts_leader_photo_url} alt={players.pts_leader_name} className="h-12 object-contain mr-2" />
                                             {/* player info div */}
@@ -69,7 +69,7 @@ const TeamLeadersContentMobile: React.FC<TeamPlayersProps> = ({ team, players })
                                     {/* assists */}
 
                                     <div className="">
-                                        <p className="mb-2 font-bold text-center">Assists Per Game</p>
+                                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Assists Per Game</p>
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.ast_leader_id}/${players.ast_leader_name.toLowerCase().replace(" ", "-")}`}>
                                             <div className="flex items-center">
                                                 <img src={players.ast_leader_photo_url} alt={players.ast_leader_name} className="h-12 object-contain mr-2" />
@@ -89,7 +89,7 @@ const TeamLeadersContentMobile: React.FC<TeamPlayersProps> = ({ team, players })
                                     {/* fg% */}
 
                                     <div className="">
-                                        <p className="mb-2 font-bold text-center">Field Goal Percentage</p>
+                                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Field Goal Percentage</p>
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.fg_percentage_leader_id}/${players.fg_percentage_leader_name.toLowerCase().replace(" ", "-")}`}>
                                             <div className="flex items-center">
                                                 <img src={players.fg_percentage_leader_photo_url} alt={players.fg_percentage_leader_name} className="h-12 object-contain mr-2" />
@@ -115,7 +115,7 @@ const TeamLeadersContentMobile: React.FC<TeamPlayersProps> = ({ team, players })
 
                                     {/* steals */}
                                     <div className="">
-                                        <p className="mb-2 font-bold text-center">Steals Per Game</p>
+                                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Steals Per Game</p>
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.stl_leader_id}/${players.stl_leader_name.toLowerCase().replace(" ", "-")}`}>
                                             <div className="flex items-center">
                                                 <img src={players.stl_leader_photo_url} alt={players.stl_leader_name} className="h-12 object-contain mr-2" />
@@ -135,7 +135,7 @@ const TeamLeadersContentMobile: React.FC<TeamPlayersProps> = ({ team, players })
                                     {/* blocks */}
 
                                     <div className="">
-                                        <p className="mb-2 font-bold text-center">Blocks Per Game</p>
+                                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Blocks Per Game</p>
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.blk_leader_id}/${players.blk_leader_name.toLowerCase().replace(" ", "-")}`}>
                                             <div className="flex items-center">
                                                 <img src={players.blk_leader_photo_url} alt={players.blk_leader_name} className="h-12 object-contain mr-2" />
@@ -155,7 +155,7 @@ const TeamLeadersContentMobile: React.FC<TeamPlayersProps> = ({ team, players })
                                     {/* rebounds */}
 
                                     <div className="">
-                                        <p className="mb-2 font-bold text-center">Rebounds Per Game</p>
+                                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Rebounds Per Game</p>
                                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.reb_leader_id}/${players.reb_leader_name.toLowerCase().replace(" ", "-")}`}>
                                             <div className="flex items-center">
                                                 <img src={players.reb_leader_photo_url} alt={players.reb_leader_name} className="h-12 object-contain mr-2" />

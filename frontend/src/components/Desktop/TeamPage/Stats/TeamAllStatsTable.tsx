@@ -12,7 +12,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "../../../ui/DataTable";
 import { Button } from "../../../ui/button"
 import { CaretSortIcon } from "@radix-ui/react-icons";
-import { TableFooter, TableRow, TableCell } from "../../../ui/table"
+import { TableRow, TableCell } from "../../../ui/table"
 
 const TeamAllStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, teamStats, playoffs }) => {
 
@@ -20,7 +20,11 @@ const TeamAllStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, teamSta
         // name/position
         {
             accessorKey: 'name',
-            header: "NAME",
+            header: ({ column }) => (
+                <div className="sticky md:static left-0 bg-white md:bg-transparent z-20 md:z-0 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] pr-4">
+                    NAME
+                </div>
+            ),
             cell: ({ row }) => {
                 const player_id = row.original.player_id
                 const name = row.original.name
@@ -28,9 +32,11 @@ const TeamAllStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, teamSta
                 const urlName: string = name.toLowerCase().replace(" ", "-")
 
                 return (
-                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player_id}/${urlName}`} className="hover:underline text-xs max-w-32 truncate" key={player_id}>
-                        {name} <span className="font-thin">{convertPlayerPosition(position)}</span>
-                    </Link>
+                    <div className="sticky md:static left-0 bg-white md:bg-transparent z-10 md:z-0 pr-4 min-w-[120px]">
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${player_id}/${urlName}`} className="hover:underline text-xs" key={player_id}>
+                            {name} <span className="font-thin">{convertPlayerPosition(position)}</span>
+                        </Link>
+                    </div>
                 )
             }
         },
@@ -630,9 +636,9 @@ const TeamAllStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, teamSta
 
     const footer = (
         <TableRow>
-            <TableCell>Total</TableCell>
+            <TableCell className="sticky md:static left-0 bg-white md:bg-transparent z-10 md:z-0">Total</TableCell>
             <TableCell className="text-center">{teamStats.gp}</TableCell>
-            { !playoffs && <TableCell></TableCell>}
+            {!playoffs && <TableCell></TableCell>}
             <TableCell></TableCell>
             <TableCell className="text-center">{teamStats.avg_pts}</TableCell>
             <TableCell className="text-center">{teamStats.avg_orb}</TableCell>
@@ -648,9 +654,9 @@ const TeamAllStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, teamSta
     )
 
     return (
-        <>
-            <DataTable columns={playoffs ? playoffColumns : columns} data={playerStats || []} footer = {footer}/>
-        </>
+        <div className="relative overflow-x-auto">
+            <DataTable columns={playoffs ? playoffColumns : columns} data={playerStats || []} footer={footer} />
+        </div>
     )
 }
 

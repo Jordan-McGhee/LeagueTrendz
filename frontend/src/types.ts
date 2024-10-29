@@ -357,7 +357,8 @@ export interface TeamScheduleProps {
 
 export interface TeamPlayersProps {
     team: TeamExpanded,
-    players: TeamPlayersState
+    players: TeamPlayersState,
+    className?: string
 }
 
 export interface TeamHistoryProps {
@@ -467,13 +468,6 @@ export interface TeamScheduleObject {
     pts_leader: string,
     reb_leader: string,
     ast_leader: string
-}
-
-// TEAM STAT LEADER OBJECT
-export interface TeamStatLeaderObject {
-    id: number,
-    name: string,
-    stat: number
 }
 
 // TEAM HISTORY

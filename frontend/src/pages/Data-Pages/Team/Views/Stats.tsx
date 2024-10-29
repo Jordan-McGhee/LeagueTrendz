@@ -20,6 +20,9 @@ import LoadingPage from "../../../LoadingPage"
 import TeamAllStatsTable from "../../../../components/Desktop/TeamPage/Stats/TeamAllStatsTable";
 import TeamShootingStatsTable from "../../../../components/Desktop/TeamPage/Stats/TeamShootingStatsTable";
 
+// mobile component imports
+import StatsTeamLeadersMobile from "../../../../components/Mobile/TeamPage/Stats/StatsTeamLeaders-Mobile"
+
 const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
     const teamsMissedPlayoffs = [2, 3, 8, 10, 14, 24, 26, 27, 28, 29]
@@ -59,7 +62,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
         fetchStats()
     }, [team, showPlayoffs, sendRequest])
 
-    const selectHandler = ( value: string ) => {
+    const selectHandler = (value: string) => {
         if (value === "playoffs") {
             setShowPlayoffs(true)
         } else {
@@ -79,15 +82,16 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                 playerStats && teamStats &&
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center justify-between">
-                            2023-24 Stats and Leaders
+                        <CardTitle className="flex flex-col gap-y-2 md:flex-row md:items-center justify-between">
+                            <p className="hidden md:block">2023-24 Stats and Leaders</p>
+                            <p className="md:hidden">'23-24 Stats and Leaders</p>
 
 
                             {/* drop down for playoff/regular season — check if team made playoffs */}
                             {
                                 !teamsMissedPlayoffs.includes(team.team_id) &&
                                 <Select value={showPlayoffs ? "playoffs" : "regular-season"} onValueChange={(newValue) => selectHandler(newValue)}>
-                                    <SelectTrigger className="w-[300px]">
+                                    <SelectTrigger className="w-fit md:w-[300px]">
                                         <SelectValue placeholder="Choose Season Type" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -104,14 +108,31 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                         {/* playoff or regular season leaders */}
                         {
                             showPlayoffs && playoffLeaders ?
-                            <StatsTeamLeaders team={team} players={playoffLeaders} />
-                            :
-                            <StatsTeamLeaders team={team} players={players} />
+                                (
+                                    <>
+                                        {/* mobile */}
+                                        <StatsTeamLeadersMobile team={team} players={playoffLeaders} className="block md:hidden max-w-8" />
+
+                                        {/* desktop */}
+                                        <StatsTeamLeaders team={team} players={playoffLeaders} className="hidden md:block" />
+                                    </>
+
+                                )
+                                :
+                                (
+                                    <>
+                                        {/* mobile */}
+                                        <StatsTeamLeadersMobile team={team} players={players} className="block md:hidden" />
+
+                                        {/* desktop */}
+                                        <StatsTeamLeaders team={team} players={players} className="hidden md:block" />
+                                    </>
+                                )
                         }
 
                         {/* all stats table */}
-                        <p className="my-4 font-semibold text-lg">Player Stats</p>
-                        <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} playoffs = { showPlayoffs } />
+                        <p className="mb-4 md:my-4 font-semibold text-lg">Player Stats</p>
+                        <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} playoffs={showPlayoffs} />
 
                         {/* Shooting stats table */}
                         <p className="my-4 font-semibold text-lg">Shooting Stats</p>

@@ -21,7 +21,8 @@ const Standings: React.FC<TeamPageProps> = ({ team }) => {
         <Card>
             <CardHeader>
                 <CardTitle className="font-bold">
-                    2023-24 {team.division} Standings
+                    <p className="hidden md:block">2023-24 {team.division} Standings</p>
+                    <p className="md:hidden">'23-24 {team.division} Standings</p>
                 </CardTitle>
             </CardHeader>
 

@@ -33,7 +33,7 @@ const TeamLeadersContent: React.FC<TeamPlayersProps> = ({ team, players }) => (
 
                     {/* points */}
                     <div className="text-sm">
-                        <p className="mb-2 font-bold ">Points Per Game</p>
+                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Points Per Game</p>
                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.pts_leader_id}/${players.pts_leader_name.toLowerCase().replace(" ", "-")}`}>
                             <div className="flex items-center">
                                 <img src={players.pts_leader_photo_url} alt={players.pts_leader_name} className="h-12 object-contain mr-2" />
@@ -53,7 +53,7 @@ const TeamLeadersContent: React.FC<TeamPlayersProps> = ({ team, players }) => (
                     {/* assists */}
 
                     <div className="text-sm">
-                        <p className="mb-2 font-bold ">Assists Per Game</p>
+                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Assists Per Game</p>
                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.ast_leader_id}/${players.ast_leader_name.toLowerCase().replace(" ", "-")}`}>
                             <div className="flex items-center">
                                 <img src={players.ast_leader_photo_url} alt={players.ast_leader_name} className="h-12 object-contain mr-2" />
@@ -73,7 +73,7 @@ const TeamLeadersContent: React.FC<TeamPlayersProps> = ({ team, players }) => (
                     {/* fg% */}
 
                     <div className="text-sm">
-                        <p className="mb-2 font-bold ">Field Goal Percentage</p>
+                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Field Goal Percentage</p>
                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.fg_percentage_leader_id}/${players.fg_percentage_leader_name.toLowerCase().replace(" ", "-")}`}>
                             <div className="flex items-center">
                                 <img src={players.fg_percentage_leader_photo_url} alt={players.fg_percentage_leader_name} className="h-12 object-contain mr-2" />
@@ -99,7 +99,7 @@ const TeamLeadersContent: React.FC<TeamPlayersProps> = ({ team, players }) => (
 
                     {/* steals */}
                     <div className="text-sm">
-                        <p className="mb-2 font-bold ">Steals Per Game</p>
+                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Steals Per Game</p>
                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.stl_leader_id}/${players.stl_leader_name.toLowerCase().replace(" ", "-")}`}>
                             <div className="flex items-center">
                                 <img src={players.stl_leader_photo_url} alt={players.stl_leader_name} className="h-12 object-contain mr-2" />
@@ -119,7 +119,7 @@ const TeamLeadersContent: React.FC<TeamPlayersProps> = ({ team, players }) => (
                     {/* blocks */}
 
                     <div className="text-sm">
-                        <p className="mb-2 font-bold ">Blocks Per Game</p>
+                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Blocks Per Game</p>
                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.blk_leader_id}/${players.blk_leader_name.toLowerCase().replace(" ", "-")}`}>
                             <div className="flex items-center">
                                 <img src={players.blk_leader_photo_url} alt={players.blk_leader_name} className="h-12 object-contain mr-2" />
@@ -139,7 +139,7 @@ const TeamLeadersContent: React.FC<TeamPlayersProps> = ({ team, players }) => (
                     {/* rebounds */}
 
                     <div className="text-sm">
-                        <p className="mb-2 font-bold ">Rebounds Per Game</p>
+                        <p className="mb-2 font-bold uppercase tracking-widest" style={{ color: team.main_color }}>Rebounds Per Game</p>
                         <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.reb_leader_id}/${players.reb_leader_name.toLowerCase().replace(" ", "-")}`}>
                             <div className="flex items-center">
                                 <img src={players.reb_leader_photo_url} alt={players.reb_leader_name} className="h-12 object-contain mr-2" />
