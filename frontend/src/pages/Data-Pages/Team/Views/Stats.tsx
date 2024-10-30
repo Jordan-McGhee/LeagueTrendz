@@ -22,6 +22,8 @@ import TeamShootingStatsTable from "../../../../components/Desktop/TeamPage/Stat
 
 // mobile component imports
 import StatsTeamLeadersMobile from "../../../../components/Mobile/TeamPage/Stats/StatsTeamLeaders-Mobile"
+import TeamAllStatsTableMobile from "../../../../components/Mobile/TeamPage/Stats/TeamAllStatsTable-Mobile";
+import TeamShootingStatsTableMobile from "../../../../components/Mobile/TeamPage/Stats/TeamShootingStatsTable-Mobile";
 
 const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
 
@@ -31,6 +33,9 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
     const [playoffLeaders, setPlayoffLeaders] = useState<TeamPlayersState | undefined>()
     const [playerStats, setPlayerStats] = useState<PlayerStatsObject[] | undefined>()
     const [teamStats, setTeamStats] = useState<TeamStatsObject | undefined>()
+
+    // state to track when select drop down is open
+    const [isOpen, setIsOpen] = useState(false);
 
     const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
 
@@ -82,6 +87,16 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                 playerStats && teamStats &&
                 <Card>
                     <CardHeader>
+
+                        {/* Blocking overlay for when select is open — preventing user from clicking random links below*/}
+                        {isOpen && (
+                            <div
+                                className="fixed inset-0 bg-transparent"
+                                style={{ zIndex: 9 }}
+                                onClick={(e) => e.preventDefault()}
+                            />
+                        )}
+
                         <CardTitle className="flex flex-col gap-y-2 md:flex-row md:items-center justify-between">
                             <p className="hidden md:block">2023-24 Stats and Leaders</p>
                             <p className="md:hidden">'23-24 Stats and Leaders</p>
@@ -90,11 +105,15 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                             {/* drop down for playoff/regular season — check if team made playoffs */}
                             {
                                 !teamsMissedPlayoffs.includes(team.team_id) &&
-                                <Select value={showPlayoffs ? "playoffs" : "regular-season"} onValueChange={(newValue) => selectHandler(newValue)}>
+                                <Select
+                                    value={showPlayoffs ? "playoffs" : "regular-season"}
+                                    onValueChange={(newValue) => selectHandler(newValue)}
+                                    onOpenChange={(open) => setIsOpen(open)}
+                                >
                                     <SelectTrigger className="w-fit md:w-[300px]">
                                         <SelectValue placeholder="Choose Season Type" />
                                     </SelectTrigger>
-                                    <SelectContent>
+                                    <SelectContent className="z-10">
                                         <SelectItem value="regular-season">Regular Season</SelectItem>
                                         <SelectItem value="playoffs">Playoffs</SelectItem>
                                     </SelectContent>
@@ -111,7 +130,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                 (
                                     <>
                                         {/* mobile */}
-                                        <StatsTeamLeadersMobile team={team} players={playoffLeaders} className="block md:hidden max-w-8" />
+                                        <StatsTeamLeadersMobile team={team} players={playoffLeaders} className="block md:hidden" />
 
                                         {/* desktop */}
                                         <StatsTeamLeaders team={team} players={playoffLeaders} className="hidden md:block" />
@@ -130,13 +149,26 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                 )
                         }
 
-                        {/* all stats table */}
-                        <p className="mb-4 md:my-4 font-semibold text-lg">Player Stats</p>
-                        <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} playoffs={showPlayoffs} />
+                        {/* MOBILE */}
 
-                        {/* Shooting stats table */}
-                        <p className="my-4 font-semibold text-lg">Shooting Stats</p>
-                        <TeamShootingStatsTable playerStats={playerStats} teamStats={teamStats} />
+                        <div className="block md:hidden">
+                            {/* all stats table */}
+                            <TeamAllStatsTableMobile playerStats={playerStats} teamStats={teamStats} playoffs={showPlayoffs} />
+
+                            {/* shooting stats table */}
+                            <TeamShootingStatsTableMobile playerStats={playerStats} teamStats={teamStats} />
+                        </div>
+
+                        {/* DESKTOP */}
+                        <div className="hidden md:block">
+                            {/* all stats table */}
+                            <p className="my-4 font-semibold text-lg">Player Stats</p>
+                            <TeamAllStatsTable playerStats={playerStats} teamStats={teamStats} playoffs={showPlayoffs} />
+
+                            {/* Shooting stats table */}
+                            <p className="my-4 font-semibold text-lg">Shooting Stats</p>
+                            <TeamShootingStatsTable playerStats={playerStats} teamStats={teamStats} />
+                        </div>
 
                     </CardContent>
 
@@ -146,7 +178,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                             <p className="text-xs font-semibold">GLOSSARY:</p>
 
                             {/* GLOSSARY */}
-                            <div className="text-xs mt-4 flex justify-between">
+                            <div className="text-xs mt-4 md:flex justify-between">
 
                                 <div className="flex flex-col gap-y-1">
                                     <p><span className="font-bold">2P%:</span> 2-Point Field Goal Percentage</p>

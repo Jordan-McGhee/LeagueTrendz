@@ -18,7 +18,7 @@ const StatsTeamLeadersMobile: React.FC<TeamPlayersProps> = ({ team, players, cla
         }}
         className={className}
     >
-        <CarouselContent className="mx-auto mb-4 ">
+        <CarouselContent className="mx-auto mb-4 w-full">
 
             {/* pts */}
             <CarouselItem className="" key={players.pts_leader_name}>

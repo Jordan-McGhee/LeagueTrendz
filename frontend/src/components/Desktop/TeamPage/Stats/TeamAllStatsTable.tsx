@@ -654,9 +654,7 @@ const TeamAllStatsTable: React.FC<TeamStatsTableProps> = ({ playerStats, teamSta
     )
 
     return (
-        <div className="relative overflow-x-auto">
-            <DataTable columns={playoffs ? playoffColumns : columns} data={playerStats || []} footer={footer} />
-        </div>
+        <DataTable columns={playoffs ? playoffColumns : columns} data={playerStats || []} footer={footer} />
     )
 }
 

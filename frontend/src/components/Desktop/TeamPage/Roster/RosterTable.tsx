@@ -1,55 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-// hook imports
-import { useFetch } from "../../../../Hooks/useFetch";
-
 // type imports
-import { Player, TeamPageProps } from "../../../../types"
+import { Player, Team } from "@/types"
 
-// utility function import
+// utils imports
 import { convertPlayerPosition } from "../../../../Utils/utils";
 
 // ui imports
 import { ColumnDef } from "@tanstack/react-table";
-import { Button } from "../../../../components/ui/button"
 import { CaretSortIcon } from "@radix-ui/react-icons";
+import { Button } from "../../../ui/button"
+import { DataTable } from "../../../ui/DataTable"
+import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
 
-// component imports
-import LoadingPage from "../../../LoadingPage";
-import ErrorModal from "../../../../components/ui/ErrorModal"
-import RosterTable from "../../../../components/Desktop/TeamPage/Roster/RosterTable"
-
-// mobile component imports
-import RosterTableMobile from "../../../../components/Mobile/TeamPage/Roster/RosterTableMobile"
-
-
-const Roster: React.FC<TeamPageProps> = ({ team }) => {
-
-    type Roster = Player[]
-
-    const [roster, setRoster] = useState<Roster>([])
-
-    const { isLoading, hasError, errorMessage, sendRequest, clearError } = useFetch()
-
-    // fetch roster from database
-    useEffect(() => {
-        const url: string = `${process.env.REACT_APP_BACKEND_URL}/nba/teams/${team.team_id}/roster`
-
-        let responseData: any
-
-        const fetchRoster = async () => {
-            try {
-                responseData = await sendRequest(url)
-                setRoster(responseData.roster)
-            } catch (error) {
-
-            }
-        }
-
-        fetchRoster()
-    }, [team, sendRequest])
-
+const RosterTable = ({ team, roster, className }: { team: Team, roster: Player[], className: string }) => {
 
     const columns: ColumnDef<Player>[] = [
         {
@@ -206,25 +171,24 @@ const Roster: React.FC<TeamPageProps> = ({ team }) => {
                     <div>{playerStatus}</div>
                 )
             }
-        },
+        }
     ]
 
     return (
-        <div>
+        <Card className={className}>
+            <CardHeader>
+                <CardTitle>
+                    2023-24 Roster
+                </CardTitle>
+            </CardHeader>
 
-            {/* error */}
-            <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
+            <CardContent>
+                <DataTable columns={columns} data={roster} />
 
-            {isLoading && <LoadingPage />}
-
-            {/* mobile */}
-            <RosterTableMobile team={team} roster={roster} className="block md:hidden" />
-
-            {/* desktop */}
-            <RosterTable team={team} roster={roster} className="hidden md:block" />
-            
-        </div>
+                <p className="text-sm font-bold mt-4">Coach: <span className="font-light">{team.head_coach}</span></p>
+            </CardContent>
+        </Card>
     )
 }
 
-export default Roster
+export default RosterTable
