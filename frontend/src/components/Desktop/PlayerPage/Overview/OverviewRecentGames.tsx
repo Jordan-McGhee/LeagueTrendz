@@ -24,7 +24,7 @@ const OverviewRecentGames: React.FC<OverviewRecentGamesProps> = ({ player, games
                     <div className="flex justify-between">
                         <p>Recent Games</p>
                         <Link to={`/nba/players/id/${player.player_id}/${urlName}?view=log`} className="text-blue-500">
-                            See All
+                            See Game Log
                         </Link>
                     </div>
                 </CardTitle>

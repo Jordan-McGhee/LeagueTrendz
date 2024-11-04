@@ -11,6 +11,7 @@ import { convertDateGameLog, shortenTeamName } from "../../../../Utils/utils";
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
 import TeamLogo from "../../../ui/TeamLogo"
 
+// component imports
 import OverviewSplitsTable from "./OverviewSplitsTable";
 
 const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, splits }) => {
@@ -47,13 +48,11 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
     return (
         <Card className="w-full">
             <CardHeader>
-                <CardTitle>
-                    <div className="flex justify-between">
-                        <p>Last Game</p>
-                        <Link to={`/nba/players/id/${splits.player_id}/${splits.player_name.toLowerCase().replace(" ", "-")}?view=splits`} className="text-blue-600">
-                            See Full Splits
-                        </Link>
-                    </div>
+                <CardTitle className="flex justify-between">
+                    <p>Last Game</p>
+                    <Link to={`/nba/players/id/${splits.player_id}/${splits.player_name.toLowerCase().replace(" ", "-")}?view=splits`} className="text-blue-500">
+                        See Full Splits
+                    </Link>
                 </CardTitle>
             </CardHeader>
 
@@ -62,33 +61,41 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                 <div>
 
                     <div className="grid grid-cols-11 items-center">
-                        {/* home team */}
-                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${homeTeamAbbreviation.toLowerCase()}`} className="col-start-1 col-span-3 justify-self-end flex items-center gap-x-4 hover:underline">
+                        {/* away team */}
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${awayTeamAbbreviation.toLowerCase()}`} className="col-start-1 col-span-3 justify-self-end flex items-center gap-x-4 hover:underline">
                             <div className="text-right">
-                                <p className="text-lg font-semibold">{homeTeamName}</p>
+                                <p className="text-lg font-semibold">{awayTeamName}</p>
                                 <p className="text-xs">
-                                    {homeTeamRecord}
+                                    {awayTeamRecord}
                                 </p>
                             </div>
 
-                            <TeamLogo abbreviation={homeTeamAbbreviation} team_id={homeTeamId} logoClass="size-12 object-contain" />
+                            <TeamLogo abbreviation={awayTeamAbbreviation} team_id={awayTeamId} logoClass="size-12 object-contain" />
                         </Link>
-                        <p className={+homeTeamScore > +awayTeamScore ? "text-4xl font-bold col-start-4 text-center col-span-2" : "text-4xl col-start-4 text-center col-span-2"}>{homeTeamScore}</p>
 
-                        {/* date/time */}
-                        <div className="text-center text-sm col-span-1 col-start-6">
-                            <p>{convertDateGameLog(lastGame.day_of_week, lastGame.game_date.split("T")[0])}</p>
-                            <p className="font-bold">FINAL</p>
+                        <div className="col-span-2 flex flex-col items-center">
+                            <p className="font-thin -mb-1 text-sm tracking-widest">AWAY</p>
+                            <p className={+homeTeamScore < +awayTeamScore ? "text-4xl font-bold text-center" : "text-4xl text-center"}>{awayTeamScore}</p>
                         </div>
 
-                        {/* away team */}
-                        <p className={+awayTeamScore > +homeTeamScore ? "text-4xl font-bold col-start-7 col-span-2 text-center" : "text-4xl col-start-7 col-span-2 text-center"}>{awayTeamScore}</p>
+                        {/* date/time */}
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/games/game_id/${lastGame.game_id}`} className="text-center text-sm col-span-1 col-start-6 text-blue-500">
+                            <p>{convertDateGameLog(lastGame.day_of_week, lastGame.game_date.split("T")[0])}</p>
+                            <p className="font-bold">FINAL</p>
+                        </Link>
 
-                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${awayTeamAbbreviation.toLowerCase()}`} className="col-start-9 col-span-3 justify-self-start flex items-center gap-x-4 hover:underline">
-                            <TeamLogo abbreviation={awayTeamAbbreviation} team_id={awayTeamId} logoClass="size-12 object-contain" />
+                        {/* home team */}
+                        
+                        <div className="col-span-2 flex flex-col items-center">
+                            <p className="font-thin -mb-1 text-sm tracking-widest">HOME</p>
+                            <p className={+homeTeamScore > +awayTeamScore ? "text-4xl font-bold text-center" : "text-4xl text-center"}>{homeTeamScore}</p>
+                        </div>
+
+                        <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${homeTeamAbbreviation.toLowerCase()}`} className="col-start-9 col-span-3 justify-self-start flex items-center gap-x-4 hover:underline">
+                            <TeamLogo abbreviation={homeTeamAbbreviation} team_id={homeTeamId} logoClass="size-12 object-contain" />
                             <div className="text-left">
-                                <p className="text-lg font-semibold">{awayTeamName}</p>
-                                <p className="text-xs">{awayTeamRecord}</p>
+                                <p className="text-lg font-semibold">{homeTeamName}</p>
+                                <p className="text-xs">{homeTeamRecord}</p>
                             </div>
                         </Link>
                     </div>
@@ -97,8 +104,8 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                     {/* <div className="flex items-center justify-around mx-auto mb-2"> */}
 
 
-                        {/* home team */}
-                        {/* <div className="flex items-center gap-x-4">
+                    {/* home team */}
+                    {/* <div className="flex items-center gap-x-4">
                             <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${homeTeamAbbreviation.toLowerCase()}`} className="flex items-center gap-x-4 hover:underline">
                                 <div className="text-right">
                                     <p className="text-lg font-semibold">{homeTeamName}</p>
@@ -112,14 +119,14 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                             <p className={+homeTeamScore > +awayTeamScore ? "text-4xl font-bold" : "text-4xl"}>{homeTeamScore}</p>
                         </div> */}
 
-                        {/* date/time */}
-                        {/* <div className="text-center text-sm">
+                    {/* date/time */}
+                    {/* <div className="text-center text-sm">
                             <p>{convertDateGameLog(lastGame.day_of_week, lastGame.game_date.split("T")[0])}</p>
                             <p className="font-bold">FINAL</p>
                         </div> */}
 
-                        {/* away team */}
-                        {/* <div className="flex items-center gap-x-4">
+                    {/* away team */}
+                    {/* <div className="flex items-center gap-x-4">
                             <p className={+awayTeamScore > +homeTeamScore ? "text-4xl font-bold" : "text-4xl"}>{awayTeamScore}</p>
 
                             <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${awayTeamAbbreviation.toLowerCase()}`} className="flex items-center gap-x-4 hover:underline">
@@ -138,19 +145,19 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                     <div className="flex justify-between my-4">
 
                         {/* points div */}
-                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%] shadow-md">
                             <p className="text-xs">PTS {homeGame ? `VS ${lastGame.opp_team_abbreviation}` : `@ ${lastGame.opp_team_abbreviation}`}</p>
                             <p className="text-3xl font-bold" style={{ color: currentTeam.main_color }}>{lastGame.pts}</p>
                         </div>
 
                         {/* assists div */}
-                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%] shadow-md">
                             <p className="text-xs">AST {homeGame ? `VS ${lastGame.opp_team_abbreviation}` : `@ ${lastGame.opp_team_abbreviation}`}</p>
                             <p className="text-3xl font-bold" style={{ color: currentTeam.main_color }}>{lastGame.ast}</p>
                         </div>
 
                         {/* 3P% or REB div */}
-                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%] shadow-md">
                             {
                                 lastGame.tp_percentage > 15 ?
                                     <div>
@@ -166,7 +173,7 @@ const OverviewSplits: React.FC<OverviewSplitsProps> = ({ currentTeam, lastGame, 
                         </div>
 
                         {/* FG% div */}
-                        <div className="text-center border rounded-lg py-3 px-6 w-[23%]">
+                        <div className="text-center border rounded-lg py-3 px-6 w-[23%] shadow-md">
                             <p className="text-xs">FG% {homeGame ? `VS ${lastGame.opp_team_abbreviation}` : `@ ${lastGame.opp_team_abbreviation}`}</p>
                             <p className="text-3xl font-bold" style={{ color: currentTeam.main_color }}>{lastGame.fg_percentage}%</p>
                         </div>

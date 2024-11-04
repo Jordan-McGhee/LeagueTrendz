@@ -368,7 +368,7 @@ const GameLeaders: React.FC<GameLeadersProps> = ({ teamData, players }) => {
                         }
 
                     </CardContent>
-                    <CardFooter className="font-bold text-blue-600">
+                    <CardFooter className="font-bold text-blue-600 justify-center md:justify-start">
                         <p onClick={() => navigate(`/nba/games/game_id/${teamData.game_id}?view=box-score`)} className="hover:cursor-pointer">
                             Full Box Score
                         </p>

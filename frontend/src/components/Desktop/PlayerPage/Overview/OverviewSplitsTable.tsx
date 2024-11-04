@@ -6,8 +6,6 @@ import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, Table
 
 const OverviewSplitsTable: React.FC<OverviewSplitsTableProps> = ({ splits, showHome, showWins, showConference, showDivision }) => {
 
-    console.log(splits)
-
     return (
         <div>
             <Table className="text-xs">
@@ -50,7 +48,7 @@ const OverviewSplitsTable: React.FC<OverviewSplitsTableProps> = ({ splits, showH
                             </TableRow>)
                             :
                             (<TableRow>
-                                <TableCell>ROAD</TableCell>
+                                <TableCell>AWAY</TableCell>
                                 <TableCell className="text-center">{splits.away_averages.gp}</TableCell>
                                 <TableCell className="text-center">{splits.away_averages.avg_pts}</TableCell>
                                 <TableCell className="text-center">{splits.away_averages.avg_minutes}</TableCell>

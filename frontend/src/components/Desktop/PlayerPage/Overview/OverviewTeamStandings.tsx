@@ -14,16 +14,19 @@ import TeamLogo from "../../../ui/TeamLogo"
 
 const OverviewTeamStandings: React.FC<OverviewStandingsProps> = ({ currentTeam, standings }) => {
 
+    const mainColor = currentTeam.main_color
+
     return (
         <Card>
             <CardHeader>
                 <CardTitle className="font-bold">
-                    2023-24 {currentTeam.division} Standings
+                    <p className="hidden md:block">2023-24 {currentTeam.division} Standings</p>
+                    <p className="md:hidden">'23-24 {currentTeam.division} Standings</p>
                 </CardTitle>
             </CardHeader>
 
             <CardContent>
-                <Table className="text-xs">
+                <Table className="text-sm md:text-base">
                     <TableHeader>
                         <TableRow>
                             <TableHead className="text-left">Team</TableHead>
@@ -37,7 +40,11 @@ const OverviewTeamStandings: React.FC<OverviewStandingsProps> = ({ currentTeam, 
 
                     <TableBody>
                         {standings.map((team) =>
-                            <TableRow key={team.full_name} className={team.team_id === currentTeam.team_id ? "font-bold" : ""}>
+                            <TableRow
+                                key={team.full_name}
+                                className={team.team_id === currentTeam.team_id ? "font-bold md:font-black bg-slate-50" : ""}
+                                style={team.team_id === currentTeam.team_id ? { color: mainColor } : {}}
+                            >
                                 <TableCell className="text-left">
                                     <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${team.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline">
                                         <TeamLogo abbreviation={team.abbreviation} team_id={team.team_id} logoClass="size-4 object-contain" />
@@ -56,7 +63,7 @@ const OverviewTeamStandings: React.FC<OverviewStandingsProps> = ({ currentTeam, 
                 </Table>
             </CardContent>
 
-            <CardFooter className="text-sm font-semibold text-blue-500 pb-4">
+            <CardFooter className="justify-center md:justify-start font-semibold text-blue-500 pb-4">
                 <Link to="/nba/standings">
                     See Full Standings
                 </Link>

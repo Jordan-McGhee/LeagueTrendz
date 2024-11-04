@@ -40,7 +40,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
     }
 
     return (
-        <div>
+        <div className="hidden md:block">
 
             <div className="flex justify-between text-xs items-center">
 
@@ -106,7 +106,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
                 {
                     mainStats ?
                         <div className="flex flex-col justify-center border px-4 py-2 rounded-lg w-1/3 items-center">
-                            <p className="text-xs mb-1">2023-24 REGULAR SEASON STATS</p>
+                            <p className="text-xs mb-1.5 tracking-widest font-black" style={{ color: currentTeam.main_color }}>2023-24 REGULAR SEASON STATS</p>
 
                             <div className="flex justify-around w-full text-sm font-light">
 

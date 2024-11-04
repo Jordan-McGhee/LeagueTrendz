@@ -13,6 +13,10 @@ import TeamStandings from "../../../../components/Desktop/PlayerPage/Overview/Ov
 import SwitchPlayer from "../../../../components/Desktop/PlayerPage/Overview/SwitchPlayer";
 import OverviewSplits from "../../../../components/Desktop/PlayerPage/Overview/OverviewSplits";
 
+// mobile component imports
+import OverviewSplitsMobile from "../../../../components/Mobile/PlayerPage/Overview/OverviewSplitsContent-Mobile"
+import OverviewRecentGamesMobile from "../../../../components/Mobile/PlayerPage/Overview/OverviewRecentGames-Mobile";
+
 // ui imports
 import LoadingPage from "../../../LoadingPage"
 import ErrorModal from "../../../../components/ui/ErrorModal"
@@ -54,13 +58,14 @@ const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
             {
                 data &&
 
-                // full content div
-                <div className="flex justify-between gap-x-4 mt-4">
-                    {/* left side */}
-                    < div className="w-[65%] flex flex-col gap-y-4">
+                <>
+                    {/* // mobile */}
+                    <div className="flex flex-col mt-4 gap-y-4 md:hidden">
+
+                        {/* last game */}
                         {
                             data.splits && data.lastFive[0] ?
-                                <OverviewSplits lastGame={data.lastFive[0]} splits={data.splits} currentTeam={currentTeam} />
+                                <OverviewSplitsMobile lastGame={data.lastFive[0]} splits={data.splits} currentTeam={currentTeam} />
                                 :
 
                                 <Card className="w-full">
@@ -76,9 +81,10 @@ const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                                 </Card>
                         }
 
+                        {/* recent games */}
                         {
                             data.lastFive.length !== 0 ?
-                                <OverviewRecentGames player={player} games={data.lastFive} />
+                                <OverviewRecentGamesMobile player={player} games={data.lastFive} />
                                 :
                                 <Card className="w-full">
                                     <CardHeader>
@@ -92,11 +98,8 @@ const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                                     </CardContent>
                                 </Card>
                         }
-                    </div>
 
-                    {/* right side */}
-                    <div className="w-[35%] flex flex-col gap-y-4">
-
+                        {/* team standings */}
                         {
                             currentTeam.team_id >= 0 ?
                                 <TeamStandings currentTeam={currentTeam} standings={data.teamStandings} />
@@ -114,13 +117,84 @@ const Overview: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                                 </Card>
                         }
 
+                        {/* switch player */}
                         {
                             currentTeam.team_id >= 0 && <SwitchPlayer player={player} currentTeam={currentTeam} />
                         }
-
                     </div>
-                </div >
+
+                    {/* // desktop */}
+                    <div className="hidden md:flex justify-between gap-x-4 mt-4">
+                        {/* left side */}
+                        < div className="w-[65%] flex flex-col gap-y-4">
+
+                            {/* last game */}
+                            {
+                                data.splits && data.lastFive[0] ?
+                                    <OverviewSplits lastGame={data.lastFive[0]} splits={data.splits} currentTeam={currentTeam} />
+                                    :
+
+                                    <Card className="w-full">
+                                        <CardHeader>
+                                            <CardTitle>
+                                                <p>Player Splits</p>
+                                            </CardTitle>
+                                        </CardHeader>
+
+                                        <CardContent>
+                                            No split data from 2023-24 season to display.
+                                        </CardContent>
+                                    </Card>
+                            }
+
+                            {/* recent games */}
+                            {
+                                data.lastFive.length !== 0 ?
+                                    <OverviewRecentGames player={player} games={data.lastFive} />
+                                    :
+                                    <Card className="w-full">
+                                        <CardHeader>
+                                            <CardTitle>
+                                                Recent Games
+                                            </CardTitle>
+                                        </CardHeader>
+
+                                        <CardContent>
+                                            No games from the 2023-24 Season.
+                                        </CardContent>
+                                    </Card>
+                            }
+                        </div>
+
+                        {/* right side */}
+                        <div className="w-[35%] flex flex-col gap-y-4">
+
+                            {
+                                currentTeam.team_id >= 0 ?
+                                    <TeamStandings currentTeam={currentTeam} standings={data.teamStandings} />
+                                    :
+                                    <Card className="w-full">
+                                        <CardHeader>
+                                            <CardTitle>
+                                                Team Standings
+                                            </CardTitle>
+                                        </CardHeader>
+
+                                        <CardContent>
+                                            {player.name} is not on an NBA roster.
+                                        </CardContent>
+                                    </Card>
+                            }
+
+                            {
+                                currentTeam.team_id >= 0 && <SwitchPlayer player={player} currentTeam={currentTeam} />
+                            }
+
+                        </div>
+                    </div >
+                </>
             }
+
 
         </>
     )

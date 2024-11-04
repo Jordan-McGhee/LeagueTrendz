@@ -16,6 +16,9 @@ import PlayerHero from "../../../components/Desktop/PlayerPage/PlayerHero";
 import ErrorModal from "../../../components/ui/ErrorModal"
 import LoadingPage from "../../LoadingPage"
 
+// mobile component imports
+import PlayerHeroMobile from "../../../components/Mobile/PlayerPage/PlayerHero-Mobile"
+
 // view imports
 import Overview from "./Views/Overview";
 import PlayerStatsView from "./Views/PlayerStatsView";
@@ -81,7 +84,7 @@ const PlayerPage = () => {
 
 
     return (
-        <div className="h-fit">
+        <div className="h-fit pb-24 md:pb-8">
 
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
@@ -92,9 +95,54 @@ const PlayerPage = () => {
             {
                 player && currentTeam &&
                 <Card className="p-4">
+
+                    {/* mobile */}
+                    <PlayerHeroMobile player={player} currentTeam={currentTeam} mainStats={stats} />
+
+
+                    {/* desktop */}
                     <PlayerHero player={player} currentTeam={currentTeam} mainStats={stats} />
 
-                    <Menubar className="w-fit mt-4">
+                    {/* mobile menubar */}
+                    <Menubar className="w-full justify-between mt-4 text-xs flex md:hidden">
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            className="text-xs px-2"
+                            style={selectedMenuItem === "overview" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('overview')} >Overview</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            className="text-xs px-2"
+                            style={selectedMenuItem === "stats" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('stats')} >Stats</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            className="text-xs px-2"
+                            style={selectedMenuItem === "bio" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('bio')} >Bio</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            className="text-xs px-2"
+                            style={selectedMenuItem === "splits" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('splits')} >Splits</MenubarTrigger>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger
+                            className="text-xs px-2"
+                            style={selectedMenuItem === "log" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
+                            onClick={() => handleMenuClick('log')} >Game Log</MenubarTrigger>
+                        </MenubarMenu>
+                    </Menubar>
+
+                    {/* desktop menubar */}
+                    <Menubar className="hidden md:flex w-fit mt-4">
                         <MenubarMenu>
                             <MenubarTrigger
                             style={selectedMenuItem === "overview" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
