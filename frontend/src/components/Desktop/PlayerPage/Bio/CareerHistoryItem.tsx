@@ -20,7 +20,7 @@ const CareerHistoryItem: React.FC<CareerHistoryItemProps> = ({ team_id, years })
     return (
         <Link
             to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${team[0].abbreviation.toLowerCase()}`}
-            className="flex items-center gap-x-2 w-1/2 group"
+            className="flex items-center gap-x-2 w-full md:w-1/2 group"
         >
             <TeamLogo abbreviation={team[0].abbreviation} team_id={team_id} logoClass="size-12 object-contain" />
             <div className="">

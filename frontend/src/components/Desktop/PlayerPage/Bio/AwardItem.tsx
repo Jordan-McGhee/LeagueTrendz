@@ -41,7 +41,7 @@ const AwardItem: React.FC<AwardItemProps> = ({ award, years }) => {
             imageSrc = require('../../../../nba-trophies/kobe-bryant-allstar-mvp.png')
             break;
         case 'threePointChamp':
-            awardName = 'Three Point Contest Winner'
+            awardName = '3 Point Contest Winner'
             imageSrc = require('../../../../nba-trophies/nba-logo.png')
             break;
         case 'slamDunkChamp':
@@ -120,8 +120,8 @@ const AwardItem: React.FC<AwardItemProps> = ({ award, years }) => {
 
     return (
         <div className={ years.length > 6 ? "flex gap-x-2 items-start" : "flex gap-x-2 items-center"}>
-            <img src={imageSrc} className="size-8 object-contain" alt={awardName} />
-            <div className="w-3/4">
+            <img src={imageSrc} className="size-12 object-contain" alt={awardName} />
+            <div className="w-4/5">
                 <p className={awardName === "In-Season Tournament Champion" ? "text-sm font-semibold" : "font-bold"}><span className="font-bold">{years.length > 1 ? `${years.length}x` : ''}</span> {awardName}</p>
                 <p className="font-light text-xs">{years.join(', ')}</p>
             </div>

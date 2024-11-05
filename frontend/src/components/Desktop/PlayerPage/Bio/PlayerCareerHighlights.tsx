@@ -1,8 +1,11 @@
+import { useState } from "react"
+
 // type imports
 import { PlayerPageProps, AwardsDict } from "../../../../types"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
+import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 
 // component imports
 import AwardItem from "./AwardItem"
@@ -158,38 +161,50 @@ const PlayerCareerHighlights: React.FC<PlayerPageProps> = ({ player, currentTeam
         }
     }
 
-    console.log(awards)
-    console.log(player.awards)
+    const [showContent, setShowContent] = useState<Boolean>(true)
+
+    const toggleShowContent = () => {
+        setShowContent(!showContent)
+    }
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle>
+                <CardTitle className="flex justify-between">
                     Trophy Case
+
+                    <div onClick={() => toggleShowContent()} className="md:hidden flex gap-x-2 items-center">
+                        <p className="text-sm">{showContent ? "Hide" : "Show"}</p>
+                        {showContent ? <ChevronUpIcon className="size-4" /> : <ChevronDownIcon className="size-4" />}
+                    </div>
                 </CardTitle>
             </CardHeader>
 
-            <CardContent>
-                <div className="flex flex-col gap-y-4">
-                    {player.awards ?
+            {
+                showContent &&
 
-                        Object.entries(awards).map(([key, values]) => {
-                            // Check if the values array has any elements
-                            if (values.length > 0) {
-                                return (
-                                    <AwardItem award={key} years={values} />
-                                );
-                            } else {
-                                // If values array is empty, return null
-                                return null;
-                            }
-                        })
+                <CardContent>
+                    <div className="flex flex-col gap-y-4 max-h-64 overflow-y-scroll md:max-h-full">
+                        {player.awards ?
 
-                        :
-                        <p>No awards yet!</p>
-                    }
-                </div>
-            </CardContent>
+                            Object.entries(awards).map(([key, values]) => {
+                                // Check if the values array has any elements
+                                if (values.length > 0) {
+                                    return (
+                                        <AwardItem award={key} years={values} />
+                                    );
+                                } else {
+                                    // If values array is empty, return null
+                                    return null;
+                                }
+                            })
+
+                            :
+                            <p>No awards yet!</p>
+                        }
+                    </div>
+                </CardContent>
+            }
         </Card>
     )
 }

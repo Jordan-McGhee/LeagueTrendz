@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 
 // type imports
 import { PlayerPageProps, PlayerCareerHistoryDict } from "../../../../types"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../../ui/card"
+import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 
 // component imports
 import CareerHistoryItem from "./CareerHistoryItem"
@@ -74,24 +75,59 @@ const PlayerCareerHistory: React.FC<PlayerPageProps> = ({ player, currentTeam })
     // create set of teams, this will give us most recent first and remove any duplicates
     let teamSet = new Set(careerHistory.teamOrder)
 
+    const [showContent, setShowContent] = useState<Boolean>(true)
+
+    const toggleShowContent = () => {
+        setShowContent(!showContent)
+    }
+
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Career History</CardTitle>
+                <CardTitle className="flex justify-between">
+                    Career History
+
+                    <div onClick={() => toggleShowContent()} className="md:hidden flex gap-x-2 items-center">
+                        <p className="text-sm">{showContent ? "Hide" : "Show"}</p>
+                        {showContent ? <ChevronUpIcon className="size-4" /> : <ChevronDownIcon className="size-4" />}
+                    </div>
+                </CardTitle>
             </CardHeader>
 
-            <CardContent className="flex flex-wrap gap-y-6">
-                {
-                    Array.from(teamSet).map((team_id) => {
+            {
+                showContent &&
+                <CardContent>
+                    {/* mobile */}
+                    <div className="flex flex-col gap-y-6 md:hidden">
+                        {
+                            Array.from(teamSet).map((team_id) => {
 
-                        if (team_id < 0) {
-                            return null
+                                if (team_id < 0) {
+                                    return null
+                                }
+
+                                return <CareerHistoryItem key={team_id} team_id={team_id} years={careerHistory[team_id]} />
+                            })
                         }
+                    </div>
 
-                        return <CareerHistoryItem key={team_id} team_id={team_id} years={careerHistory[team_id]} />
-                    })
-                }
-            </CardContent>
+                    {/* desktop */}
+                    <div className="hidden md:flex flex-wrap gap-y-6">
+                        {
+                            Array.from(teamSet).map((team_id) => {
+
+                                if (team_id < 0) {
+                                    return null
+                                }
+
+                                return <CareerHistoryItem key={team_id} team_id={team_id} years={careerHistory[team_id]} />
+                            })
+                        }
+                    </div>
+                </CardContent>
+
+            }
+
         </Card>
     )
 }

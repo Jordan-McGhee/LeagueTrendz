@@ -15,6 +15,7 @@ import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 
 const OverviewRecentGamesMobile: React.FC<OverviewRecentGamesProps> = ({ player, games }) => {
     const urlName: string | undefined = player?.name.toLowerCase().replace(" ", "-")
+
     const [showContent, setShowContent] = useState<Boolean>(true)
 
     const toggleShowContent = () => {
@@ -34,7 +35,8 @@ const OverviewRecentGamesMobile: React.FC<OverviewRecentGamesProps> = ({ player,
                 </CardTitle>
             </CardHeader>
 
-            {showContent &&
+            {
+                showContent &&
                 <>
                     <CardContent className="">
                         <div className="overflow-x-auto relative">

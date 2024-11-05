@@ -74,21 +74,21 @@ const PlayerHeroMobile: React.FC<PlayerPageProps> = ({ player, currentTeam, main
 
             {/* bio div */}
             <div className="flex justify-between gap-x-1.5 uppercase text-xs">
-                <div className="flex flex-col gap-y-1">
-                    <p className="flex gap-x-1 font-thin">HT/WT<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.height}, {player.weight}</span></p>
-                    <p className="flex gap-x-1 font-thin">COLLEGE<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.college}</span></p>
-                </div>
-                <div className="flex flex-col gap-y-1">
-                    <p className="flex gap-x-1 font-thin">DRAFT<span className="font-bold" style={{ color: currentTeam.main_color }}>{
+
+                <div className="flex flex-wrap gap-y-1 gap-x-2">
+
+                    <p className="flex gap-x-1 font-light">HT/WT<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.height}, {player.weight}</span></p>
+                    <p className="flex gap-x-1 font-light">DRAFT<span className="font-bold" style={{ color: currentTeam.main_color }}>{
                         draftTeam[0].team_id === -1 ?
                             <p>UNDRAFTED</p>
                             :
                             <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
                     }</span></p>
 
-                    <p className="flex gap-x-1 font-thin">BORN<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.born.year} ({new Date().getFullYear() - player.born.year}) | {player.born.loc}</span></p>
+                    <p className="flex gap-x-1 font-light">BORN<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.born.year} ({new Date().getFullYear() - player.born.year}) | {player.born.loc}</span></p>
+
+                    <p className="flex gap-x-1 font-light">COLLEGE<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.college}</span></p>
                 </div>
-                {/* <p className="flex gap-x-1 font-thin">STATUS<span className="font-bold" style={{ color: currentTeam.main_color }}>{playerStatus}</span></p> */}
             </div>
 
 
