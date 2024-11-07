@@ -20,10 +20,10 @@ const RosterTableItem = ({ player, teamColor }: { player: Player, teamColor: str
                 <img src={player.photo_url} alt={player.name} className="size-20 object-contain" />
 
                 {/* right side */}
-                <div>
-                    <p style={{ color: teamColor }} className="font-bold">{player.name.length > 20 ? shortenPlayerName(player.name) : player.name}</p>
-                    <p className="text-sm flex font-semibold"><span className="font-thin mr-1">AGE</span>{player.age}<span className="font-thin ml-1">#</span>{player.jersey_number}<span className="font-thin mx-1">POS</span>{convertPlayerPosition(player.player_position)}</p>
-                    <p className="uppercase text-sm flex gap-x-1 truncate"><span className="font-thin">COLLEGE</span>{player.college}</p>
+                <div style={{ color: teamColor }}>
+                    <p className="font-bold">{player.name.length > 20 ? shortenPlayerName(player.name) : player.name}</p>
+                    <p className="text-sm flex font-semibold"><span className="font-thin mr-1 text-black">AGE</span>{player.age}<span className="font-thin ml-1 text-black">#</span>{player.jersey_number}<span className="font-thin mx-1">POS</span>{convertPlayerPosition(player.player_position)}</p>
+                    <p className="uppercase text-sm flex gap-x-1 w-full"><span className="font-thin text-black">COLLEGE</span>{player.college}</p>
                     {/* <p className="uppercase text-xs flex gap-x-1"><span className="font-thin">HT</span>{player.height} <span className="font-thin">WT</span>{player.weight}</p> */}
                 </div>
 
@@ -42,7 +42,7 @@ const RosterTableMobile = ({ team, roster, className }: { team: Team, roster: Pl
 
                 {
                     roster.map((player) => (
-                        <RosterTableItem player={player} teamColor={team.main_color} />
+                        <RosterTableItem player={player} teamColor={team.main_color} key={`${player.player_id} - ${player.name}`} />
                     ))
                 }
 

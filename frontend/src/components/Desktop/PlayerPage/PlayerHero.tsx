@@ -27,15 +27,15 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
 
     if (playerStatusSplit === "Healthy") {
         playerStatus = (
-            <p>Active</p>
+            <p className="capitalize">Active</p>
         )
     } else if (playerStatusSplit === "Suspended") {
         playerStatus = (
-            <p>Suspended - {player.status.gamesRemaining} Games</p>
+            <p className="capitalize">Suspended - {player.status.gamesRemaining} Games</p>
         )
     } else {
         playerStatus = (
-            <p>Out - {playerStatusSplit} ({player.status.gamesRemaining} Games)</p>
+            <p className="capitalize">Out - {playerStatusSplit} ({player.status.gamesRemaining} Games)</p>
         )
     }
 
@@ -96,7 +96,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
                                 :
                                 <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
                         }
-                        <p className="capitalize">{playerStatus}</p>
+                        {playerStatus}
                     </div>
                 </div>
 
@@ -113,36 +113,28 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
                                 {/* points */}
                                 <div className="flex flex-col items-center">
                                     <p>PTS</p>
-                                    <p className="text-2xl font-bold"
-                                        style={{ color: currentTeam.main_color }}
-                                    >{mainStats.avg_pts}</p>
+                                    <p className="text-2xl font-bold" style={{ color: currentTeam.main_color }}>{mainStats.avg_pts}</p>
                                     <p>{`${mainStats.pts_rank}${determineSuffix(mainStats.pts_rank)}`}</p>
                                 </div>
 
                                 {/* rebounds */}
                                 <div className="flex flex-col items-center">
                                     <p>REB</p>
-                                    <p className="text-2xl font-bold"
-                                        style={{ color: currentTeam.main_color }}
-                                    >{mainStats.avg_reb}</p>
+                                    <p className="text-2xl font-bold" style={{ color: currentTeam.main_color }}>{mainStats.avg_reb}</p>
                                     <p>{`${mainStats.reb_rank}${determineSuffix(mainStats.reb_rank)}`}</p>
                                 </div>
 
                                 {/* assist */}
                                 <div className="flex flex-col items-center">
                                     <p>AST</p>
-                                    <p className="text-2xl font-bold"
-                                        style={{ color: currentTeam.main_color }}
-                                    >{mainStats.avg_ast}</p>
+                                    <p className="text-2xl font-bold" style={{ color: currentTeam.main_color }}>{mainStats.avg_ast}</p>
                                     <p>{`${mainStats.ast_rank}${determineSuffix(mainStats.ast_rank)}`}</p>
                                 </div>
 
                                 {/* fg% */}
                                 <div className="flex flex-col items-center">
                                     <p>FG%</p>
-                                    <p className="text-2xl font-bold"
-                                        style={{ color: currentTeam.main_color }}
-                                    >{mainStats.avg_fg_percentage}</p>
+                                    <p className="text-2xl font-bold" style={{ color: currentTeam.main_color }}>{mainStats.avg_fg_percentage}</p>
                                     <p>{`${mainStats.fg_rank}${determineSuffix(mainStats.fg_rank)}`}</p>
                                 </div>
                             </div>

@@ -36,7 +36,7 @@ const PlayerSplits: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
         }
 
         fetchPlayer()
-    }, [sendRequest])
+    }, [sendRequest, player.player_id])
 
     return (
         <>
@@ -51,7 +51,8 @@ const PlayerSplits: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                 <Card className="mt-4">
                     <CardHeader>
                         <CardTitle>
-                            <p className="text-2xl">2023-24 Splits</p>
+                            <p className="text-2xl hidden md:block">2023-24 Splits</p>
+                            <p className="md:hidden">'23-24 Splits</p>
                         </CardTitle>
                     </CardHeader>
 
@@ -59,7 +60,13 @@ const PlayerSplits: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
 
                         {
                             data ?
-                                <PlayerSplitsTable data={data} />
+                                <>
+                                    {/* mobile */}
+                                    <PlayerSplitsTable data={data} className="md:hidden text-xs" />
+                                    
+                                    {/* desktop */}
+                                    <PlayerSplitsTable data={data} className="hidden md:table text-xs mb-2" />
+                                </>
                                 :
                                 "No splits from 2023-24 season"
                         }
@@ -71,25 +78,28 @@ const PlayerSplits: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                             <p className="text-xs font-semibold">GLOSSARY:</p>
 
                             {/* GLOSSARY */}
-                            <div className="text-xs mt-4 flex justify-between">
+                            <div className="text-sm mt-4 md:flex md:justify-between">
 
                                 <div>
                                     <p><span className="font-bold">3P%:</span> 3-Point Field Goal Percentage</p>
-                                    <p><span className="font-bold">3PA:</span> 3-Point Field Goals Made-Attempted</p>
+                                    <p><span className="font-bold">3PA:</span> 3-Point Field Goals Attempted</p>
+                                    <p><span className="font-bold">3PM:</span> 3-Point Field Goals Made</p>
                                     <p><span className="font-bold">AST:</span> Assists Per Game</p>
                                     <p><span className="font-bold">BLK:</span> Blocks Per Game</p>
-                                    <p><span className="font-bold">FGA:</span> Field Goals Made-Attempted</p>
+                                    <p><span className="font-bold">FGA:</span> Field Goals Attempted</p>
                                 </div>
 
                                 <div>
+                                    <p><span className="font-bold">FGM:</span> Field Goals Made</p>
                                     <p><span className="font-bold">FG%:</span> Field Goal Percentage</p>
-                                    <p><span className="font-bold">FT:</span> Free Throws Made-Attempted</p>
+                                    <p><span className="font-bold">FTA:</span> Free Throws Attempted</p>
+                                    <p><span className="font-bold">FTM:</span> Free Throws Made</p>
                                     <p><span className="font-bold">FT%:</span> Free Throw Percentage</p>
                                     <p><span className="font-bold">MIN:</span> Minutes Per Game</p>
-                                    <p><span className="font-bold">PF:</span> Fouls Per Game</p>
                                 </div>
 
                                 <div>
+                                    <p><span className="font-bold">PF:</span> Fouls Per Game</p>
                                     <p><span className="font-bold">PTS:</span> Points Per Game</p>
                                     <p><span className="font-bold">REB:</span> Rebounds Per Game</p>
                                     <p><span className="font-bold">STL:</span> Steals Per Game</p>

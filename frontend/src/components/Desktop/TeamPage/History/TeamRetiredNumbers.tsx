@@ -33,7 +33,7 @@ const TeamRetiredNumbers = ({ history, teamColor }: { history: TeamHistoryState,
                     <div className="flex flex-col gap-y-4">
                         {
                             history.jersey_numbers.map((jersey) =>
-                                <div className="grid grid-cols-8 gap-x-4">
+                                <div className="grid grid-cols-8 gap-x-4" key={`${jersey.number} - ${jersey.player_name}`}>
                                     <p className="text-4xl font-bold col-span-2 place-self-center" style={{ color: teamColor }}>{jersey.number}</p>
 
                                     <div className="col-span-6">

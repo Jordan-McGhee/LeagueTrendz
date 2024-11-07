@@ -1,14 +1,14 @@
 // types
-import { PlayerStatsTableAveragesProps } from "../../../../types"
+import { PlayerStatsTableAveragesProps } from "@/types"
 
 // ui imports
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "../../../ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "../../../../ui/table"
 
 // component imports
-import TeamLogo from "../../../ui/TeamLogo"
+import TeamLogo from "../../../../ui/TeamLogo"
 
 // dummy data for team info
-const teams = require("../../../../DUMMYDATA/NBA_Teams.json")
+const teams = require("../../../../../DUMMYDATA/NBA_Teams.json")
 
 const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ title, data, currentData }) => {
 
@@ -34,30 +34,29 @@ const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ tit
 
     return (
         <div>
-            <p className="font-bold text-xl">{title}</p>
             <Table className="text-xs">
                 <TableHeader>
                     <TableRow>
-                        <TableHead>SEASON</TableHead>
-                        <TableHead>TEAM</TableHead>
-                        <TableHead className="text-center">GP</TableHead>
+                        <TableHead className="sticky left-0 z-10 bg-white border-r whitespace-nowrap w-fit px-2">SEASON</TableHead>
+                        <TableHead className="px-3">TEAM</TableHead>
+                        <TableHead className="text-center px-2">GP</TableHead>
                         {/* <TableHead className="text-center">GS</TableHead> */}
-                        <TableHead className="text-center">MIN</TableHead>
-                        <TableHead className="text-center">PTS</TableHead>
-                        <TableHead className="text-center">FGM-FGA</TableHead>
-                        <TableHead className="text-center">FG%</TableHead>
-                        <TableHead className="text-center">3PM-3PA</TableHead>
-                        <TableHead className="text-center">3P%</TableHead>
-                        <TableHead className="text-center">FTM-FTA</TableHead>
-                        <TableHead className="text-center">FT%</TableHead>
-                        <TableHead className="text-center">OR</TableHead>
-                        <TableHead className="text-center">DR</TableHead>
-                        <TableHead className="text-center">REB</TableHead>
-                        <TableHead className="text-center">AST</TableHead>
-                        <TableHead className="text-center">BLK</TableHead>
-                        <TableHead className="text-center">STL</TableHead>
-                        <TableHead className="text-center">PF</TableHead>
-                        <TableHead className="text-center">TO</TableHead>
+                        <TableHead className="text-center px-2">MIN</TableHead>
+                        <TableHead className="text-center px-2">PTS</TableHead>
+                        <TableHead className="text-center px-2 truncate">FGM-FGA</TableHead>
+                        <TableHead className="text-center px-2">FG%</TableHead>
+                        <TableHead className="text-center px-2 truncate">3PM-3PA</TableHead>
+                        <TableHead className="text-center px-2">3P%</TableHead>
+                        <TableHead className="text-center px-2 truncate">FTM-FTA</TableHead>
+                        <TableHead className="text-center px-2">FT%</TableHead>
+                        <TableHead className="text-center px-2">OR</TableHead>
+                        <TableHead className="text-center px-2">DR</TableHead>
+                        <TableHead className="text-center px-2">REB</TableHead>
+                        <TableHead className="text-center px-2">AST</TableHead>
+                        <TableHead className="text-center px-2">BLK</TableHead>
+                        <TableHead className="text-center px-2">STL</TableHead>
+                        <TableHead className="text-center px-2">PF</TableHead>
+                        <TableHead className="text-center px-2">TO</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -88,17 +87,17 @@ const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ tit
                             dataTotals['pf'] += +season.pf
                             dataTotals['turnovers'] += +season.tov
 
-                            // season cell: get season, subtract one for year season started (ex: turn 2017 into 2016-17)
-                            let seasonStart = season.season - 1
-                            let seasonString = seasonStart.toString() + "-" + season.season.toString().slice(2)
+                            // season cell: get season, subtract one for year season started (ex: turn 2017 into '16-17)
+                            let seasonStart = (season.season - 1).toString().slice(2)
+                            let seasonString = `'${seasonStart.toString()}-${season.season.toString().slice(2)}`
 
                             // team (logo + abbreviation) cell
                             const seasonTeam = teams.teams.filter((team: any) => team.team_id === season.tid)[0]
                             const seasonTeamCell = seasonTeam.abbreviation && (
-                                <div className="flex items-center gap-x-1">
+                                <TableCell className="flex items-center gap-x-1 px-2">
                                     <TeamLogo team_id={seasonTeam.team_id} abbreviation={seasonTeam.abbreviation} logoClass="size-5 object-contain" />
                                     <p>{seasonTeam.abbreviation}</p>
-                                </div>
+                                </TableCell>
                             )
 
                             // to find average, need to find total games played
@@ -125,27 +124,27 @@ const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ tit
                             const avgTO = +season.tov / +season.gp || 0
 
                             return (
-                                <TableRow key={`${seasonString}-averages`}>
-                                    <TableCell>{seasonString}</TableCell>
-                                    <TableCell>{seasonTeamCell}</TableCell>
-                                    <TableCell className="text-center">{season.gp}</TableCell>
+                                <TableRow key={`${seasonString}-averages-mobile`}>
+                                    <TableCell className="sticky left-0 z-10 bg-white border-r whitespace-nowrap w-fit px-2">{seasonString}</TableCell>
+                                    {seasonTeamCell}
+                                    <TableCell className="text-center px-2">{season.gp}</TableCell>
                                     {/* <TableCell className="text-center">{season.gs}</TableCell> */}
-                                    <TableCell className="text-center">{avgMin.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgPts.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgFGM.toFixed(1)}-{avgFGA.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{(fgPercentage * 100).toFixed(1)}%</TableCell>
-                                    <TableCell className="text-center">{avgTPM.toFixed(1)}-{avgTPA.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{(tpPercentage * 100).toFixed(1)}%</TableCell>
-                                    <TableCell className="text-center">{avgFTM.toFixed(1)}-{avgFTA.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{(100 * ftPercentage).toFixed(1)}%</TableCell>
-                                    <TableCell className="text-center">{avgOR.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgDR.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgReb.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgAst.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgBlk.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgStl.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgPF.toFixed(1)}</TableCell>
-                                    <TableCell className="text-center">{avgTO.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgMin.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgPts.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgFGM.toFixed(1)}-{avgFGA.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{(fgPercentage * 100).toFixed(1)}%</TableCell>
+                                    <TableCell className="text-center px-2">{avgTPM.toFixed(1)}-{avgTPA.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{(tpPercentage * 100).toFixed(1)}%</TableCell>
+                                    <TableCell className="text-center px-2">{avgFTM.toFixed(1)}-{avgFTA.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{(100 * ftPercentage).toFixed(1)}%</TableCell>
+                                    <TableCell className="text-center px-2">{avgOR.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgDR.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgReb.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgAst.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgBlk.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgStl.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgPF.toFixed(1)}</TableCell>
+                                    <TableCell className="text-center px-2">{avgTO.toFixed(1)}</TableCell>
                                 </TableRow>
                             )
                         })
@@ -155,38 +154,39 @@ const PlayerStatsTableAverages: React.FC<PlayerStatsTableAveragesProps> = ({ tit
                     {
                         currentData &&
                         <TableRow>
-                            <TableCell>2023-24</TableCell>
-                            <TableCell className="flex items-center gap-x-1">
+                            <TableCell className="sticky left-0 z-10 bg-white border-r whitespace-nowrap w-fit px-2">'23-24</TableCell>
+                            <TableCell className="flex items-center gap-x-1 px-2">
                                 <TeamLogo team_id={currentData.team_id} abbreviation={currentData.abbreviation} logoClass="size-5 object-contain" />
                                 <p>{currentData.abbreviation}</p>
                             </TableCell>
                             <TableCell className="text-center">{currentData.gp}</TableCell>
                             {/* <TableCell className="text-center">{currentData.gs}</TableCell> */}
-                            <TableCell className="text-center">{currentData.avg_min}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_pts}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_fgm}-{currentData.avg_fga}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_fg_percentage}%</TableCell>
-                            <TableCell className="text-center">{currentData.avg_tpm}-{currentData.avg_tpa}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_tp_percentage}%</TableCell>
-                            <TableCell className="text-center">{currentData.avg_ftm}-{currentData.avg_fta}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_ft_percentage}%</TableCell>
-                            <TableCell className="text-center">{currentData.avg_orb}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_drb}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_reb}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_ast}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_blk}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_stl}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_pf}</TableCell>
-                            <TableCell className="text-center">{currentData.avg_turnovers}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_min}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_pts}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_fgm}-{currentData.avg_fga}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_fg_percentage}%</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_tpm}-{currentData.avg_tpa}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_tp_percentage}%</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_ftm}-{currentData.avg_fta}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_ft_percentage}%</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_orb}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_drb}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_reb}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_ast}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_blk}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_stl}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_pf}</TableCell>
+                            <TableCell className="text-center px-2">{currentData.avg_turnovers}</TableCell>
                         </TableRow>
                     }
 
 
                 </TableBody>
-                
+
                 <TableFooter>
                     <TableRow>
-                        <TableCell colSpan={2}>CAREER</TableCell>
+                        <TableCell className="sticky left-0 z-10 bg-slate-50 whitespace-nowrap w-fit px-2">CAREER</TableCell>
+                        <TableCell></TableCell>
                         <TableCell className="text-center">{dataTotals['gp']}</TableCell>
                         {/* <TableCell className="text-center">{dataTotals['gs']}</TableCell> */}
                         <TableCell className="text-center">{((dataTotals['min'] / dataTotals['gp'])).toFixed(1)}</TableCell>

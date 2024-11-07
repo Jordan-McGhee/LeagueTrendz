@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { HomePlayersProps } from "@/types"
 
 // utils imports
-import { convertPlayerPosition, shortenPlayerName, shortenTeamName } from "../../../Utils/utils"
+import { shortenPlayerName, shortenTeamName } from "../../../Utils/utils"
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card"
@@ -23,7 +23,7 @@ const HomeAwardWinnersMobile: React.FC<HomePlayersProps> = ({ players }) => {
     }
 
     // awards in order of players queried in database [ mvp, dpoy, clutch, roty, most improved, 6th man ]
-    const awardList = ["League MVP", "Defensive POTY", "Clutch POTY", "Rookie OTY", "Most Improved", "Sixth MOTY"]
+    const awardList = ["League MVP", "Defensive POTY", "Clutch POTY", "Rookie OTY", "Most Improved", "Sixth Man OTY"]
     // img src of trophies
     const awardSrc = [require('../../../nba-trophies/michael-jordan-mvp.png'), require('../../../nba-trophies/hakeem-olajuwon-defensive.png'), require('../../../nba-trophies/jerry-west-clutch-player.png'), require('../../../nba-trophies/wilt-chamberlain-rookie.png'), require('../../../nba-trophies/george-mikan-most-improved.png'), require('../../../nba-trophies/john-havlicek-sixth-man.png')]
 
@@ -32,7 +32,7 @@ const HomeAwardWinnersMobile: React.FC<HomePlayersProps> = ({ players }) => {
             <CardHeader>
                 <CardTitle>
                     <div className="flex justify-between items-center">
-                        <p className="text-xl">2023-24 Award Winners</p>
+                        <p className="text-xl">'23-24 Award Winners</p>
 
                         <div onClick={() => toggleShowContent()} className="flex gap-x-2 items-center">
                             <p className="text-sm">{showContent ? "Hide" : "Show"}</p>
@@ -63,13 +63,13 @@ const HomeAwardWinnersMobile: React.FC<HomePlayersProps> = ({ players }) => {
                                     />
 
                                     <div className="col-span-5">
-                                        <p className="font-semibold">
+                                        <p className="font-semibold text-lg">
                                             {awardList[index]}
                                         </p>
-                                        <div className="flex gap-x-1 items-center text-xs">
+                                        <div className="flex gap-x-1 items-center text-sm">
                                             <p className="font-semibold">{shortenPlayerName(player.name)}</p>
                                             <p>·</p>
-                                            <p className="hover:underline">{shortenTeamName(player.team_id)}</p>
+                                            <p className="">{shortenTeamName(player.team_id)}</p>
                                         </div>
                                     </div>
 

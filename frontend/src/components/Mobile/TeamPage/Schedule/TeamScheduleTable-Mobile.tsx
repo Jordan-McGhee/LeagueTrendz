@@ -53,7 +53,7 @@ const TeamScheduleTableMobile = ({ team, showPlayoffs, schedule, selectHandler, 
                     <TableBody>
                         {schedule.map((game) => {
                             return (
-                                <TeamScheduleTableRowMobile game={game} />
+                                <TeamScheduleTableRowMobile game={game} key={game.game_id} />
                             )
                         })}
                     </TableBody>

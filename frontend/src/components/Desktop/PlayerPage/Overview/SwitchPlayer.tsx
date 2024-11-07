@@ -57,17 +57,20 @@ const SwitchPlayer: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                     {isLoading && <Skeleton />}
 
                     {roster &&
-                            <div className="flex flex-col divide-y">
-                                {roster.map((teammate: Player) => {
-                                    if (teammate.player_id !== player.player_id) {
-                                        return (
-                                            <SwitchPlayerItem
-                                                player={teammate}
-                                            />
-                                        )
-                                    }
-                                })}
-                            </div>
+                        <div className="flex flex-col divide-y">
+                            {roster.map((teammate: Player) => {
+                                if (teammate.player_id !== player.player_id) {
+                                    return (
+                                        <SwitchPlayerItem
+                                            key={`${teammate.player_id}-${teammate.name}`}
+                                            player={teammate}
+                                        />
+                                    )
+                                } else {
+                                    return null
+                                }
+                            })}
+                        </div>
                     }
                 </CardContent>
 

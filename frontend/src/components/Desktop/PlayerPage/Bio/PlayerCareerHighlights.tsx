@@ -191,7 +191,7 @@ const PlayerCareerHighlights: React.FC<PlayerPageProps> = ({ player, currentTeam
                                 // Check if the values array has any elements
                                 if (values.length > 0) {
                                     return (
-                                        <AwardItem award={key} years={values} />
+                                        <AwardItem award={key} years={values} key={key} />
                                     );
                                 } else {
                                     // If values array is empty, return null

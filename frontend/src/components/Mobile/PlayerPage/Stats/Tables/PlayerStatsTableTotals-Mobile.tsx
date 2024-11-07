@@ -1,16 +1,16 @@
 // types
-import { PlayerStatsTableAveragesProps } from "../../../../types"
+import { PlayerStatsTableAveragesProps } from "@/types"
 
 // ui imports
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "../../../ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "../../../../ui/table"
 
 // component imports
-import TeamLogo from "../../../ui/TeamLogo"
+import TeamLogo from "../../../../ui/TeamLogo"
 
 // dummy data for team info
-const teams = require("../../../../DUMMYDATA/NBA_Teams.json")
+const teams = require("../../../../../DUMMYDATA/NBA_Teams.json")
 
-const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title, data, currentData }) => {
+const PlayerStatsTableTotalsMobile: React.FC<PlayerStatsTableAveragesProps> = ({ data, currentData }) => {
 
     let dataTotals: any = {
         // "gp": currentData?.gp || 0,
@@ -34,30 +34,29 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
 
     return (
         <div>
-            <p className="font-bold text-xl">{title}</p>
             <Table className="text-xs">
                 <TableHeader>
                     <TableRow>
-                        <TableHead>SEASON</TableHead>
-                        <TableHead>TEAM</TableHead>
-                        {/* <TableHead className="text-center">GP</TableHead>
-                        <TableHead className="text-center">GS</TableHead> */}
-                        {/* <TableHead className="text-center">MIN</TableHead> */}
-                        <TableHead className="text-center">PTS</TableHead>
-                        <TableHead className="text-center">FGM-FGA</TableHead>
-                        <TableHead className="text-center">FG%</TableHead>
-                        <TableHead className="text-center">3PM-3PA</TableHead>
-                        <TableHead className="text-center">3P%</TableHead>
-                        <TableHead className="text-center">FTM-FTA</TableHead>
-                        <TableHead className="text-center">FT%</TableHead>
-                        <TableHead className="text-center">OR</TableHead>
-                        <TableHead className="text-center">DR</TableHead>
-                        <TableHead className="text-center">REB</TableHead>
-                        <TableHead className="text-center">AST</TableHead>
-                        <TableHead className="text-center">BLK</TableHead>
-                        <TableHead className="text-center">STL</TableHead>
-                        <TableHead className="text-center">PF</TableHead>
-                        <TableHead className="text-center">TO</TableHead>
+                        <TableHead className="sticky left-0 z-10 bg-white border-r whitespace-nowrap w-fit px-2">SEASON</TableHead>
+                        <TableHead className="px-3">TEAM</TableHead>
+                        {/* <TableHead className="text-center px-2">GP</TableHead> */}
+                        {/* <TableHead className="text-center">GS</TableHead> */}
+                        {/* <TableHead className="text-center px-2">MIN</TableHead> */}
+                        <TableHead className="text-center px-2">PTS</TableHead>
+                        <TableHead className="text-center px-2 truncate">FGM-FGA</TableHead>
+                        <TableHead className="text-center px-2">FG%</TableHead>
+                        <TableHead className="text-center px-2 truncate">3PM-3PA</TableHead>
+                        <TableHead className="text-center px-2">3P%</TableHead>
+                        <TableHead className="text-center px-2 truncate">FTM-FTA</TableHead>
+                        <TableHead className="text-center px-2">FT%</TableHead>
+                        <TableHead className="text-center px-2">OR</TableHead>
+                        <TableHead className="text-center px-2">DR</TableHead>
+                        <TableHead className="text-center px-2">REB</TableHead>
+                        <TableHead className="text-center px-2">AST</TableHead>
+                        <TableHead className="text-center px-2">BLK</TableHead>
+                        <TableHead className="text-center px-2">STL</TableHead>
+                        <TableHead className="text-center px-2">PF</TableHead>
+                        <TableHead className="text-center px-2">TO</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -68,7 +67,7 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
 
                             if (season.gp === 0) {
                                 return null
-                            } 
+                            }
 
                             // update totals
                             dataTotals['pts'] += +season.pts
@@ -86,26 +85,27 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
                             dataTotals['pf'] += +season.pf
                             dataTotals['turnovers'] += +season.tov
 
-                            // season cell: get season, subtract one for year season started (ex: turn 2017 into 2016-17)
-                            let seasonStart = season.season - 1
-                            let seasonString = seasonStart.toString() + "-" + season.season.toString().slice(2)
+                            // season cell: get season, subtract one for year season started (ex: turn 2017 into '16-17)
+                            let seasonStart = (season.season - 1).toString().slice(2)
+                            let seasonString = `'${seasonStart.toString()}-${season.season.toString().slice(2)}`
 
                             // team (logo + abbreviation) cell
                             const seasonTeam = teams.teams.filter((team: any) => team.team_id === season.tid)[0]
                             const seasonTeamCell = seasonTeam.abbreviation && (
-                                <div className="flex items-center gap-x-1">
+                                <TableCell className="flex items-center gap-x-1 px-2">
                                     <TeamLogo team_id={seasonTeam.team_id} abbreviation={seasonTeam.abbreviation} logoClass="size-5 object-contain" />
                                     <p>{seasonTeam.abbreviation}</p>
-                                </div>
+                                </TableCell>
                             )
+
                             const fgPercentage = +season.fg / +season.fga || 0
                             const tpPercentage = +season.tp / +season.tpa || 0
                             const ftPercentage = +season.ft / +season.fta || 0
 
                             return (
-                                <TableRow key={`${seasonString}-totals`}>
-                                    <TableCell>{seasonString}</TableCell>
-                                    <TableCell>{seasonTeamCell}</TableCell>
+                                <TableRow key={`${seasonString}-totals-mobile`}>
+                                    <TableCell className="sticky left-0 z-10 bg-white border-r whitespace-nowrap w-fit px-2">{seasonString}</TableCell>
+                                    {seasonTeamCell}
                                     {/* <TableCell className="text-center">{season.gp}</TableCell>
                                     <TableCell className="text-center">{season.gs}</TableCell> */}
                                     {/* <TableCell className="text-center">{season.min}</TableCell> */}
@@ -133,8 +133,8 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
                     {
                         currentData &&
                         <TableRow>
-                            <TableCell>2023-24</TableCell>
-                            <TableCell className="flex items-center gap-x-1">
+                            <TableCell className="sticky left-0 z-10 bg-white border-r whitespace-nowrap w-fit px-2">'23-24</TableCell>
+                            <TableCell className="flex items-center gap-x-1 px-2">
                                 <TeamLogo team_id={currentData.team_id} abbreviation={currentData.abbreviation} logoClass="size-5 object-contain" />
                                 <p>{currentData.abbreviation}</p>
                             </TableCell>
@@ -162,25 +162,26 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TableCell colSpan={2}>CAREER</TableCell>
+                        <TableCell className="sticky left-0 z-10 bg-slate-50 whitespace-nowrap w-fit px-2">CAREER</TableCell>
+                        <TableCell></TableCell>
                         {/* <TableCell className="text-center">81</TableCell>
                         <TableCell className="text-center">81</TableCell> */}
                         {/* <TableCell className="text-center">{dataTotals['min']}</TableCell> */}
-                        <TableCell className="text-center">{dataTotals['pts']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['fgm']}-{dataTotals['fga']}</TableCell>
-                        <TableCell className="text-center">{((dataTotals['fgm']/dataTotals['fga'])*100).toFixed(1)}%</TableCell>
-                        <TableCell className="text-center">{dataTotals['tpm']}-{dataTotals['tpa']}</TableCell>
-                        <TableCell className="text-center">{((dataTotals['tpm']/dataTotals['tpa'])*100).toFixed(1)}%</TableCell>
-                        <TableCell className="text-center">{dataTotals['ftm']}-{dataTotals['fta']}</TableCell>
-                        <TableCell className="text-center">{((dataTotals['ftm']/dataTotals['fta'])*100).toFixed(1)}%</TableCell>
-                        <TableCell className="text-center">{dataTotals['orb']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['drb']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['orb'] + dataTotals['drb']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['ast']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['blk']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['stl']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['pf']}</TableCell>
-                        <TableCell className="text-center">{dataTotals['turnovers']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['pts']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['fgm']}-{dataTotals['fga']}</TableCell>
+                        <TableCell className="text-center px-2">{((dataTotals['fgm'] / dataTotals['fga']) * 100).toFixed(1)}%</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['tpm']}-{dataTotals['tpa']}</TableCell>
+                        <TableCell className="text-center px-2">{((dataTotals['tpm'] / dataTotals['tpa']) * 100).toFixed(1)}%</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['ftm']}-{dataTotals['fta']}</TableCell>
+                        <TableCell className="text-center px-2">{((dataTotals['ftm'] / dataTotals['fta']) * 100).toFixed(1)}%</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['orb']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['drb']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['orb'] + dataTotals['drb']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['ast']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['blk']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['stl']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['pf']}</TableCell>
+                        <TableCell className="text-center px-2">{dataTotals['turnovers']}</TableCell>
                     </TableRow>
                 </TableFooter>
             </Table>
@@ -188,4 +189,4 @@ const PlayerStatsTableTotals: React.FC<PlayerStatsTableAveragesProps> = ({ title
     )
 }
 
-export default PlayerStatsTableTotals
+export default PlayerStatsTableTotalsMobile

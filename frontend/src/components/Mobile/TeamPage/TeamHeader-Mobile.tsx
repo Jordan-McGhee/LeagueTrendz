@@ -47,15 +47,6 @@ const TeamHeaderMobile = ({ team, abbreviation, selectedMenuItem, className }: {
     return (
         <>
 
-            {/* Blocking overlay for when select is open — preventing user from clicking random links below*/}
-            {isOpen && (
-                <div
-                    className="fixed inset-0 bg-transparent"
-                    style={{ zIndex: 9 }}
-                    onClick={(e) => e.preventDefault()}
-                />
-            )}
-
             <div className={className}>
                 <div className="flex items-center gap-x-2">
 
@@ -102,7 +93,7 @@ const TeamHeaderMobile = ({ team, abbreviation, selectedMenuItem, className }: {
                                 if (team.team_id >= 0) {
 
                                     return (
-                                        <SelectItem value={team.abbreviation.toLowerCase()}>{team.name}</SelectItem>
+                                        <SelectItem value={team.abbreviation.toLowerCase()} key={`${team.team_id}-${team.name}`}>{team.name}</SelectItem>
                                     )
                                 }
 
@@ -112,6 +103,15 @@ const TeamHeaderMobile = ({ team, abbreviation, selectedMenuItem, className }: {
                         }
                     </SelectContent>
                 </Select>
+
+                {/* Blocking overlay for when select is open — preventing user from clicking random links below*/}
+                {isOpen && (
+                    <div
+                        className="fixed inset-0 bg-transparent"
+                        style={{ zIndex: 9 }}
+                        onClick={(e) => e.preventDefault()}
+                    />
+                )}
             </div>
         </>
     )

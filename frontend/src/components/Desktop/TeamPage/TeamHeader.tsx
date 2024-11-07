@@ -88,7 +88,7 @@ const TeamHeader = ({ team, abbreviation, selectedMenuItem, className }: { team:
                             if (team.team_id >= 0) {
 
                                 return (
-                                    <SelectItem value={team.abbreviation.toLowerCase()}>{team.name}</SelectItem>
+                                    <SelectItem value={team.abbreviation.toLowerCase()} key={`${team.team_id}-${team.name}`}>{team.name}</SelectItem>
                                 )
                             }
 

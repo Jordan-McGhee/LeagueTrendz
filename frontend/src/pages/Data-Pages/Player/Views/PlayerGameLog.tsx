@@ -7,7 +7,7 @@ import { useFetch } from "../../../../Hooks/useFetch"
 import { PlayerPageProps, GameLogData } from "../../../../types"
 
 // ui imports
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../../components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card"
 import ErrorModal from "../../../../components/ui/ErrorModal"
 import LoadingPage from "../../../LoadingPage"
 
@@ -32,14 +32,14 @@ const PlayerGameLog: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
             try {
                 responseData = await sendRequest(url)
                 setRegularSeasonData(responseData.regular_season_log)
-                responseData.playoff_log != undefined && setPlayoffData(responseData.playoff_log)
+                responseData.playoff_log !== undefined && setPlayoffData(responseData.playoff_log)
             } catch (error) {
 
             }
         }
 
         fetchPlayer()
-    }, [sendRequest])
+    }, [sendRequest, player.player_id])
 
     return (
         <>
@@ -69,10 +69,11 @@ const PlayerGameLog: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                     {
                         playoffData &&
                         <div>
-                            <p className="font-bold text-lg mb-2">2023-24 Playoffs</p>
+                            <p className="text-2xl hidden md:block">2023-24 Playoffs</p>
+                            <p className="md:hidden font-semibold">'23-24 Playoffs</p>
                             {
                                 playoffData.map((gameSet) => (
-                                    <PlayerGameLogTable month={gameSet.month} games={gameSet.games} avg_stats={gameSet.avg_stats} />
+                                    <PlayerGameLogTable month={gameSet.month} games={gameSet.games} avg_stats={gameSet.avg_stats} key={`Playoffs-${gameSet.month}`} />
                                 ))
                             }
                         </div>
@@ -82,9 +83,10 @@ const PlayerGameLog: React.FC<PlayerPageProps> = ({ player, currentTeam }) => {
                     {
                         regularSeasonData && regularSeasonData.length > 0 &&
                         <div>
-                            <p className="font-bold text-lg mb-2">2023-24 Regular Season</p>
+                            <p className="text-2xl hidden md:block">2023-24 Regular Season</p>
+                            <p className="md:hidden font-semibold">'23-24 Regular Season</p>
                             {regularSeasonData?.map((gameSet) => (
-                                <PlayerGameLogTable month={gameSet.month} games={gameSet.games} avg_stats={gameSet.avg_stats} />
+                                <PlayerGameLogTable month={gameSet.month} games={gameSet.games} avg_stats={gameSet.avg_stats}  key={`RegularSeason-${gameSet.month}`} />
                             ))}
                         </div>
                     }

@@ -45,7 +45,7 @@ const HomeAwardWinners: React.FC<HomePlayersProps> = ({ players }) => {
                         }
 
                         return (
-                            <div key={player.name}>
+                            <div key={`${player.name}-${awardList[index]}`}>
 
                                 <div className="grid grid-cols-8 gap-x-3 items-center w-full">
                                     <img

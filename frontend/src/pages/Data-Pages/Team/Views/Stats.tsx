@@ -7,7 +7,7 @@ import { useFetch } from "../../../../Hooks/useFetch";
 import { TeamPlayersProps, TeamPlayersState, PlayerStatsObject, TeamStatsObject } from "../../../../types";
 
 // utils imports
-import { convertPlayerPosition } from "../../../../Utils/utils";
+// import { convertPlayerPosition } from "../../../../Utils/utils";
 
 // ui imports
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../../../components/ui/card"
@@ -88,14 +88,7 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                 <Card>
                     <CardHeader>
 
-                        {/* Blocking overlay for when select is open — preventing user from clicking random links below*/}
-                        {isOpen && (
-                            <div
-                                className="fixed inset-0 bg-transparent"
-                                style={{ zIndex: 9 }}
-                                onClick={(e) => e.preventDefault()}
-                            />
-                        )}
+
 
                         <CardTitle className="flex flex-col gap-y-2 md:flex-row md:items-center justify-between">
                             <p className="hidden md:block">2023-24 Stats and Leaders</p>
@@ -119,6 +112,15 @@ const Stats: React.FC<TeamPlayersProps> = ({ team, players }) => {
                                     </SelectContent>
                                 </Select>
                             }
+
+                            {/* Blocking overlay for when select is open — preventing user from clicking random links below*/}
+                            {isOpen && (
+                                <div
+                                    className="fixed inset-0 bg-transparent"
+                                    style={{ zIndex: 9 }}
+                                    onClick={(e) => e.preventDefault()}
+                                />
+                            )}
                         </CardTitle>
                     </CardHeader>
 

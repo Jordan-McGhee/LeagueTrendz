@@ -833,7 +833,7 @@ export interface PlayerStatsProps {
 }
 
 export interface PlayerStatsTableAveragesProps {
-    title: string,
+    title?: string,
     data: StatObject[] | undefined,
     currentData?: TotalsAndAveragesObject
 }
@@ -950,7 +950,8 @@ export interface SplitsData {
 }
 
 export interface SplitsTableProps {
-    data: SplitsData | undefined
+    data: SplitsData | undefined,
+    className?: string
 }
 
 // PLAYER OVERVIEW

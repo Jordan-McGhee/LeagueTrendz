@@ -21,7 +21,7 @@ const StatsTeamLeadersMobile: React.FC<TeamPlayersProps> = ({ team, players, cla
         <CarouselContent className="mx-auto mb-4 w-full">
 
             {/* pts */}
-            <CarouselItem className="" key={players.pts_leader_name}>
+            <CarouselItem className="" key={`${players.pts_leader_name}-pointsLeader`}>
                 <p className="mb-1 font-black uppercase tracking-widest text-center" style={{color: team.main_color}}>Points per game</p>
                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.pts_leader_id}/${players.pts_leader_name.toLowerCase().replace(" ", "-")}`}>
 
@@ -39,7 +39,7 @@ const StatsTeamLeadersMobile: React.FC<TeamPlayersProps> = ({ team, players, cla
             </CarouselItem>
 
             {/* ast */}
-            <CarouselItem className="" key={players.ast_leader_name}>
+            <CarouselItem className="" key={`${players.ast_leader_name}-assistsLeader`}>
                 <p className="mb-1 font-black uppercase tracking-widest text-center" style={{color: team.main_color}}>Assists per game</p>
                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.ast_leader_id}/${players.ast_leader_name.toLowerCase().replace(" ", "-")}`}>
 
@@ -57,7 +57,7 @@ const StatsTeamLeadersMobile: React.FC<TeamPlayersProps> = ({ team, players, cla
             </CarouselItem>
 
             {/* reb */}
-            <CarouselItem className="" key={players.reb_leader_name}>
+            <CarouselItem className="" key={`${players.reb_leader_name}-reboundsLeader`}>
                 <p className="mb-1 font-black uppercase tracking-widest text-center" style={{color: team.main_color}}>Rebounds per game</p>
                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.reb_leader_id}/${players.reb_leader_name.toLowerCase().replace(" ", "-")}`}>
 
@@ -75,7 +75,7 @@ const StatsTeamLeadersMobile: React.FC<TeamPlayersProps> = ({ team, players, cla
             </CarouselItem>
 
             {/* stl */}
-            <CarouselItem className="" key={players.stl_leader_name}>
+            <CarouselItem className="" key={`${players.stl_leader_name}-stealsLeader`}>
                 <p className="mb-1 font-black uppercase tracking-widest text-center" style={{color: team.main_color}}>Steals per game</p>
                 <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/players/id/${players.stl_leader_id}/${players.stl_leader_name.toLowerCase().replace(" ", "-")}`}>
 

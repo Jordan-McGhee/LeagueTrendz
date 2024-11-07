@@ -78,12 +78,12 @@ const PlayerHeroMobile: React.FC<PlayerPageProps> = ({ player, currentTeam, main
                 <div className="flex flex-wrap gap-y-1 gap-x-2">
 
                     <p className="flex gap-x-1 font-light">HT/WT<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.height}, {player.weight}</span></p>
-                    <p className="flex gap-x-1 font-light">DRAFT<span className="font-bold" style={{ color: currentTeam.main_color }}>{
+                    <p className="flex gap-x-1 font-light">DRAFT{
                         draftTeam[0].team_id === -1 ?
-                            <p>UNDRAFTED</p>
+                            <span className="font-bold" style={{ color: currentTeam.main_color }}>UNDRAFTED</span>
                             :
-                            <p>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</p>
-                    }</span></p>
+                            <span className="font-bold" style={{ color: currentTeam.main_color }}>{player.draft.year}: Rd {player.draft.round}, Pk {player.draft.pick} ({draftTeam[0].abbreviation || 'UNDRAFTED'})</span>
+                    }</p>
 
                     <p className="flex gap-x-1 font-light">BORN<span className="font-bold" style={{ color: currentTeam.main_color }}>{player.born.year} ({new Date().getFullYear() - player.born.year}) | {player.born.loc}</span></p>
 
