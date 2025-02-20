@@ -19,7 +19,7 @@ import ErrorModal from "../components/ui/ErrorModal"
 
 const SchedulePage = () => {
 
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date("2024-06-12T00:00:00"))
     // console.log(selectedDate.toISOString().split('T')[0]) // yyyy-mm-dd
     // console.log(selectedDate)
 
@@ -98,13 +98,14 @@ const SchedulePage = () => {
                         ))
                     }
                 </CardContent>
-                <CardFooter className="italic text-sm md:text-xs">
+                <CardFooter className="italic md:text-sm flex flex-col gap-y-2 text-left">
+                    <p>This app only has game data for the <span className="font-bold">2023-24 NBA season.</span> Please use the links below to navigate to key dates.</p>
                     <p>The 2023 NBA regular season started on
-                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2023-10-24T00:00:00"))}>October 24th.</span>
+                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2023-10-24T00:00:00"))}>October 24th, 2023.</span>
                     The playoffs started
-                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-04-16T00:00:00"))}>April 16th</span>
+                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-04-16T00:00:00"))}>April 16th, 2024</span>
                     and ended
-                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-06-17T00:00:00"))}>June 17th.</span></p>
+                    <span className="mx-1 underline hover:cursor-pointer" onClick={() => setSelectedDate(new Date("2024-06-17T00:00:00"))}>June 17th, 2024.</span></p>
                 </CardFooter>
             </Card>
         </div>
