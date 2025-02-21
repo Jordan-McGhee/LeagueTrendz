@@ -81,7 +81,7 @@ const HomePage = () => {
                     </div>
 
                     {/* mobile */}
-                    <div className="md:hidden flex flex-col gap-y-4 pb-24">
+                    <div className="md:hidden flex flex-col gap-y-4 pb-20 p-4">
                         <HomeHeader players={awardWinners} />
                         <HomeAwardWinners players={awardWinners} />
                         <HomePlayers players={popularPlayers} />

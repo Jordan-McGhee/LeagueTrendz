@@ -49,8 +49,8 @@ const AllPlayersPage = () => {
     }
 
     return (
-        <div className="pb-24 md:pb-6">
-            <Card className="">
+        <div className="pb-16 md:pb-6">
+            <Card className="rounded-none md:rounded-xl">
                 <CardHeader>
 
 

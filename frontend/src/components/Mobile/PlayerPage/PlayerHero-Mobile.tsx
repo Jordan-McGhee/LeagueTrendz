@@ -46,7 +46,7 @@ const PlayerHeroMobile: React.FC<PlayerPageProps> = ({ player, currentTeam, main
             <div className="grid grid-cols-5 gap-x-2 items-center">
                 <div className="col-span-2">
                     {player.photo_url ?
-                        <div className="flex -space-x-24 items-center overflow-hidden">
+                        <div className="flex -space-x-20 items-center overflow-hidden">
                             {player.team_id !== -1 && <TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="size-24 object-contain opacity-40 z-0 relative" />}
                             <img src={player.photo_url} alt={player.name} className="h-24 z-0 relative" />
                         </div>
@@ -73,7 +73,7 @@ const PlayerHeroMobile: React.FC<PlayerPageProps> = ({ player, currentTeam, main
             </div>
 
             {/* bio div */}
-            <div className="flex justify-between gap-x-1.5 uppercase text-xs">
+            <div className="flex justify-between gap-x-1.5 uppercase text-sm">
 
                 <div className="flex flex-wrap gap-y-1 gap-x-2">
 

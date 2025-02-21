@@ -85,7 +85,7 @@ const GameBoxScorePage = () => {
 
 
     return (
-        <div className="pb-24 md:pb-8 h-fit min-h-svh">
+        <div className="pb-16 md:pb-8 h-fit min-h-svh">
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
@@ -94,7 +94,7 @@ const GameBoxScorePage = () => {
 
             {
                 game && standingsData &&
-                <Card>
+                <Card className="rounded-none md:rounded-xl">
                     <CardHeader className="flex flex-col gap-y-4">
                         
                         {/* MOBILE */}

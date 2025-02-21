@@ -18,8 +18,8 @@ const StandingsPage = () => {
     }
 
     return (
-        <div className="h-fit min-h-lvh pb-24 md:pb-8">
-            <Card>
+        <div className="h-fit min-h-lvh pb-16 md:pb-8">
+            <Card className="rounded-none md:rounded-xl">
                 <CardHeader className="">
                     <CardTitle className="text-3xl font-bold flex justify-between">
                         NBA '23-24 Standings

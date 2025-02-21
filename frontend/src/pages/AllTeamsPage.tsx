@@ -46,7 +46,7 @@ const AllTeamsPage = () => {
     }, [])
 
     return (
-        <div className="pb-24 md:pb-8">
+        <div className="pb-16 md:pb-8">
 
             {/* error modal */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
@@ -59,7 +59,7 @@ const AllTeamsPage = () => {
 
             {
                 data &&
-                <Card className="">
+                <Card className="rounded-none md:rounded-xl">
                     <CardHeader>
                         <CardTitle className="text-2xl">
                             NBA Teams

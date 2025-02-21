@@ -5,8 +5,8 @@ import { Card } from "../components/ui/card"
 // full page skeleton
 const LoadingPage = () => {
     return (
-        <div className="min-h-svh">
-            <Card className="p-4">
+        <div className="min-h-svh h-full">
+            <Card className="p-4 rounded-none md:rounded-xl">
                 {/* hero section */}
                 {/* <HeroSkeleton /> */}
                 {/* <div className="flex items-center gap-4 h-1/5 p-4">
@@ -32,8 +32,25 @@ const LoadingPage = () => {
                             <Skeleton className="w-2/3 h-4" />
                         </Card>
                     </div>
+                    
 
                     <div className="hidden md:flex flex-col gap-y-2 w-[35%]">
+                        <Card>
+                            <div className="flex flex-col gap-y-2 p-4">
+                                <Skeleton className="w-full h-28 rounded-lg" />
+                                <Skeleton className="w-full h-4" />
+                                <Skeleton className="w-2/3 h-4" />
+                            </div>
+                        </Card>
+
+                        <Card>
+                            <div className="flex flex-col gap-y-2 p-4">
+                                <Skeleton className="w-full h-28 rounded-lg" />
+                                <Skeleton className="w-full h-4" />
+                                <Skeleton className="w-2/3 h-4" />
+                            </div>
+                        </Card>
+
                         <Card>
                             <div className="flex flex-col gap-y-2 p-4">
                                 <Skeleton className="w-full h-28 rounded-lg" />

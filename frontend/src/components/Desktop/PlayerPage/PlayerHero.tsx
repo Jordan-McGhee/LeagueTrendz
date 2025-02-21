@@ -12,7 +12,7 @@ import TeamLogo from "../../ui/TeamLogo"
 import { PersonIcon } from "@radix-ui/react-icons";
 
 // utils imports
-import { convertPlayerPosition, determineSuffix } from "../../../Utils/utils"
+import { convertPlayerPosition, determineSuffix, shortenTeamName } from "../../../Utils/utils"
 
 // team data
 const teams = require("../../../DUMMYDATA/NBA_Teams.json")
@@ -42,7 +42,7 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
     return (
         <div className="hidden md:block">
 
-            <div className="flex justify-between text-xs items-center">
+            <div className="flex justify-between text-sm items-center">
 
                 {/* player image and details div */}
                 <div className="flex items-center gap-x-4">
@@ -63,8 +63,8 @@ const PlayerHero: React.FC<PlayerPageProps> = ({ player, currentTeam, mainStats 
                         <p className="flex gap-x-1 items-center">
                             {
                                 currentTeam.team_id >= 0 ?
-                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-1 hover:underline">
-                                        <TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{currentTeam.full_name}
+                                    <Link to={`${process.env.REACT_APP_FRONTEND_URL}/nba/teams/${currentTeam.abbreviation.toLowerCase()}`} className="flex items-center gap-x-2 hover:underline">
+                                        <TeamLogo team_id={currentTeam.team_id} abbreviation={currentTeam.abbreviation} logoClass="h-6 object-contain" />{shortenTeamName(currentTeam.team_id)}
                                     </Link>
 
                                     :

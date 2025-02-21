@@ -22,7 +22,7 @@ const RosterTableItem = ({ player, teamColor }: { player: Player, teamColor: str
                 {/* right side */}
                 <div style={{ color: teamColor }}>
                     <p className="font-bold">{player.name.length > 20 ? shortenPlayerName(player.name) : player.name}</p>
-                    <p className="text-sm flex font-semibold"><span className="font-thin mr-1 text-black">AGE</span>{player.age}<span className="font-thin ml-1 text-black">#</span>{player.jersey_number}<span className="font-thin mx-1">POS</span>{convertPlayerPosition(player.player_position)}</p>
+                    <p className="text-sm flex font-semibold"><span className="font-thin mr-1 text-black">AGE</span>{player.age}<span className="font-thin ml-1 text-black">#</span>{player.jersey_number}<span className="font-thin mx-1 text-black">POS</span>{convertPlayerPosition(player.player_position)}</p>
                     <p className="uppercase text-sm flex gap-x-1 w-full"><span className="font-thin text-black">COLLEGE</span>{player.college}</p>
                     {/* <p className="uppercase text-xs flex gap-x-1"><span className="font-thin">HT</span>{player.height} <span className="font-thin">WT</span>{player.weight}</p> */}
                 </div>

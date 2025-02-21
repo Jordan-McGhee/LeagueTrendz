@@ -60,12 +60,12 @@ const SchedulePage = () => {
     }
 
     return (
-        <div className="pb-24 md:pb-8">
+        <div className="pb-16 md:pb-8">
 
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
-            <Card className="">
+            <Card className="rounded-none md:rounded-xl">
                 <CardHeader>
                     <CardTitle className="text-2xl">
                         NBA Schedule

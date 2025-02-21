@@ -87,7 +87,7 @@ const SingleTeamPage = () => {
 
 
     return (
-        <div className="md:pb-8 pb-24">
+        <div className="md:pb-8 pb-16">
             {/* error */}
             <ErrorModal error={hasError} errorMessage={errorMessage} onClear={clearError} />
 
@@ -96,12 +96,12 @@ const SingleTeamPage = () => {
 
             {
                 team && games && players && history &&
-                <Card>
+                <Card className="rounded-none md:rounded-xl">
                     <CardHeader>
 
                         {/* mobile header */}
                         <TeamHeaderMobile team={team} abbreviation={abbreviation} selectedMenuItem={selectedMenuItem} className="flex flex-col gap-y-3 md:hidden" />
-                        
+
 
                         {/* desktop header */}
                         <TeamHeader team={team} abbreviation={abbreviation} selectedMenuItem={selectedMenuItem} className="hidden md:flex justify-between items-start" />
@@ -111,39 +111,39 @@ const SingleTeamPage = () => {
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "home" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-2"
+                                    className="flex-1 text-xs px-2 w-full text-center"
                                     onClick={() => handleMenuClick('home')}>Home</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "stats" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-2"
+                                    className="flex-1 text-xs px-2 w-full text-center"
                                     onClick={() => handleMenuClick('stats')}>Stats</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "schedule" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-2"
+                                    className="flex-1 text-xs px-2 w-full text-center"
                                     onClick={() => handleMenuClick('schedule')}>Schedule</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "roster" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-2"
+                                    className="flex-1 text-xs px-2 w-full text-center"
                                     onClick={() => handleMenuClick('roster')}>Roster</MenubarTrigger>
                             </MenubarMenu>
 
                             <MenubarMenu>
                                 <MenubarTrigger
                                     style={selectedMenuItem === "history" ? { backgroundColor: team.main_color, color: "white" } : {}}
-                                    className="text-xs px-2"
+                                    className="flex-1 text-xs px-2 w-full text-center"
                                     onClick={() => handleMenuClick('history')}>History</MenubarTrigger>
                             </MenubarMenu>
-
                         </Menubar>
+
 
                         {/* desktop menubar */}
                         <Menubar className="hidden md:flex w-fit">
