@@ -135,7 +135,7 @@ const PlayerPage = () => {
 
                         <MenubarMenu>
                             <MenubarTrigger
-                            className="text-xs px-2 flex-1"
+                            className="text-xs px-2 flex-1 text-nowrap"
                             style={selectedMenuItem === "log" ? {backgroundColor: currentTeam.main_color, color: "white"} : {}}
                             onClick={() => handleMenuClick('log')} >Game Log</MenubarTrigger>
                         </MenubarMenu>
