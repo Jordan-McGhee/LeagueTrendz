@@ -12,6 +12,7 @@ import { Accordion, AccordionContent, AccordionTrigger, AccordionItem } from "..
 import { SearchIcon, Menu, X } from "lucide-react";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { BasketballIcon, ScheduleIcon, StandingsIcon, TeamIcon, PlayerIcon } from "../Icons/Icons";
+import Ball from "../Icons/ball.png"
 
 // component imports
 import AuthPopup from "../components/Desktop/Auth/AuthPopup";
@@ -58,7 +59,8 @@ const DesktopNav = () => {
                     <div className="flex items-center space-x-6">
                         <li className="hover:text-[#ffa023] py-4 text-xl">
                             <NavLink to="/" className="flex items-center gap-x-2">
-                                <BasketballIcon />
+                                {/* <BasketballIcon /> */}
+                                <img src={Ball} alt="basketball png" className="size-6" />
                                 <p>LeagueTrendz</p>
                             </NavLink>
                         </li>
@@ -241,7 +243,8 @@ const DesktopNav = () => {
                                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                             </button>
                             <NavLink to="/" onClick={() => setMobileMenuOpen(false)} className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-x-2 text-xl">
-                                <BasketballIcon />
+                                {/* <BasketballIcon /> */}
+                                <img src={Ball} alt="basketball png" className="size-6" />
                                 <p>LeagueTrendz</p>
                             </NavLink>
                         </div>
