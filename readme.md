@@ -1,6 +1,8 @@
 # LeagueTrendz [(Website)](https://leaguetrendz.web.app/)
 ### *A web app for NBA fans — Explore stats, team performances, and player data from 2024 and past seasons.*<br>
 
+This NBA app offers a comprehensive and interactive experience for basketball fans, providing stats, team and player information, and detailed historical data through the 2024 season. Users can explore standings, sortable team stats, and in-depth player bios, along with game logs and performance splits. With easy navigation between teams, individual players, and game data, the app offers a wealth of information, including seasonal and career achievements, game highs, and even playoff statistics. Whether you're tracking your favorite team's progress or diving into player performance metrics, this app brings a wealth of basketball insights right at your fingertips.
+
 ## Tech Stack PERN
 - React with Typescript Frontend
 - Express & Node Backend
